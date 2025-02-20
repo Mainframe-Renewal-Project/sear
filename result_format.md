@@ -89,12 +89,12 @@ RACFu provides the following standardized JSON schema for security results retur
   &nbsp;
 
   {: .note }
-  > _Detailed explanations for the **SAF Return Codes**, **RACF Return Codes**, and **RACF Reason Codes** returned by **Add**, **Alter**, and **Delete** **Operations** can be found [here](https://www.ibm.com/docs/en/zos/3.1.0?topic=operations-return-reason-codes)._
+  > _Detailed explanations for the **SAF Return Codes**, **RACF Return Codes**, and **RACF Reason Codes** returned by **Add**, **Alter**, and **Delete** **Operations** can be found [here](https://www.ibm.com/docs/en/zos/latest?topic=operations-return-reason-codes)._
 
   &nbsp;
 
   {: .note }
-  > _Detailed explanations for the **SAF Return Codes**, **RACF Return Codes**, and **RACF Reason Codes** returned by **Extract** **Operations** can be found [here](https://www.ibm.com/docs/en/zos/3.1.0?topic=rairaa-return-reason-codes)._
+  > _Detailed explanations for the **SAF Return Codes**, **RACF Return Codes**, and **RACF Reason Codes** returned by **Extract** **Operations** can be found [here](https://www.ibm.com/docs/en/zos/latest?topic=rairaa-return-reason-codes)._
 
   &nbsp;
 
@@ -148,8 +148,8 @@ The following **RACFu Result JSON** contains the result of an `"add"` **Operatio
 ```json
 {
   "errors": [
-    "racfu: unable to add 'SQUIDWRD' because a profile already exists with that name"
-  ],
+    "racfu: unable to add 'SQUIDWRD' because a 'user' profile already exists with that name"
+   ],
   "return_codes": {
     "racf_reason_code": 0,
     "racf_return_code": 0,
@@ -194,8 +194,7 @@ The following **RACFu Result JSON** contains the result of an `"extract"` **Oper
         {
           "base:group_connection_auditor": false,
           "base:group_connection_automatic_data_set_protection": false,
-          "base:group_connection_connect_date": "09/13/24",
-          "base:group_connection_connects": 0,
+          "base:group_connection_create_date": "09/13/24",
           "base:group_connection_data_set_access": false,
           "base:group_connection_group": "SYS1",
           "base:group_connection_last_connect_date": null,
@@ -206,7 +205,8 @@ The following **RACFu Result JSON** contains the result of an `"extract"` **Oper
           "base:group_connection_revoke_date": null,
           "base:group_connection_revoked": false,
           "base:group_connection_special": false,
-          "base:group_connection_universal_access": "NONE"
+          "base:group_connection_universal_access": "NONE",
+          "base:group_connection_used_count": 0
         }
       ],
       "base:group_data_set_access": false,
@@ -269,7 +269,7 @@ The following **RACFu Result JSON** contains the result of an `"extract"` **Oper
 ```json
 {
   "errors": [
-    "Unable to extract 'user' profile 'SQUIDWRD'."
+    "racfu: unable to extract 'user' profile 'SQUIDWRD'"
   ],
   "return_codes": {
     "racf_reason_code": 4,

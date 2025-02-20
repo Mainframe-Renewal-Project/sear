@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: Traits
+nav_order: 1
 ---
 
 # User Traits
@@ -11,7 +12,7 @@ The following tables describes the user segments and traits that are supported f
 &nbsp;
 
 {: .note }
-> _More information about **RACF Keys** can be found [here](https://www.ibm.com/docs/en/zos/3.1.0?topic=tables-user-administration)._
+> _More information about **RACF Keys** can be found [here](https://www.ibm.com/docs/en/zos/latest?topic=services-reference-documentation-tables)._
 
 &nbsp;
 
@@ -23,108 +24,241 @@ The following tables describes the user segments and traits that are supported f
 {: .note }
 > _See [Operators](../operators) for more information about **Operator** usage._
 
-## Base Segment
+## `base`
 
 | **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
-| `"base:automatic_data_set_protection"` | `ADSP` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:auditor"` | `AUDITOR` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:default_group_authority"` | `AUTH` | `string` | `"set"` | `"add"`<br>`"alter"` |
-| `"base:security_category"` | `CATEGORY` | `string`<br>`array` | `"add"`<br>`"remove"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:security_caterogies"`| `NUMCTGY` | `array` | N/A | `"extract"` |
-| `"base:class_authorization"` | `CLAUTH` | `string`<br>`array` | `"add"`<br>`"remove"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:class_authorizations"`| `CLCNT` | `array` | N/A | `"extract"` |
-| `"base:group_connections"` | `CONNECTS` | `array` | N/A | `"extract"` |
-| `"base:group_connection_automatic_data_set_protection"` | `CADSP` | `boolean` | N/A | `"extract"` |
-| `"base:group_connection_auditor"` | `CAUDITOR` | `boolean` | N/A | `"extract"` |
-| `"base:group_connection_connect_date"` | `CAUTHDA` | `string` | N/A | `"extract"` |
-| `"base:group_connection_group` | `CGROUP` | `string` | N/A | `"extract"` |
-| `"base:group_connection_data_set_access"` | `CGRPACC` | `string` | N/A | `"extract"` |
-| `"base:group_connection_connects"` | `CINITCT` | `number` | N/A | `"extract"` |
-| `"base:group_connection_last_connect_date"` | `CLJDATE` | `string` | N/A | `"extract"` |
-| `"base:group_conneciton_last_connect_time"` | `CLJTIME` | `string` | N/A | `"extract"` |
-| `"base:group_connection_operations` | `COPER` | `boolean` | N/A | `"extract"` |
-| `"base:group_connection_owner"` | `COWNER` | `string` | N/A | `"extract"` |
-| `"base:group_connection_resume_date"` | `CRESUME` | `string` | N/A | `"extract"` |
-| `"base:group_connection_revoke_date"` | `CREVOKE` | `string` | N/A | `"extract"` |
-| `"base:group_connection_revoked"` | `CREVOKFL` | `boolean` | N/A | `"extract"` |
-| `"base:group_connection_special"` | `CSPECIAL` | `boolean` | N/A | `"extract"` |
-| `"base:group_connection_universal_access"` | `CUACC` | `string` | N/A | `"extract"` |
-| `"base:create_date"` | `CREATDAT` | `string` | N/A | `"extract"` |
-| `"base:installation_data"` | `DATA` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:default_group"` | `DFLTGRP` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:password_expired"` | `EXPIRED` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"` |
-| `"base:mfa"` | `FACTORN` | `array` | N/A | `"extract"` |
-| `"base:mfa_factor"` | `FACTOR` | `string` | `"set"`<br>`"remove"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:mfa_factor_tag_*"` | `FACTAG*` | `string` | N/A | `"extract"` |
-| `"base:mfa_factor_value_*"` | `FACVAL*` | `string` | N/A | `"extract"` |
-| `"base:group"` | `GROUP` | `string` | `"set"` | `"add"`<br>`"alter"` |
-| `"base:group_data_set_access"` | `GRPACC` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:has_passphrase"` | `HASPHRAS` | `boolean` | N/A | `"extract"` |
-| `"base:has_password"` | `HASPWD` | `boolean` | N/A | `"extract"` |
-| `"base:last_access_date"` | `LASTDATE` | `string` | N/A | `"extract"` |
-| `"base:last_access_time"` | `LASTTIME` | `string` | N/A | `"extract"` |
-| `"base:mfa_password_fallback"` | `MFAFLBK` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:mfa_policy"` | `MFAPOLNM` | `string` | `"add"`<br>`"remove"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:mfa_policies"` | `MFAPOLN` | `array` | N/A | `"extract"` |
-| `"base:model_data_set"` | `MODEL` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:name"` | `NAME` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:require_operator_id_card"` | `OIDCARD` | `boolean` | `"delete"` | `"add"`<br>`"alter"` |
-| `"base:operations"` | `OPER` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:owner"` | `OWNER` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:password_change_date"` | `PASSDATE` | `string` | N/A | `"extract"` |
-| `"base:password_change_interval"` | `PASSINT` | `number` | N/A | `"extract"` |
-| `"base:password"` | `PASSWORD` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"` |
-| `"base:passphrase"` | `PHRASE` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"` |
-| `"base:passphrase_change_date"` | `PHRDATE` | `string` | N/A | `"extract"` |
-| `"base:passphrase_change_interval"` | `PHRINT` | `number` | N/A | `"extract"` |
-| `"base:passphrase_enveloped"` | `PPHENV` | `boolean` | N/A | `"extract"` |
-| `"base:protected"` | `PROTECTD` | `boolean` | N/A | `"extract"` |
-| `"base:password_enveloped"` | `PWDENV` | `boolean` | N/A | `"extract"` |
-| `"base:restrict_global_access_checking"` | `REST` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:resume_date"` | `RESUME` | `string` | `"set"`<br>`"delete"` |  `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:revoke_date"` | `REVOKE` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:revoked"` | `REVOKEFL` | `boolean` | N/A | `"extract"` |
-| `"base:audit_responsibility"` | `ROAUDIT` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:security_label"` | `SECLABEL` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:security_level"` | `SECLEVEL` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:special"` | `SPECIAL` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:universal_access"` | `UACC` | `string` | `"set"` | `"add"`<br>`"alter"` |
-| `"base:audit_logging"` | `UAUDIT` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:logon_allowed_day"` | `WHENDAYS` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:logon_allowed_days"` | `WHENDYCT` | `array` | N/A | `"extract"` |
-| `"base:logon_allowed_when_service"` | `WHENSRV` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"base:logon_allowed_when_time"` | `WHENTIME` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:automatic_data_set_protection"` | `adsp` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:auditor"` | `auditor` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:default_group_authority"` | `auth` | `string` | `"set"` | `"add"`<br>`"alter"` |
+| `"base:security_category"` | `category` | `string` | `"add"`<br>`"remove"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:security_categories"` | `numctgy` | `repeat` | N/A | `"extract"` |
+| `"base:class_authorization"` | `clauth` | `string` | `"add"`<br>`"remove"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:class_authorizations"` | `clcnt` | `repeat` | N/A | `"extract"` |
+| `"base:group_connections"` | `connects` | `repeat` | N/A | `"extract"` |
+| `"base:group_connection_automatic_data_set_protection"` | `cadsp` | `boolean` | N/A | `"extract"` |
+| `"base:group_connection_auditor"` | `cauditor` | `boolean` | N/A | `"extract"` |
+| `"base:group_connection_create_date"` | `cauthda` | `string` | N/A | `"extract"` |
+| `"base:group_connection_group"` | `cgroup` | `string` | N/A | `"extract"` |
+| `"base:group_connection_data_set_access"` | `cgrpacc` | `string` | N/A | `"extract"` |
+| `"base:group_connection_used_count"` | `cinitct` | `uint` | N/A | `"extract"` |
+| `"base:group_connection_last_connect_date"` | `cljdate` | `string` | N/A | `"extract"` |
+| `"base:group_connection_last_connect_time"` | `cljtime` | `string` | N/A | `"extract"` |
+| `"base:group_connection_operations"` | `coper` | `boolean` | N/A | `"extract"` |
+| `"base:group_connection_owner"` | `cowner` | `string` | N/A | `"extract"` |
+| `"base:group_connection_resume_date"` | `cresume` | `string` | N/A | `"extract"` |
+| `"base:group_connection_revoke_date"` | `crevoke` | `string` | N/A | `"extract"` |
+| `"base:group_connection_revoked"` | `crevokfl` | `boolean` | N/A | `"extract"` |
+| `"base:group_connection_special"` | `cspecial` | `boolean` | N/A | `"extract"` |
+| `"base:group_connection_universal_access"` | `cuacc` | `string` | N/A | `"extract"` |
+| `"base:create_date"` | `creatdat` | `string` | N/A | `"extract"` |
+| `"base:installation_data"` | `data` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:default_group"` | `dfltgrp` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:password_expired"` | `expired` | `boolean` | `"set"`<br>`"delete"` | `"alter"` |
+| `"base:mfa_factors"` | `factorn` | `repeat` | N/A | `"extract"` |
+| `"base:mfa_active"` | `facactv` | `boolean` | N/A | `"extract"` |
+| `"base:group"` | `group` | `string` | `"set"` | `"alter"` |
+| `"base:group_data_set_access"` | `grpacc` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:has_passphrase"` | `hasphras` | `boolean` | N/A | `"extract"` |
+| `"base:has_password"` | `haspwd` | `boolean` | N/A | `"extract"` |
+| `"base:last_access_date"` | `lastdate` | `string` | N/A | `"extract"` |
+| `"base:last_acess_time"` | `lasttime` | `string` | N/A | `"extract"` |
+| `"base:mfa_password_fallback"` | `mfaflbk` | `boolean` | N/A | `"extract"` |
+| `"base:mfa_policy"` | `mfapolnm` | `string` | N/A | `"extract"` |
+| `"base:mfa_policies"` | `mfapoln` | `repeat` | N/A | `"extract"` |
+| `"base:model_data_set"` | `model` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:name"` | `name` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:require_operator_id_card"` | `oidcard` | `boolean` | `"delete"` | `"add"`<br>`"alter"` |
+| `"base:operations"` | `oper` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:owner"` | `owner` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:password_change_date"` | `passdate` | `string` | N/A | `"extract"` |
+| `"base:password_change_interval"` | `passint` | `uint` | N/A | `"extract"` |
+| `"base:password"` | `password` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"` |
+| `"base:passphrase"` | `phrase` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"` |
+| `"base:passphrase_change_date"` | `phrdate` | `string` | N/A | `"extract"` |
+| `"base:passphrase_change_interval"` | `phrint` | `uint` | N/A | `"extract"` |
+| `"base:passphrase_enveloped"` | `pphenv` | `boolean` | N/A | `"extract"` |
+| `"base:protected"` | `protectd` | `boolean` | N/A | `"extract"` |
+| `"base:password_enveloped"` | `pwdenv` | `boolean` | N/A | `"extract"` |
+| `"base:restrict_global_access_checking"` | `rest` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:resume_date"` | `resume` | `string` | `"set"`<br>`"delete"` | `"alter"`<br>`"extract"` |
+| `"base:revoke_date"` | `revoke` | `string` | `"set"`<br>`"delete"` | `"alter"`<br>`"extract"` |
+| `"base:revoked"` | `revokefl` | `boolean` | N/A | `"extract"` |
+| `"base:audit_responsibility"` | `roaudit` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:security_label"` | `seclabel` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:security_level"` | `seclevel` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:special"` | `special` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:universal_access"` | `uacc` | `string` | `"set"` | `"add"`<br>`"alter"` |
+| `"base:audit_logging"` | `uaudit` | `boolean` | `"set"`<br>`"delete"` | `"alter"`<br>`"extract"` |
+| `"base:logon_allowed_day"` | `whendays` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"base:logon_allowed_days"` | `whendyct` | `repeat` | N/A | `"extract"` |
+| `"base:logon_allowed_time"` | `whentime` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
 
-## OMVS Segment
+## `cics`
 
 | **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
-| `"omvs:max_address_space_size"` | `ASSIZE` | `number` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"omvs:auto_uid"` | `AUTOUID` | `boolean` | `"set"` | `"add"`<br>`"alter"` |
-| `"omvs:max_cpu_time"` | `CPUTIME` | `number` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"omvs:max_files_per_process"` | `FILEPROC` | `number` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `omvs:home_directory` | `HOME` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"omvs:max_non_shared_memory"` | `MEMLIMIT` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"omvs:max_file_mapping_pages"` | `MMAPAREA` | `number` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"omvs:max_processes"` | `PROCUSER` | `number` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"omvs:default_shell"` | `PROGRAM` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"omvs:shared"` | `SHARED` | `boolean` | `"set"` | `"add"`<br>`"alter"` |
-| `"omvs:max_shared_memory"` | `SHMEMMAX` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"omvs:max_threads"` | `THREADS` | `number` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract'` |
-| `"omvs:uid"` | `UID` | `number` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"cics:operator_class"` | `opclass` | `string` | `"set"`<br>`"add"`<br>`"remove"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"cics:operator_classes"` | `opclassn` | `repeat` | N/A | `"extract"` |
+| `"cics:operator_id"` | `opident` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"cics:operator_priority"` | `opprty` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"cics:resource_security_level_key"` | `rslkey` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"cics:resource_security_level_keys"` | `rslkeyn` | `repeat` | N/A | `"extract"` |
+| `"cics:timeout"` | `timeout` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"cics:transaction_security_level_key"` | `tslkey` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"cics:transaction_security_level_keys"` | `tslkeyn` | `repeat` | N/A | `"extract"` |
+| `"cics:force_signoff_when_xrf_takeover"` | `xrfsoff` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 
-## TSO Segment
+## `dce`
 
 | **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
-| `"tso:account_number"` | `ACCTNUM` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"tso:logon_command"` | `COMMAND` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"tso:sysout_destination_id"` | `DEST` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"tso:hold_class"` | `HLDCLASS` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"tso:job_class"` | `JOBCLASS` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"tso:max_region_size"` | `MAXSIZE` | `number` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"tso:message_class"` | `MSGCLASS` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"tso:logon_procedure"` | `PROC` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"tso:security_label"` | `SECLABEL` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"tso:default_region_size"` | `SIZE` | `number` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"tso:sysout_class"` | `SYSOUTCL` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"tso:data_set_allocation_unit"` | `UNIT` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"tso:user_data"` | `USERDATA` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"dce:auto_login"` | `autolog` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"dce:name"` | `dcename` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"dce:home_cell"` | `homecell` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"dce:home_cell_uuid"` | `homeuuid` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"dce:uuid"` | `uuid` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `dfp`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"dfp:data_application"` | `dataappl` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"dfp:data_class"` | `dataclas` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"dfp:management_class"` | `mgmtclas` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"dfp:storage_class"` | `storclas` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `eim`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"eim:ldap_bind_profile"` | `ldapprof` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `kerb`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"kerb:encryption_algorithm"` | `encrypt` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"kerb:encryption_algorithms"` | `encryptn` | `repeat` | N/A | `"extract"` |
+| `"kerb:name"` | `kerbname` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"kerb:key_from"` | `keyfrom` | `string` | N/A | `"extract"` |
+| `"kerb:key_version"` | `keyvers` | `string` | N/A | `"extract"` |
+| `"kerb:max_ticket_life"` | `maxtktlf` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `language`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"language:primary"` | `primary` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"language:secondary"` | `second` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `lnotes`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"lnotes:zos_short_name"` | `sname` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `mfa`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"mfa:factor"` | `factor` | `string` | `"set"` | `"alter"`<br>`"extract"` |
+| `"mfa:active"` | `facactv` | `boolean` | `"set"`<br>`"delete"` | `"alter"`<br>`"extract"` |
+| `"mfa:tags"` | `factags` | `string` | `"set"`<br>`"remove"`<br>`"delete"` | `"alter"` |
+| `"mfa:password_fallback"` | `mfaflbk` | `boolean` | `"set"`<br>`"delete"` | `"alter"`<br>`"extract"` |
+| `"mfa:mfa_policy"` | `mfapolnm` | `string` | `"add"`<br>`"remove"` | `"alter"`<br>`"extract"` |
+
+## `nds`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"nds:username"` | `uname` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `netview`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"netview:default_mcs_console_name"` | `consname` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"netview:security_control_check"` | `ctl` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"netview:domain"` | `domains` | `string` | `"set"`<br>`"add"`<br>`"remove"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"netview:domains"` | `domainsn` | `repeat` | N/A | `"extract"` |
+| `"netview:logon_commands"` | `ic` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"netview:receive_unsolicited_messages"` | `msgrecvr` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"netview:operator_graphic_monitor_facility_administration_allowed"` | `ngmfadmn` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"netview:operator_graphic_monitor_facility_display_authority"` | `ngmfvspn` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"netview:operator_scope_classes"` | `opclass` | `string` | `"set"`<br>`"add"`<br>`"remove"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `omvs`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"omvs:max_address_space_size"` | `assize` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"omvs:auto_uid"` | `autouid` | `boolean` | `"set"` | `"add"`<br>`"alter"` |
+| `"omvs:max_cpu_time"` | `cputime` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"omvs:max_files_per_process"` | `fileproc` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"omvs:home_directory"` | `home` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"omvs:max_non_shared_memory"` | `memlimit` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"omvs:max_file_mapping_pages"` | `mmaparea` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"omvs:max_processes"` | `procuser` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"omvs:default_shell"` | `program` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"omvs:shared"` | `shared` | `boolean` | `"set"` | `"add"`<br>`"alter"` |
+| `"omvs:max_shared_memory"` | `shmemmax` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"omvs:max_threads"` | `threads` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"omvs:uid"` | `uid` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `operparm`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"operparm:alternate_console_group"` | `altgrp` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:receive_automated_messages"` | `auto` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:command_target_system"` | `cmdsys` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:receive_delete_operator_messages"` | `dom` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:receive_hardcopy_messages"` | `hc` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:receive_internal_console_messages"` | `intids` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:console_searching_key"` | `key` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:message_level"` | `level` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:message_levels"` | `leveln` | `repeat` | N/A | `"extract"` |
+| `"operparm:log_command_responses"` | `logcmd` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:message_format"` | `mform` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:migration_id"` | `migid` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:monitor_event"` | `monitor` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:monitor_events"` | `monitorn` | `repeat` | N/A | `"extract"` |
+| `"operparm:message_scope"` | `mscope` | `string` | `"set"`<br>`"add"`<br>`"remove"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:message_scopes"` | `mscopen` | `repeat` | N/A | `"extract"` |
+| `"operparm:console_authority"` | `operauth` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:console_authorities"` | `operautn` | `repeat` | N/A | `"extract"` |
+| `"operparm:receive_routing_code"` | `routcode` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:receive_routing_codes"` | `routcodn` | `repeat` | N/A | `"extract"` |
+| `"operparm:message_queue_storage"` | `storage` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:receive_undelivered_messages"` | `ud` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:receive_unknown_console_id_messages"` | `unknids` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `ovm`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"ovm:file_system_root"` | `fsroot` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"ovm:home_directory"` | `vhome` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"ovm:default_shell"` | `vprogram` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"ovm:uid"` | `vuid` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `proxy`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"proxy:bind_distinguished_name"` | `binddn` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"proxy:bind_password"` | `bindpw` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"proxy:ldap_host"` | `ldaphost` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `tso`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"tso:account_number"` | `acctnum` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"tso:logon_command"` | `command` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"tso:sysout_destination_id"` | `dest` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"tso:hold_class"` | `hldclass` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"tso:job_class"` | `jobclass` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"tso:max_region_size"` | `maxsize` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"tso:message_class"` | `msgclass` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"tso:logon_procedure"` | `proc` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"tso:security_label"` | `seclabel` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"tso:default_region_size"` | `size` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"tso:sysout_class"` | `sysoutcl` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"tso:data_set_allocation_unit"` | `unit` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"tso:user_data"` | `userdata` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `workattr`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"workattr:account_number"` | `waaccnt` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"workattr:sysout_building"` | `wabldg` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"workattr:sysout_department"` | `wadept` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"workattr:sysout_user"` | `waname` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"workattr:sysout_room"` | `waroom` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"workattr:sysout_email"` | `waemail` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |

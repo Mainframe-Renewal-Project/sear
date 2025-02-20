@@ -66,8 +66,8 @@ callouts:
     title: 🚧 Experimental
     color: red
   development_status:
-    title: 💻 Development Status
-    color: yellow
+    title: 🚧 Development Status
+    color: red
 
 mermaid:
   # Version of mermaid library

@@ -11,25 +11,6 @@ RACFu provides the following standardized JSON schema for issuing security reque
 
 &nbsp;
 
-* `"admin_type"`<br>
-  A `string` value describing the type of **Security Administration Request** to issue. The following table describes all of the valid values for `"admin_type"`.
-
-  &nbsp;
-
-  {: .note }
-  > _The `"permission"` **Admin Type** is **NOT** allowed for `"extract"` **Operations**._
-
-  &nbsp;
-
-  | **Admin Type** | **Description** |
-  | `"user"` | Used for **User** administration. |
-  | `"group"` | Used for **Group** administration. |
-  | `"group-connection"` | Used for **Group Connection** administration. |
-  | `"resource"` | Used for **General Resource Profile** administration. |
-  | `"data-set"` | Used for **Data Set** administration. |
-  | `"racf-options"` | Used for **RACF Options** administration. |
-  | `"permission"` | Used for **Permission** administration. |
-
 * `"operation"`<br>
   A `string` value describing the **Security Management Function** to perform. The following table describes all of the valid values for `"operation"`.
 
@@ -50,6 +31,25 @@ RACFu provides the following standardized JSON schema for issuing security reque
   | `"alter"` | **Alter** an existing security profile. |
   | `"extract"` | **Extract** a security profile's data. |
   | `"delete"` | **Delete** a security profile. |
+
+* `"admin_type"`<br>
+  A `string` value describing the type of **Security Administration Request** to issue. The following table describes all of the valid values for `"admin_type"`.
+
+  &nbsp;
+
+  {: .note }
+  > _The `"permission"` **Admin Type** is **NOT** allowed for `"extract"` **Operations**._
+
+  &nbsp;
+
+  | **Admin Type** | **Description** |
+  | `"user"` | Used for **User** administration. |
+  | `"group"` | Used for **Group** administration. |
+  | `"group-connection"` | Used for **Group Connection** administration. |
+  | `"resource"` | Used for **General Resource Profile** administration. |
+  | `"data-set"` | Used for **Data Set** administration. |
+  | `"racf-options"` | Used for **RACF Options** administration. |
+  | `"permission"` | Used for **Permission** administration. |
 
 * `"profile_name"`<br>
   A `string` value identifying a **Security Profile** to **Add**, **Alter**, **Extract**, or **Delete**.
@@ -127,7 +127,7 @@ RACFu provides the following standardized JSON schema for issuing security reque
   &nbsp;
 
   {: .note }
-  > _In order to use `"run_as_userid"`, the caller must have at least `UPDATE` access to the `<userid>.IRRSMO00` **General Resource Profile** in the `SURROGAT` **Class**, where `<userid>` represents the **z/OS Userid** to perform **Security Operations** as. More information about **IRRSMO00 Authorizations** can be found [here](https://www.ibm.com/docs/en/zos/3.1.0?topic=operations-racf-authorization)._
+  > _In order to use `"run_as_userid"`, the caller must have at least `UPDATE` access to the `<userid>.IRRSMO00` **General Resource Profile** in the `SURROGAT` **Class**, where `<userid>` represents the **z/OS Userid** to perform **Security Operations** as. More information about **IRRSMO00 Authorizations** can be found [here](https://www.ibm.com/docs/en/zos/latest?topic=operations-racf-authorization)._
 
   &nbsp;
 
@@ -151,8 +151,8 @@ The following **RACFu Request JSON** creates new new **z/OS Userid** called `SQU
 ###### JSON
 ```json
 {
-  "admin_type": "user",
   "operation": "add",
+  "admin_type": "user",
   "profile_name": "SQUIDWRD",
   "traits": {
     "base:name": "Squidward",
@@ -167,8 +167,8 @@ The following **RACFu Request JSON** alters an exsting **z/OS Userid** called `S
 ###### JSON
 ```json
 {
-  "admin_type": "user",
   "operation": "alter",
+  "admin_type": "user",
   "profile_name": "SQUIDWRD",
   "traits": {
     "base:name": "Squilliam"
@@ -181,8 +181,8 @@ The following **RACFu Request JSON** deletes an exsting **z/OS Userid** called `
 ###### JSON
 ```json
 {
-  "admin_type": "user",
   "operation": "delete",
+  "admin_type": "user",
   "profile_name": "SQUIDWRD"
 }
 ```
@@ -192,8 +192,8 @@ The following **RACFu Request JSON** extracts the **Profile Data** for a **z/OS 
 ###### JSON
 ```json
 {
-  "admin_type": "user",
   "operation": "extract",
+  "admin_type": "user",
   "profile_name": "SQUIDWRD"
 }
 ```
