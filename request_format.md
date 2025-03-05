@@ -4,135 +4,212 @@ layout: default
 
 # Request Format
 
-RACFu provides the following standardized JSON schema for issuing security requests to RACF.
+RACFu provides the following standardized JSON Schema for issuing security requests to RACF.
 {: .fs-6 .fw-300 }
-
-## 📥 Parameters *(JSON Keys)*
 
 &nbsp;
 
-* `"operation"`<br>
-  A `string` value describing the **Security Management Function** to perform. The following table describes all of the valid values for `"operation"`.
+{: .note }
+> _RACFu validates requests using a **JSON Schema** that conforms to the [Draft-07](https://json-schema.org/draft-07) standard. The **JSON Schema** that RACFu uses to validate requests can be seen [here](https://github.com/ambitus/racfu/blob/main/schemas/parameters.json). Note that separate **JSON Schemas** are used to validate [Traits](../traits/)._
 
-  &nbsp;
+## Parameters
 
-  {: .note }
-  > _Only the `"alter"` and `"extract"` **Operations** are allowed for the `"racf-options"` **Admin Type**._
+| **Parameter** | **Description** |
+| `"operation"` | A `string` value describing the **Security Management Function** to perform. |
+| `"admin_type"` | A `string` value describing the type of **Security Administration Request** to issue. |
+| `"traits"` | An `object` describing **Traits/Attributes** to **Add/Modify** in `"add"` and `"alter"` **Operations**. |
+| `"userid"` | A `string` value that identifies a **z/OS Userid**. |
+| `"group"` | A `string` value that identifies a **Group**. |
+| `"resource"` | A `string` value that identifies a **General Resource Profile**. |
+| `"class"` | A `string` value that identifies a **General Resource Class**. |
+| `"volume"` | A `string` value that identifies a **DASD Volume**. |
+| `"generic"` | A `string` value that describes a security profile as being **Generic** or not. |
+| `"run_as_userid"` | A `string` value identifying a **z/OS Userid** to perform the **Security Operation** as. |
 
-  &nbsp;
+## User Administration Schemas
 
-  {: .note }
-  > _Only the `"alter"`, `"extract"`, and `"delete"` **Operations** are allowed for the `"permission"` **Admin Type**._
+#### Extract User Schema
 
-  &nbsp;
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"extract"` | Required |
+| `"admin_type"`| `string` | `"user"` | Required |
+| `"userid"` | `string` | 1-8 character string | Required |
 
-  | **Operation** | **Description** |
-  | `"add"` | **Add/Create** a new security profile. |
-  | `"alter"` | **Alter** an existing security profile. |
-  | `"extract"` | **Extract** a security profile's data. |
-  | `"delete"` | **Delete** a security profile. |
+#### Add/Alter User Schema
 
-* `"admin_type"`<br>
-  A `string` value describing the type of **Security Administration Request** to issue. The following table describes all of the valid values for `"admin_type"`.
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"add"` or `"alter"` | Required |
+| `"admin_type"`| `string` | `"user"` | Required |
+| `"userid"` | `string` | 1-8 Character String | Required |
+| `"traits"` | `json` | Traits JSON | Required |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
-  &nbsp;
+#### Delete User Schema
 
-  {: .note }
-  > _The `"permission"` **Admin Type** is **NOT** allowed for `"extract"` **Operations**._
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"delete"` | Required |
+| `"admin_type"`| `string` | `"user"` | Required |
+| `"userid"` | `string` | 1-8 character string | Required |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
-  &nbsp;
+## Group Administration Schemas
 
-  | **Admin Type** | **Description** |
-  | `"user"` | Used for **User** administration. |
-  | `"group"` | Used for **Group** administration. |
-  | `"group-connection"` | Used for **Group Connection** administration. |
-  | `"resource"` | Used for **General Resource Profile** administration. |
-  | `"data-set"` | Used for **Data Set** administration. |
-  | `"racf-options"` | Used for **RACF Options** administration. |
-  | `"permission"` | Used for **Permission** administration. |
+#### Extract Group Schema
 
-* `"profile_name"`<br>
-  A `string` value identifying a **Security Profile** to **Add**, **Alter**, **Extract**, or **Delete**.
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"extract"` | Required |
+| `"admin_type"`| `string` | `"group"` | Required |
+| `"group"` | `string` | 1-8 character string | Required |
 
-  &nbsp;
+#### Add/Alter Group Schema
 
-  {: .note }
-  > _`"profile_name"` is **NOT** allowed to be used with the `"racf-options"` **Admin Type** due to **RACF Options** being a **Singleton** for which there is **NO** concept of multiple discrete "profiles" that can be created, deleted, and managed._
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"add"` or `"alter"` | Required |
+| `"admin_type"`| `string` | `"group"` | Required |
+| `"group"` | `string` | 1-8 Character String | Required |
+| `"traits"` | `json` | Traits JSON | Required |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
-  &nbsp;
+#### Delete Group Schema
 
-  {: .note }
-  > _`"class_name"` **MUST** be used to indicate which **Class Name** the specified **Security Profile** is associated with for the `"resource"` and `"permission"` **Admin Types**._
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"delete"` | Required |
+| `"admin_type"`| `string` | `"group"` | Required |
+| `"group"` | `string` | 1-8 character string | Required |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
-  &nbsp;
+## Group Connection Administration Schemas
 
-* `"traits"`<br>
-  An `object` describing the **Traits/Attributes** to **Add/Modify** in `"add"` and `"alter"` **Operations**. See [Traits](../traits/) for more detail about how to specify **Traits** for `"add"` and `"alter"` **Operations**, and what **Traits** are supported for each **Admin Type**.
+#### Extract Group Connection Schema
 
-  &nbsp;
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"extract"` | Required |
+| `"admin_type"`| `string` | `"group-connection"` | Required |
+| `"userid"` | `string` | 1-8 character string | Required |
+| `"group"` | `string` | 1-8 character string | Required |
 
-  {: .note }
-  > _`"traits"` is **NOT** allowed to be used with `"extract"` and `"delete"` **Operations**._
+#### Alter Group Connection Schema
 
-  &nbsp;
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"alter"` | Required |
+| `"admin_type"`| `string` | `"group-connection"` | Required |
+| `"userid"` | `string` | 1-8 Character String | Required |
+| `"group"` | `string` | 1-8 Character String | Required |
+| `"traits"` | `json` | Traits JSON | Required |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
-* `"class_name"`<br>
-  A `string` value identifying a **Class Name** that the specified **Security Profile** is associated with.
+#### Delete Group Connection Schema
 
-  &nbsp;
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"delete"` | Required |
+| `"admin_type"`| `string` | `"group-connection"` | Required |
+| `"userid"` | `string` | 1-8 Character String | Required |
+| `"group"` | `string` | 1-8 character string | Required |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
-  {: .note }
-  > _`"class_name"` is **required** for and **only** allowed for the `"resource"` and `"permission"` **Admin Types**._
+## Resource Administration Schemas
 
-  &nbsp;
+#### Extract Resource Schema
 
-* `"volume"`<br>
-  A `string` value identifying a **Volume**.
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"extract"` | Required |
+| `"admin_type"`| `string` | `"resource"` | Required |
+| `"resource"` | `string` | 1-246 character string | Required |
+| `"class"` | `string` | 1-8 character string | Required |
 
-  &nbsp;
+#### Add/Alter Resource Schema
 
-  {: .note }
-  > _Only the `"data-set"` and `"permission"` **Admin Types** can be used with `"volume"`, and **only** for `"add"`, `"alter"`, and `"delete"` **Operations**._
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"add"` or `"alter"` | Required |
+| `"admin_type"`| `string` | `"resource"` | Required |
+| `"resource"` | `string` | 1-246 Character String | Required |
+| `"class"` | `string` | 1-8 Character String | Required |
+| `"traits"` | `json` | Traits JSON | Required |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
-  &nbsp;
+#### Delete Resource Schema
 
-  {: .note }
-  > _Note that for the `"permission"` **Admin Type**, this parameter will only take effect if the `"class_name"` parameter is set to `"DATASET"`._
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"delete"` | Required |
+| `"admin_type"`| `string` | `"resource"` | Required |
+| `"resource"` | `string` | 1-246 Character String | Required |
+| `"class"` | `string` | 1-8 character string | Required |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
-  &nbsp;
+## Data Set Administration Schemas
 
-* `"generic"`<br>
-  A `string` value identifying a **Security Profile** as **Generic** or **Not Generic**.
+#### Extract Data Set Schema
 
-  &nbsp;
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"extract"` | Required |
+| `"admin_type"`| `string` | `"data-set"` | Required |
+| `"data_set"` | `string` | 1-44 character string | Required |
 
-  {: .note }
-  > _Only the `"data-set"` and `"permission"` **Admin Types** can be used with `"generic"`, and **only** for `"add"`, `"alter"`, and `"delete"` **Operations**._
+#### Add/Alter Data Set Schema
 
-  &nbsp;
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"add"` or `"alter"` | Required |
+| `"admin_type"`| `string` | `"data-set"` | Required |
+| `"data_set"` | `string` | 1-44 Character String | Required |
+| `"volume"` | `string` | 1-6 Character String | Optional |
+| `"generic"` | `boolean` | `true` or `false`<br>*(`false` is the default)* | Optional |
+| `"traits"` | `json` | Traits JSON | Required |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
-  {: .note }
-  > _Note that for the `"permission"` **Admin Type**, this parameter will only take effect if the `"class_name"` parameter is set to `"DATASET"`._
+#### Delete Data Set Schema
 
-  &nbsp;
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"delete"` | Required |
+| `"admin_type"`| `string` | `"data-set"` | Required |
+| `"data_set"` | `string` | 1-44 Character String | Required |
+| `"volume"` | `string` | 1-6 Character String | Optional |
+| `"generic"` | `boolean` | `true` or `false`<br>*(`false` is the default)* | Optional |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
-  {: .note }
-  > _`"generic"` may **only** be set to `"yes"` or `"no"`._
+## RACF Options Administration Schemas
 
-  &nbsp;
+#### Extract RACF Options Schema
 
-* `"run_as_userid"`<br>
-  A `string` value identifying a **z/OS Userid** to perform the **Security Operation** as.
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"extract"` | Required |
+| `"admin_type"`| `string` | `"racf-options"` | Required |
 
-  &nbsp;
+#### Alter RACF Options Schema
 
-  {: .note }
-  > _In order to use `"run_as_userid"`, the caller must have at least `UPDATE` access to the `<userid>.IRRSMO00` **General Resource Profile** in the `SURROGAT` **Class**, where `<userid>` represents the **z/OS Userid** to perform **Security Operations** as. More information about **IRRSMO00 Authorizations** can be found [here](https://www.ibm.com/docs/en/zos/latest?topic=operations-racf-authorization)._
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"alter"` | Required |
+| `"admin_type"`| `string` | `"racf-options"` | Required |
+| `"traits"` | `json` | Traits JSON | Required |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
-  &nbsp;
+## Permission Administration Schemas
 
-  {: .note }
-  > _`"run_as_userid"` is **NOT** allowed for `"extract"` **Operations**._
+#### Add/Alter Permission Schema
+
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"add"` or `"alter"` | Required |
+| `"admin_type"`| `string` | `"permission"` | Required |
+| `"resource"` | `string` | 1-246 Character String | Required |
+| `"class"` | `string` | 1-8 Character String | Required |
+| `"userid"` | `string` | 1-8 Character String | Required and only allowed if `"group"` is not specified |
+| `"group"` | `string` | 1-8 Character String | Required and only allowed if `"userid"` is not specified |
+| `"volume"` | `string` | 1-6 Character String | Optional |
+| `"generic"` | `boolean` | `true` or `false`<br>*(`false` is the default)* | Optional |
+| `"traits"` | `json` | Traits JSON | Required |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
+
+#### Delete Permission Schema
+
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"add"` or `"alter"` | Required |
+| `"admin_type"`| `string` | `"permission"` | Required |
+| `"resource"` | `string` | 1-246 Character String | Required |
+| `"class"` | `string` | 1-8 Character String | Required |
+| `"userid"` | `string` | 1-8 Character String | Required and only allowed if `"group"` is not specified |
+| `"group"` | `string` | 1-8 Character String | Required and only allowed if `"userid"` is not specified |
+| `"volume"` | `string` | 1-6 Character String | Optional |
+| `"generic"` | `boolean` | `true` or `false`<br>*(`false` is the default)* | Optional |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
 ## 💻 Request Examples
 
@@ -153,7 +230,7 @@ The following **RACFu Request JSON** creates new new **z/OS Userid** called `SQU
 {
   "operation": "add",
   "admin_type": "user",
-  "profile_name": "SQUIDWRD",
+  "userid": "SQUIDWRD",
   "traits": {
     "base:name": "Squidward",
     "omvs:uid": 24,
@@ -169,7 +246,7 @@ The following **RACFu Request JSON** alters an exsting **z/OS Userid** called `S
 {
   "operation": "alter",
   "admin_type": "user",
-  "profile_name": "SQUIDWRD",
+  "userid": "SQUIDWRD",
   "traits": {
     "base:name": "Squilliam"
   }
@@ -183,7 +260,7 @@ The following **RACFu Request JSON** deletes an exsting **z/OS Userid** called `
 {
   "operation": "delete",
   "admin_type": "user",
-  "profile_name": "SQUIDWRD"
+  "userid": "SQUIDWRD"
 }
 ```
 
@@ -194,6 +271,6 @@ The following **RACFu Request JSON** extracts the **Profile Data** for a **z/OS 
 {
   "operation": "extract",
   "admin_type": "user",
-  "profile_name": "SQUIDWRD"
+  "userid": "SQUIDWRD"
 }
 ```

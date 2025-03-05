@@ -41,6 +41,7 @@ All versions of **z/OS** and the **IBM Open Enterprise SDK for Python** that are
 * **R_SecMgtOper (IRRSMO00)**: Security Management Operations.
 * **R_Admin (IRRSEQ00)**: RACF Administration API.
 * **RACF Subsystem Address Space**: This is a dependency for both **IRRSMO00** and **IRRSEQ00**. More information can be found [here](https://www.ibm.com/docs/en/zos/latest?topic=considerations-racf-subsystem).
+* **z/OS Language Environment Runtime Support**: RACFu is compiled using the **IBM Open XL C/C++ 2.1** compiler, which is still fairly new and requires **z/OS Language Environment** service updates for runtime support. More information can be found in section **5.2.2.2 Operational Requisites** on page **9** in the [Program Directory for IBM Open XL C/C++ 2.1 for z/OS](https://publibfp.dhe.ibm.com/epubs/pdf/i1357012.pdf).
 
 ## Authorizations
 
@@ -76,7 +77,7 @@ python3 -m pip install racfu
 
 ```python
 >>> from racfu import racfu
->>> result = racfu({"operation": "extract", "admin_type": "user", "profile_name": "SQUIDWRD"})
+>>> result = racfu({"operation": "extract", "admin_type": "user", "userid": "SQUIDWRD"})
 >>> result.result
 {'profile': {'base': {'base:audit_logging': False, 'base:audit_responsibility': False, 'base:auditor': False, 'base:automatic_data_set_protection': False, 'base:create_date': '09/13/24', 'base:default_group': 'SYS1', 'base:group_connections': [{'base:group_connection_auditor': False, 'base:group_connection_automatic_data_set_protection': False, 'base:group_connection_create_date': '09/13/24', 'base:group_connection_data_set_access': False, 'base:group_connection_group': 'SYS1', 'base:group_connection_last_connect_date': None, 'base:group_connection_last_connect_time': None, 'base:group_connection_operations': False, 'base:group_connection_owner': 'LEONARD', 'base:group_connection_resume_date': None, 'base:group_connection_revoke_date': None, 'base:group_connection_revoked': False, 'base:group_connection_special': False, 'base:group_connection_universal_access': 'NONE', 'base:group_connection_used_count': 0}], 'base:group_data_set_access': False, 'base:has_passphrase': False, 'base:has_password': False, 'base:logon_allowed_days': [{'base:logon_allowed_day': 'SUNDAY'}, {'base:logon_allowed_day': 'MONDAY'}, {'base:logon_allowed_day': 'TUESDAY'}, {'base:logon_allowed_day': 'WEDNESDAY'}, {'base:logon_allowed_day': 'THURSDAY'}, {'base:logon_allowed_day': 'FRIDAY'}, {'base:logon_allowed_day': 'SATURDAY'}], 'base:logon_allowed_time': 'ANYTIME', 'base:mfa_password_fallback': False, 'base:name': 'SQUIDWARD', 'base:operations': False, 'base:owner': 'LEONARD', 'base:passphrase_change_interval': 0, 'base:passphrase_enveloped': False, 'base:password_change_interval': 186, 'base:password_enveloped': False, 'base:protected': True, 'base:restrict_global_access_checking': False, 'base:revoked': False, 'base:special': False}, 'omvs': {'omvs:home_directory': '/u/squidwrd', 'omvs:uid': 24}}, 'return_codes': {'racf_reason_code': 0, 'racf_return_code': 0, 'racfu_return_code': 0, 'saf_return_code': 0}}
 ```
