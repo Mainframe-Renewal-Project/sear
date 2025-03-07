@@ -184,10 +184,10 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 
 ## Permission Administration Schemas
 
-#### Add/Alter Permission Schema
+#### Alter Permission Schema
 
 | **Parameter** | **Data Type** | **Value** | **Required** |
-| `"operation"` | `string` | `"add"` or `"alter"` | Required |
+| `"operation"` | `string` | `"alter"` | Required |
 | `"admin_type"`| `string` | `"permission"` | Required |
 | `"resource"` | `string` | 1-246 character string | Required |
 | `"class"` | `string` | 1-8 character string | Required |
@@ -201,7 +201,7 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 #### Delete Permission Schema
 
 | **Parameter** | **Data Type** | **Value** | **Required** |
-| `"operation"` | `string` | `"add"` or `"alter"` | Required |
+| `"operation"` | `string` | `"delete"` | Required |
 | `"admin_type"`| `string` | `"permission"` | Required |
 | `"resource"` | `string` | 1-246 character string | Required |
 | `"class"` | `string` | 1-8 character string | Required |
