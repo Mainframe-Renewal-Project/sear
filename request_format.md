@@ -16,14 +16,14 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 
 | **Parameter** | **Description** |
 | `"operation"` | A `string` value describing the **Security Management Function** to perform. |
-| `"admin_type"` | A `string` value describing the type of **Security Administration Request** to issue. |
+| `"admin_type"` | A `string` value describing the Type of **Security Administration Request** to issue. |
 | `"traits"` | An `object` describing **Traits/Attributes** to **Add/Modify** in `"add"` and `"alter"` **Operations**. |
 | `"userid"` | A `string` value that identifies a **z/OS Userid**. |
 | `"group"` | A `string` value that identifies a **Group**. |
 | `"resource"` | A `string` value that identifies a **General Resource Profile**. |
 | `"class"` | A `string` value that identifies a **General Resource Class**. |
-| `"volume"` | A `string` value that identifies a **DASD Volume**. |
-| `"generic"` | A `string` value that describes a security profile as being **Generic** or not. |
+| `"volume"` | A `string` value that identifies a **DASD Volume Serial**. |
+| `"generic"` | A `boolean` value that identifies a **Security Profile** as being **Generic** or not. |
 | `"run_as_userid"` | A `string` value identifying a **z/OS Userid** to perform the **Security Operation** as. |
 
 ## User Administration Schemas
@@ -40,8 +40,8 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 | **Parameter** | **Data Type** | **Value** | **Required** |
 | `"operation"` | `string` | `"add"` or `"alter"` | Required |
 | `"admin_type"`| `string` | `"user"` | Required |
-| `"userid"` | `string` | 1-8 Character String | Required |
-| `"traits"` | `json` | Traits JSON | Required |
+| `"userid"` | `string` | 1-8 character string | Required |
+| `"traits"` | `json` | [Traits JSON](../traits/) | Required |
 | `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
 #### Delete User Schema
@@ -66,8 +66,8 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 | **Parameter** | **Data Type** | **Value** | **Required** |
 | `"operation"` | `string` | `"add"` or `"alter"` | Required |
 | `"admin_type"`| `string` | `"group"` | Required |
-| `"group"` | `string` | 1-8 Character String | Required |
-| `"traits"` | `json` | Traits JSON | Required |
+| `"group"` | `string` | 1-8 character string | Required |
+| `"traits"` | `json` | [Traits JSON](../traits/) | Required |
 | `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
 #### Delete Group Schema
@@ -93,9 +93,9 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 | **Parameter** | **Data Type** | **Value** | **Required** |
 | `"operation"` | `string` | `"alter"` | Required |
 | `"admin_type"`| `string` | `"group-connection"` | Required |
-| `"userid"` | `string` | 1-8 Character String | Required |
-| `"group"` | `string` | 1-8 Character String | Required |
-| `"traits"` | `json` | Traits JSON | Required |
+| `"userid"` | `string` | 1-8 character string | Required |
+| `"group"` | `string` | 1-8 character string | Required |
+| `"traits"` | `json` | [Traits JSON](../traits/) | Required |
 | `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
 #### Delete Group Connection Schema
@@ -103,7 +103,7 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 | **Parameter** | **Data Type** | **Value** | **Required** |
 | `"operation"` | `string` | `"delete"` | Required |
 | `"admin_type"`| `string` | `"group-connection"` | Required |
-| `"userid"` | `string` | 1-8 Character String | Required |
+| `"userid"` | `string` | 1-8 character string | Required |
 | `"group"` | `string` | 1-8 character string | Required |
 | `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
@@ -122,9 +122,9 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 | **Parameter** | **Data Type** | **Value** | **Required** |
 | `"operation"` | `string` | `"add"` or `"alter"` | Required |
 | `"admin_type"`| `string` | `"resource"` | Required |
-| `"resource"` | `string` | 1-246 Character String | Required |
-| `"class"` | `string` | 1-8 Character String | Required |
-| `"traits"` | `json` | Traits JSON | Required |
+| `"resource"` | `string` | 1-246 character string | Required |
+| `"class"` | `string` | 1-8 character string | Required |
+| `"traits"` | `json` | [Traits JSON](../traits/) | Required |
 | `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
 #### Delete Resource Schema
@@ -132,7 +132,7 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 | **Parameter** | **Data Type** | **Value** | **Required** |
 | `"operation"` | `string` | `"delete"` | Required |
 | `"admin_type"`| `string` | `"resource"` | Required |
-| `"resource"` | `string` | 1-246 Character String | Required |
+| `"resource"` | `string` | 1-246 character string | Required |
 | `"class"` | `string` | 1-8 character string | Required |
 | `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
@@ -150,10 +150,10 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 | **Parameter** | **Data Type** | **Value** | **Required** |
 | `"operation"` | `string` | `"add"` or `"alter"` | Required |
 | `"admin_type"`| `string` | `"data-set"` | Required |
-| `"data_set"` | `string` | 1-44 Character String | Required |
-| `"volume"` | `string` | 1-6 Character String | Optional |
+| `"data_set"` | `string` | 1-44 character string | Required |
+| `"volume"` | `string` | 1-6 character string | Optional |
 | `"generic"` | `boolean` | `true` or `false`<br>*(`false` is the default)* | Optional |
-| `"traits"` | `json` | Traits JSON | Required |
+| `"traits"` | `json` | [Traits JSON](../traits/) | Required |
 | `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
 #### Delete Data Set Schema
@@ -161,8 +161,8 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 | **Parameter** | **Data Type** | **Value** | **Required** |
 | `"operation"` | `string` | `"delete"` | Required |
 | `"admin_type"`| `string` | `"data-set"` | Required |
-| `"data_set"` | `string` | 1-44 Character String | Required |
-| `"volume"` | `string` | 1-6 Character String | Optional |
+| `"data_set"` | `string` | 1-44 character string | Required |
+| `"volume"` | `string` | 1-6 character string | Optional |
 | `"generic"` | `boolean` | `true` or `false`<br>*(`false` is the default)* | Optional |
 | `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
@@ -179,7 +179,7 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 | **Parameter** | **Data Type** | **Value** | **Required** |
 | `"operation"` | `string` | `"alter"` | Required |
 | `"admin_type"`| `string` | `"racf-options"` | Required |
-| `"traits"` | `json` | Traits JSON | Required |
+| `"traits"` | `json` | [Traits JSON](../traits/) | Required |
 | `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
 ## Permission Administration Schemas
@@ -189,13 +189,13 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 | **Parameter** | **Data Type** | **Value** | **Required** |
 | `"operation"` | `string` | `"add"` or `"alter"` | Required |
 | `"admin_type"`| `string` | `"permission"` | Required |
-| `"resource"` | `string` | 1-246 Character String | Required |
-| `"class"` | `string` | 1-8 Character String | Required |
-| `"userid"` | `string` | 1-8 Character String | Required and only allowed if `"group"` is not specified |
-| `"group"` | `string` | 1-8 Character String | Required and only allowed if `"userid"` is not specified |
-| `"volume"` | `string` | 1-6 Character String | Optional |
+| `"resource"` | `string` | 1-246 character string | Required |
+| `"class"` | `string` | 1-8 character string | Required |
+| `"userid"` | `string` | 1-8 character string | Required and only allowed if `"group"` is not specified |
+| `"group"` | `string` | 1-8 character string | Required and only allowed if `"userid"` is not specified |
+| `"volume"` | `string` | 1-6 character string | Optional |
 | `"generic"` | `boolean` | `true` or `false`<br>*(`false` is the default)* | Optional |
-| `"traits"` | `json` | Traits JSON | Required |
+| `"traits"` | `json` | [Traits JSON](../traits/) | Required |
 | `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
 #### Delete Permission Schema
@@ -203,11 +203,11 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 | **Parameter** | **Data Type** | **Value** | **Required** |
 | `"operation"` | `string` | `"add"` or `"alter"` | Required |
 | `"admin_type"`| `string` | `"permission"` | Required |
-| `"resource"` | `string` | 1-246 Character String | Required |
-| `"class"` | `string` | 1-8 Character String | Required |
-| `"userid"` | `string` | 1-8 Character String | Required and only allowed if `"group"` is not specified |
-| `"group"` | `string` | 1-8 Character String | Required and only allowed if `"userid"` is not specified |
-| `"volume"` | `string` | 1-6 Character String | Optional |
+| `"resource"` | `string` | 1-246 character string | Required |
+| `"class"` | `string` | 1-8 character string | Required |
+| `"userid"` | `string` | 1-8 character string | Required and only allowed if `"group"` is not specified |
+| `"group"` | `string` | 1-8 character string | Required and only allowed if `"userid"` is not specified |
+| `"volume"` | `string` | 1-6 character string | Optional |
 | `"generic"` | `boolean` | `true` or `false`<br>*(`false` is the default)* | Optional |
 | `"run_as_userid"` | `string` | 1-8 character string | Optional |
 

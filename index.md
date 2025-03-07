@@ -1,6 +1,6 @@
 ---
-layout: page
-nav_exclude: true
+layout: home
+has_toc: false
 ---
 
 ![pyRACF Logo](/assets/images/logo.png)
@@ -13,7 +13,7 @@ A standardized JSON interface for RACF that enables seemless exploitation by pro
 &nbsp;
 
 {: .development_status }
-> _**RACFu** is currently in **Alpha**, meaning that some core functionality may still be missing, unstable, and or may still need more thorough testing._
+> _**RACFu** is currently in **Alpha**, meaning that some core functionality may still be missing, unstable, and or subject to change._
 
 &nbsp;
 

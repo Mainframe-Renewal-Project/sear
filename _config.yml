@@ -15,14 +15,14 @@
 
 
 title: RACFu
-racfu_version: 1.0a1
+racfu_version: 1.0a2
 description: >- # this means to ignore newlines until "baseurl:"
   Python interface to the RACF Command interface.
 permalink: /:title/ 
 logo: "/assets/images/logo.png"
 
 # Build settings
-remote_theme: just-the-docs/just-the-docs@v0.7.0
+remote_theme: just-the-docs/just-the-docs@v0.10.1
 include:
   - contribute.markdown
 color_scheme: dark
@@ -30,7 +30,7 @@ color_scheme: dark
 # Enable or disable the site search
 # Supports true (default) or false
 search_enabled: true
-search.heading_level: 3
+search.heading_level: 4
 # Maximum amount of previews per search result
 # Default: 3
 search.previews: 3
@@ -72,7 +72,7 @@ callouts:
 mermaid:
   # Version of mermaid library
   # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
-  version: "10.8.0"
+  version: "11.4.1"
 
 # Exclude from processing.
 # The following items will not be processed, by default.

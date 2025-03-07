@@ -71,6 +71,10 @@ a:not([class]):hover, a:not([class]):focus-visible {
     background-color: #223;
 }
 
+.side-bar + .main .main-header {
+    background-color: transparent;
+}
+
 .nav-list .nav-list-item {
     margin-right: 10px;
     margin-left: 10px;
@@ -452,16 +456,28 @@ img {
     .search-active .search-label {
         padding-left: 0.8rem;
     }
-  }
+}
 
 @media (min-width: 66.5rem) {
     .side-bar {
-      width: 16.5rem;
+        width: 16.5rem;
     }
-    .main {
+    .side-bar + .main {
         margin-left: 16.5rem;
     }
-  }
+}
+
+@media (min-width: 110.5rem) {
+    .side-bar {
+        width: calc((100% - 66.5rem) / 2 + 16.5rem);
+    }
+    .side-bar + .main {
+        margin-left: Max(16.5rem, calc((100% - 66.5rem) / 2 + 16.5rem));
+    }
+    .main {
+        max-width: 60rem;
+    }
+}
 
 @media only screen and (max-height: 549px) {
     .site-footer {
