@@ -184,7 +184,7 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 
 ## Permission Administration Schemas
 
-#### Alter Permission Schema
+#### Alter Permission Resource Schema
 
 | **Parameter** | **Data Type** | **Value** | **Required** |
 | `"operation"` | `string` | `"alter"` | Required |
@@ -193,18 +193,39 @@ RACFu provides the following standardized JSON Schema for issuing security reque
 | `"class"` | `string` | 1-8 character string | Required |
 | `"userid"` | `string` | 1-8 character string | Required and only allowed if `"group"` is not specified |
 | `"group"` | `string` | 1-8 character string | Required and only allowed if `"userid"` is not specified |
+| `"traits"` | `json` | [Traits JSON](../traits/) | Required |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
+
+#### Alter Permission Data Set Schema
+
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"alter"` | Required |
+| `"admin_type"`| `string` | `"permission"` | Required |
+| `"data_set"` | `string` | 1-44 character string | Required |
+| `"userid"` | `string` | 1-8 character string | Required and only allowed if `"group"` is not specified |
+| `"group"` | `string` | 1-8 character string | Required and only allowed if `"userid"` is not specified |
 | `"volume"` | `string` | 1-6 character string | Optional |
 | `"generic"` | `boolean` | `true` or `false`<br>*(`false` is the default)* | Optional |
 | `"traits"` | `json` | [Traits JSON](../traits/) | Required |
 | `"run_as_userid"` | `string` | 1-8 character string | Optional |
 
-#### Delete Permission Schema
+#### Delete Permission Resource Schema
 
 | **Parameter** | **Data Type** | **Value** | **Required** |
 | `"operation"` | `string` | `"delete"` | Required |
 | `"admin_type"`| `string` | `"permission"` | Required |
 | `"resource"` | `string` | 1-246 character string | Required |
 | `"class"` | `string` | 1-8 character string | Required |
+| `"userid"` | `string` | 1-8 character string | Required and only allowed if `"group"` is not specified |
+| `"group"` | `string` | 1-8 character string | Required and only allowed if `"userid"` is not specified |
+| `"run_as_userid"` | `string` | 1-8 character string | Optional |
+
+#### Delete Permission Data Set Schema
+
+| **Parameter** | **Data Type** | **Value** | **Required** |
+| `"operation"` | `string` | `"delete"` | Required |
+| `"admin_type"`| `string` | `"permission"` | Required |
+| `"data_set"` | `string` | 1-44 character string | Required |
 | `"userid"` | `string` | 1-8 character string | Required and only allowed if `"group"` is not specified |
 | `"group"` | `string` | 1-8 character string | Required and only allowed if `"userid"` is not specified |
 | `"volume"` | `string` | 1-6 character string | Optional |

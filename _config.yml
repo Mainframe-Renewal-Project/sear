@@ -17,7 +17,7 @@
 title: RACFu
 racfu_version: 1.0a2
 description: >- # this means to ignore newlines until "baseurl:"
-  Python interface to the RACF Command interface.
+  A unified and standardized interface to RACF callable services. 
 permalink: /:title/ 
 logo: "/assets/images/logo.png"
 
