@@ -165,8 +165,7 @@ The following **RACFu Result JSON** contains the result of a request that was ne
 ```json
 {
   "errors": [
-    "racfu: 'junk_operation' is not a valid value for 'operation'",
-    "racfu: 'junk_admin' is not a valid value for 'admin_type'"
+    "racfu: The provided request JSON does not contain a valid request"
   ],
   "return_codes": {
     "racf_reason_code": null,
