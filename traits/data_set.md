@@ -17,7 +17,7 @@ The following tables describes the data set segments and traits that are support
 &nbsp;
 
 {: .note }
-> _**RACF Keys** that end in `*` are intended as wildcards and will match supplied text from either RACF or the RACFu caller._
+> _**Traits** and **RACF Keys** that contain the `*` symbol are treated as wildcards. The `*` symbol in the **Trait** and **RACF Key** represent the same value. For example, `csdata:example` matches the `csdata:*` **Trait** and the resolved **RACF Key** in this scenario is `example` since the corresponding **RACF Key** is `*`._
 
 &nbsp;
 
