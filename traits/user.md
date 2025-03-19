@@ -17,6 +17,11 @@ The following tables describes the user segments and traits that are supported f
 &nbsp;
 
 {: .note }
+> _**RACF Keys** that end in `*` are intended as wildcards and will match supplied text from either RACF or the RACFu caller._
+
+&nbsp;
+
+{: .note }
 > _See [Data Types](../data_types) for more information about **Data Types**._
 
 &nbsp;
@@ -34,6 +39,8 @@ The following tables describes the user segments and traits that are supported f
 | `"base:security_categories"` | `numctgy` | `repeat` | N/A | `"extract"` |
 | `"base:class_authorization"` | `clauth` | `string` | `"add"`<br>`"remove"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"base:class_authorizations"` | `clcnt` | `repeat` | N/A | `"extract"` |
+| `"base:factor_tag_*"` | `factag*` | `string` | N/A | `"extract"` |
+| `"base:factor_value_*"` | `facval*` | `string` | N/A | `"extract"` |
 | `"base:group_connections"` | `connects` | `repeat` | N/A | `"extract"` |
 | `"base:group_connection_automatic_data_set_protection"` | `cadsp` | `boolean` | N/A | `"extract"` |
 | `"base:group_connection_auditor"` | `cauditor` | `boolean` | N/A | `"extract"` |
@@ -106,6 +113,11 @@ The following tables describes the user segments and traits that are supported f
 | `"cics:transaction_security_level_key"` | `tslkey` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cics:transaction_security_level_keys"` | `tslkeyn` | `repeat` | N/A | `"extract"` |
 | `"cics:force_signoff_when_xrf_takeover"` | `xrfsoff` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `csdata`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"csdata:*"` | `*` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 
 ## `dce`
 
@@ -201,14 +213,14 @@ The following tables describes the user segments and traits that are supported f
 | `"operparm:receive_automated_messages"` | `auto` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"operparm:command_target_system"` | `cmdsys` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"operparm:receive_delete_operator_messages"` | `dom` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"operparm:receive_hardcopy_messages"` | `hc` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"operparm:receive_internal_console_messages"` | `intids` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:receive_hardcopy_messages"` | `hc` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:receive_internal_console_messages"` | `intids` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"operparm:console_searching_key"` | `key` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"operparm:message_level"` | `level` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"operparm:message_levels"` | `leveln` | `repeat` | N/A | `"extract"` |
 | `"operparm:log_command_responses"` | `logcmd` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"operparm:message_format"` | `mform` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"operparm:migration_id"` | `migid` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:migration_id"` | `migid` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"operparm:monitor_event"` | `monitor` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"operparm:monitor_events"` | `monitorn` | `repeat` | N/A | `"extract"` |
 | `"operparm:message_scope"` | `mscope` | `string` | `"set"`<br>`"add"`<br>`"remove"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
@@ -218,8 +230,8 @@ The following tables describes the user segments and traits that are supported f
 | `"operparm:receive_routing_code"` | `routcode` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"operparm:receive_routing_codes"` | `routcodn` | `repeat` | N/A | `"extract"` |
 | `"operparm:message_queue_storage"` | `storage` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"operparm:receive_undelivered_messages"` | `ud` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"operparm:receive_unknown_console_id_messages"` | `unknids` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:receive_undelivered_messages"` | `ud` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"operparm:receive_unknown_console_id_messages"` | `unknids` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 
 ## `ovm`
 

@@ -17,6 +17,11 @@ The following tables describes the group segments and traits that are supported 
 &nbsp;
 
 {: .note }
+> _**RACF Keys** that end in `*` are intended as wildcards and will match supplied text from either RACF or the RACFu caller._
+
+&nbsp;
+
+{: .note }
 > _See [Data Types](../data_types) for more information about **Data Types**._
 
 &nbsp;
@@ -39,6 +44,11 @@ The following tables describes the group segments and traits that are supported 
 | `"base:superior_group"` | `supgroup` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"base:terminal_universal_access"` | `termuacc` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"base:universal"` | `universl` | `boolean` | `"set"` | `"add"`<br>`"extract"` |
+
+## `csdata`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"csdata:*"` | `*` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 
 ## `dfp`
 
