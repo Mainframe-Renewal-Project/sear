@@ -17,6 +17,11 @@ The following tables describes the group segments and traits that are supported 
 &nbsp;
 
 {: .note }
+> _**Traits** and **RACF Keys** that contain the `*` symbol are treated as wildcards. The `*` symbol in the **Trait** and **RACF Key** represent the same value. For example, `csdata:example` matches the `csdata:*` **Trait** and the resolved **RACF Key** in this scenario is `example` since the corresponding **RACF Key** is `*`._
+
+&nbsp;
+
+{: .note }
 > _See [Data Types](../data_types) for more information about **Data Types**._
 
 &nbsp;
@@ -39,6 +44,11 @@ The following tables describes the group segments and traits that are supported 
 | `"base:superior_group"` | `supgroup` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"base:terminal_universal_access"` | `termuacc` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"base:universal"` | `universl` | `boolean` | `"set"` | `"add"`<br>`"extract"` |
+
+## `csdata`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"csdata:*"` | `*` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 
 ## `dfp`
 

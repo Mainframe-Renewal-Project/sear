@@ -17,6 +17,11 @@ The following tables describes the data set segments and traits that are support
 &nbsp;
 
 {: .note }
+> _**Traits** and **RACF Keys** that contain the `*` symbol are treated as wildcards. The `*` symbol in the **Trait** and **RACF Key** represent the same value. For example, `csdata:example` matches the `csdata:*` **Trait** and the resolved **RACF Key** in this scenario is `example` since the corresponding **RACF Key** is `*`._
+
+&nbsp;
+
+{: .note }
 > _See [Data Types](../data_types) for more information about **Data Types**._
 
 &nbsp;
@@ -79,6 +84,11 @@ The following tables describes the data set segments and traits that are support
 | `"base:resident_volume"` | `volser` | `string` | N/A | `"extract"` |
 | `"base:resident_volumes"` | `volcnt` | `repeat` | N/A | `"extract"` |
 | `"base:warn_on_insufficient_access"` | `warning` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"` |
+
+## `csdata`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"csdata:*"` | `*` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 
 ## `dfp`
 

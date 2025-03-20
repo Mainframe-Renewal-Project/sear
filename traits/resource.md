@@ -17,6 +17,11 @@ The following tables describes the resource segments and traits that are support
 &nbsp;
 
 {: .note }
+> _**Traits** and **RACF Keys** that contain the `*` symbol are treated as wildcards. The `*` symbol in the **Trait** and **RACF Key** represent the same value. For example, `csdata:example` matches the `csdata:*` **Trait** and the resolved **RACF Key** in this scenario is `example` since the corresponding **RACF Key** is `*`._
+
+&nbsp;
+
+{: .note }
 > _See [Data Types](../data_types) for more information about **Data Types**._
 
 &nbsp;
@@ -92,14 +97,14 @@ The following tables describes the resource segments and traits that are support
 | `"cdtinfo:max_length"` | `cdtmaxln` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cdtinfo:max_length_entityx"` | `cdtmaxlx` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cdtinfo:member_class_name"` | `cdtmembr` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"cdtinfo:operations"` | `cdtoper` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"cdtinfo:operations"` | `cdtoper` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cdtinfo:valid_other_character"` | `cdtother` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cdtinfo:valid_other_characters"` | `cdtothn` | `repeat` | N/A | `"extract"` |
 | `"cdtinfo:posit_number"` | `cdtposit` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"cdtinfo:profiles_allowed"` | `cdtprfal` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"cdtinfo:profiles_allowed"` | `cdtprfal` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cdtinfo:raclist_allowed"` | `cdtracl` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"cdtinfo:send_enf_signal_on_profile_creation"` | `cdtsigl` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"cdtinfo:security_label_required"` | `cdtslreq` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"cdtinfo:send_enf_signal_on_profile_creation"` | `cdtsigl` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"cdtinfo:security_label_required"` | `cdtslreq` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cdtinfo:default_universal_access"` | `cdtuacc` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 
 ## `cfdef`
@@ -109,12 +114,17 @@ The following tables describes the resource segments and traits that are support
 | `"cfdef:valid_first_characters"` | `cffirst` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cfdef:help_text"` | `cfhelp` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cfdef:list_heading_text"` | `cflist` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"cfdef:mixed_case_allowed"` | `cfmixed` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"cfdef:mixed_case_allowed"` | `cfmixed` | `boolean` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cfdef:min_numeric_value"` | `cfmnval` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cfdef:max_field_length"` | `cfmxlen` | `uint` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cfdef:max_numeric_value"` | `cfmxval` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cfdef:valid_other_characters"` | `cfother` | `string` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"cfdef:validation_rexx_exec"` | `cfvalrx` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+
+## `csdata`
+
+| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
+| `"csdata:*"` | `*` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 
 ## `dlfdata`
 
@@ -134,7 +144,7 @@ The following tables describes the resource segments and traits that are support
 ## `kerb`
 
 | **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
-| `"kerb:validate_addresses"` | `chkaddrs` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"kerb:validate_addresses"` | `chkaddrs` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"kerb:default_ticket_life"` | `deftktlf` | `uint` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"kerb:encryption_algorithm"` | `encrypt` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"kerb:encryption_algorithms"` | `encryptn` | `repeat` | N/A | `"extract"` |
@@ -170,7 +180,7 @@ The following tables describes the resource segments and traits that are support
 | **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |
 | `"idtparms:signature_algorithm"` | `sigalg` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 | `"idtparms:identity_token_timeout"` | `idttimeo` | `uint` | `"set"` | `"add"`<br>`"alter"`<br>`"extract"` |
-| `"idtparms:use_for_any_application"` | `anyappl` | `string` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
+| `"idtparms:use_for_any_application"` | `anyappl` | `boolean` | `"set"`<br>`"delete"` | `"add"`<br>`"alter"`<br>`"extract"` |
 
 ## `jes`
 
