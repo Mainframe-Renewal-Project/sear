@@ -75,9 +75,9 @@ def convert_key_map_hpp_to_json_schema(input_filepath, output_filepath):
     segments = re.findall(segment_mapping, segement_trait_information)
 
     if "add" in allowed_operations:
-        json_schema = { "addOnlyTraits": {}, "alterOnlyTraits": {}, "commonTraits": {}, "extractOnlyTraits": {}, "patternProperties": {}}
+        json_schema = { "addTraits": {}, "alterTraits": {}, "extractOnlyTraits": {}, "patternProperties": {}}
     else:
-        json_schema = { "commonTraits": {}, "extractOnlyTraits": {}, "patternProperties": {}}
+        json_schema = { "alterTraits": {}, "extractOnlyTraits": {}, "patternProperties": {}}
     
     for segment in segments:
         #print(segment)
@@ -144,22 +144,17 @@ def convert_key_map_hpp_to_json_schema(input_filepath, output_filepath):
                 json_schema["extractOnlyTraits"].update(trait_dict)
                 #print('extract only')
             elif "*" in trait[0]:
-                trait_dict[trait_name]["operatorCode"] = trait[2].lower()+''.join(operators_allowed)
+                #trait_dict[trait_name]["operatorCode"] = trait[2].lower()+''.join(operators_allowed)
                 json_schema["patternProperties"].update(trait_dict)
                 #print('addedPattern')
             else:
-                trait_dict[trait_name]["operatorCode"] = trait[2].lower()+''.join(operators_allowed)
-                if "add" in allowed_operations:
-                    if '`"add"`' in supported_operations and '`"alter"`' not in supported_operations:
-                        json_schema["addOnlyTraits"].update(trait_dict)
-                        #print('add')
-                    elif '`"alter"`' in supported_operations and '`"add"`' not in supported_operations:
-                        json_schema["alterOnlyTraits"].update(trait_dict)
-                        #print('addedPattern')
-                    else:
-                        json_schema["commonTraits"].update(trait_dict)
-                else:
-                    json_schema["commonTraits"].update(trait_dict)
+                #trait_dict[trait_name]["operatorCode"] = trait[2].lower()+''.join(operators_allowed)
+                if '`"add"`' in supported_operations:
+                    json_schema["addTraits"].update(trait_dict)
+                    #print('add')
+                if '`"alter"`' in supported_operations:
+                    json_schema["alterTraits"].update(trait_dict)
+                    #print('addedPattern')
 
     return json_schema
 
@@ -181,43 +176,32 @@ def convert_directory(directory_path):
     operation_combos = []
     for admin_type in master_json.keys():
         camel_admin_type = to_lower_camel_case(admin_type)
-        if "addOnlyTraits" in master_json[admin_type] and master_json[admin_type]["addOnlyTraits"] != {}:
-            for trait in master_json[admin_type]["addOnlyTraits"]:
-                operation_combos.append(master_json[admin_type]["addOnlyTraits"][trait]["operatorCode"])
-                del master_json[admin_type]["addOnlyTraits"][trait]["operatorCode"]
+        if "addTraits" in master_json[admin_type] and master_json[admin_type]["addTraits"] != {}:
+            #for trait in master_json[admin_type]["addTraits"]:
+                #operation_combos.append(master_json[admin_type]["addTraits"][trait]["operatorCode"])
+                #del master_json[admin_type]["addTraits"][trait]["operatorCode"]
             add_properties = { 
-                f"{camel_admin_type}AddOnlyTraits": { 
-                    "properties": master_json[admin_type]["addOnlyTraits"],
+                f"{camel_admin_type}AddTraits": { 
+                    "properties": master_json[admin_type]["addTraits"],
                     "patternProperties": master_json[admin_type]["patternProperties"],
                     "additionalProperties": False
                 }
             }
             json_schema["$defs"].update(add_properties)
-        if "alterOnlyTraits" in master_json[admin_type] and master_json[admin_type]["alterOnlyTraits"] != {}:
-            for trait in master_json[admin_type]["alterOnlyTraits"]:
-                #print(trait, master_json[admin_type]["alterProperties"][trait])
-                operation_combos.append(master_json[admin_type]["alterOnlyTraits"][trait]["operatorCode"])
-                del master_json[admin_type]["alterOnlyTraits"][trait]["operatorCode"]
+        if "alterTraits" in master_json[admin_type] and master_json[admin_type]["alterTraits"] != {}:
+            #for trait in master_json[admin_type]["alterTraits"]:
+                #print(trait, master_json[admin_type]["alterTraits"][trait])
+                #operation_combos.append(master_json[admin_type]["alterTraits"][trait]["operatorCode"])
+                #del master_json[admin_type]["alterTraits"][trait]["operatorCode"]
             alter_properties = { 
-                f"{camel_admin_type}AlterOnlyTraits": { 
-                    "properties": master_json[admin_type]["alterOnlyTraits"],
+                f"{camel_admin_type}AlterTraits": { 
+                    "properties": master_json[admin_type]["alterTraits"],
                     "patternProperties": master_json[admin_type]["patternProperties"],
                     "additionalProperties": False
                 }
             }
             json_schema["$defs"].update(alter_properties)
-        for trait in master_json[admin_type]["commonTraits"]:
-            #print(trait, master_json[admin_type]["alterProperties"][trait])
-            operation_combos.append(master_json[admin_type]["commonTraits"][trait]["operatorCode"])
-            del master_json[admin_type]["commonTraits"][trait]["operatorCode"]
-        alter_properties = { 
-            f"{camel_admin_type}CommonTraits": { 
-                "properties": master_json[admin_type]["commonTraits"],
-                "patternProperties": master_json[admin_type]["patternProperties"],
-                "additionalProperties": False
-            }
-        }
-        json_schema["$defs"].update(alter_properties)
+
         if "extractOnlyTraits" in master_json[admin_type] and master_json[admin_type]["extractOnlyTraits"] != {}:
             extract_only_properties = {
                     f"{camel_admin_type}ExtractOnlyTraits": { 
