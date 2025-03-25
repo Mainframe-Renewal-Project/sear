@@ -1,0 +1,2327 @@
+{
+    "base": {
+        "aclcnt": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "This is the list header field for the standard access list, which is a 3-dimensional array consisting of the ACLID, ACLACS, and ACLACNT fields. For generic profiles, the ACLACNT field does not apply, and the array will be 2-dimensional.",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "aclacnt": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "ACCESS COUNT",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "aclacs": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "ACCESS",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "aclid": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "ID",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acl2cnt": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "This is the list header field for the conditional access list, which is a 5-dimensional array consisting of the ACL2ID, ACL2ACS, ACL2ACNT, ACL2COND, and ACL2ENT fields. For generic profiles, the ACL2ACNT field does not apply, and the array will be 4-dimensional.",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acl2acnt": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "ACCESS COUNT",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acl2acs": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "ACCESS",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acl2cond": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "CLASS",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acl2ent": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "ENTITY NAME",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acl2id": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "ID",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acsaltr": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "ALTER COUNT",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acscntl": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "CONTROL COUNT",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acsread": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "READ COUNT",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acsupdt": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "UPDATE COUNT",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "all": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "ALL",
+                "add": false,
+                "alt": false,
+                "extract": true,
+                "lst": true,
+                "bool": true
+            }
+        },
+        "appldata": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "APPLDATA(xx)",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "NOAPPLDATA",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            }
+        },
+        "audaltr": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "AUDIT(xx (ALTER))",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "audcntl": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "AUDIT(xx (CONTROL))",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "audnone": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "AUDIT(NONE)",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "audread": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "AUDIT(xx (READ))",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "audupdt": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "AUDIT(xx (UPDATE))",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "authuser": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "AUTHUSER",
+                "add": false,
+                "alt": false,
+                "extract": true,
+                "lst": true,
+                "bool": true
+            }
+        },
+        "automatc": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "AUTOMATIC",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": true
+            }
+        },
+        "category": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "ADDCATEGORY(xx ...)",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            },
+            "'A'": {
+                "keyword": "ADDCATEGORY(xx ...)",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            },
+            "'D'": {
+                "keyword": "DELCATEGORY(xx ...)",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            }
+        },
+        "creatdat": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "CREATION DATE",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "data": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "DATA(xx)",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "NODATA",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            }
+        },
+        "fclass": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "FCLASS(xx)",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "fgeneric": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "FGENERIC",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": true
+            }
+        },
+        "fprofile": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "FROM(xx)",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "fvolume": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "FVOLUME(xx)",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "gaudaltr": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "GLOBALAUDIT(xx (ALTER))",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "gaudcntl": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "GLOBALAUDIT(xx (CONTROL))",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "gaudnone": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "GLOBALAUDIT (NONE)",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "gaudread": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "GLOBALAUDIT(xx (READ))",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "gaudupdt": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "GLOBALAUDIT(xx (UPDATE))",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "generic": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "GENERIC",
+                "add": false,
+                "alt": false,
+                "extract": true,
+                "lst": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "NOGENERIC",
+                "add": false,
+                "alt": false,
+                "extract": true,
+                "lst": true
+            }
+        },
+        "history": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "HISTORY",
+                "add": false,
+                "alt": false,
+                "extract": true,
+                "lst": true,
+                "bool": true
+            }
+        },
+        "lchgdat": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "LAST CHANGE DATE",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "level": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "LEVEL(xx)",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "lrefdat": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "LAST REFERENCE DATE",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "member": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "ADDMEM(xx ...)",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            },
+            "'A'": {
+                "keyword": "ADDMEM(xx ...)",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            },
+            "'D'": {
+                "keyword": "DELMEM(xx ...)",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            }
+        },
+        "noracf": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "NORACF",
+                "add": false,
+                "alt": false,
+                "extract": true,
+                "lst": true,
+                "bool": true
+            }
+        },
+        "notify": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "NOTIFY(xx)",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "NONOTIFY",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            }
+        },
+        "noyourac": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "NOYOURACC",
+                "add": false,
+                "alt": false,
+                "extract": true,
+                "lst": true,
+                "bool": true
+            }
+        },
+        "owner": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "OWNER(xx)",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "profile": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "N/A (see note)",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "lst": true,
+                "bool": false
+            }
+        },
+        "raudit": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "AUDITING",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "resgroup": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "RESGROUP",
+                "add": false,
+                "alt": false,
+                "extract": true,
+                "lst": true,
+                "bool": false
+            }
+        },
+        "rgaudit": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "GLOBALAUDIT",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "seclabel": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "SECLABEL (xx)",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "NOSECLABEL",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            }
+        },
+        "seclevel": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "SECLEVEL(xx)",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "NOSECLEVEL",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            }
+        },
+        "singldsn": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "SINGLEDSN",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "NOSINGLEDSN",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            }
+        },
+        "stats": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "STATISTICS",
+                "add": false,
+                "alt": false,
+                "extract": true,
+                "lst": true,
+                "bool": true
+            }
+        },
+        "timezone": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "TIMEZONE(xx)",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "NOTIMEZONE",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            }
+        },
+        "tvtoc": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "TVTOC",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "lst": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "NOTVTOC",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            }
+        },
+        "uacc": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "UACC(xx)",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "volume": {
+            "saf name": "",
+            "'A'": {
+                "keyword": "ADDVOL(xx ...)",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            },
+            "'D'": {
+                "keyword": "DELVOL(xx ...)",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            }
+        },
+        "warning": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "WARNING",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "NOWARNING",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "lst": false
+            }
+        },
+        "whendays": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "WHEN(DAYS(xx))",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "whentime": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "WHEN( TIME (xx))",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "lst": false,
+                "bool": false
+            }
+        }
+    },
+    "cdtinfo": {
+        "cdtcase": {
+            "saf name": "case",
+            "'Y'": {
+                "keyword": "CDTINFO(CASE(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO(NOCASE)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtdftrc": {
+            "saf name": "defaultrc",
+            "'Y'": {
+                "keyword": "CDTINFO( DEFAULTRC(x) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NODEFAULTRC )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtfirst": {
+            "saf name": "first",
+            "'Y'": {
+                "keyword": "CDTINFO( FIRST(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOFIRST )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtgen": {
+            "saf name": "generic",
+            "'Y'": {
+                "keyword": "CDTINFO (GENERIC(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO (NOGENERIC)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtgenl": {
+            "saf name": "genlist",
+            "'Y'": {
+                "keyword": "CDTINFO( GENLIST(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOGENLIST )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtgroup": {
+            "saf name": "grouping",
+            "'Y'": {
+                "keyword": "CDTINFO( GROUP(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOGROUP )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtkeyql": {
+            "saf name": "keyqual",
+            "'Y'": {
+                "keyword": "CDTINFO( KEYQUALIFIERS(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOKEYQUALIFIERS )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtmac": {
+            "saf name": "macprocessing",
+            "'Y'": {
+                "keyword": "CDTINFO( MACPROCESSING(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOMACPROCESSING )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtmaxln": {
+            "saf name": "maxlenx",
+            "'Y'": {
+                "keyword": "CDTINFO( MAXLENGTH(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOMAXLENGTH )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtmaxlx": {
+            "saf name": "maxlength",
+            "'Y'": {
+                "keyword": "CDTINFO( MAXLENX(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOMAXLENX )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtmembr": {
+            "saf name": "member",
+            "'Y'": {
+                "keyword": "CDTINFO( MEMBER(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOMEMBER )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtoper": {
+            "saf name": "operations",
+            "'Y'": {
+                "keyword": "CDTINFO( OPERATIONS(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOOPERATIONS )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtother": {
+            "saf name": "other",
+            "'Y'": {
+                "keyword": "CDTINFO( OTHER(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOOTHER) )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtposit": {
+            "saf name": "posit",
+            "'Y'": {
+                "keyword": "CDTINFO( POSIT(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOPOSIT )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtprfal": {
+            "saf name": "profilesallowed",
+            "'Y'": {
+                "keyword": "CDTINFO( PROFILESALLOWED(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOPROFILESALLOWED )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtracl": {
+            "saf name": "raclist",
+            "'Y'": {
+                "keyword": "CDTINFO( RACLIST(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NORACLIST )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtsigl": {
+            "saf name": "signal",
+            "'Y'": {
+                "keyword": "CDTINFO( SIGNAL(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOSIGNAL )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtslreq": {
+            "saf name": "seclabelrequired",
+            "'Y'": {
+                "keyword": "CDTINFO( SECLABELSREQUIRED(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NOSECLABELSREQUIRED )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cdtuacc": {
+            "saf name": "defaultuacc",
+            "'Y'": {
+                "keyword": "CDTINFO( DEFAULTUACC(xx) )",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDTINFO( NODEFAULTUACC )",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "cfdef": {
+        "cfdtype": {
+            "saf name": "type",
+            "'Y'": {
+                "keyword": "CFDEF (TYPE(xx))",
+                "add": true,
+                "alt": false,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "cffirst": {
+            "saf name": "first",
+            "'Y'": {
+                "keyword": "CFDEF (FIRST(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "cfhelp": {
+            "saf name": "help",
+            "'Y'": {
+                "keyword": "CFDEF (HELP(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "cflist": {
+            "saf name": "listhead",
+            "'Y'": {
+                "keyword": "CFDEF (LISTHEAD(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "cfmixed": {
+            "saf name": "mixed",
+            "'Y'": {
+                "keyword": "CFDEF (MIXED(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "cfmnval": {
+            "saf name": "minvalue",
+            "'Y'": {
+                "keyword": "CFDEF (MINVALUE(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CFDEF (NOMINVALUE)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cfmxlen": {
+            "saf name": "maxlength",
+            "'Y'": {
+                "keyword": "CFDEF (MAXLENGTH(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "cfmxval": {
+            "saf name": "other",
+            "'Y'": {
+                "keyword": "CFDEF (MAXVALUE(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CFDEF (NOMAXVALUE)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "cfother": {
+            "saf name": "other",
+            "'Y'": {
+                "keyword": "CFDEF (OTHER(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "cfvalrx": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "CDEF(VALREXX(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CDEF(NOVALREXX)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "csdata": {
+        "custom-keyword": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "CSDATA(custom-keyword(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "CSDATA(NOcustom-keyword(xxx))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "dlfdata": {
+        "jobname": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "DLFDATA (JOBNAMES (xx ...))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'A'": {
+                "keyword": "DLFDATA(ADDJOBNAMES(xx ...))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'D'": {
+                "keyword": "DLFDATA(DELJOBNAMES(xx ...))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'N'": {
+                "keyword": "DLFDATA(NOJOBNAMES)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "retain": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "DLFDATA(RETAIN(YES))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "DLFDATA (RETAIN(NO))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "eim": {
+        "domaindn": {
+            "saf name": "domaindn",
+            "'Y'": {
+                "keyword": "EIM(DOMAINDN(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "EIM(NODOMAINDN)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "kerbreg": {
+            "saf name": "kerberg",
+            "'Y'": {
+                "keyword": "EIM(KERBREGISTRY(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "EIM(NOKERBREGISTRY)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "localreg": {
+            "saf name": "localreg",
+            "'Y'": {
+                "keyword": "EIM(LOCALREGISTRY(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "EIM(NOLOCALREGISTRY)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "options": {
+            "saf name": "options",
+            "'Y'": {
+                "keyword": "EIM(OPTIONS(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "EIM(NOOPTIONS)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "x509reg": {
+            "saf name": "X509reg",
+            "'Y'": {
+                "keyword": "EIM(X509REGISTRY(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "EIM(NOX509REGISTRY)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "kerb": {
+        "chkaddrs": {
+            "saf name": "checkaddrs",
+            "'Y'": {
+                "keyword": "KERB(CHECKADDRS(Y))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "KERB(CHECKADDRS(N))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "deftktlf": {
+            "saf name": "deftktlife",
+            "'Y'": {
+                "keyword": "KERB(DEFTKTLFE(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "KERB(NODEFTKTLFE)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "encrypt": {
+            "saf name": "encrypt",
+            "'Y'": {
+                "keyword": "KERB(ENCRYPT(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "KERB(NOENCRYPT)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "kerbname": {
+            "saf name": "kerbname",
+            "'Y'": {
+                "keyword": "KERB(KERBNAME(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "KERB(NOKERBNAME)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "keyvers": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "KEY VERSION=",
+                "add": false,
+                "alt": false,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "maxtktlf": {
+            "saf name": "maxtktlf",
+            "'Y'": {
+                "keyword": "KERB(MAXTKTLFE(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "KERB(NOMAXTKTLFE)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "mintktlf": {
+            "saf name": "mintklife",
+            "'Y'": {
+                "keyword": "KERB(MINTKTLFE(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "KERB(NOMINTKTLFE)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "password": {
+            "saf name": "password",
+            "'Y'": {
+                "keyword": "KERB(PASSWORD(xx))",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "KERB(NOPASSWORD)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "icsf": {
+        "crtlbls": {
+            "saf name": "symexportcert",
+            "'Y'": {
+                "keyword": "ICSF(SYMEXPORTCERTS(xx \u2026))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'A'": {
+                "keyword": "ICSF(ADDSYMEXPORTCERTS (xx \u2026))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'D'": {
+                "keyword": "ICSF(DELSYMEXPORTCERTS (xx \u2026))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'N'": {
+                "keyword": "ICSF(NOSYMEXPORTCERTS)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "export": {
+            "saf name": "symexportable",
+            "'Y'": {
+                "keyword": "ICSF(SYMEXPORTABLE(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "ICSF(NOSYMEXPORTABLE)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "keylbls": {
+            "saf name": "symexportkey",
+            "'Y'": {
+                "keyword": "ICSF(SYMEXPORTKEYS(xx \u2026))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'A'": {
+                "keyword": "ICSF(ADDSYMEXPORTKEYS (xx \u2026))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'D'": {
+                "keyword": "ICSF(DELSYMEXPORTKEYS (xx \u2026))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'N'": {
+                "keyword": "ICSF(NOSYMEXPORTKEYS)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "scpwrap": {
+            "saf name": "symcpacfwrap",
+            "'Y'": {
+                "keyword": "ICSF(SYMCPACFWRAP(YES))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "ICSF(SYMCPACFWRAP(NO))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "scpret": {
+            "saf name": "symcpacfret",
+            "'Y'": {
+                "keyword": "ICSF(SYMCPACFRET(YES))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "ICSF(SYMCPACFRET(NO))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "usage": {
+            "saf name": "asymusage",
+            "'Y'": {
+                "keyword": "ICSF(ASYMUSAGE(xx ...))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "ICSF(NOASYMUSAGE)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "ictx": {
+        "domap": {
+            "saf name": "domap",
+            "\u2018Y\u2019": {
+                "keyword": "ICTX(DOMAP(YES))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "\u2018N\u2019": {
+                "keyword": "ICTX(DOMAP(NO))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "mapreq": {
+            "saf name": "mapreq",
+            "\u2018Y\u2019": {
+                "keyword": "ICTX(MAPREQUIRED(YES))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "\u2018N\u2019": {
+                "keyword": "ICTX(MAPREQUIRED(NO))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "maptimeo": {
+            "saf name": "maptimeo",
+            "\u2018Y\u2019": {
+                "keyword": "ICTX(MAPPINGTIMEOUT(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "\u2018N\u2019": {
+                "keyword": "ICTX(NOMAPPINGTIMEOUT)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "usemap": {
+            "saf name": "usemap",
+            "\u2018Y\u2019": {
+                "keyword": "ICTX(USEMAP(YES))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "\u2018N\u2019": {
+                "keyword": "ICTX(USEMAP(NO))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "idtparms": {
+        "sigtoken": {
+            "saf name": "sigtoken",
+            "'Y'": {
+                "keyword": "IDTPARMS (SIGTOKEN(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "IDTPARMS (NOSIGTOKEN)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "sigseqn": {
+            "saf name": "sigseqnum",
+            "'Y'": {
+                "keyword": "IDTPARMS (SIGSEQNUM(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "IDTPARMS (NOSIGSEQNUM)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "sigcat": {
+            "saf name": "sigcat",
+            "'Y'": {
+                "keyword": "IDTPARMS (SIGCAT)",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "IDTPARMS (NOSIGCAT)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "sigalg": {
+            "saf name": "sigalg",
+            "'Y'": {
+                "keyword": "IDTPARMS (SIGALG(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "IDTPARMS (NOSIGALG)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "idttimeo": {
+            "saf name": "idttimeout",
+            "'Y'": {
+                "keyword": "IDTPARMS (IDTTIMEOUT(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "anyappl": {
+            "saf name": "anyappl",
+            "'Y'": {
+                "keyword": "IDTPARMS (ANYAPPL(YES))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "IDTPARMS (ANYAPPL(NO))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "jes": {
+        "keylabel": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "JES(KEYLABEL(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "JES(NOKEYLABEL)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "mfpolicy": {
+        "factors": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "MFPOLICY(FACTORS(xx \u2026))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'A'": {
+                "keyword": "MFPOLICY(ADDFACTORS(xx \u2026))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'D'": {
+                "keyword": "MFPLICY(DELFACTORS(xx \u2026))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'N'": {
+                "keyword": "MFPOLICY(NOFACTORS))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "timeout": {
+            "saf name": "",
+            "'Y": {
+                "keyword": "MFPOLICY(TOKENTIMEOUT(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "reuse": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "MFPOLICY(REUSE(YES))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "MFPOLICY(REUSE(NO))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "proxy": {
+        "binddn": {
+            "saf name": "binddn",
+            "'Y'": {
+                "keyword": "PROXY(BINDDN(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "PROXY(NOBINDDN)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "bindpw": {
+            "saf name": "bindpw",
+            "'Y'": {
+                "keyword": "PROXY(BINDPW(xx))",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "PROXY(NOBINDPW)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "ldaphost": {
+            "saf name": "ldaphost",
+            "'Y'": {
+                "keyword": "PROXY(LDAPHOST(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "PROXY(NOLDAPHOST)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "session": {
+        "convsec": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "SESSION (CONVSEC(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "SESSION (NOCONVSEC))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "interval": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "SESSION(INTERVAL(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "SESSION (NOINTERVAL))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "lock": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "SESSION (LOCK)",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "SESSION (NOLOCK)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "sesskey": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "SESSION ( SESSKEY(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "SESSION(NOSESSKEY))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "sigver": {
+        "failload": {
+            "saf name": "failload",
+            "'Y'": {
+                "keyword": "SIGVER(FAILLOAD(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "SIGVER(NOFAILLOAD)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "sigaudit": {
+            "saf name": "sigaudit",
+            "'Y'": {
+                "keyword": "SIGVER(SIGAUDIT(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "SIGVER(NOSIGAUDIT)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "sigreqd": {
+            "saf name": "sigrequired",
+            "'Y'": {
+                "keyword": "SIGVER(SIGREQUIRED(YES))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "SIGVER(SIGREQUIRED(NO))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "ssignon": {
+        "keycrypt": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "SSIGNON (KEYENCRYPT (xx))",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "SSIGNON(NOKEYENCRYPT)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "ptkeylab": {
+            "saf name": "ptkeylab",
+            "'Y'": {
+                "keyword": "SSIGNON (EPTKEYLABEL)",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "SSIGNON (NOEPTKEYLABEL)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "pttype": {
+            "saf name": "pttype",
+            "'Y'": {
+                "keyword": "SSIGNON (TYPE(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "SSIGNON (NOTYPE)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "pttimeo": {
+            "saf name": "pttimeo",
+            "'Y'": {
+                "keyword": "SSIGNON (TIMEOUT(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "SSIGNON (NOTIMEOUT)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "ptreplay": {
+            "saf name": "ptreplay",
+            "'Y'": {
+                "keyword": "SSIGNON (REPLAY(YES))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "SSIGNON (REPLAY(NO))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "keylabel": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "SSIGNON (KEYLABEL(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "SSIGNON (NOKEYLABEL)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "keymask": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "SSIGNON (KEYMASK(xx))",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "SSIGNON (NOKEYMASK)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "stdata": {
+        "group": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "STDATA(GROUP(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "STDATA(NOGROUP)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "privlege": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "STDATA(PRIVILEGED(YES))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "STDATA(PRIVILEGED(NO))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "trace": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "STDATA(TRACE(YES))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "STDATA(TRACE(NO))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "trusted": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "STDATA(TRUSTED(YES))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "STDATA(TRUSTED(NO))",
+                "add": true,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "user": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "STDATA(USER(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "STDATA(NOUSER)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "svfmr": {
+        "parmname": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "SVFMR(PARMNAME(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "SVFMR(NOPARMNAME)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "script": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "SVFMR(SCRIPTNAME(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "SVFMR(NOSCRIPTNAME)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "tme": {
+        "children": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "TME(CHILDREN(xx ...))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'A'": {
+                "keyword": "TME(ADDCHILDREN(xx ...))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'D'": {
+                "keyword": "TME(DELCHILDREN(xx ...))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'N'": {
+                "keyword": "TME(NOCHILDREN)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "groups": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "TME(GROUPS(xx ...))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'A'": {
+                "keyword": "TME(ADDGROUPS(xx ...))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'D'": {
+                "keyword": "TME(DELGROUPS(xx ...))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'N'": {
+                "keyword": "TME(NOGROUPS)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "parent": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "TME(PARENT(xx))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'N'": {
+                "keyword": "TME(NOPARENT)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "resource": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "TME(RESOURCE(xx ...))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            },
+            "'A'": {
+                "keyword": "TME(ADDRESOURCE(xx ...))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'D'": {
+                "keyword": "TME(DELRESOURCE(xx ...))",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "'N'": {
+                "keyword": "TME(NORESOURCE)",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "roles": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "TME(ROLES(xx ...))",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        }
+    }
+}

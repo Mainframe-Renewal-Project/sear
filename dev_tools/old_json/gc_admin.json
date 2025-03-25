@@ -1,0 +1,206 @@
+{
+    "base": {
+        "adsp": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "ADSP",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "NOADSP",
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "auditor": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "AUDITOR",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "NOAUDITOR",
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "auth": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "AUTHORITY(xx)",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "cgauthda": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "CONNECT-DATE=",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "cginitct": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "CONNECTS=",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "cgljdate": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "LAST-CONNECT= (left side of \"/\")",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "cgljtime": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "LAST-CONNECT= (right side of \"/\")",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "group": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "GROUP(xx)",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "bool": false
+            }
+        },
+        "grpacc": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "GRPACC",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "NOGRPACC",
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "oper": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "OPERATIONS",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "NOOPERATIONS",
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "owner": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "OWNER (xx)",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        },
+        "resume": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "RESUME (xx)",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "NORESUME",
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "revoke": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "REVOKE (xx)",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "NOREVOKE",
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "revokefl": {
+            "saf name": "",
+            "N/A": {
+                "keyword": "N/A",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            }
+        },
+        "special": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "SPECIAL",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": true
+            },
+            "'N'": {
+                "keyword": "NOSPECIAL",
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "uacc": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "UACC (xx)",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "bool": false
+            }
+        }
+    }
+}

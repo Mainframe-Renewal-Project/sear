@@ -1,0 +1,2523 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RACFu Parameters",
+  "type": "object",
+  "oneOf": [
+    {
+      "properties": {
+        "operation": {
+          "const": "extract"
+        },
+        "admin_type": {
+          "const": "user"
+        },
+        "userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "userid"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "enum": [
+            "add",
+            "alter"
+          ]
+        },
+        "admin_type": {
+          "const": "user"
+        },
+        "userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "traits": {
+          "$ref": "#/$defs/userAlterOnlyTraits"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "userid",
+        "traits"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "delete"
+        },
+        "admin_type": {
+          "const": "user"
+        },
+        "userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "userid"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "extract"
+        },
+        "admin_type": {
+          "const": "group"
+        },
+        "group": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "group"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "enum": [
+            "add",
+            "alter"
+          ]
+        },
+        "admin_type": {
+          "const": "group"
+        },
+        "group": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "traits": {
+          "type": "object"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "group",
+        "traits"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "delete"
+        },
+        "admin_type": {
+          "const": "group"
+        },
+        "group": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "group"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "extract"
+        },
+        "admin_type": {
+          "const": "group-connection"
+        },
+        "userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "group": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "group",
+        "userid"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "alter"
+        },
+        "admin_type": {
+          "const": "group-connection"
+        },
+        "userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "group": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "traits": {
+          "type": "object"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "userid",
+        "group",
+        "traits"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "delete"
+        },
+        "admin_type": {
+          "const": "group-connection"
+        },
+        "userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "group": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "group",
+        "userid"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "extract"
+        },
+        "admin_type": {
+          "const": "resource"
+        },
+        "resource": {
+          "$ref": "#/$defs/resourceName"
+        },
+        "class": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "resource",
+        "class"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "enum": [
+            "add",
+            "alter"
+          ]
+        },
+        "admin_type": {
+          "const": "resource"
+        },
+        "resource": {
+          "$ref": "#/$defs/resourceName"
+        },
+        "class": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "traits": {
+          "type": "object"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "resource",
+        "class",
+        "traits"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "delete"
+        },
+        "admin_type": {
+          "const": "resource"
+        },
+        "resource": {
+          "$ref": "#/$defs/resourceName"
+        },
+        "class": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "resource",
+        "class"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "extract"
+        },
+        "admin_type": {
+          "const": "data-set"
+        },
+        "data_set": {
+          "$ref": "#/$defs/dataSetName"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "data_set"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "enum": [
+            "add",
+            "alter"
+          ]
+        },
+        "admin_type": {
+          "const": "data-set"
+        },
+        "data_set": {
+          "$ref": "#/$defs/dataSetName"
+        },
+        "volume": {
+          "$ref": "#/$defs/volumeSerial"
+        },
+        "generic": {
+          "type": "boolean"
+        },
+        "traits": {
+          "type": "object"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "data_set",
+        "traits"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "delete"
+        },
+        "admin_type": {
+          "const": "data-set"
+        },
+        "data_set": {
+          "$ref": "#/$defs/dataSetName"
+        },
+        "volume": {
+          "$ref": "#/$defs/volumeSerial"
+        },
+        "generic": {
+          "type": "boolean"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "data_set"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "extract"
+        },
+        "admin_type": {
+          "const": "racf-options"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "alter"
+        },
+        "admin_type": {
+          "const": "racf-options"
+        },
+        "traits": {
+          "type": "object"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "traits"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "alter"
+        },
+        "admin_type": {
+          "const": "permission"
+        },
+        "resource": {
+          "$ref": "#/$defs/resourceName"
+        },
+        "class": {
+          "$ref": "#/$defs/classNamePermission"
+        },
+        "userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "group": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "traits": {
+          "type": "object"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "resource",
+        "class",
+        "traits"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "userid"
+          ]
+        },
+        {
+          "required": [
+            "group"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "alter"
+        },
+        "admin_type": {
+          "const": "permission"
+        },
+        "data_set": {
+          "$ref": "#/$defs/dataSetName"
+        },
+        "userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "group": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "volume": {
+          "$ref": "#/$defs/volumeSerial"
+        },
+        "generic": {
+          "type": "boolean"
+        },
+        "traits": {
+          "type": "object"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "data_set",
+        "traits"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "userid"
+          ]
+        },
+        {
+          "required": [
+            "group"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "delete"
+        },
+        "admin_type": {
+          "const": "permission"
+        },
+        "resource": {
+          "$ref": "#/$defs/resourceName"
+        },
+        "class": {
+          "$ref": "#/$defs/classNamePermission"
+        },
+        "userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "group": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "resource",
+        "class"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "userid"
+          ]
+        },
+        {
+          "required": [
+            "group"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "delete"
+        },
+        "admin_type": {
+          "const": "permission"
+        },
+        "data_set": {
+          "$ref": "#/$defs/dataSetName"
+        },
+        "userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "group": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "volume": {
+          "$ref": "#/$defs/volumeSerial"
+        },
+        "generic": {
+          "type": "boolean"
+        },
+        "run_as_userid": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "data_set"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "userid"
+          ]
+        },
+        {
+          "required": [
+            "group"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    }
+  ],
+  "$defs": {
+    "eightCharacterString": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 8
+    },
+    "resourceName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 246
+    },
+    "classNamePermission": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 8,
+      "not": {
+        "enum": [
+          "DATASET",
+          "dataset"
+        ]
+      }
+    },
+    "dataSetName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 44
+    },
+    "volumeSerial": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 6
+    },
+    "traitTypeSetOnlyString": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/operatorSetString"
+        }
+      ]
+    },
+    "traitTypeString": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/operatorSetString"
+        },
+        {
+          "$ref": "#/$defs/operatorDelete"
+        }
+      ]
+    },
+    "traitTypeBoolean": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/operatorSetBoolean"
+        },
+        {
+          "$ref": "#/$defs/operatorDelete"
+        }
+      ]
+    },
+    "traitTypeSetOnlyBoolean": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/operatorSetBoolean"
+        }
+      ]
+    },
+    "traitTypeDelOnlyBoolean": {
+      "type": "object",
+      "required": [
+        {
+          "$ref": "#/$defs/operatorDelete"
+        }
+      ]
+    },
+    "traitTypeList": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/operatorSetList"
+        },
+        {
+          "$ref": "#/$defs/operatorAddListItems"
+        },
+        {
+          "$ref": "#/$defs/operatorRemoveListItems"
+        },
+        {
+          "$ref": "#/$defs/operatorDelete"
+        }
+      ]
+    },
+    "traitTypeNoAddList": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/operatorSetList"
+        },
+        {
+          "$ref": "#/$defs/operatorRemoveListItems"
+        },
+        {
+          "$ref": "#/$defs/operatorDelete"
+        }
+      ]
+    },
+    "traitTypeNoRemoveList": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/operatorSetList"
+        },
+        {
+          "$ref": "#/$defs/operatorAddListItems"
+        },
+        {
+          "$ref": "#/$defs/operatorDelete"
+        }
+      ]
+    },
+    "traitTypeNoDeleteList": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/operatorSetList"
+        },
+        {
+          "$ref": "#/$defs/operatorAddListItems"
+        },
+        {
+          "$ref": "#/$defs/operatorRemoveListItems"
+        }
+      ]
+    },
+    "traitTypeAddRemoveList": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/operatorAddListItems"
+        },
+        {
+          "$ref": "#/$defs/operatorRemoveListItems"
+        }
+      ]
+    },
+    "traitTypeUint": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/operatorSetUint"
+        },
+        {
+          "$ref": "#/$defs/operatorDelete"
+        }
+      ]
+    },
+    "traitTypeSetOnlyUint": {
+      "type": "object",
+      "required": [
+        {
+          "$ref": "#/$defs/operatorSetUint"
+        }
+      ]
+    },
+    "operatorSetString": {
+      "properties": {
+        "operator": {
+          "const": "set"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "operator",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "operatorSetList": {
+      "oneOf": [
+        {
+          "properties": {
+            "operator": {
+              "const": "set"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "operator",
+            "value"
+          ],
+          "additionalPropreties": false
+        },
+        {
+          "properties": {
+            "operator": {
+              "const": "set"
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "operator",
+            "value"
+          ],
+          "additionalPropreties": false
+        }
+      ]
+    },
+    "operatorAddListItems": {
+      "oneOf": [
+        {
+          "properties": {
+            "operator": {
+              "const": "add"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "types": "string"
+              }
+            }
+          },
+          "required": [
+            "operator",
+            "value"
+          ],
+          "additionalPropreties": false
+        },
+        {
+          "properties": {
+            "operator": {
+              "const": "add"
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "operator",
+            "value"
+          ],
+          "additionalPropreties": false
+        }
+      ]
+    },
+    "operatorRemoveListItems": {
+      "oneOf": [
+        {
+          "properties": {
+            "operator": {
+              "const": "remove"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "types": "string"
+              }
+            }
+          },
+          "required": [
+            "operator",
+            "value"
+          ],
+          "additionalPropreties": false
+        },
+        {
+          "properties": {
+            "operator": {
+              "const": "remove"
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "operator",
+            "value"
+          ],
+          "additionalPropreties": false
+        }
+      ]
+    },
+    "operatorSetBoolean": {
+      "properties": {
+        "operator": {
+          "const": "set"
+        },
+        "value": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "operator",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "operatorSetUint": {
+      "properties": {
+        "operator": {
+          "const": "set"
+        },
+        "value": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "operator",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "operatorDelete": {
+      "properties": {
+        "operator": {
+          "const": "delete"
+        }
+      },
+      "required": [
+        "operator"
+      ],
+      "additionalProperties": false
+    },
+    "permissionCommonTraits": {
+      "properties": {
+        "base:access": {
+          "racfKey": "access",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:authid": {
+          "racfKey": "id",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:model_profile_class": {
+          "racfKey": "fclass",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:model_profile": {
+          "racfKey": "fprofile",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:model_profile_generic": {
+          "racfKey": "fgeneric",
+          "$ref": "#/$defs/traitTypeSetOnlyBoolean"
+        },
+        "base:model_profile_volume": {
+          "racfKey": "fvolume",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:reset": {
+          "racfKey": "reset",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:when_partner_lu_name": {
+          "racfKey": "whenappc",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:when_console": {
+          "racfKey": "whencons",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:when_jes": {
+          "racfKey": "whenjes",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:when_program": {
+          "racfKey": "whenprog",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:when_servauth": {
+          "racfKey": "whenserv",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:when_sms": {
+          "racfKey": "whensms",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:when_service": {
+          "racfKey": "whensrv",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:when_system": {
+          "racfKey": "whensys",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:when_terminal": {
+          "racfKey": "whenterm",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        }
+      },
+      "patternProperties": {},
+      "additionalProperties": false
+    },
+    "racfOptionsCommonTraits": {
+      "properties": {
+        "base:add_creator_to_access_list": {
+          "racfKey": "addcreat",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:automatic_data_set_protection": {
+          "racfKey": "adsp",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:application_logon_auditing": {
+          "racfKey": "applaudt",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:audit_classes": {
+          "racfKey": "audit",
+          "$ref": "#/$defs/traitTypeAddRemoveList"
+        },
+        "base:uncataloged_data_set_access": {
+          "racfKey": "catdsns",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:active_classes": {
+          "racfKey": "classact",
+          "$ref": "#/$defs/traitTypeAddRemoveList"
+        },
+        "base:statistics_classes": {
+          "racfKey": "classtat",
+          "$ref": "#/$defs/traitTypeAddRemoveList"
+        },
+        "base:log_racf_command_violations": {
+          "racfKey": "cmdviol",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:security_label_compatibility_mode": {
+          "racfKey": "compmode",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:enhanced_generic_naming": {
+          "racfKey": "egn",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:erase_data_sets_on_delete": {
+          "racfKey": "erase",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:erase_data_sets_on_delete_all": {
+          "racfKey": "eraseall",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:erase_data_sets_on_delete_security_level": {
+          "racfKey": "erasesec",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:generic_command_classes": {
+          "racfKey": "gencmd",
+          "$ref": "#/$defs/traitTypeAddRemoveList"
+        },
+        "base:generic_profile_checking_classes": {
+          "racfKey": "generic",
+          "$ref": "#/$defs/traitTypeAddRemoveList"
+        },
+        "base:generic_profile_sharing_classes": {
+          "racfKey": "genlist",
+          "$ref": "#/$defs/traitTypeAddRemoveList"
+        },
+        "base:generic_owner": {
+          "racfKey": "genowner",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:global_access_classes": {
+          "racfKey": "global",
+          "$ref": "#/$defs/traitTypeAddRemoveList"
+        },
+        "base:list_of_groups_access_checking": {
+          "racfKey": "grplist",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:password_history": {
+          "racfKey": "history",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "base:revoke_inactive_userids_interval": {
+          "racfKey": "inactive",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:record_user_verification_statistics": {
+          "racfKey": "initstat",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:max_password_change_interval": {
+          "racfKey": "interval",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:jes_batch": {
+          "racfKey": "jesbatch",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:jes_early_verification": {
+          "racfKey": "jesearly",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:jes_network_user": {
+          "racfKey": "jesnje",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:jes_undefined_user": {
+          "racfKey": "jesundef",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:jes_execution_batch_monitoring": {
+          "racfKey": "jesxbm",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:kerberos_encryption_level": {
+          "racfKey": "kerblvl",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:audit_log_always_classes": {
+          "racfKey": "logalwys",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:audit_log_default_classes": {
+          "racfKey": "logdeflt",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:audit_log_failure_classes": {
+          "racfKey": "logfail",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:audit_log_never_classes": {
+          "racfKey": "lognever",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:audit_log_success_classes": {
+          "racfKey": "logsucc",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:min_password_change_interval": {
+          "racfKey": "minchang",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:mixed_case_password_support": {
+          "racfKey": "mixdcase",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:multi_level_security_address_space": {
+          "racfKey": "mlactive",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:multi_level_security_file_system": {
+          "racfKey": "mlfs",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:multi_level_security_interprocess": {
+          "racfKey": "mlipc",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:multi_level_security_file_names": {
+          "racfKey": "mlnames",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:multi_level_security_logon": {
+          "racfKey": "mlquiet",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:multi_level_security_declassification": {
+          "racfKey": "mls",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:multi_level_security_label_alteration": {
+          "racfKey": "mlstable",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:profile_modelling": {
+          "racfKey": "model",
+          "$ref": "#/$defs/traitTypeDelOnlyBoolean"
+        },
+        "base:profile_modelling_generation_data_group": {
+          "racfKey": "modgdg",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:profile_modelling_group": {
+          "racfKey": "modgroup",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:profile_modelling_user": {
+          "racfKey": "moduser",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:log_operator_actions": {
+          "racfKey": "operaudt",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:passphrase_change_interval": {
+          "racfKey": "phrint",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:data_set_single_level_name_prefix_protection": {
+          "racfKey": "prefix",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:primary_language": {
+          "racfKey": "primlang",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:protect_all_data_sets": {
+          "racfKey": "protall",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:password_encryption_algorithm": {
+          "racfKey": "pwdalg",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:special_character_password_support": {
+          "racfKey": "pwdspec",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:raclist": {
+          "racfKey": "raclist",
+          "$ref": "#/$defs/traitTypeAddRemoveList"
+        },
+        "base:log_real_data_set_name": {
+          "racfKey": "realdsn",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:refresh": {
+          "racfKey": "refresh",
+          "$ref": "#/$defs/traitTypeSetOnlyBoolean"
+        },
+        "base:tape_data_set_security_retention_period": {
+          "racfKey": "retpd",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:max_incorrect_password_attempts": {
+          "racfKey": "revoke",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "base:password_rules": {
+          "racfKey": "rules",
+          "$ref": "#/$defs/traitTypeDelOnlyBoolean"
+        },
+        "base:rvary_status_password": {
+          "racfKey": "rvarswpw",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:log_commands_issuesd_by_special_users": {
+          "racfKey": "saudit",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:security_label_control": {
+          "racfKey": "seclabct",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:secondary_language": {
+          "racfKey": "seclang",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:max_session_key_interval": {
+          "racfKey": "sessint",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:security_label_auditing": {
+          "racfKey": "slabaudt",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:security_label_system": {
+          "racfKey": "slbysys",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:security_level_auditing": {
+          "racfKey": "slevaudt",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:tape_data_set_protection": {
+          "racfKey": "tapedsn",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:terminal_universal_access": {
+          "racfKey": "terminal",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:password_expiration_warning": {
+          "racfKey": "warning",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:program_control": {
+          "racfKey": "whenprog",
+          "$ref": "#/$defs/traitTypeBoolean"
+        }
+      },
+      "patternProperties": {},
+      "additionalProperties": false
+    },
+    "resourceAddOnlyTraits": {
+      "properties": {
+        "base:model_profile_class": {
+          "racfKey": "fclass",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:model_profile_generic": {
+          "racfKey": "fgeneric",
+          "$ref": "#/$defs/traitTypeSetOnlyBoolean"
+        },
+        "base:model_profile": {
+          "racfKey": "fprofile",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:model_profile_volume": {
+          "racfKey": "fvolume",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "cfdef:custom_field_data_type": {
+          "racfKey": "cfdtype",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        }
+      },
+      "patternProperties": {},
+      "additionalProperties": false
+    },
+    "resourceAlterOnlyTraits": {
+      "properties": {
+        "base:global_audit_alter": {
+          "racfKey": "gaudaltr",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:global_audit_control": {
+          "racfKey": "gaudcntl",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:global_audit_none": {
+          "racfKey": "gaudnone",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:global_audit_read": {
+          "racfKey": "gaudread",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:global_audit_update": {
+          "racfKey": "gaudupdt",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:volume": {
+          "racfKey": "volume",
+          "$ref": "#/$defs/traitTypeAddRemoveList"
+        }
+      },
+      "patternProperties": {},
+      "additionalProperties": false
+    },
+    "resourceCommonTraits": {
+      "properties": {
+        "base:application_data": {
+          "racfKey": "appldata",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:audit_alter": {
+          "racfKey": "audaltr",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:audit_control": {
+          "racfKey": "audcntl",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:audit_none": {
+          "racfKey": "audnone",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:audit_read": {
+          "racfKey": "audread",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:audit_update": {
+          "racfKey": "audupdt",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:security_category": {
+          "racfKey": "category",
+          "$ref": "#/$defs/traitTypeNoDeleteList"
+        },
+        "base:installation_data": {
+          "racfKey": "data",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:level": {
+          "racfKey": "level",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:member_class_name": {
+          "racfKey": "member",
+          "$ref": "#/$defs/traitTypeNoDeleteList"
+        },
+        "base:notify_userid": {
+          "racfKey": "notify",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:owner": {
+          "racfKey": "owner",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:security_label": {
+          "racfKey": "seclabel",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:security_level": {
+          "racfKey": "seclevel",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:single_data_set_tape_volume": {
+          "racfKey": "singldsn",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:time_zone": {
+          "racfKey": "timezone",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:tape_vtoc": {
+          "racfKey": "tvtoc",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:universal_access": {
+          "racfKey": "uacc",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:warn_on_insufficient_access": {
+          "racfKey": "warning",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:terminal_access_allowed_day": {
+          "racfKey": "whendays",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:terminal_access_allowed_time": {
+          "racfKey": "whentime",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "cdtinfo:case_allowed": {
+          "racfKey": "cdtcase",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cdtinfo:default_racroute_return_code": {
+          "racfKey": "cdtdftrc",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cdtinfo:valid_first_character": {
+          "racfKey": "cdtfirst",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cdtinfo:generic_profile_checking": {
+          "racfKey": "cdtgen",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cdtinfo:generic_profile_sharing": {
+          "racfKey": "cdtgenl",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cdtinfo:grouping_class_name": {
+          "racfKey": "cdtgroup",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cdtinfo:key_qualifiers": {
+          "racfKey": "cdtkeyql",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cdtinfo:manditory_access_control_processing": {
+          "racfKey": "cdtmac",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cdtinfo:max_length": {
+          "racfKey": "cdtmaxln",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "cdtinfo:max_length_entityx": {
+          "racfKey": "cdtmaxlx",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "cdtinfo:member_class_name": {
+          "racfKey": "cdtmembr",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cdtinfo:valid_other_character": {
+          "racfKey": "cdtother",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cdtinfo:posit_number": {
+          "racfKey": "cdtposit",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "cdtinfo:raclist_allowed": {
+          "racfKey": "cdtracl",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cdtinfo:default_universal_access": {
+          "racfKey": "cdtuacc",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cfdef:valid_first_characters": {
+          "racfKey": "cffirst",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "cfdef:help_text": {
+          "racfKey": "cfhelp",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "cfdef:list_heading_text": {
+          "racfKey": "cflist",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "cfdef:min_numeric_value": {
+          "racfKey": "cfmnval",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "cfdef:max_field_length": {
+          "racfKey": "cfmxlen",
+          "$ref": "#/$defs/traitTypeSetOnlyUint"
+        },
+        "cfdef:max_numeric_value": {
+          "racfKey": "cfmxval",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "cfdef:valid_other_characters": {
+          "racfKey": "cfother",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "cfdef:validation_rexx_exec": {
+          "racfKey": "cfvalrx",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "dlfdata:job_name": {
+          "racfKey": "jobname",
+          "$ref": "#/$defs/traitTypeList"
+        },
+        "dlfdata:retain_object_after_use": {
+          "racfKey": "retain",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "eim:domain_distinguished_name": {
+          "racfKey": "domaindn",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "eim:kerberos_registry": {
+          "racfKey": "kerbreg",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "eim:local_registry": {
+          "racfKey": "localreg",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "eim:options": {
+          "racfKey": "options",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "kerb:default_ticket_life": {
+          "racfKey": "deftktlf",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "kerb:encryption_algorithm": {
+          "racfKey": "encrypt",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "kerb:realm_name": {
+          "racfKey": "kerbname",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "kerb:max_ticket_life": {
+          "racfKey": "maxtktlf",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "kerb:min_ticket_life": {
+          "racfKey": "mintktlf",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "kerb:password": {
+          "racfKey": "password",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "icsf:certificate_label": {
+          "racfKey": "crtlbls",
+          "$ref": "#/$defs/traitTypeList"
+        },
+        "icsf:exportable_public_keys": {
+          "racfKey": "export",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "icsf:symmetric_export_public_key": {
+          "racfKey": "keylbls",
+          "$ref": "#/$defs/traitTypeList"
+        },
+        "icsf:symmetric_cpacf_rewrap": {
+          "racfKey": "scpwrap",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "icsf:symmetric_cpacf_rewrap_return": {
+          "racfKey": "scpret",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "icsf:asymetric_key_usage": {
+          "racfKey": "usage",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "ictx:use_identity_map": {
+          "racfKey": "domap",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "ictx:require_identity_mapping": {
+          "racfKey": "mapreq",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "ictx:identity_map_timeout": {
+          "racfKey": "maptimeo",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "ictx:cache_application_provided_identity_map": {
+          "racfKey": "usemap",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "idtparms:signature_algorithm": {
+          "racfKey": "sigalg",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "idtparms:identity_token_timeout": {
+          "racfKey": "idttimeo",
+          "$ref": "#/$defs/traitTypeSetOnlyUint"
+        },
+        "jes:icsf_key_label": {
+          "racfKey": "keylabel",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "mfpolicy:factor": {
+          "racfKey": "factors",
+          "$ref": "#/$defs/traitTypeList"
+        },
+        "mfpolicy:reuse_token": {
+          "racfKey": "reuse",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "proxy:bind_distinguished_name": {
+          "racfKey": "binddn",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "proxy:bind_password": {
+          "racfKey": "bindpw",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "proxy:ldap_host": {
+          "racfKey": "ldaphost",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "session:security_checking_level": {
+          "racfKey": "convsec",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "session:session_key_interval": {
+          "racfKey": "interval",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "session:locked": {
+          "racfKey": "lock",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "session:session_key": {
+          "racfKey": "sesskey",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "sigver:fail_program_load_condition": {
+          "racfKey": "failload",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "sigver:log_signature_verification_events": {
+          "racfKey": "sigaudit",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "sigver:signature_required": {
+          "racfKey": "sigreqd",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "ssignon:encrypt_legacy_pass_ticket_key": {
+          "racfKey": "keycrypt",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "ssignon:enhanced_pass_ticket_label": {
+          "racfKey": "ptkeylab",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "ssignon:enhanced_pass_ticket_type": {
+          "racfKey": "pttype",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "ssignon:enhanced_pass_ticket_timeout": {
+          "racfKey": "pttimeo",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "ssignon:enhanced_pass_ticket_replay": {
+          "racfKey": "ptreplay",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "ssignon:legacy_pass_ticket_label": {
+          "racfKey": "keylabel",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "ssignon:mask_legacy_pass_ticket_key": {
+          "racfKey": "keymask",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "stdata:group": {
+          "racfKey": "group",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "stdata:privileged": {
+          "racfKey": "privlege",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "stdata:trace": {
+          "racfKey": "trace",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "stdata:trusted": {
+          "racfKey": "trusted",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "stdata:userid": {
+          "racfKey": "user",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "svfmr:parameter_list_name": {
+          "racfKey": "parmname",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "svfmr:script_name": {
+          "racfKey": "script",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tme:child": {
+          "racfKey": "children",
+          "$ref": "#/$defs/traitTypeList"
+        },
+        "tme:group": {
+          "racfKey": "groups",
+          "$ref": "#/$defs/traitTypeList"
+        },
+        "tme:parent": {
+          "racfKey": "parent",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tme:resource": {
+          "racfKey": "resource",
+          "$ref": "#/$defs/traitTypeList"
+        },
+        "tme:role": {
+          "racfKey": "roles",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        }
+      },
+      "patternProperties": {},
+      "additionalProperties": false
+    },
+    "groupAddOnlyTraits": {
+      "properties": {
+        "base:universal": {
+          "racfKey": "universl",
+          "$ref": "#/$defs/traitTypeSetOnlyBoolean"
+        }
+      },
+      "patternProperties": {},
+      "additionalProperties": false
+    },
+    "groupCommonTraits": {
+      "properties": {
+        "base:installation_data": {
+          "racfKey": "data",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:data_set_model": {
+          "racfKey": "model",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:owner": {
+          "racfKey": "owner",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:superior_group": {
+          "racfKey": "supgroup",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:terminal_universal_access": {
+          "racfKey": "termuacc",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "dfp:data_application": {
+          "racfKey": "dataappl",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "dfp:data_class": {
+          "racfKey": "dataclas",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "dfp:management_class": {
+          "racfKey": "mgmtclas",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "dfp:storage_class": {
+          "racfKey": "storclas",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "omvs:auto_gid": {
+          "racfKey": "autogid",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "omvs:gid": {
+          "racfKey": "gid",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "omvs:shared": {
+          "racfKey": "shared",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "ovm:gid": {
+          "racfKey": "gid",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tme:roles": {
+          "racfKey": "roles",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        }
+      },
+      "patternProperties": {},
+      "additionalProperties": false
+    },
+    "groupConnectionCommonTraits": {
+      "properties": {
+        "base:automatic_data_set_protection": {
+          "racfKey": "adsp",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:auditor": {
+          "racfKey": "auditor",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:authority": {
+          "racfKey": "auth",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:group": {
+          "racfKey": "group",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:group_access": {
+          "racfKey": "grpacc",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:operations": {
+          "racfKey": "oper",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:owner": {
+          "racfKey": "owner",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:resume_date": {
+          "racfKey": "resume",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:revoke_date": {
+          "racfKey": "revoke",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:special": {
+          "racfKey": "special",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:universal_access": {
+          "racfKey": "uacc",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        }
+      },
+      "patternProperties": {},
+      "additionalProperties": false
+    },
+    "dataSetAddOnlyTraits": {
+      "properties": {
+        "base:model_profile_class": {
+          "racfKey": "fclass",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:model_profile_generic": {
+          "racfKey": "fgeneric",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:tape_data_set_file_sequence_number": {
+          "racfKey": "fileseq",
+          "$ref": "#/$defs/traitTypeSetOnlyUint"
+        },
+        "base:model_profile": {
+          "racfKey": "from",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:model_profile_volume": {
+          "racfKey": "fvolume",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:data_set_model_profile": {
+          "racfKey": "model",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:create_only_tape_vtoc_entry": {
+          "racfKey": "setonly",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        }
+      },
+      "patternProperties": {},
+      "additionalProperties": false
+    },
+    "dataSetAlterOnlyTraits": {
+      "properties": {
+        "base:security_category": {
+          "racfKey": "category",
+          "$ref": "#/$defs/traitTypeNoDeleteList"
+        },
+        "base:global_audit_alter": {
+          "racfKey": "gaudaltr",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:global_audit_control": {
+          "racfKey": "gaudcntl",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:global_audit_none": {
+          "racfKey": "gaudnone",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:global_audit_read": {
+          "racfKey": "gaudread",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:global_audit_update": {
+          "racfKey": "gaudupdt",
+          "$ref": "#/$defs/traitTypeString"
+        }
+      },
+      "patternProperties": {},
+      "additionalProperties": false
+    },
+    "dataSetCommonTraits": {
+      "properties": {
+        "base:audit_alter": {
+          "racfKey": "audaltr",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:audit_control": {
+          "racfKey": "audcntl",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:audit_none": {
+          "racfKey": "audnone",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:audit_read": {
+          "racfKey": "audread",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:audit_update": {
+          "racfKey": "audupdt",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:installation_data": {
+          "racfKey": "data",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:erase_data_sets_on_delete": {
+          "racfKey": "erase",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:level": {
+          "racfKey": "level",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "base:notify_userid": {
+          "racfKey": "notify",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:owner": {
+          "racfKey": "owner",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:tape_data_set_security_retention_period": {
+          "racfKey": "retpd",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:security_label": {
+          "racfKey": "seclabel",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:security_level": {
+          "racfKey": "seclevel",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:racf_indicated_dataset": {
+          "racfKey": "set",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:universal_access": {
+          "racfKey": "uacc",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:data_set_allocation_unit": {
+          "racfKey": "unit",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:volume": {
+          "racfKey": "volume",
+          "$ref": "#/$defs/traitTypeNoRemoveList"
+        },
+        "base:warn_on_insufficient_access": {
+          "racfKey": "warning",
+          "$ref": "#/$defs/traitTypeBoolean"
+        }
+      },
+      "patternProperties": {},
+      "additionalProperties": false
+    },
+    "userAlterOnlyTraits": {
+      "properties": {
+        "base:password_expired": {
+          "racfKey": "expired",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:group": {
+          "racfKey": "group",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:resume_date": {
+          "racfKey": "resume",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:revoke_date": {
+          "racfKey": "revoke",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:audit_logging": {
+          "racfKey": "uaudit",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "mfa:factor": {
+          "racfKey": "factor",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "mfa:active": {
+          "racfKey": "facactv",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "mfa:tags": {
+          "racfKey": "factags",
+          "$ref": "#/$defs/traitTypeNoAddList"
+        },
+        "mfa:password_fallback": {
+          "racfKey": "mfaflbk",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "mfa:mfa_policy": {
+          "racfKey": "mfapolnm",
+          "$ref": "#/$defs/traitTypeAddRemoveList"
+        }
+      },
+      "patternProperties": {},
+      "additionalProperties": {
+        "$ref": "#/$defs/userCommonTraits"
+      }
+    },
+    "userCommonTraits": {
+      "properties": {
+        "base:automatic_data_set_protection": {
+          "racfKey": "adsp",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:auditor": {
+          "racfKey": "auditor",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:default_group_authority": {
+          "racfKey": "auth",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:security_category": {
+          "racfKey": "category",
+          "$ref": "#/$defs/traitTypeAddRemoveList"
+        },
+        "base:class_authorization": {
+          "racfKey": "clauth",
+          "$ref": "#/$defs/traitTypeAddRemoveList"
+        },
+        "base:installation_data": {
+          "racfKey": "data",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:default_group": {
+          "racfKey": "dfltgrp",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:group_data_set_access": {
+          "racfKey": "grpacc",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:model_data_set": {
+          "racfKey": "model",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:name": {
+          "racfKey": "name",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:require_operator_id_card": {
+          "racfKey": "oidcard",
+          "$ref": "#/$defs/traitTypeDelOnlyBoolean"
+        },
+        "base:operations": {
+          "racfKey": "oper",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:owner": {
+          "racfKey": "owner",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:password": {
+          "racfKey": "password",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:passphrase": {
+          "racfKey": "phrase",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:restrict_global_access_checking": {
+          "racfKey": "rest",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:audit_responsibility": {
+          "racfKey": "roaudit",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:security_label": {
+          "racfKey": "seclabel",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:security_level": {
+          "racfKey": "seclevel",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "base:special": {
+          "racfKey": "special",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "base:universal_access": {
+          "racfKey": "uacc",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:logon_allowed_day": {
+          "racfKey": "whendays",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:logon_allowed_when_service": {
+          "racfKey": "whensrv",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "base:logon_allowed_time": {
+          "racfKey": "whentime",
+          "$ref": "#/$defs/traitTypeSetOnlyString"
+        },
+        "cics:operator_class": {
+          "racfKey": "opclass",
+          "$ref": "#/$defs/traitTypeList"
+        },
+        "cics:operator_id": {
+          "racfKey": "opident",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cics:operator_priority": {
+          "racfKey": "opprty",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cics:resource_security_level_key": {
+          "racfKey": "rslkey",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cics:timeout": {
+          "racfKey": "timeout",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cics:transaction_security_level_key": {
+          "racfKey": "tslkey",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "cics:force_signoff_when_xrf_takeover": {
+          "racfKey": "xrfsoff",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "dce:auto_login": {
+          "racfKey": "autolog",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "dce:name": {
+          "racfKey": "dcename",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "dce:home_cell": {
+          "racfKey": "homecell",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "dce:home_cell_uuid": {
+          "racfKey": "homeuuid",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "dce:uuid": {
+          "racfKey": "uuid",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "dfp:data_application": {
+          "racfKey": "dataappl",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "dfp:data_class": {
+          "racfKey": "dataclas",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "dfp:management_class": {
+          "racfKey": "mgmtclas",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "dfp:storage_class": {
+          "racfKey": "storclas",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "eim:ldap_bind_profile": {
+          "racfKey": "ldapprof",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "kerb:encryption_algorithm": {
+          "racfKey": "encrypt",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "kerb:name": {
+          "racfKey": "kerbname",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "kerb:max_ticket_life": {
+          "racfKey": "maxtktlf",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "language:primary": {
+          "racfKey": "primary",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "language:secondary": {
+          "racfKey": "second",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "lnotes:zos_short_name": {
+          "racfKey": "sname",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "nds:username": {
+          "racfKey": "uname",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "netview:default_mcs_console_name": {
+          "racfKey": "consname",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "netview:security_control_check": {
+          "racfKey": "ctl",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "netview:domain": {
+          "racfKey": "domains",
+          "$ref": "#/$defs/traitTypeList"
+        },
+        "netview:logon_commands": {
+          "racfKey": "ic",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "netview:receive_unsolicited_messages": {
+          "racfKey": "msgrecvr",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "netview:operator_graphic_monitor_facility_administration_allowed": {
+          "racfKey": "ngmfadmn",
+          "$ref": "#/$defs/traitTypeBoolean"
+        },
+        "netview:operator_graphic_monitor_facility_display_authority": {
+          "racfKey": "ngmfvspn",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "netview:operator_scope_classes": {
+          "racfKey": "opclass",
+          "$ref": "#/$defs/traitTypeList"
+        },
+        "omvs:max_address_space_size": {
+          "racfKey": "assize",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "omvs:auto_uid": {
+          "racfKey": "autouid",
+          "$ref": "#/$defs/traitTypeSetOnlyBoolean"
+        },
+        "omvs:max_cpu_time": {
+          "racfKey": "cputime",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "omvs:max_files_per_process": {
+          "racfKey": "fileproc",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "omvs:home_directory": {
+          "racfKey": "home",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "omvs:max_non_shared_memory": {
+          "racfKey": "memlimit",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "omvs:max_file_mapping_pages": {
+          "racfKey": "mmaparea",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "omvs:max_processes": {
+          "racfKey": "procuser",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "omvs:default_shell": {
+          "racfKey": "program",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "omvs:shared": {
+          "racfKey": "shared",
+          "$ref": "#/$defs/traitTypeSetOnlyBoolean"
+        },
+        "omvs:max_shared_memory": {
+          "racfKey": "shmemmax",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "omvs:max_threads": {
+          "racfKey": "threads",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "omvs:uid": {
+          "racfKey": "uid",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "operparm:alternate_console_group": {
+          "racfKey": "altgrp",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "operparm:command_target_system": {
+          "racfKey": "cmdsys",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "operparm:receive_delete_operator_messages": {
+          "racfKey": "dom",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "operparm:console_searching_key": {
+          "racfKey": "key",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "operparm:message_level": {
+          "racfKey": "level",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "operparm:log_command_responses": {
+          "racfKey": "logcmd",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "operparm:message_format": {
+          "racfKey": "mform",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "operparm:monitor_event": {
+          "racfKey": "monitor",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "operparm:message_scope": {
+          "racfKey": "mscope",
+          "$ref": "#/$defs/traitTypeList"
+        },
+        "operparm:console_authority": {
+          "racfKey": "operauth",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "operparm:receive_routing_code": {
+          "racfKey": "routcode",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "operparm:message_queue_storage": {
+          "racfKey": "storage",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "ovm:file_system_root": {
+          "racfKey": "fsroot",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "ovm:home_directory": {
+          "racfKey": "vhome",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "ovm:default_shell": {
+          "racfKey": "vprogram",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "ovm:uid": {
+          "racfKey": "vuid",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "proxy:bind_distinguished_name": {
+          "racfKey": "binddn",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "proxy:bind_password": {
+          "racfKey": "bindpw",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "proxy:ldap_host": {
+          "racfKey": "ldaphost",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tso:account_number": {
+          "racfKey": "acctnum",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tso:logon_command": {
+          "racfKey": "command",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tso:sysout_destination_id": {
+          "racfKey": "dest",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tso:hold_class": {
+          "racfKey": "hldclass",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tso:job_class": {
+          "racfKey": "jobclass",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tso:max_region_size": {
+          "racfKey": "maxsize",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "tso:message_class": {
+          "racfKey": "msgclass",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tso:logon_procedure": {
+          "racfKey": "proc",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tso:security_label": {
+          "racfKey": "seclabel",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tso:default_region_size": {
+          "racfKey": "size",
+          "$ref": "#/$defs/traitTypeUint"
+        },
+        "tso:sysout_class": {
+          "racfKey": "sysoutcl",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tso:data_set_allocation_unit": {
+          "racfKey": "unit",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "tso:user_data": {
+          "racfKey": "userdata",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "workattr:account_number": {
+          "racfKey": "waaccnt",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "workattr:sysout_building": {
+          "racfKey": "wabldg",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "workattr:sysout_department": {
+          "racfKey": "wadept",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "workattr:sysout_user": {
+          "racfKey": "waname",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "workattr:sysout_room": {
+          "racfKey": "waroom",
+          "$ref": "#/$defs/traitTypeString"
+        },
+        "workattr:sysout_email": {
+          "racfKey": "waemail",
+          "$ref": "#/$defs/traitTypeString"
+        }
+      },
+      "patternProperties": {},
+      "additionalProperties": false
+    }
+  }
+}

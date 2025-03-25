@@ -1,0 +1,1090 @@
+{
+    "base": {
+        "addcreat": {
+            "ADDCREATOR": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOADDCREATOR": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "adsp": {
+            "ADSP": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOADSP": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "applaudt": {
+            "APPLAUDIT": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOAPPLAUDIT": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "audit": {
+            "AUDIT (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOAUDIT (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "catdsns": {
+            "CATDSNS ( xx )": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOCATDSNS": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "classact": {
+            "CLASSACT (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOCLASSACT (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "classtat": {
+            "STATISTICS (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOSTATISTICS (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "cmdviol": {
+            "CMDVIOL": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOCMDVIOL": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "compmode": {
+            "COMPATMODE": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOCOMPATMODE": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "egn": {
+            "EGN": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOEGN": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "erase": {
+            "ERASE": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOERASE": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "eraseall": {
+            "ERASE (ALL)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            }
+        },
+        "erasesec": {
+            "ERASE (SECLEVEL ( xx ) )": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "ERASE (NOSECLEVEL)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "gencmd": {
+            "GENCMD (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOGENCMD (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "generic": {
+            "GENERIC (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOGENERIC (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "genlist": {
+            "GENLIST (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOGENLIST (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "genowner": {
+            "GENERICOWNER": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOGENERICOWNER": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "global": {
+            "GLOBAL (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOGLOBAL (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "grplist": {
+            "GRPLIST": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOGRPLIST": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "history": {
+            "PASSWORD (HISTORY ( xx ))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "PASSWORD (NOHISTORY)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "inactive": {
+            "INACTIVE (xx)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOINACTIVE (xx)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "initstat": {
+            "INITSTATS": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOINITSTATS": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "interval": {
+            "PASSWORD (INTERVAL ( xx ))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "jesbatch": {
+            "JES (BATCHALLRACF)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "JES (NOBATCHALLRACF)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "jesearly": {
+            "JES (EARLYVERIFY)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "JES (NOEARLYVERIFY)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "jesnje": {
+            "JES (NJEUSERID( xx ) )": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "jesundef": {
+            "JES (UNDEFINEDUSER( xx ) )": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "jesxbm": {
+            "JES (XBMALLRACF)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "JES (NOXBMALLRACF)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "kerblvl": {
+            "KERBLVL(xx)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "list": {
+            "LIST": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            }
+        },
+        "logalwys": {
+            "LOGOPTIONS (ALWAYS (xx ...))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "logdeflt": {
+            "LOGOPTIONS (DEFAULT (xx ...))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "logfail": {
+            "LOGOPTIONS (FAILURES (xx ...))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "lognever": {
+            "LOGOPTIONS (NEVER (xx ...))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "logsucc": {
+            "LOGOPTIONS (SUCCESSES (xx ...))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "minchang": {
+            "PASSWORD (MINCHANG(xx))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "mixdcase": {
+            "PASSWORD (MIXEDCASE)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "PASSWORD (NOMIXEDCASE)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "mlactive": {
+            "MLACTIVE ( xx )": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOMLACTIVE": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "mlfs": {
+            "MLFSOBJ(xx)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "mlipc": {
+            "MLIPCOBJ(xx)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "mlnames": {
+            "MLNAMES": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOMLNAMES": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "mlquiet": {
+            "MLQUIET": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOMLQUIET": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "mls": {
+            "MLS ( xx )": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOMLS": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "mlstable": {
+            "MLSTABLE": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOMLSTABLE": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "model": {
+            "NOMODEL": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            }
+        },
+        "modgdg": {
+            "MODEL (GDG)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "MODEL (NOGDG)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "modgroup": {
+            "MODEL (GROUP)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "MODEL (NOGROUP)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "moduser": {
+            "MODEL (USER)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "MODEL (NOUSER)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "operaudt": {
+            "OPERAUDT": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOOPERAUDT": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "phrint": {
+            "PASSWORD (PHRASEINT(xx))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "prefix": {
+            "PREFIX ( xx )": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOPREFIX": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "primlang": {
+            "LANGUAGE (PRIMARY ( xx ) )": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "protall": {
+            "PROTECTALL ( xx )": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOPROTECTALL": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "pwdalg": {
+            "PASSWORD (ALGORITHM ( xx ))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "PASSWORD (NOALGORITHM)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "pwdspec": {
+            "PASSWORD (SPECIALCHARS)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "PASSWORD (NOSPECIALCHARS)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "raclist": {
+            "RACLIST (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NORACLIST (xx ...)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "realdsn": {
+            "REALDSN": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOREALDSN": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "refresh": {
+            "REFRESH": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            }
+        },
+        "retpd": {
+            "RETPD ( xx )": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "revoke": {
+            "PASSWORD (REVOKE ( xx ))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "PASSWORD (NOREVOKE)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "rules": {
+            "PASSWORD (NORULES)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            }
+        },
+        "rule1": {
+            "PASSWORD (RULE1 (LENGTH (m1:m2) content-keyword (position)))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "PASSWORD (NORULE1)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "rule2": {
+            "PASSWORD (RULE2 (LENGTH (m1:m2) content-keyword (position)))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "PASSWORD (NORULE2)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "rule3": {
+            "PASSWORD (RULE3 (LENGTH (m1:m2) content-keyword (position)))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "PASSWORD (NORULE3)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "rule4": {
+            "PASSWORD (RULE4 (LENGTH (m1:m2) content-keyword (position)))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "PASSWORD (NORULE4)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "rule5": {
+            "PASSWORD (RULE5 (LENGTH (m1:m2) content-keyword (position)))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "PASSWORD (NORULE5)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "rule6": {
+            "PASSWORD (RULE6 (LENGTH (m1:m2) content-keyword (position)))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "PASSWORD (NORULE6)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "rule7": {
+            "PASSWORD (RULE7 (LENGTH (m1:m2) content-keyword (position)))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "PASSWORD (NORULE7)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "rule8": {
+            "PASSWORD (RULE8 (LENGTH (m1:m2) content-keyword (position)))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "PASSWORD (NORULE8)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "rvarswpw": {
+            "RVARY ( SWITCH ( xx ))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "rvarstpw": {
+            "RVARY ( STATUS ( xx ) )": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "saudit": {
+            "SAUDIT": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOSAUDIT": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "seclabct": {
+            "SECLABELCONTROL": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOSECLABELCONTROL": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "seclang": {
+            "LANGUAGE (SECONDARY ( xx ) )": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "sessint": {
+            "SESSIONINTERVAL ( xx )": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOSESSIONINTERVAL": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "slabaudt": {
+            "SECLABELAUDIT": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOSECLABELAUDIT": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "slbysys": {
+            "SECLBYSYSTEM": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOSECLBYSYSTEM": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "slevaudt": {
+            "SECLEVELAUDIT (xx)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "NOSECLEVELAUDIT": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "tapedsn": {
+            "TAPEDSN": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOTAPEDSN": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "terminal": {
+            "TERMINAL(xx)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "warning": {
+            "PASSWORD (WARNING ( xx ))": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            },
+            "PASSWORD (NOWARNING)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        },
+        "whenprog": {
+            "WHEN (PROGRAM)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            },
+            "NOWHEN (PROGRAM)": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null
+            }
+        }
+    }
+}

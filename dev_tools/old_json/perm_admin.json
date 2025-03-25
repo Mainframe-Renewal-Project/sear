@@ -1,0 +1,214 @@
+{
+    "base": {
+        "access": {
+            "saf name": "access",
+            "'Y'": {
+                "keyword": "ACCESS (xx)",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "delete": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "DELETE",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            }
+        },
+        "fclass": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "FCLASS (xx)",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "fprofile": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "FROM (xx)",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "fgeneric": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "FGENERIC",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            }
+        },
+        "fvolume": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "FVOLUME (xx)",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "generic": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "GENERIC",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": true
+            }
+        },
+        "id": {
+            "saf name": "authid",
+            "'Y'": {
+                "keyword": "ID (xx)",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "profile": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "N/A (See note.)",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "reset": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "RESET (xx)",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "volume": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "VOLUME (xx)",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "whenappc": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "WHEN (APPCPORT (...))",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "whencons": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "WHEN (CONSOLE ( ...))",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "whenjes": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "WHEN (JESINPUT (...))",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "whenprog": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "WHEN (PROGRAM (...))",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "whenserv": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "WHEN(SERVAUTH(...))",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "whensms": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "WHEN(CRIT(SMS(\u2026)))",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "whensqlr": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "WHEN(CRIT(SQLROLE(\u2026)))",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "whensrv": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "WHEN(CRIT(SERVICE(\u2026)))",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "whensys": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "WHEN (SYSID (...))",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        },
+        "whenterm": {
+            "saf name": "",
+            "'Y'": {
+                "keyword": "WHEN (TERMINAL (...))",
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "bool": false
+            }
+        }
+    }
+}
