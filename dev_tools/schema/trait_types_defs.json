@@ -1,0 +1,307 @@
+{
+    "$defs": {
+        "traitTypeSetOnlyString": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/operatorSetString"
+                }
+            ]
+        },
+        "traitTypeString": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/operatorSetString"
+                },
+                {
+                    "$ref": "#/$defs/operatorDelete"
+                }
+            ]
+        },
+        "traitTypeBoolean": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/operatorSetBoolean"
+                },
+                {
+                    "$ref": "#/$defs/operatorDelete"
+                }
+            ]
+        },
+        "traitTypeSetOnlyBoolean": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/operatorSetBoolean"
+                }
+            ]
+        },
+        "traitTypeDelOnlyBoolean": {
+            "type": "object",
+            "required": [
+                {
+                    "$ref": "#/$defs/operatorDelete"
+                }
+            ]
+        },
+        "traitTypeList": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/operatorSetList"
+                },
+                {
+                    "$ref": "#/$defs/operatorAddListItems"
+                },
+                {
+                    "$ref": "#/$defs/operatorRemoveListItems"
+                },
+                {
+                    "$ref": "#/$defs/operatorDelete"
+                }
+            ]
+        },
+        "traitTypeNoAddList": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/operatorSetList"
+                },
+                {
+                    "$ref": "#/$defs/operatorRemoveListItems"
+                },
+                {
+                    "$ref": "#/$defs/operatorDelete"
+                }
+            ]
+        },
+        "traitTypeNoRemoveList": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/operatorSetList"
+                },
+                {
+                    "$ref": "#/$defs/operatorAddListItems"
+                },
+                {
+                    "$ref": "#/$defs/operatorDelete"
+                }
+            ]
+        },
+        "traitTypeNoDeleteList": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/operatorSetList"
+                },
+                {
+                    "$ref": "#/$defs/operatorAddListItems"
+                },
+                {
+                    "$ref": "#/$defs/operatorRemoveListItems"
+                }
+            ]
+        },
+        "traitTypeAddRemoveList": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/operatorAddListItems"
+                },
+                {
+                    "$ref": "#/$defs/operatorRemoveListItems"
+                }
+            ]
+        },
+        "traitTypeUint": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/operatorSetUint"
+                },
+                {
+                    "$ref": "#/$defs/operatorDelete"
+                }
+            ]
+        },
+        "traitTypeSetOnlyUint": {
+            "type": "object",
+            "required": [
+                {
+                    "$ref": "#/$defs/operatorSetUint"
+                }
+            ]
+        },
+        "operatorSetString": {
+            "properties": {
+                "operator": {
+                    "const": "set"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "operator",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "operatorSetList": {
+            "oneOf": [
+                {
+                    "properties": {
+                        "operator": {
+                            "const": "set"
+                        },
+                        "value": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": [
+                        "operator",
+                        "value"
+                    ],
+                    "additionalPropreties": false
+                },
+                {
+                    "properties": {
+                        "operator": {
+                            "const": "set"
+                        },
+                        "value": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "operator",
+                        "value"
+                    ],
+                    "additionalPropreties": false
+                }
+            ]
+        },
+        "operatorAddListItems": {
+            "oneOf": [
+                {
+                    "properties": {
+                        "operator": {
+                            "const": "add"
+                        },
+                        "value": {
+                            "type": "array",
+                            "items": {
+                                "types": "string"
+                            }
+                        }
+                    },
+                    "required": [
+                        "operator",
+                        "value"
+                    ],
+                    "additionalPropreties": false
+                },
+                {
+                    "properties": {
+                        "operator": {
+                            "const": "add"
+                        },
+                        "value": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "operator",
+                        "value"
+                    ],
+                    "additionalPropreties": false
+                }
+            ]
+        },
+        "operatorRemoveListItems": {
+            "oneOf": [
+                {
+                    "properties": {
+                        "operator": {
+                            "const": "remove"
+                        },
+                        "value": {
+                            "type": "array",
+                            "items": {
+                                "types": "string"
+                            }
+                        }
+                    },
+                    "required": [
+                        "operator",
+                        "value"
+                    ],
+                    "additionalPropreties": false
+                },
+                {
+                    "properties": {
+                        "operator": {
+                            "const": "remove"
+                        },
+                        "value": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "operator",
+                        "value"
+                    ],
+                    "additionalPropreties": false
+                }
+            ]
+        },
+        "operatorSetBoolean": {
+            "properties": {
+                "operator": {
+                    "const": "set"
+                },
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "operator",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "operatorSetUint": {
+            "properties": {
+                "operator": {
+                    "const": "set"
+                },
+                "value": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            },
+            "required": [
+                "operator",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "operatorDelete": {
+            "properties": {
+                "operator": {
+                    "const": "delete"
+                }
+            },
+            "required": [
+                "operator"
+            ],
+            "additionalProperties": false
+        }
+    }
+}

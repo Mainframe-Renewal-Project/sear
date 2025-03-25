@@ -1,0 +1,919 @@
+{
+    "base": {
+        "aclcnt": {
+            "Notes:": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            },
+            "This is the list header field for the standard access list, which is a 3-dimentional array consisting of the following three fields.": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "del": null,
+                "lst": null
+            },
+            "For generic profiles, the ACLACNT field does not apply and the array will be 2-dimensional.": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "del": null,
+                "lst": null
+            }
+        },
+        "aclacnt": {
+            "ACCESS COUNT": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "aclacs": {
+            "ACCESS": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "aclid": {
+            "ID": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acl2cnt": {
+            "Notes:": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            },
+            "This is the list header field for the conditional access list, which is a 5-dimensional array consisting of the following five fields.": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "del": null,
+                "lst": null
+            },
+            "For generic profiles, the ACL2ACNT field does not apply and the array will be 4-dimensional.": {
+                "keyword": null,
+                "add": null,
+                "alt": null,
+                "extract": null,
+                "del": null,
+                "lst": null
+            }
+        },
+        "acl2acnt": {
+            "ACCESS COUNT": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acl2acs": {
+            "ACESS": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acl2cond": {
+            "CLASS": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acl2ent": {
+            "ENTITY NAME": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acl2id": {
+            "ID": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acsaltr": {
+            "ALTER COUNT": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acscntl": {
+            "CONTROL COUNT": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acsread": {
+            "READ COUNT": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "acsupdt": {
+            "UPDATE COUNT": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "all": {
+            "ALL": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": true,
+                "bool": true
+            }
+        },
+        "altvol": {
+            "ALTVOL (xx)": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "audaltr": {
+            "AUDIT(xx(ALTER))": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "audcntl": {
+            "AUDIT (xx (CONTROL))": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "audnone": {
+            "AUDIT (NONE)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": true
+            }
+        },
+        "audread": {
+            "AUDIT (xx (READ))": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "audupdt": {
+            "AUDIT ( xx (UPDATE))": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "authuser": {
+            "AUTHUSER": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": true,
+                "bool": true
+            }
+        },
+        "category": {
+            "ADDCATEGORY (xx ...)": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false
+            },
+            "DELCATEGORY (xx ...)": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false
+            }
+        },
+        "creatdat": {
+            "CREATION DATE": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "data": {
+            "DATA (xx)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            },
+            "NODATA": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false
+            }
+        },
+        "dsns": {
+            "DSNS": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": true,
+                "bool": true
+            }
+        },
+        "dstype": {
+            "DATASET TYPE": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "erase": {
+            "ERASE": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": true
+            },
+            "NOERASE": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false
+            }
+        },
+        "fclass": {
+            "FCLASS (xx)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "fgeneric": {
+            "FGENERIC": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": true
+            }
+        },
+        "fileseq": {
+            "FILESEQ (xx)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "from": {
+            "FROM (xx)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "fvolume": {
+            "FVOLUME (xx)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "gaudaltr": {
+            "GLOBALAUDIT (xx (ALTER))": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "gaudcntl": {
+            "GLOBALAUDIT (xx (CONTROL))": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "gaudnone": {
+            "GLOBALAUDIT (NONE)": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": true
+            }
+        },
+        "gaudread": {
+            "GLOBALAUDIT (xx (READ))": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "gaudupdt": {
+            "GLOBALAUDIT (xx UPDATE))": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "generic": {
+            "GENERIC": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "del": true,
+                "lst": true,
+                "bool": true
+            },
+            "NOGENERIC": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": true
+            }
+        },
+        "groupds": {
+            "N/A. This field indicates if the high level qualifier represents a RACF group.": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "groupnm": {
+            "CREATION GROUP": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "history": {
+            "HISTORY": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": true,
+                "bool": false
+            }
+        },
+        "id": {
+            "ID (xx)": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": true,
+                "bool": false
+            }
+        },
+        "lchgdat": {
+            "LAST CHANGE DATE": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "level": {
+            "LEVEL (xx)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "lrefdat": {
+            "LAST REFERENCE DATE": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "model": {
+            "MODEL": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": true
+            }
+        },
+        "noracf": {
+            "NORACF": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": true,
+                "bool": true
+            }
+        },
+        "notify": {
+            "NOTIFY (xx)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            },
+            "NONOTIFY": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false
+            }
+        },
+        "owner": {
+            "OWNER (xx)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "prefix": {
+            "PREFIX (xx)": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": true,
+                "bool": false
+            }
+        },
+        "profile": {
+            "for list, DATASET (xx...)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "del": true,
+                "lst": true,
+                "bool": false
+            }
+        },
+        "raudit": {
+            "AUDITING": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "retpd": {
+            "RETPD (xx)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "rgaudit": {
+            "GLOBALAUDIT": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "seclabel": {
+            "SECLABEL (xx)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            },
+            "NOSECLABEL": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false
+            }
+        },
+        "seclevel": {
+            "SECLEVEL (xx)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            },
+            "NOSECLEVEL": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false
+            }
+        },
+        "set": {
+            "SET": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "del": true,
+                "lst": false,
+                "bool": true
+            }
+        },
+        "setonly": {
+            "SETONLY": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": true
+            }
+        },
+        "stats": {
+            "STATISTICS": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": true,
+                "bool": true
+            }
+        },
+        "tape": {
+            "TAPE": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": true
+            }
+        },
+        "uacc": {
+            "UACC": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "unit": {
+            "UNIT (xx)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "volume": {
+            "VOLUME (xx ...)": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": true,
+                "del": true,
+                "lst": true,
+                "bool": false
+            },
+            "ADDVOL (xx ...)": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false
+            },
+            "DELVOL (xx ...)": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false
+            }
+        },
+        "volser": {
+            "VOLUMES ON WHICH DATASET RESIDES": {
+                "keyword": "No",
+                "add": false,
+                "alt": false,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": false
+            }
+        },
+        "warning": {
+            "WARNING": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false,
+                "bool": true
+            },
+            "NOWARNING": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": false,
+                "del": false,
+                "lst": false
+            }
+        }
+    },
+    "csdata": {
+        "custom-keyword": {
+            "CSDATA(custom-keyword(xxx))": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": null,
+                "bool": false
+            },
+            "CSDATA(NOcustom-keyword(xxx))": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "dfp": {
+        "resowner": {
+            "DFP(RESOWNER(xx))": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": null,
+                "bool": false
+            },
+            "DFP(NORESOWNER)": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        },
+        "datakey": {
+            "DFP(DATAKEY(xx))": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": null,
+                "bool": false
+            },
+            "DFP(NODATAKEY)": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    },
+    "tme": {
+        "roles": {
+            "TME(ROLES(xx...))": {
+                "keyword": "Yes",
+                "add": true,
+                "alt": true,
+                "extract": null,
+                "bool": false
+            },
+            "TME(ADDROLES(xx...))": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "TME(DELROLES(xx...))": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": null
+            },
+            "TME(NOROLES)": {
+                "keyword": "No",
+                "add": false,
+                "alt": true,
+                "extract": null
+            }
+        }
+    }
+}
