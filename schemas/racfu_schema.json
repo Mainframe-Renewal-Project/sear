@@ -1123,15 +1123,15 @@
       "properties": {
         "base:add_creator_to_access_list": {
           "racfKey": "addcreat",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeBoolean"
         },
         "base:automatic_data_set_protection": {
           "racfKey": "adsp",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeBoolean"
         },
         "base:application_logon_auditing": {
           "racfKey": "applaudt",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeBoolean"
         },
         "base:audit_classes": {
           "racfKey": "audit",
@@ -1151,23 +1151,23 @@
         },
         "base:log_racf_command_violations": {
           "racfKey": "cmdviol",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeBoolean"
         },
         "base:security_label_compatibility_mode": {
           "racfKey": "compmode",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeBoolean"
         },
         "base:enhanced_generic_naming": {
           "racfKey": "egn",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeBoolean"
         },
         "base:erase_data_sets_on_delete": {
           "racfKey": "erase",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeBoolean"
         },
         "base:erase_data_sets_on_delete_all": {
           "racfKey": "eraseall",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeBoolean"
         },
         "base:erase_data_sets_on_delete_security_level": {
           "racfKey": "erasesec",
@@ -1203,15 +1203,15 @@
         },
         "base:revoke_inactive_userids_interval": {
           "racfKey": "inactive",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeUint"
         },
         "base:record_user_verification_statistics": {
           "racfKey": "initstat",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeBoolean"
         },
         "base:max_password_change_interval": {
           "racfKey": "interval",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeUint"
         },
         "base:jes_batch": {
           "racfKey": "jesbatch",
@@ -1235,7 +1235,7 @@
         },
         "base:kerberos_encryption_level": {
           "racfKey": "kerblvl",
-          "$ref": "#/$defs/traitTypeSetOnlyString"
+          "$ref": "#/$defs/traitTypeSetOnlyUint"
         },
         "base:audit_log_always_classes": {
           "racfKey": "logalwys",
@@ -1259,7 +1259,7 @@
         },
         "base:min_password_change_interval": {
           "racfKey": "minchang",
-          "$ref": "#/$defs/traitTypeSetOnlyString"
+          "$ref": "#/$defs/traitTypeSetOnlyUint"
         },
         "base:mixed_case_password_support": {
           "racfKey": "mixdcase",
@@ -1315,7 +1315,7 @@
         },
         "base:passphrase_change_interval": {
           "racfKey": "phrint",
-          "$ref": "#/$defs/traitTypeSetOnlyString"
+          "$ref": "#/$defs/traitTypeSetOnlyUint"
         },
         "base:data_set_single_level_name_prefix_protection": {
           "racfKey": "prefix",
@@ -1335,7 +1335,7 @@
         },
         "base:special_character_password_support": {
           "racfKey": "pwdspec",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeBoolean"
         },
         "base:raclist": {
           "racfKey": "raclist",
@@ -1351,7 +1351,7 @@
         },
         "base:tape_data_set_security_retention_period": {
           "racfKey": "retpd",
-          "$ref": "#/$defs/traitTypeSetOnlyString"
+          "$ref": "#/$defs/traitTypeSetOnlyUint"
         },
         "base:max_incorrect_password_attempts": {
           "racfKey": "revoke",
@@ -1379,7 +1379,7 @@
         },
         "base:max_session_key_interval": {
           "racfKey": "sessint",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeUint"
         },
         "base:security_label_auditing": {
           "racfKey": "slabaudt",
@@ -1403,7 +1403,7 @@
         },
         "base:password_expiration_warning": {
           "racfKey": "warning",
-          "$ref": "#/$defs/traitTypeString"
+          "$ref": "#/$defs/traitTypeUint"
         },
         "base:program_control": {
           "racfKey": "whenprog",
