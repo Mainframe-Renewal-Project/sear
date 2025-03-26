@@ -40,7 +40,7 @@
     },
     "traitTypeDelOnlyBoolean": {
       "type": "object",
-      "required": [
+      "oneOf": [
         {
           "$ref": "#/$defs/operatorDelete"
         }
@@ -113,6 +113,14 @@
         },
         {
           "$ref": "#/$defs/operatorRemoveListItems"
+        }
+      ]
+    },
+    "traitTypeSetOnlyList": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/operatorSetList"
         }
       ]
     },

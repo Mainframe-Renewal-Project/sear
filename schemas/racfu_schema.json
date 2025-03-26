@@ -786,7 +786,7 @@
     },
     "traitTypeDelOnlyBoolean": {
       "type": "object",
-      "required": [
+      "oneOf": [
         {
           "$ref": "#/$defs/operatorDelete"
         }
@@ -859,6 +859,14 @@
         },
         {
           "$ref": "#/$defs/operatorRemoveListItems"
+        }
+      ]
+    },
+    "traitTypeSetOnlyList": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/operatorSetList"
         }
       ]
     },
@@ -1239,23 +1247,23 @@
         },
         "base:audit_log_always_classes": {
           "racfKey": "logalwys",
-          "$ref": "#/$defs/traitTypeSetOnlyString"
+          "$ref": "#/$defs/traitTypeSetOnlyList"
         },
         "base:audit_log_default_classes": {
           "racfKey": "logdeflt",
-          "$ref": "#/$defs/traitTypeSetOnlyString"
+          "$ref": "#/$defs/traitTypeSetOnlyList"
         },
         "base:audit_log_failure_classes": {
           "racfKey": "logfail",
-          "$ref": "#/$defs/traitTypeSetOnlyString"
+          "$ref": "#/$defs/traitTypeSetOnlyList"
         },
         "base:audit_log_never_classes": {
           "racfKey": "lognever",
-          "$ref": "#/$defs/traitTypeSetOnlyString"
+          "$ref": "#/$defs/traitTypeSetOnlyList"
         },
         "base:audit_log_success_classes": {
           "racfKey": "logsucc",
-          "$ref": "#/$defs/traitTypeSetOnlyString"
+          "$ref": "#/$defs/traitTypeSetOnlyList"
         },
         "base:min_password_change_interval": {
           "racfKey": "minchang",
