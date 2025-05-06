@@ -151,7 +151,7 @@ const trait_key_mapping_t USER_BASE_SEGMENT_MAP[]{
      TRAIT_TYPE_STRING, {false, false, false, false},
      },
     {
-     "base:last_acess_time", "lasttime",
+     "base:last_access_time", "lasttime",
      TRAIT_TYPE_STRING, {false, false, false, false},
      },
     {

@@ -291,7 +291,7 @@ const trait_key_mapping_t RACF_OPTIONS_BASE_SEGMENT_MAP[]{
      TRAIT_TYPE_STRING, {false, false, false, false},
      },
     {
-     "base:rvary_status_password", "rvarswpw",
+     "base:rvary_switch_password", "rvarswpw",
      TRAIT_TYPE_STRING,  {true, false, false, false},
      },
     {

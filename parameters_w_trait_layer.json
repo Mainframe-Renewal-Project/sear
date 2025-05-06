@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "RACFu Parameters",
+  "title": "RACFu Request Schema",
   "type": "object",
   "oneOf": [
     {
@@ -712,6 +712,28 @@
         }
       ],
       "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "extract"
+        },
+        "admin_type": {
+          "const": "keyring"
+        },
+        "owner": {
+          "$ref": "#/$defs/eightCharacterString"
+        },
+        "keyring": {
+          "$ref": "#/$defs/twohundredthirtysevenCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "owner",
+        "keyring"
+      ]
     }
   ],
   "$defs": {
@@ -719,6 +741,11 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 8
+    },
+    "twohundredthirtysevenCharacterString": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 237
     },
     "resourceName": {
       "type": "string",

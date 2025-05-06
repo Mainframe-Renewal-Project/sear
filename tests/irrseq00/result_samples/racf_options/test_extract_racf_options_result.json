@@ -801,6 +801,7 @@
       "base:revoke_inactive_userids_interval": 255,
       "base:rvary_status_password": "DEFAULT",
       "base:rvary_status_password_format": "LEGACY",
+      "base:rvary_switch_password": "DEFAULT",
       "base:rvary_switch_password_format": "LEGACY",
       "base:secondary_language": "ENU",
       "base:security_label_auditing": false,

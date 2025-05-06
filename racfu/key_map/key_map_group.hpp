@@ -85,7 +85,7 @@ const trait_key_mapping_t GROUP_DFP_KEY_MAP[]{
 const trait_key_mapping_t GROUP_OMVS_KEY_MAP[]{
     {
      "omvs:auto_gid", "autogid",
-     TRAIT_TYPE_STRING, {true, false, false, false},
+     TRAIT_TYPE_BOOLEAN, {true, false, false, false},
      },
     {
      "omvs:gid",     "gid",

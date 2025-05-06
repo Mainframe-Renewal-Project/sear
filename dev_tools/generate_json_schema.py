@@ -248,7 +248,7 @@ def merge_schema(input_1, input_2, output):
 directory_path = "racfu/key_map"
 convert_directory(directory_path)
 
-merge_schema("schemas/parameters_w_trait_layer.json","dev_tools/schema/traits_schema_defs.json","schemas/racfu_schema.json")
+merge_schema("parameters_w_trait_layer.json","dev_tools/schema/traits_schema_defs.json","racfu_schema.json")
 
 #file_path = sys.argv[1]
 #convert_file(file_path)
