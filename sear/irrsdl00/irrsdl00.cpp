@@ -477,7 +477,14 @@ void IRRSDL00::readFile(const std::string &filename, void **p_p_data,
     auto unique_p_data2 = std::make_unique<char[]>(len_b64_work);
     unsigned char *p_data2 =
         reinterpret_cast<unsigned char *>(unique_p_data2.get());
-    *p_len    = EVP_DecodeBlock(p_b64, p_data2, len_b64_work);
+    EVP_ENCODE_CTX *ctx = EVP_ENCODE_CTX_new();
+    EVP_DecodeInit(ctx);
+    int decode_len = 0;
+    EVP_DecodeUpdate(ctx, p_data2, &decode_len, p_b64, len_b64_work);
+    *p_len = decode_len;
+    EVP_DecodeFinal(ctx, p_data2 + *p_len, &decode_len);
+    *p_len += decode_len;
+    EVP_ENCODE_CTX_free(ctx);
     p_data    = nullptr;
     *p_p_data = p_data2;
 
