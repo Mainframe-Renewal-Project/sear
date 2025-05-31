@@ -6,8 +6,11 @@ jobs:
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Install clang
-      run: sudo apt-get install -y clang
-    - name: fuzz
-      run: make fuzz
+      - uses: actions/checkout@v4
+      - name: Install clang
+        run: sudo apt-get install -y clang
+      - name: fuzz
+        run: |
+          cmake --preset linux-test
+          cmake --build --preset linux-test --target fuzz
+          ASAN_OPTIONS=alloc_dealloc_mismatch=1 build/linux/fuzz -runs=65536
