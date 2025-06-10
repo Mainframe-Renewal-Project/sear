@@ -44,10 +44,10 @@ dynamic = ["version"]
 
 [project.urls]
 Homepage = "https://github.com/Mainframe-Renewal-Project/sear"
-Documentation = "https://github.com/Mainframe-Renewal-Project/sear/blob/gh-pages/interfaces/python.md"
+Documentation = "https://mainframe-renewal-project.github.io/sear-docs/interfaces/python/"
 Source = "https://github.com/Mainframe-Renewal-Project/sear"
 Issues = "https://github.com/Mainframe-Renewal-Project/sear/issues"
-"Release Notes" = "https://github.com/Mainframe-Renewal-Project/sear/milestones?state=closed"
+"Release Notes" = "https://github.com/Mainframe-Renewal-Project/sear/releases"
 
 [tool.setuptools.packages.find]
 where = ["python"]

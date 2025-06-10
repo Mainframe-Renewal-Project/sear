@@ -27,11 +27,11 @@ const trait_key_mapping_t GROUP_CONNECTION_BASE_SEGMENT_MAP[]{
      TRAIT_TYPE_UINT, {false, false, false, false},
      },
     {
-     "base:connecion_last_used_date", "cgljdate",
+     "base:connection_last_used_date", "cgljdate",
      TRAIT_TYPE_STRING, {false, false, false, false},
      },
     {
-     "base:connecion_last_used_time", "cgljtime",
+     "base:connection_last_used_time", "cgljtime",
      TRAIT_TYPE_STRING, {false, false, false, false},
      },
     {

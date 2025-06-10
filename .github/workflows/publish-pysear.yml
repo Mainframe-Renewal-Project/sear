@@ -1,0 +1,135 @@
+name: Publish pysear
+on: 
+    release:
+        types: [published]
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
+
+permissions:
+  contents: read
+
+jobs:
+    build-package:
+        runs-on: ubuntu-latest
+
+        environment:
+            name: production
+
+        steps:
+          - name: Build package
+            run: |
+                mkdir ~/.ssh
+                echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+                echo "${{ secrets.BUILD_USER_PRIVATE_KEY }}" > private_key
+                chmod 500 private_key
+                ssh ${{ secrets.BUILD_SSH_CONNECTION }} -i private_key
+          - name: Download manifest
+            run: |
+                scp -B -q -i private_key ${{ secrets.BUILD_SCP_CONNECTION }}:"files.txt" .
+                echo "Found build artifacts:"
+                cat files.txt         
+          - name: Download package
+            run: |
+                mkdir dist
+                while IFS= read -r file; do
+                    echo "Downloading file: $file"
+                    scp -B -q -i private_key ${{ secrets.BUILD_SCP_CONNECTION }}:"$file" dist/
+                done < files.txt
+          - name: Upload artifacts
+            uses: actions/upload-artifact@v4
+            with:
+                name: release-dists
+                path: dist/*
+                if-no-files-found: error
+  
+    test-package:
+        runs-on: ubuntu-latest
+        needs:
+          - build-package
+
+        environment:
+            name: test
+
+        steps:
+          - name: Retrieve test distributions
+            uses: actions/download-artifact@v4
+            with:
+                name: release-dists
+                path: dist/
+          - name: Upload package
+            run: |
+                mkdir ~/.ssh
+                echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+                echo "${{ secrets.TEST_USER_PRIVATE_KEY }}" > private_key
+                chmod 500 private_key
+                scp -B -q -i private_key ${{ secrets.TEST_SCP_ARGS }} dist/*.whl ${{ secrets.TEST_SCP_CONNECTION }}:artifacts/
+
+          - name: Run test
+            run: |
+                ssh ${{ secrets.TEST_SSH_CONNECTION }} -i private_key
+
+          - name: Download report
+            if: always()
+            run: |
+                scp -B -q -i private_key ${{ secrets.TEST_SCP_ARGS }} ${{ secrets.TEST_SCP_CONNECTION }}:"report.md" $GITHUB_STEP_SUMMARY
+
+    github-release:
+        #github release requires write access, unlike the other steps
+        permissions:
+            contents: write
+
+        runs-on: ubuntu-latest
+        needs:
+          - test-package
+
+        environment:
+            name: production
+        env:
+            GH_TOKEN: ${{ github.token }}
+
+        steps:
+          - uses: actions/checkout@v4
+          
+          - name: Retrieve release distributions
+            uses: actions/download-artifact@v4
+            with:
+                name: release-dists
+                path: dist/
+
+          - name: Release to GitHub
+            run: |
+                gh release upload ${{ github.ref_name }} dist/*
+
+    publish-package-pypi:
+        if: ${{ !github.event.release.prerelease }}
+        runs-on: ubuntu-latest
+        needs:
+          - test-package
+        permissions:
+            # IMPORTANT: this permission is mandatory for trusted publishing
+            id-token: write
+
+        # Dedicated environments with protections for publishing are strongly recommended.
+        # For more information, see: https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#deployment-protection-rules
+        environment:
+            name: production
+            # OPTIONAL: uncomment and update to include your PyPI project URL in the deployment status:
+            url: ${{ vars.PYPI_URL }}
+            #
+            # ALTERNATIVE: if your GitHub Release name is the PyPI project version string
+            # ALTERNATIVE: exactly, uncomment the following line instead:
+            # url: https://pypi.org/project/YOURPROJECT/${{ github.event.release.name }}
+
+        steps:
+          - name: Retrieve release distributions
+            uses: actions/download-artifact@v4
+            with:
+                name: release-dists
+                path: dist/
+
+          - name: Publish release distributions to PyPI
+            uses: pypa/gh-action-pypi-publish@release/v1
+            with:
+                packages-dir: dist/
+                verbose: true

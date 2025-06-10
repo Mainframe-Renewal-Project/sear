@@ -1,6 +1,6 @@
-## Description
+# Description
 
-This is a folder where we store tools that were useful for the development of SEAR but do not hold any meaninful code. The files and their natures are explained below in sections based on the purpose of the file.
+This is a folder where we store tools that were useful for the development of SEAR but do not hold any meaningful code. The files and their natures are explained below in sections based on the purpose of the file.
 
 ## Unit Test Generation/Conversion
 

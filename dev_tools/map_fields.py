@@ -305,7 +305,7 @@ valid_segment_traits["p_admin"] = {
                 "cdtinfo:generic_profile_sharing": "genlist",
                 "cdtinfo:grouping_class_name": "grouping",
                 "cdtinfo:key_qualifiers": "keyqual",
-                "cdtinfo:manditory_access_control_processing": "macprocessing",
+                "cdtinfo:mandatory_access_control_processing": "macprocessing",
                 "cdtinfo:max_length": "maxlenx",
                 "cdtinfo:max_length_entityx": "maxlength",
                 "cdtinfo:member_class_name": "member",
@@ -356,7 +356,7 @@ valid_segment_traits["p_admin"] = {
                 "icsf:symmetric_export_public_keys": "symexportkey",
                 "icsf:symmetric_cpacf_rewrap": "symcpacfwrap",
                 "icsf:symmetric_cpacf_rewrap_return": "symcpacfret",
-                "icsf:asymetric_key_usage": "asymusage",
+                "icsf:asymmetric_key_usage": "asymusage",
             },
             "ictx": {
                 "ictx:use_identity_map": "domap",

@@ -26,6 +26,18 @@
 #     cmake --preset zos -DBUILD_SHARED_LIBS=on                        #
 #     cmake --build --preset zos --target sear                         #
 #     cmake --build --preset zos --target debug                        #
+#                                                                      #
+# - lint                                                               #
+#   - executes clang-format for most .cpp and .hpp files,              #
+#     this is executed in a Github workflow                            #
+#                                                                      #
+# - check                                                              #
+#   - execute cppcheck on the sear code,                               #
+#     this is executed in a Github workflow                            #
+#                                                                      #
+# - fuzz                                                               #
+#   - compile sear code with fuzz and run fuzz security checks         #
+#     this is exectuted in a Github workflow                           #
 #----------------------------------------------------------------------#
 
 cmake_minimum_required(VERSION 3.24)
@@ -179,3 +191,98 @@ add_executable(
 )
 # Create the debug target
 target_link_libraries(debug PRIVATE)
+
+# Custom target 'link', executes clang-format for most .cpp and .hpp files
+add_custom_target(lint ALL
+    COMMAND find ${CMAKE_CURRENT_SOURCE_DIR}/sear/ -type f -name "*.cpp" -exec clang-format-19 --verbose --Werror --dry-run -i {} "\;"
+    COMMAND find ${CMAKE_CURRENT_SOURCE_DIR}/sear/ -type f -name "*.hpp" -exec clang-format-19 --verbose --Werror --dry-run -i {} "\;"
+    COMMAND find ${CMAKE_CURRENT_SOURCE_DIR}/tests/ -type f -name "*.cpp" -exec clang-format-19 --verbose --Werror --dry-run -i {} "\;"
+    COMMAND find ${CMAKE_CURRENT_SOURCE_DIR}/tests/ -type f -name "*.hpp" -exec clang-format-19 --verbose --Werror --dry-run -i {} "\;"
+)
+
+# Custom target 'check', executes 'cppcheck' on the sear code
+add_custom_target(check ALL
+    COMMAND "cppcheck"
+                "--suppress='missingIncludeSystem'"
+                "--suppress='useStlAlgorithm'"
+                "--inline-suppr"
+                "--language=c++"
+                "--std=c++${CXX_STANDARD}"
+                "--enable=all"
+                "--force"
+                "--check-level=exhaustive"
+                "--inconclusive"
+                "--error-exitcode=1"
+                "-D __ptr32="
+                "-D _POSIX_C_SOURCE=200112L"
+                "-I${CMAKE_CURRENT_SOURCE_DIR}/sear"
+                "-I${CMAKE_CURRENT_SOURCE_DIR}/sear/irrsdl00"
+                "-I${CMAKE_CURRENT_SOURCE_DIR}/sear/irrseq00"
+                "-I${CMAKE_CURRENT_SOURCE_DIR}/sear/irrsmo00"
+                "-I${CMAKE_CURRENT_SOURCE_DIR}/sear/key_map"
+                "-I${CMAKE_CURRENT_SOURCE_DIR}/sear/validation"
+                "-I${CMAKE_CURRENT_SOURCE_DIR}/tests/zoslib"
+                "-I${CMAKE_CURRENT_BINARY_DIR}/sear"
+                "${CMAKE_CURRENT_SOURCE_DIR}/sear"
+)
+
+# The fuzz executable
+add_executable(
+    fuzz
+
+    tests/fuzz.cpp
+    tests/mock/irrsdl64.cpp
+    tests/mock/irrseq00.cpp
+    tests/mock/irrsmo64.cpp
+    tests/zoslib/zoslib.cpp
+
+    sear/irrsdl00/irrsdl00.cpp
+    sear/irrsdl00/keyring_extractor.cpp
+    sear/irrsdl00/keyring_modifier.cpp
+    sear/irrsdl00/keyring_post_processor.cpp
+
+    sear/irrseq00/profile_extractor.cpp
+    sear/irrseq00/profile_post_processor.cpp
+
+    sear/irrsmo00/irrsmo00_error.cpp
+    sear/irrsmo00/irrsmo00.cpp
+    sear/irrsmo00/xml_generator.cpp
+    sear/irrsmo00/xml_parser.cpp
+
+    sear/key_map/key_map.cpp
+    sear/validation/trait_validation.cpp
+    sear/logger.cpp
+    sear/sear_error.cpp
+    sear/sear.cpp
+    sear/security_admin.cpp
+    sear/security_request.cpp
+
+    externals/json-schema-validator/json-patch.cpp
+    externals/json-schema-validator/json-schema-draft7.json.cpp
+    externals/json-schema-validator/json-uri.cpp
+    externals/json-schema-validator/json-validator.cpp
+    externals/json-schema-validator/smtp-address-validator.cpp
+    externals/json-schema-validator/string-format-check.cpp
+)
+# fuzz's include directories
+target_include_directories(
+    fuzz PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    sear
+    sear/irrsdl00
+    sear/irrseq00
+    sear/irrsmo00
+    sear/key_map
+    sear/validation
+    externals/json
+    externals/json-schema-validator
+    tests/irrsdl00
+    tests/zoslib
+    "${CMAKE_CURRENT_BINARY_DIR}/sear"
+)
+# Add sanitize flags to fuzz compilation
+target_compile_options(fuzz PUBLIC -fsanitize=fuzzer -fsanitize=undefined -fsanitize=address)
+# Add sanitize flags to fuzz linking
+target_link_options(fuzz PUBLIC -fsanitize=fuzzer -fsanitize=undefined -fsanitize=address)
+# Create the fuzz target
+target_link_libraries(fuzz PRIVATE OpenSSL::SSL "${ZOSLIB}")

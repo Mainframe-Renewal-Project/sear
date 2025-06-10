@@ -73,11 +73,11 @@ def convert_key_map_hpp_to_doc(input_filepath, output_filepath):
     header_file_data = f.read()
     f.close()
 
-    segement_trait_information = header_file_data.split('segment_key_mapping_t')[0]
+    segment_trait_information = header_file_data.split('segment_key_mapping_t')[0]
 
     segment_mapping = f"{admin_type.replace(" ","_").upper()}_([A-Z]*)(?<!SEGMENT)_(?:SEGMENT|KEY)_MAP"
 
-    segments = re.findall(segment_mapping, segement_trait_information)
+    segments = re.findall(segment_mapping, segment_trait_information)
     
     for segment in segments:
         if segment.upper() == "CSDATA":
@@ -87,7 +87,7 @@ def convert_key_map_hpp_to_doc(input_filepath, output_filepath):
         "| **Trait** | **RACF Key** | **Data Types** | **Operators Allowed** | **Supported Operations** |\n"
         trait_mapping = f"\"({segment.lower()}:[a-z_]*)\"," + \
         ".*\"([a-z]*)\",\n.*TRAIT_TYPE_([A-Z]*),.*\\{(true|false), (true|false), (true|false), (true|false)\\}"
-        traits = re.findall(trait_mapping, segement_trait_information)
+        traits = re.findall(trait_mapping, segment_trait_information)
         for trait in traits:
             #print(trait)
             operators_allowed = []

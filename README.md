@@ -1,4 +1,6 @@
-![SEAR Logo](logo.svg)
+![SEAR Logo](https://raw.githubusercontent.com/Mainframe-Renewal-Project/sear/refs/heads/main/logo.svg)
+
+# Security API for RACF (SEAR)
 
 A standardized JSON interface for RACF that enables seamless exploitation by programming languages that have a foreign language interface for C/C++ and native JSON support.
 
@@ -18,9 +20,9 @@ All versions of **z/OS** and the **IBM Open Enterprise SDK for Python** that are
 ### Dependencies
 
 * **R_SecMgtOper (IRRSMO00)**: Security Management Operations.
-  * More details about the authorizations required for **IRRSMO00** can be found [here](https://www.ibm.com/docs/en/zos/latest?topic=operations-racf-authorization).
+  * More details about the authorizations required for **IRRSMO00** can be found [in the IBM documentation](https://www.ibm.com/docs/en/zos/latest?topic=operations-racf-authorization).
 * **R_Admin (IRRSEQ00)**: RACF Administration API.
-  * More details about the authorizations required for **IRRSEQ00** can be found [here](https://www.ibm.com/docs/en/zos/latest?topic=api-racf-authorization).
+  * More details about the authorizations required for **IRRSEQ00** can be found [in the IBM documentation](https://www.ibm.com/docs/en/zos/latest?topic=api-racf-authorization).
 * **RACF Subsystem Address Space**: This is a dependency for both **IRRSMO00** and **IRRSEQ00**.
   * More information can be found [in the IBM documentation](https://www.ibm.com/docs/en/zos/latest?topic=considerations-racf-subsystem).
 * **z/OS Language Environment Runtime Support**: _SEAR_ is compiled using the **IBM Open XL C/C++ 2.1** compiler, which is still fairly new and requires **z/OS Language Environment** service updates for runtime support.
