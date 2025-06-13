@@ -39,7 +39,7 @@ void IRRSMO00::call_irrsmo00(SecurityRequest &request,
   }
 
   int raw_request_length = request.getRawRequestLength();
-  int raw_result_length  = 10000;
+  int raw_result_length  = 50000;
 
   int saf_return_code;
   int racf_return_code;
