@@ -44,14 +44,26 @@ extern uint32_t callRadmin(char *__ptr32 arg_pointers) {
         ((char *__ptr32 *__ptr32)arg_pointers) - 1;
     memcpy(result_buffer, r_admin_result_mock, r_admin_result_size_mock);
     *result_buffer_pointer = result_buffer;
+    (((char *__ptr32 *__ptr32)arg_pointers)[12]) =
+        reinterpret_cast<char *>(result_buffer_pointer);
   }
   // Set mock return and reason codes.
   // Use 'htonl()' to ensure return and reason codes are
   // big endian when tests are run off platform.
-  *(((uint32_t *__ptr32 *__ptr32)arg_pointers)[2]) = htonl(r_admin_saf_rc_mock);
-  *(((uint32_t *__ptr32 *__ptr32)arg_pointers)[4]) =
-      htonl(r_admin_racf_rc_mock);
-  *(((uint32_t *__ptr32 *__ptr32)arg_pointers)[6]) =
-      htonl(r_admin_racf_reason_mock);
+  if (*(((uint32_t *__ptr32 *__ptr32)arg_pointers)[7]) == 0x1a ||
+      *(((uint32_t *__ptr32 *__ptr32)arg_pointers)[7]) == 0x1c ||
+      *(((uint32_t *__ptr32 *__ptr32)arg_pointers)[7]) == 0x20 ||
+      *(((uint32_t *__ptr32 *__ptr32)arg_pointers)[7]) == 0x23) {
+    *(((uint32_t *__ptr32 *__ptr32)arg_pointers)[2]) = htonl(4);
+    *(((uint32_t *__ptr32 *__ptr32)arg_pointers)[4]) = htonl(4);
+    *(((uint32_t *__ptr32 *__ptr32)arg_pointers)[6]) = htonl(4);
+  } else {
+    *(((uint32_t *__ptr32 *__ptr32)arg_pointers)[2]) =
+        htonl(r_admin_saf_rc_mock);
+    *(((uint32_t *__ptr32 *__ptr32)arg_pointers)[4]) =
+        htonl(r_admin_racf_rc_mock);
+    *(((uint32_t *__ptr32 *__ptr32)arg_pointers)[6]) =
+        htonl(r_admin_racf_reason_mock);
+  }
   return r_admin_rc_mock;
 }

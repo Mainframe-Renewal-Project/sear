@@ -34,6 +34,7 @@ class SecurityRequest {
   int irrsmo00_options_  = 13;
   // Result
   sear_result_t* p_result_;
+  std::vector<char*> found_profiles_;
   sear_return_codes_t return_codes_ = {-1, -1, -1, -1};
   std::vector<std::string> errors_;
   nlohmann::json intermediate_result_json_;
@@ -79,6 +80,8 @@ class SecurityRequest {
   int getRACFReasonCode() const;
   void setSEARReturnCode(int sear_return_code);
   void setErrors(const std::vector<std::string>& errors);
+  void addFoundProfile(char* profile);
+  std::vector<char*> getFoundProfiles() const;
   void setIntermediateResultJSON(nlohmann::json intermediate_result_json);
   const nlohmann::json& getIntermediateResultJSON() const;
   // Load Request & Build Result

@@ -1,13 +1,15 @@
 name: clang-format
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     strategy:
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Install clang-format
-      run: sudo apt install -y clang-format-19
-    - name: clang-format
-      run: make lint
+      - uses: actions/checkout@v4
+      - name: Install clang-format
+        run: sudo apt install -y clang-format-19
+      - name: clang-format
+        run: |
+          cmake --preset linux-test
+          cmake --build --preset linux-test --target lint

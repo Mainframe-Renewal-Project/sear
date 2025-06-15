@@ -17,10 +17,14 @@
 /*************************************************************************/
 const uint8_t RACF_OPTIONS_EXTRACT_FUNCTION_CODE     = 0x16;
 const uint8_t USER_EXTRACT_FUNCTION_CODE             = 0x19;
+const uint8_t USER_EXTRACT_NEXT_FUNCTION_CODE        = 0x1a;
 const uint8_t GROUP_EXTRACT_FUNCTION_CODE            = 0x1b;
+const uint8_t GROUP_EXTRACT_NEXT_FUNCTION_CODE       = 0x1c;
 const uint8_t GROUP_CONNECTION_EXTRACT_FUNCTION_CODE = 0x1d;
 const uint8_t RESOURCE_EXTRACT_FUNCTION_CODE         = 0x1f;
-const uint8_t DATASET_EXTRACT_FUNCTION_CODE         = 0x22;
+const uint8_t RESOURCE_EXTRACT_NEXT_FUNCTION_CODE    = 0x20;
+const uint8_t DATASET_EXTRACT_FUNCTION_CODE          = 0x22;
+const uint8_t DATASET_EXTRACT_NEXT_FUNCTION_CODE     = 0x23;
 
 /*************************************************************************/
 /* Field Descriptor Information                                          */

@@ -42,6 +42,10 @@ void test_extract_request_generation(const char *test_extract_request_json,
 void test_parse_extract_result(const char *test_extract_request_json,
                                const char *test_extract_result_json,
                                const char *test_extract_result_raw, bool debug);
+void test_parse_extract_next_result(const char *test_extract_next_request_json,
+                                    const char *test_extract_next_result_json,
+                                    const char *test_extract_next_result_raw,
+                                    bool debug);
 void test_parse_extract_result_profile_not_found(
     const char *test_extract_request_json,
     const char *test_extract_result_profile_not_found_json, bool debug);

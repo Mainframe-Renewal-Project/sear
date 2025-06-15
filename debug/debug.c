@@ -27,9 +27,9 @@ int main(int argc, char **argv) {
   void *lib_handle;
   sear_t sear;
 
-  lib_handle = dlopen("sear.so", RTLD_NOW);
+  lib_handle = dlopen("libsear.so", RTLD_NOW);
   if (lib_handle == NULL) {
-    perror("Unable to load 'sear.so'.");
+    perror("Unable to load 'libsear.so'.");
     return 2;
   }
 

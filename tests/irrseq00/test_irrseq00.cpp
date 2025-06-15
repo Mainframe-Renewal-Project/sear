@@ -57,6 +57,18 @@ void test_parse_extract_user_result_pseudo_boolean() {
                             TEST_EXTRACT_USER_RESULT_PSEUDO_BOOLEAN_RAW, false);
 }
 
+void test_generate_extract_next_user_request() {
+  test_extract_request_generation(TEST_EXTRACT_NEXT_USER_REQUEST_JSON,
+                                  TEST_EXTRACT_NEXT_USER_REQUEST_RAW, false,
+                                  false);
+}
+
+void test_parse_extract_next_user_result() {
+  test_parse_extract_next_result(TEST_EXTRACT_NEXT_USER_REQUEST_JSON,
+                                 TEST_EXTRACT_NEXT_USER_RESULT_JSON,
+                                 TEST_EXTRACT_NEXT_USER_RESULT_RAW, false);
+}
+
 /*************************************************************************/
 /* Group                                                                 */
 /*************************************************************************/
@@ -93,6 +105,18 @@ void test_parse_extract_group_result_extraneous_parameter_provided() {
   test_validation_errors(
       TEST_EXTRACT_GROUP_REQUEST_EXTRANEOUS_PARAMETER_PROVIDED_JSON,
       TEST_PARAMETER_VALIDATION_ERROR_RESULT_JSON, false);
+}
+
+void test_generate_extract_next_group_request() {
+  test_extract_request_generation(TEST_EXTRACT_NEXT_GROUP_REQUEST_JSON,
+                                  TEST_EXTRACT_NEXT_GROUP_REQUEST_RAW, false,
+                                  false);
+}
+
+void test_parse_extract_next_group_result() {
+  test_parse_extract_next_result(TEST_EXTRACT_NEXT_GROUP_REQUEST_JSON,
+                                 TEST_EXTRACT_NEXT_GROUP_RESULT_JSON,
+                                 TEST_EXTRACT_NEXT_GROUP_RESULT_RAW, false);
 }
 
 /*************************************************************************/
@@ -197,6 +221,18 @@ void test_parse_extract_dataset_result_extraneous_parameter_provided() {
       TEST_PARAMETER_VALIDATION_ERROR_RESULT_JSON, false);
 }
 
+void test_generate_extract_next_dataset_request() {
+  test_extract_request_generation(TEST_EXTRACT_NEXT_DATASET_REQUEST_JSON,
+                                  TEST_EXTRACT_NEXT_DATASET_REQUEST_RAW, false,
+                                  false);
+}
+
+void test_parse_extract_next_dataset_result() {
+  test_parse_extract_next_result(TEST_EXTRACT_NEXT_DATASET_REQUEST_JSON,
+                                 TEST_EXTRACT_NEXT_DATASET_RESULT_JSON,
+                                 TEST_EXTRACT_NEXT_DATASET_RESULT_RAW, false);
+}
+
 /*************************************************************************/
 /* Resource                                                              */
 /*************************************************************************/
@@ -240,4 +276,16 @@ void test_parse_extract_resource_result_extraneous_parameter_provided() {
   test_validation_errors(
       TEST_EXTRACT_RESOURCE_REQUEST_EXTRANEOUS_PARAMETER_PROVIDED_JSON,
       TEST_PARAMETER_VALIDATION_ERROR_RESULT_JSON, false);
+}
+
+void test_generate_extract_next_resource_request() {
+  test_extract_request_generation(TEST_EXTRACT_NEXT_RESOURCE_REQUEST_JSON,
+                                  TEST_EXTRACT_NEXT_RESOURCE_REQUEST_RAW, false,
+                                  false);
+}
+
+void test_parse_extract_next_resource_result() {
+  test_parse_extract_next_result(TEST_EXTRACT_NEXT_RESOURCE_REQUEST_JSON,
+                                 TEST_EXTRACT_NEXT_RESOURCE_RESULT_JSON,
+                                 TEST_EXTRACT_NEXT_RESOURCE_RESULT_RAW, false);
 }

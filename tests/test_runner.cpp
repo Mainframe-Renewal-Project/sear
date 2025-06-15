@@ -115,6 +115,10 @@ int main() {
   RUN_TEST(test_parse_extract_user_result_required_parameter_missing);
   RUN_TEST(test_parse_extract_user_result_extraneous_parameter_provided);
   RUN_TEST(test_parse_extract_user_result_pseudo_boolean);
+
+  RUN_TEST(test_generate_extract_next_user_request);
+  RUN_TEST(test_parse_extract_next_user_result);
+
   // Group
   RUN_TEST(test_generate_extract_group_request);
   RUN_TEST(test_parse_extract_group_result);
@@ -122,6 +126,10 @@ int main() {
   RUN_TEST(test_parse_extract_group_result_group_not_found);
   RUN_TEST(test_parse_extract_group_result_required_parameter_missing);
   RUN_TEST(test_parse_extract_group_result_extraneous_parameter_provided);
+
+  RUN_TEST(test_generate_extract_next_group_request);
+  RUN_TEST(test_parse_extract_next_group_result);
+
   // Group Connection
   RUN_TEST(test_generate_extract_group_connection_request);
   RUN_TEST(test_parse_extract_group_connection_result);
@@ -144,6 +152,10 @@ int main() {
   RUN_TEST(test_parse_extract_dataset_result_dataset_not_found);
   RUN_TEST(test_parse_extract_dataset_result_required_parameter_missing);
   RUN_TEST(test_parse_extract_dataset_result_extraneous_parameter_provided);
+
+  RUN_TEST(test_generate_extract_next_dataset_request);
+  RUN_TEST(test_parse_extract_next_dataset_result);
+
   // Resource
   RUN_TEST(test_generate_extract_resource_request);
   RUN_TEST(
@@ -153,6 +165,9 @@ int main() {
   RUN_TEST(test_parse_extract_resource_result_resource_not_found);
   RUN_TEST(test_parse_extract_resource_result_required_parameter_missing);
   RUN_TEST(test_parse_extract_resource_result_extraneous_parameter_provided);
+
+  RUN_TEST(test_generate_extract_next_resource_request);
+  RUN_TEST(test_parse_extract_next_resource_result);
 
   /*************************************************************************/
   /* IRRSDL00                                                              */

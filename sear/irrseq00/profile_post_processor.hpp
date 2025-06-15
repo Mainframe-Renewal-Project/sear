@@ -12,6 +12,7 @@ namespace SEAR {
 class ProfilePostProcessor {
  public:
   static void postProcessGeneric(SecurityRequest &request);
+  static void postProcessSearchGeneric(SecurityRequest &request);
   static void postProcessRACFOptions(SecurityRequest &request);
 
  private:

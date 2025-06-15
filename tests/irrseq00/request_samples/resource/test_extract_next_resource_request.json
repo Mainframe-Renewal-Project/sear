@@ -1,0 +1,6 @@
+{
+  "operation": "search",
+  "admin_type": "resource",
+  "resource_filter": "**",
+  "class": "FACILITY"
+}

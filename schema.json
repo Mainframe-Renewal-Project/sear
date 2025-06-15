@@ -6,6 +6,24 @@
     {
       "properties": {
         "operation": {
+          "const": "search"
+        },
+        "admin_type": {
+          "const": "user"
+        },
+        "userid_filter": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
           "const": "extract"
         },
         "admin_type": {
@@ -70,6 +88,24 @@
         "operation",
         "admin_type",
         "userid"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "search"
+        },
+        "admin_type": {
+          "const": "group"
+        },
+        "group_filter": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type"
       ],
       "additionalProperties": false
     },
@@ -225,6 +261,28 @@
     {
       "properties": {
         "operation": {
+          "const": "search"
+        },
+        "admin_type": {
+          "const": "resource"
+        },
+        "resource_filter": {
+          "$ref": "#/$defs/resourceName"
+        },
+        "class": {
+          "$ref": "#/$defs/eightCharacterString"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type",
+        "class"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
           "const": "extract"
         },
         "admin_type": {
@@ -301,6 +359,24 @@
         "admin_type",
         "resource",
         "class"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "search"
+        },
+        "admin_type": {
+          "const": "dataset"
+        },
+        "dataset_filter": {
+          "$ref": "#/$defs/dataSetName"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type"
       ],
       "additionalProperties": false
     },

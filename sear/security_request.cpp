@@ -163,6 +163,14 @@ void SecurityRequest::setErrors(const std::vector<std::string>& errors) {
   errors_ = errors;
 }
 
+void SecurityRequest::addFoundProfile(char* profile) {
+  found_profiles_.push_back(profile);
+}
+
+std::vector<char*> SecurityRequest::getFoundProfiles() const {
+  return found_profiles_;
+}
+
 void SecurityRequest::setIntermediateResultJSON(
     nlohmann::json intermediate_result_json) {
   intermediate_result_json_ = intermediate_result_json;
@@ -184,11 +192,29 @@ void SecurityRequest::load(const nlohmann::json& request) {
   }
 
   if (admin_type_ == "user") {
-    function_code_ = USER_EXTRACT_FUNCTION_CODE;
-    profile_name_  = request["userid"].get<std::string>();
+    if (operation_ == "search") {
+      function_code_ = USER_EXTRACT_NEXT_FUNCTION_CODE;
+      if (request.contains("userid_filter")) {
+        profile_name_ = request["userid_filter"].get<std::string>();
+      } else {
+        profile_name_ = std::string(" ");
+      }
+    } else {
+      function_code_ = USER_EXTRACT_FUNCTION_CODE;
+      profile_name_  = request["userid"].get<std::string>();
+    }
   } else if (admin_type_ == "group") {
-    function_code_ = GROUP_EXTRACT_FUNCTION_CODE;
-    profile_name_  = request["group"].get<std::string>();
+    if (operation_ == "search") {
+      function_code_ = GROUP_EXTRACT_NEXT_FUNCTION_CODE;
+      if (request.contains("group_filter")) {
+        profile_name_ = request["group_filter"].get<std::string>();
+      } else {
+        profile_name_ = std::string(" ");
+      }
+    } else {
+      function_code_ = GROUP_EXTRACT_FUNCTION_CODE;
+      profile_name_  = request["group"].get<std::string>();
+    }
   } else if (admin_type_ == "group-connection") {
     function_code_ = GROUP_CONNECTION_EXTRACT_FUNCTION_CODE;
     if (operation_ == "extract") {
@@ -199,12 +225,31 @@ void SecurityRequest::load(const nlohmann::json& request) {
       group_        = request["group"].get<std::string>();
     }
   } else if (admin_type_ == "resource") {
-    function_code_ = RESOURCE_EXTRACT_FUNCTION_CODE;
-    profile_name_  = request["resource"].get<std::string>();
-    class_name_    = request["class"].get<std::string>();
+    if (operation_ == "search") {
+      function_code_ = RESOURCE_EXTRACT_NEXT_FUNCTION_CODE;
+      if (request.contains("resource_filter")) {
+        profile_name_ = request["resource_filter"].get<std::string>();
+      } else {
+        profile_name_ = std::string(" ");
+      }
+      class_name_ = request["class"].get<std::string>();
+    } else {
+      function_code_ = RESOURCE_EXTRACT_FUNCTION_CODE;
+      profile_name_  = request["resource"].get<std::string>();
+      class_name_    = request["class"].get<std::string>();
+    }
   } else if (admin_type_ == "dataset") {
-    function_code_ = DATASET_EXTRACT_FUNCTION_CODE;
-    profile_name_  = request["dataset"].get<std::string>();
+    if (operation_ == "search") {
+      function_code_ = DATASET_EXTRACT_NEXT_FUNCTION_CODE;
+      if (request.contains("dataset_filter")) {
+        profile_name_ = request["dataset_filter"].get<std::string>();
+      } else {
+        profile_name_ = std::string(" ");
+      }
+    } else {
+      function_code_ = DATASET_EXTRACT_FUNCTION_CODE;
+      profile_name_  = request["dataset"].get<std::string>();
+    }
   } else if (admin_type_ == "racf-options") {
     function_code_ = RACF_OPTIONS_EXTRACT_FUNCTION_CODE;
   } else if (admin_type_ == "permission") {

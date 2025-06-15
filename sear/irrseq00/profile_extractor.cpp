@@ -85,10 +85,109 @@ void ProfileExtractor::extract(SecurityRequest &request) {
     request.setRawRequestPointer(ProfileExtractor::cloneBuffer(
         reinterpret_cast<char *>(p_arg_area), request.getRawRequestLength()));
 
+    // For search functions first try regular extract in case an existing name
+    // was given as filter
+    uint8_t save_function_code = function_code;
+    switch (function_code) {
+      case USER_EXTRACT_NEXT_FUNCTION_CODE:
+        function_code                  = USER_EXTRACT_FUNCTION_CODE;
+        p_arg_area->args.function_code = function_code;
+        break;
+      case GROUP_EXTRACT_NEXT_FUNCTION_CODE:
+        function_code                  = GROUP_EXTRACT_FUNCTION_CODE;
+        p_arg_area->args.function_code = function_code;
+        break;
+      case DATASET_EXTRACT_NEXT_FUNCTION_CODE:
+        function_code                  = DATASET_EXTRACT_FUNCTION_CODE;
+        p_arg_area->args.function_code = function_code;
+        break;
+      case RESOURCE_EXTRACT_NEXT_FUNCTION_CODE:
+        function_code                  = RESOURCE_EXTRACT_FUNCTION_CODE;
+        p_arg_area->args.function_code = function_code;
+        break;
+    }
+
     // Call R_Admin
     Logger::getInstance().debug("Calling IRRSEQ00 ...");
     rc = callRadmin(reinterpret_cast<char *__ptr32>(&p_arg_area->arg_pointers));
     Logger::getInstance().debug("Done");
+
+    // In case of search and the exact filter doesn't exist as a profile,
+    // retry with original function_code
+    if (ntohl(p_arg_area->args.SAF_rc) == 4 &&
+        ntohl(p_arg_area->args.RACF_rc) == 4 &&
+        ntohl(p_arg_area->args.RACF_rsn) == 4 &&
+        function_code != save_function_code) {
+      function_code                  = save_function_code;
+      p_arg_area->args.function_code = function_code;
+
+      // Call R_Admin
+      Logger::getInstance().debug("Calling IRRSEQ00 ...");
+      rc = callRadmin(
+          reinterpret_cast<char *__ptr32>(&p_arg_area->arg_pointers));
+      Logger::getInstance().debug("Done");
+    } else {
+      function_code                  = save_function_code;
+      p_arg_area->args.function_code = function_code;
+    }
+
+    if (p_arg_area->args.SAF_rc == 0 &&
+        p_arg_area->args.p_result_buffer != nullptr &&
+        (function_code == USER_EXTRACT_NEXT_FUNCTION_CODE ||
+         function_code == GROUP_EXTRACT_NEXT_FUNCTION_CODE ||
+         function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE ||
+         function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE)) {
+      generic_extract_parms_results_t *p_save_generic_result;
+
+      do {
+        p_save_generic_result =
+            reinterpret_cast<generic_extract_parms_results_t *>(
+                *p_arg_area->arg_pointers.p_p_result_buffer);
+
+        const generic_extract_parms_results_t *p_generic_result =
+            reinterpret_cast<generic_extract_parms_results_t *>(
+                *p_arg_area->arg_pointers.p_p_result_buffer);
+        const char *p_profile_name =
+            *p_arg_area->arg_pointers.p_p_result_buffer +
+            sizeof(generic_extract_parms_results_t);
+
+        uint32_t filter_len =
+            ntohl(p_arg_area->args.profile_extract_parms.profile_name_length);
+        uint32_t profile_len = ntohl(p_generic_result->profile_name_length);
+        if (profile_len >= filter_len &&
+            ((filter_len == 1 && *p_arg_area->args.profile_name == 0x40) ||
+             !std::memcmp(p_profile_name, p_arg_area->args.profile_name,
+                          filter_len))) {
+          Logger::getInstance().hexDump(p_profile_name, profile_len);
+
+          auto unique_profile_name = std::make_unique<char[]>(profile_len);
+          char *profile_name       = unique_profile_name.get();
+          std::memcpy(profile_name, p_profile_name, profile_len);
+          profile_name[profile_len] = 0;
+          request.addFoundProfile(profile_name);
+          unique_profile_name.release();
+        }
+
+        p_arg_area->arg_pointers.p_profile_extract_parms =
+            reinterpret_cast<generic_extract_parms_results_t *>(
+                *p_arg_area->arg_pointers.p_p_result_buffer);
+
+        p_arg_area->arg_pointers.p_profile_extract_parms->flags |=
+            htonl(0x4000000);
+
+        // Call R_Admin
+        Logger::getInstance().debug("Calling IRRSEQ00 ...");
+        rc = callRadmin(
+            reinterpret_cast<char *__ptr32>(&p_arg_area->arg_pointers));
+        Logger::getInstance().debug("Done");
+
+        if (p_arg_area->args.SAF_rc == 0)
+          std::free(p_arg_area->arg_pointers.p_profile_extract_parms);
+      } while (p_arg_area->args.SAF_rc == 0);
+
+      *p_arg_area->arg_pointers.p_p_result_buffer =
+          reinterpret_cast<char *>(p_save_generic_result);
+    }
 
     request.setRawResultPointer(p_arg_area->args.p_result_buffer);
     // Preserve Return & Reason Codes
@@ -98,17 +197,32 @@ void ProfileExtractor::extract(SecurityRequest &request) {
   }
 
   // Check Return Codes
-  if (request.getSAFReturnCode() != 0 or request.getRACFReturnCode() != 0 or
-      request.getRACFReasonCode() != 0 or rc != 0 or
-      request.getRawResultPointer() == nullptr) {
-    request.setSEARReturnCode(4);
-    // Raise Exception if Extract Failed.
-    const std::string &admin_type = request.getAdminType();
-    if (admin_type != "racf-options") {
-      throw SEARError("unable to extract '" + admin_type + "' profile '" +
+  if (function_code == USER_EXTRACT_NEXT_FUNCTION_CODE ||
+      function_code == GROUP_EXTRACT_NEXT_FUNCTION_CODE ||
+      function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE ||
+      function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE) {
+    if (request.getSAFReturnCode() > 4 or request.getRACFReturnCode() > 4 or
+        request.getRACFReasonCode() > 4 or rc != 0 or
+        request.getRawResultPointer() == nullptr) {
+      request.setSEARReturnCode(4);
+      // Raise Exception if Search Failed.
+      const std::string &admin_type = request.getAdminType();
+      throw SEARError("unable to search '" + admin_type + "' profile '" +
                       request.getProfileName() + "'");
-    } else {
-      throw SEARError("unable to extract '" + admin_type + "'");
+    }
+  } else {
+    if (request.getSAFReturnCode() != 0 or request.getRACFReturnCode() != 0 or
+        request.getRACFReasonCode() != 0 or rc != 0 or
+        request.getRawResultPointer() == nullptr) {
+      request.setSEARReturnCode(4);
+      // Raise Exception if Extract Failed.
+      const std::string &admin_type = request.getAdminType();
+      if (admin_type != "racf-options") {
+        throw SEARError("unable to extract '" + admin_type + "' profile '" +
+                        request.getProfileName() + "'");
+      } else {
+        throw SEARError("unable to extract '" + admin_type + "'");
+      }
     }
   }
 
@@ -157,7 +271,7 @@ void ProfileExtractor::buildGenericExtractRequest(
       &args->profile_extract_parms;
 
   /***************************************************************************/
-  /* Set Extract Arguments                                                   */
+  /* Set Extract Arguments */
   /***************************************************************************/
   args->ALET_SAF_rc           = ALET;
   args->ALET_RACF_rc          = ALET;
@@ -175,7 +289,8 @@ void ProfileExtractor::buildGenericExtractRequest(
   std::memcpy(args->profile_name, profile_name.c_str(), profile_name.length());
   // Encode profile name as IBM-1047.
   __a2e_l(args->profile_name, profile_name.length());
-  if (function_code == RESOURCE_EXTRACT_FUNCTION_CODE) {
+  if (function_code == RESOURCE_EXTRACT_FUNCTION_CODE ||
+      function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE) {
     // Automatically convert lowercase class names to uppercase.
     std::transform(class_name.begin(), class_name.end(), class_name.begin(),
                    [](unsigned char c) { return std::toupper(c); });
@@ -189,10 +304,17 @@ void ProfileExtractor::buildGenericExtractRequest(
   }
   profile_extract_parms->profile_name_length = htonl(profile_name.length());
 
+  if (function_code == USER_EXTRACT_NEXT_FUNCTION_CODE ||
+      function_code == GROUP_EXTRACT_NEXT_FUNCTION_CODE ||
+      function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE ||
+      function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE) {
+    profile_extract_parms->flags = htonl(0x4000000);
+  }
+
   /***************************************************************************/
-  /* Set Extract Argument Pointers                                           */
+  /* Set Extract Argument Pointers */
   /*                                                                         */
-  /* Enable transition from 64-bit XPLINK to 31-bit OSLINK.                  */
+  /* Enable transition from 64-bit XPLINK to 31-bit OSLINK. */
   /***************************************************************************/
   arg_pointers->p_work_area =
       reinterpret_cast<char *__ptr32>(&args->RACF_work_area);
@@ -228,7 +350,7 @@ void ProfileExtractor::buildRACFOptionsExtractRequest(
       &args->racf_options_extract_parms;
 
   /***************************************************************************/
-  /* Set Extract Arguments                                                   */
+  /* Set Extract Arguments */
   /***************************************************************************/
   args->ALET_SAF_rc           = ALET;
   args->ALET_RACF_rc          = ALET;
@@ -238,9 +360,9 @@ void ProfileExtractor::buildRACFOptionsExtractRequest(
   args->function_code         = RACF_OPTIONS_EXTRACT_FUNCTION_CODE;
 
   /***************************************************************************/
-  /* Set Extract Argument Pointers                                           */
+  /* Set Extract Argument Pointers */
   /*                                                                         */
-  /* Enable transition from 64-bit XPLINK to 31-bit OSLINK.                  */
+  /* Enable transition from 64-bit XPLINK to 31-bit OSLINK. */
   /***************************************************************************/
   arg_pointers->p_work_area =
       reinterpret_cast<char *__ptr32>(&args->RACF_work_area);

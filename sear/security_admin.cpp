@@ -53,7 +53,8 @@ void SecurityAdmin::makeRequest(const char *p_request_json_string, int length) {
     request_.load(request_json);
 
     // Make Request To Corresponding Callable Service
-    if (request_.getOperation() == "extract") {
+    if (request_.getOperation() == "extract" ||
+        request_.getOperation() == "search") {
       if (request_.getAdminType() != "keyring") {
         Logger::getInstance().debug("Entering IRRSEQ00 path");
         ProfileExtractor profile_extractor;
@@ -104,8 +105,13 @@ void SecurityAdmin::doExtract(Extractor &extractor) {
       // Post Process RACF Options Extract Result
       post_processor.postProcessRACFOptions(request_);
     } else {
-      // Post Process Generic Extract Result
-      post_processor.postProcessGeneric(request_);
+      if (request_.getOperation() == "search") {
+        // Post Process Generic Search Result
+        post_processor.postProcessSearchGeneric(request_);
+      } else {
+        // Post Process Generic Extract Result
+        post_processor.postProcessGeneric(request_);
+      }
     }
   } else {
     KeyringPostProcessor post_processor;

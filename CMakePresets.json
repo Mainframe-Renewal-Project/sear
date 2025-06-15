@@ -25,6 +25,16 @@
             "cacheVariables": {
                 "SEAR_ENABLE_PYTHON": "on"
             }
+        },
+        {
+            "name": "linux-test",
+            "displayName": "Linux Testing",
+            "description": "Used for unit testing under Linux",
+            "binaryDir": "${sourceDir}/build/linux",
+            "toolchainFile": "cmake/clang.cmake",
+            "cacheVariables": {
+                "SEAR_UNIT_TEST": "ON"
+            }
         }
     ],
     "buildPresets": [
@@ -39,13 +49,17 @@
         {
             "name": "zos-sear",
             "inherits": "zos",
-            "targets": ["sear"]
+            "targets": [ "sear" ]
         },
         {
             "name": "zos-pysear",
             "inherits": "zos",
             "configurePreset": "zos-pysear",
-            "targets": ["pysear"]
+            "targets": [ "pysear" ]
+        },
+        {
+            "name": "linux-test",
+            "configurePreset": "linux-test"
         }
     ]
 }

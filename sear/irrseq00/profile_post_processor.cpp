@@ -104,6 +104,26 @@ void ProfilePostProcessor::postProcessGeneric(SecurityRequest &request) {
   request.setIntermediateResultJSON(profile);
 }
 
+void ProfilePostProcessor::postProcessSearchGeneric(SecurityRequest &request) {
+  nlohmann::json profiles;
+
+  std::vector<std::string> repeat_group_profiles;
+
+  std::vector<char *> found_profiles = request.getFoundProfiles();
+
+  for (int i = 0; i < found_profiles.size(); i++) {
+    int len = std::strlen(found_profiles[i]);
+    std::string profile_name =
+        ProfilePostProcessor::decodeEBCDICBytes(found_profiles[i], len);
+    repeat_group_profiles.push_back(profile_name);
+    free(found_profiles[i]);
+  }
+
+  profiles["profiles"] = repeat_group_profiles;
+
+  request.setIntermediateResultJSON(profiles);
+}
+
 void ProfilePostProcessor::postProcessRACFOptions(SecurityRequest &request) {
   nlohmann::json profile;
   profile["profile"] = nlohmann::json::object();
