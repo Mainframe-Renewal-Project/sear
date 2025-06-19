@@ -39,7 +39,7 @@ void IRRSMO00::call_irrsmo00(SecurityRequest &request,
   }
 
   int raw_request_length = request.getRawRequestLength();
-  int raw_result_length  = 50000;
+  int raw_result_length  = 10000;
 
   int saf_return_code;
   int racf_return_code;
@@ -55,6 +55,12 @@ void IRRSMO00::call_irrsmo00(SecurityRequest &request,
            &raw_request_length, request.getRawRequestPointer(), req_handle,
            reinterpret_cast<char *>(&running_userid_struct), acee,
            &raw_result_length, result_unique_ptr.get());
+
+  Logger::getInstance().debug("raw_result_length");
+  Logger::getInstance().hexDump(reinterpret_cast<char *>(&raw_result_length),
+                                4);
+  Logger::getInstance().debug("result_unique_ptr");
+  Logger::getInstance().hexDump(result_unique_ptr.get(), raw_result_length);
 
   // 'knownConditionTrueFalse' is a false positive. These conditionals work as
   // intended
@@ -73,8 +79,13 @@ void IRRSMO00::call_irrsmo00(SecurityRequest &request,
   }
 
   // Handle result buffer too small scenario.
-  int bytes_remaining         = racf_reason_code;
-  int new_result_length       = raw_result_length + bytes_remaining + 1;
+  int bytes_remaining   = racf_reason_code;
+  int new_result_length = raw_result_length + bytes_remaining + 1;
+  Logger::getInstance().debug("bytes_remaining");
+  Logger::getInstance().hexDump(reinterpret_cast<char *>(&bytes_remaining), 4);
+  Logger::getInstance().debug("new_result_length");
+  Logger::getInstance().hexDump(reinterpret_cast<char *>(&new_result_length),
+                                4);
   auto full_result_unique_ptr = std::make_unique<char[]>(new_result_length);
   Logger::getInstance().debugAllocate(full_result_unique_ptr.get(), 64,
                                       new_result_length);
@@ -90,6 +101,13 @@ void IRRSMO00::call_irrsmo00(SecurityRequest &request,
            &raw_request_length, request.getRawRequestPointer(), req_handle,
            reinterpret_cast<char *>(&running_userid_struct), acee,
            &bytes_remaining, p_next_byte);
+
+  Logger::getInstance().debug("bytes_remaining after");
+  Logger::getInstance().hexDump(reinterpret_cast<char *>(&bytes_remaining), 4);
+  new_result_length = raw_result_length + bytes_remaining;
+  Logger::getInstance().debug("full_result_unique_ptr");
+  Logger::getInstance().hexDump(full_result_unique_ptr.get(),
+                                new_result_length);
 
   request.setSAFReturnCode(saf_return_code);
   request.setRACFReturnCode(racf_return_code);
