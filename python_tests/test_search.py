@@ -4,6 +4,7 @@ from helper import successful_return_codes
 # Import SEAR
 from sear import sear
 
+
 def test_search_admin_type_missing():
     """This test is supposed to fail"""
     search_result = sear(

@@ -96,6 +96,34 @@ def test_add_keyring(delete_keyring):
     assert "errors" not in str(add_result.result)
     assert add_result.result["return_codes"] == successful_return_codes
 
+def test_add_keyring_missing_owner(delete_keyring):
+    """This test is supposed to fail"""
+    keyring, owner = delete_keyring
+
+    add_result = sear(
+        {
+        "operation": "add", 
+        "admin_type": "keyring", 
+        "keyring": keyring,
+        },
+    )
+    assert "errors" in str(add_result.result)
+    assert add_result.result["return_codes"] != successful_return_codes
+
+def test_add_keyring_missing_keyring(delete_keyring):
+    """This test is supposed to fail"""
+    keyring, owner = delete_keyring
+
+    add_result = sear(
+        {
+        "operation": "add", 
+        "admin_type": "keyring", 
+        "owner": owner,
+        },
+    )
+    assert "errors" in str(add_result.result)
+    assert add_result.result["return_codes"] != successful_return_codes
+
 def test_delete_keyring(create_keyring):
     """This test is supposed to succeed"""
     keyring, owner = create_keyring
@@ -110,6 +138,34 @@ def test_delete_keyring(create_keyring):
     )
     assert "errors" not in str(delete_result.result)
     assert delete_result.result["return_codes"] == successful_return_codes
+
+def test_delete_keyring_missing_owner(create_keyring):
+    """This test is supposed to fail"""
+    keyring, owner = create_keyring
+
+    delete_result = sear(
+        {
+        "operation": "delete", 
+        "admin_type": "keyring", 
+        "keyring": keyring,
+        },
+    )
+    assert "errors" in str(delete_result.result)
+    assert delete_result.result["return_codes"] != successful_return_codes
+
+def test_delete_keyring_missing_keyring(create_keyring):
+    """This test is supposed to fail"""
+    keyring, owner = create_keyring
+
+    delete_result = sear(
+        {
+        "operation": "delete", 
+        "admin_type": "keyring", 
+        "owner": owner,
+        },
+    )
+    assert "errors" in str(delete_result.result)
+    assert delete_result.result["return_codes"] != successful_return_codes
 
 def test_add_pem_certificate_to_keyring(create_keyring, create_certificate_pem):
     """This test is supposed to succeed"""

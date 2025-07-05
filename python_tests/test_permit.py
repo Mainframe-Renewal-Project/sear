@@ -88,6 +88,24 @@ def test_add_resource_permit(create_user, create_resource):
     assert "errors" not in str(add_result.result)
     assert add_result.result["return_codes"] == successful_return_codes
 
+def test_add_resource_permit_missing_class(create_user, create_resource):
+    """This test is supposed to fail"""
+    profile_name, class_name = create_resource
+    add_result = sear(
+            {
+            "operation": "alter", 
+            "admin_type": "permission", 
+            "resource": profile_name,
+            "userid": create_user,
+            "traits": {
+                "base:access": "READ",
+            },
+            },
+        )
+    assert "errors" in str(add_result.result)
+    assert add_result.result["return_codes"] != successful_return_codes
+
+
 def test_add_resource_permit_missing_operation(create_user, create_resource):
     """This test is supposed to fail"""
     profile_name, class_name = create_resource
