@@ -10,7 +10,7 @@ def test_add_group(delete_group):
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "group", 
+            "profile_type": "group", 
             "group": delete_group,
             "traits": {
                 "base:installation_data": "GROUP GENERATED DURING SEAR TESTING, NOT IMPORTANT",
@@ -25,7 +25,7 @@ def test_add_group_no_traits(delete_group):
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "group", 
+            "profile_type": "group", 
             "group": delete_group,
             },
         )
@@ -37,7 +37,7 @@ def test_extract_group(create_group):
     extract_result = sear(
             {
             "operation": "extract",
-            "admin_type": "group",
+            "profile_type": "group",
             "group": create_group,
             },
         )
@@ -49,7 +49,7 @@ def test_extract_group_missing_group():
     extract_result = sear(
             {
             "operation": "extract",
-            "admin_type": "group",
+            "profile_type": "group",
             },
         )
     assert "errors" in str(extract_result.result)
@@ -60,7 +60,7 @@ def test_group_not_found():
     not_found_result = sear(
             {
             "operation": "extract",
-            "admin_type": "group", 
+            "profile_type": "group", 
             "data_set": "BADGRP",
             },
         )
@@ -72,7 +72,7 @@ def test_alter_group(create_group):
     alter_result = sear(
             {
             "operation": "alter", 
-            "admin_type": "group", 
+            "profile_type": "group", 
             "group": create_group,
             "traits": {
                 "omvs:auto_gid": True,
@@ -87,7 +87,7 @@ def test_delete_group(create_group):
     delete_result = sear(
             {
             "operation": "delete",
-            "admin_type": "group",
+            "profile_type": "group",
             "group": create_group,
             },
         )
@@ -99,7 +99,7 @@ def test_delete_group_missing_group(create_group):
     delete_result = sear(
             {
             "operation": "delete",
-            "admin_type": "group",
+            "profile_type": "group",
             },
         )
     assert "errors" in str(delete_result.result)

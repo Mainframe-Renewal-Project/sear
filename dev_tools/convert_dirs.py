@@ -29,11 +29,11 @@ def convert_directory(directory_name, CCSID_1="ascii", CCSID_2="ascii", output_d
     admin_types = ["group_connection", "racf_options", "dataset", "group", "user", "resource", "permission"]
     for filename in os.listdir(directory_name):
         admin_dir = ""
-        for admin_type in admin_types:
-            if admin_type in filename:
-                if admin_type == "group" and "group_connection" in filename:
+        for profile_type in admin_types:
+            if profile_type in filename:
+                if profile_type == "group" and "group_connection" in filename:
                     continue
-                admin_dir = f"/{admin_type}"
+                admin_dir = f"/{profile_type}"
         convert_file(f'{directory_name}/{filename}',CCSID_1,CCSID_2,f'{output_directory_name}{admin_dir}/{filename}',remove_newline,convert_to_bin=True)
 
 def determine_ccsid(CCSID):

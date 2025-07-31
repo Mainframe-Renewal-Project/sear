@@ -1,6 +1,6 @@
 {
   "operation": "extract",
-  "admin_type": "keyring",
+  "profile_type": "keyring",
   "keyring": "SEARNOTFOUND",
   "owner": "YBTKS"
 }

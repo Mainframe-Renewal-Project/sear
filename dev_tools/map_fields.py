@@ -583,16 +583,16 @@ def map_admin_type(admin_key: str):
     if admin_key == "s":
         return "racf_options"
     
-def generate_header_file(admin_type: str ):
-    true_admin_type = map_admin_type(admin_type.split("_")[0]).upper()
-    admin = func_group(admin_type)
+def generate_header_file(profile_type: str ):
+    true_admin_type = map_admin_type(profile_type.split("_")[0]).upper()
+    admin = func_group(profile_type)
     map = admin.build_seg_map()
 
-    print(true_admin_type, map.keys(), valid_segment_traits[admin_type].keys() )
+    print(true_admin_type, map.keys(), valid_segment_traits[profile_type].keys() )
 
-    for segment in valid_segment_traits[admin_type]:
-        for trait in valid_segment_traits[admin_type][segment]:
-            racf_name = valid_segment_traits[admin_type][segment][trait]
+    for segment in valid_segment_traits[profile_type]:
+        for trait in valid_segment_traits[profile_type][segment]:
+            racf_name = valid_segment_traits[profile_type][segment][trait]
             if ':' in racf_name:
                 racf_name = racf_name.split(':')[1]
             print(f"racf_name: {racf_name}, sear_name: {trait}")

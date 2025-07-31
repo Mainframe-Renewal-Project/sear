@@ -20,7 +20,7 @@ namespace SEAR {
 // Public Functions of XMLGenerator
 void XMLGenerator::buildXMLString(SecurityRequest& request) {
   // Main body function that builds an xml string
-  const std::string& admin_type = request.getAdminType();
+  const std::string& profile_type = request.getAdminType();
   const nlohmann::json& traits  = request.getTraits();
 
   // Build the securityrequest tag (Consistent)
@@ -30,7 +30,7 @@ void XMLGenerator::buildXMLString(SecurityRequest& request) {
                                "http://www.ibm.com/systems/zos/racf");
   XMLGenerator::buildEndNestedTag();
 
-  std::string true_admin_type = convertAdminType(admin_type);
+  std::string true_admin_type = convertAdminType(profile_type);
   XMLGenerator::buildOpenTag(true_admin_type);
 
   XMLGenerator::buildXMLHeaderAttributes(request, true_admin_type);
@@ -42,9 +42,9 @@ void XMLGenerator::buildXMLString(SecurityRequest& request) {
 
     Logger::getInstance().debug("Validating traits ...");
 
-    validate_traits(admin_type, request);
+    validate_traits(profile_type, request);
 
-    XMLGenerator::buildRequestData(true_admin_type, admin_type, traits);
+    XMLGenerator::buildRequestData(true_admin_type, profile_type, traits);
 
     Logger::getInstance().debug("Done");
 
@@ -196,7 +196,7 @@ void XMLGenerator::buildXMLHeaderAttributes(
 }
 
 void XMLGenerator::buildRequestData(const std::string& true_admin_type,
-                                    const std::string& admin_type,
+                                    const std::string& profile_type,
                                     nlohmann::json request_data) {
   // Builds the xml for request data (segment-trait information) passed in a
   // json object
@@ -235,19 +235,19 @@ void XMLGenerator::buildRequestData(const std::string& true_admin_type,
         int8_t trait_operator = map_operator(item_operator);
         // Need to obtain the actual data
         int8_t trait_type    = map_trait_type(item.value());
-        int8_t expected_type = get_trait_type(admin_type, item_segment,
+        int8_t expected_type = get_trait_type(profile_type, item_segment,
                                               item_segment + ":" + item_trait);
         if (expected_type == TRAIT_TYPE_PSEUDO_BOOLEAN and
             trait_type != TRAIT_TYPE_NULL) {
           trait_type = TRAIT_TYPE_PSEUDO_BOOLEAN;
         }
-        translated_key = get_racf_key(admin_type.c_str(), item_segment.c_str(),
+        translated_key = get_racf_key(profile_type.c_str(), item_segment.c_str(),
                                       (item_segment + ":" + item_trait).c_str(),
                                       trait_type, trait_operator);
         if (translated_key == nullptr) {
           // Temporary to get list/repeat traits working for RACF Options
           translated_key =
-              get_racf_key(admin_type.c_str(), item_segment.c_str(),
+              get_racf_key(profile_type.c_str(), item_segment.c_str(),
                            (item_segment + ":" + item_trait).c_str(),
                            TRAIT_TYPE_REPEAT, trait_operator);
         }
@@ -318,18 +318,18 @@ std::string XMLGenerator::convertOperator(const std::string& trait_operator) {
   return trait_operator;
 }
 
-std::string XMLGenerator::convertAdminType(const std::string& admin_type) {
+std::string XMLGenerator::convertAdminType(const std::string& profile_type) {
   // Converts the admin type between sear's definitions and IRRSMO00's
   // definitions. group-connection to groupconnection, racf-options to
   // systemsettings. All other admin types should be
   // unchanged
-  if (admin_type == "group-connection") {
+  if (profile_type == "group-connection") {
     return "groupconnection";
   }
-  if (admin_type == "racf-options") {
+  if (profile_type == "racf-options") {
     return "systemsettings";
   }
-  return admin_type;
+  return profile_type;
 }
 
 std::string XMLGenerator::JSONValueToString(const nlohmann::json& trait) {

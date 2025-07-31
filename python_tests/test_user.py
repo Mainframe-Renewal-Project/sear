@@ -10,7 +10,7 @@ def test_add_user(delete_user):
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "user", 
+            "profile_type": "user", 
             "userid": delete_user,
             "traits": {
                 "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
@@ -25,7 +25,7 @@ def test_add_user_missing_userid():
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "user", 
+            "profile_type": "user", 
             "traits": {
                 "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
             },
@@ -39,7 +39,7 @@ def test_add_user_userid_too_long():
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "user", 
+            "profile_type": "user", 
             "userid": "ThisIsTooLong",
             "traits": {
                 "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
@@ -54,7 +54,7 @@ def test_add_user_userid_illegal_characters():
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "user", 
+            "profile_type": "user", 
             "userid": "USER/*_.",
             "traits": {
                 "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
@@ -69,7 +69,7 @@ def test_add_user_base_traits(delete_user):
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "user", 
+            "profile_type": "user", 
             "userid": delete_user,
             "traits": {
                 "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
@@ -87,7 +87,7 @@ def test_add_user_no_traits(delete_user):
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "user", 
+            "profile_type": "user", 
             "userid": delete_user,
             },
         )
@@ -99,7 +99,7 @@ def test_add_user_tso_traits(delete_user):
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "user", 
+            "profile_type": "user", 
             "userid": delete_user,
             "traits": {
                 "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
@@ -120,7 +120,7 @@ def test_add_user_omvs_traits(delete_user):
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "user", 
+            "profile_type": "user", 
             "userid": delete_user,
             "traits": {
                 "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
@@ -140,7 +140,7 @@ def test_extract_user(create_user):
     extract_result = sear(
             {
             "operation": "extract",
-            "admin_type": "user",
+            "profile_type": "user",
             "userid": create_user,
             },
         )
@@ -152,7 +152,7 @@ def test_user_extract_not_found():
     user_not_found_result = sear(
             {
             "operation": "extract",
-            "admin_type": "user",
+            "profile_type": "user",
             "userid": "JMCCLANE",
             },
         )
@@ -164,7 +164,7 @@ def test_user_extract_missing_userid():
     user_not_found_result = sear(
             {
             "operation": "extract",
-            "admin_type": "user",
+            "profile_type": "user",
             },
         )
     assert "errors" in str(user_not_found_result.result)
@@ -175,7 +175,7 @@ def test_alter_user(create_user):
     alter_result = sear(
             {
             "operation": "alter", 
-            "admin_type": "user", 
+            "profile_type": "user", 
             "userid": create_user,
             "traits": {
                 "omvs:default_shell": "/bin/zsh",
@@ -190,7 +190,7 @@ def test_delete_user(create_user):
     delete_result = sear(
             {
             "operation": "delete",
-            "admin_type": "user",
+            "profile_type": "user",
             "userid": create_user,
             },
         )
@@ -202,7 +202,7 @@ def test_delete_user_missing_userid():
     delete_result = sear(
             {
             "operation": "delete",
-            "admin_type": "user",
+            "profile_type": "user",
             },
         )
     assert "errors" in str(delete_result.result)

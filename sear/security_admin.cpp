@@ -126,12 +126,12 @@ void SecurityAdmin::doAddAlterDelete() {
 
   // Check if profile exists already for some alter operations
   const std::string &operation    = request_.getOperation();
-  const std::string &admin_type   = request_.getAdminType();
+  const std::string &profile_type   = request_.getAdminType();
   const std::string &profile_name = request_.getProfileName();
   const std::string &class_name   = request_.getClassName();
   if ((operation == "alter") and
-      ((admin_type == "group") or (admin_type == "user") or
-       (admin_type == "dataset") or (admin_type == "resource"))) {
+      ((profile_type == "group") or (profile_type == "user") or
+       (profile_type == "dataset") or (profile_type == "resource"))) {
     Logger::getInstance().debug("Verifying that profile existis for alter ...");
     if (!irrsmo00.does_profile_exist(request_)) {
       request_.setSEARReturnCode(8);

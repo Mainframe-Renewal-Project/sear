@@ -100,28 +100,28 @@ void IRRSMO00::call_irrsmo00(SecurityRequest &request,
 }
 
 bool IRRSMO00::does_profile_exist(SecurityRequest &request) {
-  const std::string &admin_type   = request.getAdminType();
+  const std::string &profile_type   = request.getAdminType();
   const std::string &profile_name = request.getProfileName();
   const std::string &class_name   = request.getClassName();
 
   std::string xml_string;
 
-  if (admin_type == "resource") {
-    Logger::getInstance().debug("Checking if '" + admin_type + "' profile '" +
+  if (profile_type == "resource") {
+    Logger::getInstance().debug("Checking if '" + profile_type + "' profile '" +
                                 profile_name + "' already exists in the '" +
                                 class_name + "' ...");
     xml_string =
         R"(<securityrequest xmlns="http://www.ibm.com/systems/zos/saf" xmlns:racf="http://www.ibm.com/systems/zos/racf"><)" +
-        admin_type + R"( name=")" + profile_name + R"(" class=")" + class_name +
-        R"("operation="listdata" requestid=")" + admin_type +
+        profile_type + R"( name=")" + profile_name + R"(" class=")" + class_name +
+        R"("operation="listdata" requestid=")" + profile_type +
         R"(_request"/></securityrequest>)";
   } else {
-    Logger::getInstance().debug("Checking if '" + admin_type + "' profile '" +
+    Logger::getInstance().debug("Checking if '" + profile_type + "' profile '" +
                                 profile_name + "' already exists ...");
     xml_string =
         R"(<securityrequest xmlns="http://www.ibm.com/systems/zos/saf" xmlns:racf="http://www.ibm.com/systems/zos/racf"><)" +
-        admin_type + R"( name=")" + profile_name +
-        R"(" operation="listdata" requestid=")" + admin_type +
+        profile_type + R"( name=")" + profile_name +
+        R"(" operation="listdata" requestid=")" + profile_type +
         R"(_request"/></securityrequest>)";
   }
 
@@ -181,15 +181,15 @@ void IRRSMO00::post_process_smo_json(SecurityRequest &request) {
   if (!results.contains("command")) {
     // Only expected for "Add Protection" cases
     request.setSEARReturnCode(4);
-    const std::string &admin_type   = request.getAdminType();
+    const std::string &profile_type   = request.getAdminType();
     const std::string &profile_name = request.getProfileName();
     const std::string &class_name   = request.getClassName();
     if (class_name.empty()) {
       throw SEARError("unable to add '" + profile_name + "' because a '" +
-                      admin_type + "' profile already exists with that name");
+                      profile_type + "' profile already exists with that name");
     } else {
       throw SEARError("unable to add '" + profile_name + "' in the '" +
-                      class_name + "' class because a '" + admin_type +
+                      class_name + "' class because a '" + profile_type +
                       "' profile already exists in the '" + class_name +
                       "' class with that name");
     }

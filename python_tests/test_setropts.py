@@ -10,7 +10,7 @@ def test_setropts_extract():
     extract_result = sear(
         {
         "operation": "extract",
-        "admin_type": "racf-options",
+        "profile_type": "racf-options",
         },
     )
     assert "errors" not in str(extract_result.result)
@@ -20,7 +20,7 @@ def test_setropts_extract_missing_operation():
     """This test is supposed to fail"""
     extract_result = sear(
         {
-        "admin_type": "racf-options",
+        "profile_type": "racf-options",
         },
     )
     assert "errors" in str(extract_result.result)

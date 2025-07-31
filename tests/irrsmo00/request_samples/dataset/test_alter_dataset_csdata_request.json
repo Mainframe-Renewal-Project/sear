@@ -1,6 +1,6 @@
 {
   "operation": "alter",
-  "admin_type": "dataset",
+  "profile_type": "dataset",
   "dataset": "ESWIFT.TEST.T1136242.P3020470",
   "traits": {
     "base:universal_access": "Read",

@@ -20,7 +20,7 @@ def test_search_resource_profiles_class_missing():
     search_result = sear(
             {
             "operation": "search", 
-            "admin_type": "resource", 
+            "profile_type": "resource", 
             },
         )
     assert "errors" in str(search_result.result)
@@ -31,7 +31,7 @@ def test_search_resource_profiles_nonexistent_class():
     search_result = sear(
             {
             "operation": "search", 
-            "admin_type": "resource",
+            "profile_type": "resource",
             "class": "WRONG", 
             },
         )

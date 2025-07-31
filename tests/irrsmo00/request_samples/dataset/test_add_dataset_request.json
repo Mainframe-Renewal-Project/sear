@@ -1,6 +1,6 @@
 {
   "operation": "add",
-  "admin_type": "dataset",
+  "profile_type": "dataset",
   "dataset": "ESWIFT.TEST.**",
   "generic": true,
   "traits": {

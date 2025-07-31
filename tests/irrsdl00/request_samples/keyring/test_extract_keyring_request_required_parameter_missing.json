@@ -1,5 +1,5 @@
 {
   "operation": "extract",
-  "admin_type": "keyring",
+  "profile_type": "keyring",
   "owner": "YBTKS"
 }

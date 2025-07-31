@@ -1,6 +1,6 @@
 {
   "operation": "add",
-  "admin_type": "user",
+  "profile_type": "user",
   "traits": {
     "base:name": "Squidward",
     "omvs:uid": 24,

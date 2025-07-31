@@ -1,6 +1,6 @@
 {
   "operation": "alter",
-  "admin_type": "group-connection",
+  "profile_type": "group-connection",
   "userid": "eswift",
   "traits": {
     "base:special": true

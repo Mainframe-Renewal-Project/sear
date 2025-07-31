@@ -1,6 +1,6 @@
 {
   "operation": "add",
-  "admin_type": "group",
+  "profile_type": "group",
   "group": "TESTGRP0",
   "traits": {
     "junk": "Squidward",

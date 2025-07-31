@@ -1,5 +1,5 @@
 {
   "operation": "extract",
-  "admin_type": "resource",
+  "profile_type": "resource",
   "resource": "IRR.IRRSMO00.PRECHECK"
 }

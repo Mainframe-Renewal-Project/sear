@@ -10,7 +10,7 @@ def test_add_dataset(delete_dataset):
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "dataset", 
+            "profile_type": "dataset", 
             "dataset": delete_dataset,
             "traits": {
                 "base:installation_data": "DATASET PROFILE GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
@@ -25,7 +25,7 @@ def test_add_dataset_no_traits(delete_dataset):
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "dataset", 
+            "profile_type": "dataset", 
             "dataset": delete_dataset,
             },
         )
@@ -37,7 +37,7 @@ def test_add_dataset_incorrect_profile_name():
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "dataset", 
+            "profile_type": "dataset", 
             "dataset": "^^.**",
             "traits": {
                 "base:installation_data": "DATASET PROFILE GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
@@ -52,7 +52,7 @@ def test_add_dataset_missing_dataset():
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "dataset", 
+            "profile_type": "dataset", 
             "traits": {
                 "base:installation_data": "DATASET PROFILE GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
             },
@@ -66,7 +66,7 @@ def test_extract_dataset(create_dataset):
     extract_result = sear(
             {
             "operation": "extract",
-            "admin_type": "dataset", 
+            "profile_type": "dataset", 
             "dataset": create_dataset,
             },
         )
@@ -78,7 +78,7 @@ def test_dataset_extract_not_found():
     not_found_result = sear(
             {
             "operation": "extract",
-            "admin_type": "dataset", 
+            "profile_type": "dataset", 
             "dataset": "DOES.NOT.EXIST",
             },
         )
@@ -90,7 +90,7 @@ def test_dataset_extract_dataset_missing():
     not_found_result = sear(
             {
             "operation": "extract",
-            "admin_type": "dataset", 
+            "profile_type": "dataset", 
             },
         )
     assert "errors" in str(not_found_result.result)
@@ -101,7 +101,7 @@ def test_dataset_extract_invalid_json():
     not_found_result = sear(
             {
             "operation": "extract",
-            "admin_type": "dataset", 
+            "profile_type": "dataset", 
             "data_set": "DOES.NOT.EXIST",
             },
         )
@@ -113,7 +113,7 @@ def test_delete_dataset(create_dataset):
     delete_result = sear(
             {
             "operation": "delete",
-            "admin_type": "dataset", 
+            "profile_type": "dataset", 
             "dataset": create_dataset,
             },
         )
@@ -125,7 +125,7 @@ def test_delete_dataset_invalid_json(create_dataset):
     delete_result = sear(
             {
             "operation": "delete",
-            "admin_type": "dataset", 
+            "profile_type": "dataset", 
             "data_set": create_dataset,
             },
         )
@@ -137,7 +137,7 @@ def test_delete_dataset_missing_dataset():
     delete_result = sear(
             {
             "operation": "delete",
-            "admin_type": "dataset", 
+            "profile_type": "dataset", 
             },
         )
     assert "errors" in str(delete_result.result)

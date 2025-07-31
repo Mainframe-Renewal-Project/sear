@@ -1,4 +1,4 @@
 {
   "operation": "extract",
-  "admin_type": "group-connection"
+  "profile_type": "group-connection"
 }

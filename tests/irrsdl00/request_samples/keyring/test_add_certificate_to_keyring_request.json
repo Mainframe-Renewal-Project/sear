@@ -1,6 +1,6 @@
 {
   "operation": "add",
-  "admin_type": "certificate",
+  "profile_type": "certificate",
   "owner": "YBTKS",
   "keyring": "SEARTESTRING",
   "keyring_owner": "YBTKS",

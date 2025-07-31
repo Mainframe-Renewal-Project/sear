@@ -1,5 +1,5 @@
 {
-  "admin_type": "group",
+  "profile_type": "group",
   "operation": "extract",
   "group": "TESTGRP0",
   "traits": {

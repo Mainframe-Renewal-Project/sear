@@ -14,7 +14,7 @@ if "SEAR_FVT_USERID" not in os.environ:
 # This request may fail, but regardless, it demonstrates that 
 # we can make a request to IRRSEQ00 and get a result back.
 extract_request = {
-  "admin_type": "user",
+  "profile_type": "user",
   "operation": "extract",
   "userid": getpass.getuser(),
 }
@@ -22,7 +22,7 @@ extract_request = {
 # This request will fail, but it demonstrates that
 # we can make a request to IRRSMO00 and get a result back.
 delete_request = {
-  "admin_type": "user",
+  "profile_type": "user",
   "operation": "delete",
   "userid": os.environ["SEAR_FVT_USERID"],
 }

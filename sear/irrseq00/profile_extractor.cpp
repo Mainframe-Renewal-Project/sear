@@ -206,8 +206,8 @@ void ProfileExtractor::extract(SecurityRequest &request) {
         request.getRawResultPointer() == nullptr) {
       request.setSEARReturnCode(4);
       // Raise Exception if Search Failed.
-      const std::string &admin_type = request.getAdminType();
-      throw SEARError("unable to search '" + admin_type + "' profile '" +
+      const std::string &profile_type = request.getAdminType();
+      throw SEARError("unable to search '" + profile_type + "' profile '" +
                       request.getProfileName() + "'");
     }
   } else {
@@ -216,12 +216,12 @@ void ProfileExtractor::extract(SecurityRequest &request) {
         request.getRawResultPointer() == nullptr) {
       request.setSEARReturnCode(4);
       // Raise Exception if Extract Failed.
-      const std::string &admin_type = request.getAdminType();
-      if (admin_type != "racf-options") {
-        throw SEARError("unable to extract '" + admin_type + "' profile '" +
+      const std::string &profile_type = request.getAdminType();
+      if (profile_type != "racf-options") {
+        throw SEARError("unable to extract '" + profile_type + "' profile '" +
                         request.getProfileName() + "'");
       } else {
-        throw SEARError("unable to extract '" + admin_type + "'");
+        throw SEARError("unable to extract '" + profile_type + "'");
       }
     }
   }

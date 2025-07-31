@@ -1,6 +1,6 @@
 {
   "operation": "alter",
-  "admin_type": "permission",
+  "profile_type": "permission",
   "resource": "IRR.IRRSMO00.PRECHECK",
   "class": "XFACILIT",
   "volume": "MYVOL",

@@ -10,7 +10,7 @@ def test_extract_keyring_not_found():
     not_found_result = sear(
         {
         "operation": "extract", 
-        "admin_type": "keyring", 
+        "profile_type": "keyring", 
         "keyring": "SEARNOTFOUND",
         "owner": "IBMUSER",
         },
@@ -34,7 +34,7 @@ def test_extract_keyring_missing_operation():
     """This test is supposed to fail"""
     not_found_result = sear(
         {
-        "admin_type": "keyring", 
+        "profile_type": "keyring", 
         "keyring": "SEARNOTFOUND",
         "owner": "IBMUSER",
         },
@@ -47,7 +47,7 @@ def test_extract_keyring_missing_owner():
     not_found_result = sear(
         {
         "operation": "extract", 
-        "admin_type": "keyring", 
+        "profile_type": "keyring", 
         "keyring": "SEARNOTFOUND",
         },
     )
@@ -59,7 +59,7 @@ def test_extract_keyring_missing_keyring():
     not_found_result = sear(
         {
         "operation": "extract", 
-        "admin_type": "keyring", 
+        "profile_type": "keyring", 
         "owner": "IBMUSER",
         },
     )
@@ -73,7 +73,7 @@ def test_extract_keyring(create_keyring):
     extract_result = sear(
         {
         "operation": "extract", 
-        "admin_type": "keyring", 
+        "profile_type": "keyring", 
         "keyring": keyring,
         "owner": owner,
         },
@@ -88,7 +88,7 @@ def test_add_keyring(delete_keyring):
     add_result = sear(
         {
         "operation": "add", 
-        "admin_type": "keyring", 
+        "profile_type": "keyring", 
         "keyring": keyring,
         "owner": owner,
         },
@@ -103,7 +103,7 @@ def test_add_keyring_missing_owner(delete_keyring):
     add_result = sear(
         {
         "operation": "add", 
-        "admin_type": "keyring", 
+        "profile_type": "keyring", 
         "keyring": keyring,
         },
     )
@@ -117,7 +117,7 @@ def test_add_keyring_missing_keyring(delete_keyring):
     add_result = sear(
         {
         "operation": "add", 
-        "admin_type": "keyring", 
+        "profile_type": "keyring", 
         "owner": owner,
         },
     )
@@ -131,7 +131,7 @@ def test_delete_keyring(create_keyring):
     delete_result = sear(
         {
         "operation": "delete", 
-        "admin_type": "keyring", 
+        "profile_type": "keyring", 
         "keyring": keyring,
         "owner": owner,
         },
@@ -146,7 +146,7 @@ def test_delete_keyring_missing_owner(create_keyring):
     delete_result = sear(
         {
         "operation": "delete", 
-        "admin_type": "keyring", 
+        "profile_type": "keyring", 
         "keyring": keyring,
         },
     )
@@ -160,7 +160,7 @@ def test_delete_keyring_missing_keyring(create_keyring):
     delete_result = sear(
         {
         "operation": "delete", 
-        "admin_type": "keyring", 
+        "profile_type": "keyring", 
         "owner": owner,
         },
     )
@@ -175,7 +175,7 @@ def test_add_pem_certificate_to_keyring(create_keyring, create_certificate_pem):
     delete_result = sear(
         {
         "operation": "add",
-        "admin_type": "certificate",
+        "profile_type": "certificate",
         "owner": owner,
         "keyring": keyring,
         "keyring_owner": owner,
@@ -196,7 +196,7 @@ def test_add_der_certificate_to_keyring(create_keyring, create_certificate_der):
     delete_result = sear(
         {
         "operation": "add",
-        "admin_type": "certificate",
+        "profile_type": "certificate",
         "owner": owner,
         "keyring": keyring,
         "keyring_owner": owner,
@@ -216,7 +216,7 @@ def test_add_certificate_to_keyring_missing_certificate(create_keyring):
     delete_result = sear(
         {
         "operation": "add",
-        "admin_type": "certificate",
+        "profile_type": "certificate",
         "owner": owner,
         "keyring": keyring,
         "keyring_owner": owner,
@@ -236,7 +236,7 @@ def test_add_certificate_to_keyring_missing_keyring(create_keyring, create_certi
     delete_result = sear(
         {
         "operation": "add",
-        "admin_type": "certificate",
+        "profile_type": "certificate",
         "owner": owner,
         "keyring_owner": owner,
         "label": "NewTrustedCert",

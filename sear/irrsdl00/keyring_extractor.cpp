@@ -40,8 +40,8 @@ void KeyringExtractor::extract(SecurityRequest &request) {
       request.getRawResultPointer() == nullptr) {
     request.setSEARReturnCode(4);
     // Raise Exception if Extract Failed.
-    const std::string &admin_type = request.getAdminType();
-    throw SEARError("unable to extract '" + admin_type + "'");
+    const std::string &profile_type = request.getAdminType();
+    throw SEARError("unable to extract '" + profile_type + "'");
   }
 
   request.setSEARReturnCode(0);

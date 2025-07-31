@@ -27,7 +27,7 @@ void ProfilePostProcessor::postProcessGeneric(SecurityRequest &request) {
   nlohmann::json profile;
   profile["profile"]            = nlohmann::json::object();
 
-  const std::string &admin_type = request.getAdminType();
+  const std::string &profile_type = request.getAdminType();
 
   // Profile Pointers and Information
   const char *p_profile = request.getRawResultPointer();
@@ -65,8 +65,8 @@ void ProfilePostProcessor::postProcessGeneric(SecurityRequest &request) {
             p_profile + ntohl(p_segment->field_descriptor_offset));
     for (int j = 1; j <= ntohl(p_segment->field_count); j++) {
       sear_field_key = ProfilePostProcessor::postProcessFieldKey(
-          admin_type, segment_key, p_field->name);
-      sear_field_type = get_trait_type(admin_type, segment_key, sear_field_key);
+          profile_type, segment_key, p_field->name);
+      sear_field_type = get_trait_type(profile_type, segment_key, sear_field_key);
       if (!(ntohs(p_field->type) & t_repeat_field_header)) {
         // Post Process Non-Repeat Fields
         ProfilePostProcessor::processGenericField(
@@ -86,9 +86,9 @@ void ProfilePostProcessor::postProcessGeneric(SecurityRequest &request) {
           for (int l = 1; l <= repeat_group_element_count; l++) {
             p_field++;
             sear_repeat_field_key = ProfilePostProcessor::postProcessFieldKey(
-                admin_type, segment_key, p_field->name);
+                profile_type, segment_key, p_field->name);
             sear_repeat_field_type =
-                get_trait_type(admin_type, segment_key, sear_repeat_field_key);
+                get_trait_type(profile_type, segment_key, sear_repeat_field_key);
             ProfilePostProcessor::processGenericField(
                 repeat_group[k - 1][sear_repeat_field_key], p_field, p_profile,
                 sear_repeat_field_type);
@@ -243,12 +243,12 @@ void ProfilePostProcessor::processGenericField(
 }
 
 std::string ProfilePostProcessor::postProcessFieldKey(
-    const std::string &admin_type, const std::string &segment,
+    const std::string &profile_type, const std::string &segment,
     const char *p_raw_field_key) {
   std::string field_key =
       ProfilePostProcessor::postProcessKey(p_raw_field_key, 8);
   const char *sear_field_key =
-      get_sear_key(admin_type.c_str(), segment.c_str(), field_key.c_str());
+      get_sear_key(profile_type.c_str(), segment.c_str(), field_key.c_str());
   if (sear_field_key == nullptr) {
     return "experimental:" + field_key;
   }

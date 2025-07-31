@@ -48,11 +48,11 @@ nlohmann::json XMLParser::buildJSONString(SecurityRequest& request) {
   if (regex_match(xml_buffer, useful_xml_substrings, full_xml_regex)) {
     // Use sub-matches in the regular expression to pull out useful
     // information
-    std::string admin_type     = useful_xml_substrings[1];
+    std::string profile_type     = useful_xml_substrings[1];
     std::string admin_xml_body = useful_xml_substrings[3];
 
     // Erase the profile close tag as it messes up later regex parsing
-    std::string admin_close_tag = R"(</)" + admin_type + ">";
+    std::string admin_close_tag = R"(</)" + profile_type + ">";
     admin_xml_body.erase(admin_xml_body.find(admin_close_tag),
                          admin_close_tag.length());
 

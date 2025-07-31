@@ -1,6 +1,6 @@
 {
   "operation": "alter",
-  "admin_type": "permission",
+  "profile_type": "permission",
   "dataset": "SQUIDWRD.*",
   "volume": "MYVOL",
   "traits": {

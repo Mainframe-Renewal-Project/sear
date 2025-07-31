@@ -3,16 +3,16 @@ import sys
 import re
 import json
 
-def get_json_name(admin_type):
-    if admin_type == "group connection":
+def get_json_name(profile_type):
+    if profile_type == "group connection":
         return "gc"
-    if admin_type == "permission":
+    if profile_type == "permission":
         return "perm"
-    if admin_type == "racf options":
+    if profile_type == "racf options":
         return "s"
-    if admin_type == "resource":
+    if profile_type == "resource":
         return "p"
-    return admin_type[0]
+    return profile_type[0]
 
 def add_supported_operations(racf_segment, racf_key, allowed_operations, admin_json, is_racf_options = False, is_permission = False):
     #print(f"Segment: {racf_segment}, Trait: {racf_key}")
@@ -44,19 +44,19 @@ def convert_key_map_hpp_to_doc(input_filepath, output_filepath):
     alter_only_admin_types = ["Racf Options", "Permission", "Group Connection"]
     if input_filepath.split('.')[1] != "hpp" or output_filepath.split('.')[1] != "md":
         print("whoops, wrong file!")
-    admin_type = output_filepath.split('.')[0].split('/')[1].replace("_"," ").title()
+    profile_type = output_filepath.split('.')[0].split('/')[1].replace("_"," ").title()
     operation_types = "add and alter operations,"
     allowed_operations = ["add", "alter", "extract"]
-    if admin_type in alter_only_admin_types:
+    if profile_type in alter_only_admin_types:
         operation_types = "alter operations"
         allowed_operations = ["alter", "extract"]
     
     doc_link = "https://www.ibm.com/docs/en/zos/latest?topic=services-reference-documentation-tables"
 
-    admin_type.replace("Racf","RACF")
+    profile_type.replace("Racf","RACF")
     
-    doc_file_data = f"---\nlayout: default\nparent: Traits\n---\n\n# {admin_type} Traits\n\n" + \
-    f"The following tables describes the {admin_type.lower()} segments and traits that are" + \
+    doc_file_data = f"---\nlayout: default\nparent: Traits\n---\n\n# {profile_type} Traits\n\n" + \
+    f"The following tables describes the {profile_type.lower()} segments and traits that are" + \
     f" supported for {operation_types} and returned by extract operations.\n" + \
     "{: .fs-6 .fw-300 }\n\n&nbsp;\n\n{: .note }\n" + \
     f"> _More information about **RACF Keys** can be found [here]({doc_link})._" + \
@@ -65,7 +65,7 @@ def convert_key_map_hpp_to_doc(input_filepath, output_filepath):
     "\n\n&nbsp;\n\n{: .note }\n" + \
     "> _See [Operators](../operators) for more information about **Operator** usage._\n"
 
-    json_admin_type_name =  f"{get_json_name(admin_type.lower())}_admin"
+    json_admin_type_name =  f"{get_json_name(profile_type.lower())}_admin"
     with open(f"{json_admin_type_name}.json") as fp:
             admin_json = json.load(fp)
 
@@ -75,7 +75,7 @@ def convert_key_map_hpp_to_doc(input_filepath, output_filepath):
 
     segment_trait_information = header_file_data.split('segment_key_mapping_t')[0]
 
-    segment_mapping = f"{admin_type.replace(" ","_").upper()}_([A-Z]*)(?<!SEGMENT)_(?:SEGMENT|KEY)_MAP"
+    segment_mapping = f"{profile_type.replace(" ","_").upper()}_([A-Z]*)(?<!SEGMENT)_(?:SEGMENT|KEY)_MAP"
 
     segments = re.findall(segment_mapping, segment_trait_information)
     
@@ -103,7 +103,7 @@ def convert_key_map_hpp_to_doc(input_filepath, output_filepath):
                 operators_allowed = ["N/A"]
                 supported_operations = ['`"extract"`']
             else:
-                supported_operations = add_supported_operations( segment.lower(), trait[1].lower(), allowed_operations, admin_json, is_racf_options = (admin_type.lower() == "racf options"), is_permission = (admin_type.lower() == "permission") )
+                supported_operations = add_supported_operations( segment.lower(), trait[1].lower(), allowed_operations, admin_json, is_racf_options = (profile_type.lower() == "racf options"), is_permission = (profile_type.lower() == "permission") )
             doc_file_data = doc_file_data + \
             f"| `\"{trait[0]}\"` | `{trait[1]}` | `{trait[2].lower()}` | {"<br>".join(operators_allowed)} | {"<br>".join(supported_operations)} |\n"
     

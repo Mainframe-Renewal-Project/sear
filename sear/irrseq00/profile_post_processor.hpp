@@ -20,7 +20,7 @@ class ProfilePostProcessor {
                                   const generic_field_descriptor_t *p_field,
                                   const char *p_profile,
                                   const char sear_field_type);
-  static std::string postProcessFieldKey(const std::string &admin_type,
+  static std::string postProcessFieldKey(const std::string &profile_type,
                                          const std::string &segment,
                                          const char *p_raw_field_key);
   static std::string postProcessKey(const char *p_source_key, int length);

@@ -1,6 +1,6 @@
 {
   "operation": "alter",
-  "admin_type": "resource",
+  "profile_type": "resource",
   "resource": "TESTING",
   "class": "ELIJTEST",
   "traits": {

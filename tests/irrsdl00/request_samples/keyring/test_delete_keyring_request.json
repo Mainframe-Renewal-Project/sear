@@ -1,6 +1,6 @@
 {
   "operation": "delete",
-  "admin_type": "keyring",
+  "profile_type": "keyring",
   "keyring": "SEARTESTRING2",
   "owner": "YBTKS"
 }

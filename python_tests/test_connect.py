@@ -10,7 +10,7 @@ def test_create_connect(create_user, create_group):
     connect_result = sear(
             {
             "operation": "alter", 
-            "admin_type": "group-connection", 
+            "profile_type": "group-connection", 
             "userid": create_user,
             "group": create_group,
             "traits": {
@@ -26,7 +26,7 @@ def test_create_connect_missing_user(create_group):
     connect_result = sear(
             {
             "operation": "alter", 
-            "admin_type": "group-connection", 
+            "profile_type": "group-connection", 
             "group": create_group,
             "traits": {
                 "base:owner": "SYS1",
@@ -41,7 +41,7 @@ def test_create_connect_missing_group(create_user):
     connect_result = sear(
             {
             "operation": "alter", 
-            "admin_type": "group-connection", 
+            "profile_type": "group-connection", 
             "userid": create_user,
             "traits": {
                 "base:owner": "SYS1",
@@ -55,7 +55,7 @@ def test_create_connect_missing_operation(create_user, create_group):
     """This test is supposed to fail"""
     connect_result = sear(
             {
-            "admin_type": "group-connection", 
+            "profile_type": "group-connection", 
             "userid": create_user,
             "group": create_group,
             "traits": {

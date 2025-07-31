@@ -1,6 +1,6 @@
 {
   "operation": "delete",
-  "admin_type": "group-connection",
+  "profile_type": "group-connection",
   "userid": "eswift",
   "group": "TESTGRP0"
 }

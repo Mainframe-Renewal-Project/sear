@@ -10,7 +10,7 @@ def test_add_dataset_permit(create_user, create_dataset):
     add_result = sear(
             {
             "operation": "alter", 
-            "admin_type": "permission", 
+            "profile_type": "permission", 
             "dataset": create_dataset,
             "userid": create_user,
             "generic": True,
@@ -42,7 +42,7 @@ def test_add_dataset_permit_missing_operation(create_user, create_dataset):
     """This test is supposed to fail"""
     add_result = sear(
             {
-            "admin_type": "permission", 
+            "profile_type": "permission", 
             "dataset": create_dataset,
             "userid": create_user,
             "generic": True,
@@ -59,7 +59,7 @@ def test_add_dataset_permit_missing_userid(create_dataset):
     add_result = sear(
             {
             "operation": "alter", 
-            "admin_type": "permission", 
+            "profile_type": "permission", 
             "dataset": create_dataset,
             "generic": True,
             "traits": {
@@ -76,7 +76,7 @@ def test_add_resource_permit(create_user, create_resource):
     add_result = sear(
             {
             "operation": "alter", 
-            "admin_type": "permission", 
+            "profile_type": "permission", 
             "resource": profile_name,
             "class": class_name,
             "userid": create_user,
@@ -94,7 +94,7 @@ def test_add_resource_permit_missing_class(create_user, create_resource):
     add_result = sear(
             {
             "operation": "alter", 
-            "admin_type": "permission", 
+            "profile_type": "permission", 
             "resource": profile_name,
             "userid": create_user,
             "traits": {
@@ -111,7 +111,7 @@ def test_add_resource_permit_missing_operation(create_user, create_resource):
     profile_name, class_name = create_resource
     add_result = sear(
             {
-            "admin_type": "permission", 
+            "profile_type": "permission", 
             "resource": profile_name,
             "class": class_name,
             "userid": create_user,
@@ -146,7 +146,7 @@ def test_add_resource_permit_missing_userid(create_resource):
     add_result = sear(
             {
             "operation": "alter", 
-            "admin_type": "permission", 
+            "profile_type": "permission", 
             "resource": profile_name,
             "class": class_name,
             "traits": {

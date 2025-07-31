@@ -9,7 +9,7 @@
 #include "key_map.hpp"
 #include "sear_error.hpp"
 
-void validate_traits(const std::string& admin_type,
+void validate_traits(const std::string& profile_type,
                      SEAR::SecurityRequest& request) {
   // Parses the json for the traits (segment-trait information) passed in a
   // json object and validates the structure, format and types of this data
@@ -70,7 +70,7 @@ void validate_traits(const std::string& admin_type,
       // Set operator based on boolean value
       trait_operator = (item.value()) ? OPERATOR_SET : OPERATOR_DELETE;
     }
-    int8_t expected_type = get_trait_type(admin_type, item_segment,
+    int8_t expected_type = get_trait_type(profile_type, item_segment,
                                           item_segment + ":" + item_trait);
     // Validate Segment-Trait by ensuring a TRAIT_TYPE is found
     if (expected_type == TRAIT_TYPE_BAD) {
@@ -109,7 +109,7 @@ void validate_traits(const std::string& admin_type,
     if (expected_type == TRAIT_TYPE_PSEUDO_BOOLEAN) {
       trait_type = TRAIT_TYPE_PSEUDO_BOOLEAN;
     }
-    translatedKey = get_racf_key(admin_type.c_str(), item_segment.c_str(),
+    translatedKey = get_racf_key(profile_type.c_str(), item_segment.c_str(),
                                  (item_segment + ":" + item_trait).c_str(),
                                  trait_type, trait_operator);
     // If we could not find the RACF key with this function, the operation is

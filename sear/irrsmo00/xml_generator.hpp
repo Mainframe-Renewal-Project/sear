@@ -24,11 +24,11 @@ class XMLGenerator {
   void buildXMLHeaderAttributes(const SEAR::SecurityRequest& request,
                                 const std::string& true_admin_type);
   void buildRequestData(const std::string& true_admin_type,
-                        const std::string& admin_type,
+                        const std::string& profile_type,
                         nlohmann::json request_data);
   static std::string convertOperation(const std::string& operation);
   static std::string convertOperator(const std::string& trait_operator);
-  static std::string convertAdminType(const std::string& admin_type);
+  static std::string convertAdminType(const std::string& profile_type);
   std::string JSONValueToString(const nlohmann::json& trait);
 
  public:

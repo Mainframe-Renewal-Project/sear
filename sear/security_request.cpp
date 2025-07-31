@@ -184,7 +184,7 @@ const nlohmann::json& SecurityRequest::getIntermediateResultJSON() const {
 /* Load Request & Build Result                                           */
 /*************************************************************************/
 void SecurityRequest::load(const nlohmann::json& request) {
-  admin_type_ = request["admin_type"].get<std::string>();
+  admin_type_ = request["profile_type"].get<std::string>();
   operation_  = request["operation"].get<std::string>();
 
   if (request.contains("traits")) {

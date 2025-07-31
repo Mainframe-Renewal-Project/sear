@@ -11,7 +11,7 @@ def test_add_resource_profile(delete_resource):
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "resource", 
+            "profile_type": "resource", 
             "resource": profile_name,
             "class": class_name,
             "traits": {
@@ -27,7 +27,7 @@ def test_add_resource_profile_no_traits(delete_resource):
     add_result = sear(
             {
             "operation": "add", 
-            "admin_type": "resource", 
+            "profile_type": "resource", 
             "resource": profile_name,
             "class": class_name,
             },
@@ -40,7 +40,7 @@ def test_extract_resource_profile(create_resource):
     extract_result = sear(
             {
             "operation": "extract", 
-            "admin_type": "resource", 
+            "profile_type": "resource", 
             "resource": profile_name,
             "class": class_name,
             },
@@ -54,7 +54,7 @@ def test_extract_resource_profile_missing_class(create_resource):
     extract_result = sear(
             {
             "operation": "extract", 
-            "admin_type": "resource", 
+            "profile_type": "resource", 
             "resource": profile_name,
             },
         )
@@ -66,7 +66,7 @@ def test_resource_profile_not_found():
     not_found_result = sear(
             {
             "operation": "extract",
-            "admin_type": "resource", 
+            "profile_type": "resource", 
             "resource": "REALLYBAD.PROFILE.HAH",
             "class": "APPL",
             },
@@ -79,7 +79,7 @@ def test_resource_profile_not_found():
 #    alter_result = sear(
 #            {
 #            "operation": "alter", 
-#            "admin_type": "resource", 
+#            "profile_type": "resource", 
 #            "resource": profile_name,
 #            "class": class_name,
 #            "traits": {
@@ -96,7 +96,7 @@ def test_delete_resource_profile(create_resource):
     delete_result = sear(
             {
             "operation": "delete", 
-            "admin_type": "resource", 
+            "profile_type": "resource", 
             "resource": profile_name,
             "class": class_name,
             },
@@ -110,7 +110,7 @@ def test_delete_resource_profile_missing_class(create_resource):
     delete_result = sear(
             {
             "operation": "delete", 
-            "admin_type": "resource", 
+            "profile_type": "resource", 
             "resource": profile_name,
             },
         )

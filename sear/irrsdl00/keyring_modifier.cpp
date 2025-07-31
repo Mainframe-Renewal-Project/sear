@@ -36,8 +36,8 @@ void KeyringModifier::addOrDeleteKeyring(SecurityRequest &request) {
   if (request.getSAFReturnCode() > 4 or request.getRACFReturnCode() > 4) {
     request.setSEARReturnCode(4);
     // Raise Exception if Modify Failed.
-    const std::string &admin_type = request.getAdminType();
-    throw SEARError("unable to modify '" + admin_type + "'");
+    const std::string &profile_type = request.getAdminType();
+    throw SEARError("unable to modify '" + profile_type + "'");
   }
 
   request.setSEARReturnCode(0);
@@ -74,8 +74,8 @@ void KeyringModifier::addCertificate(SecurityRequest &request) {
   if (request.getSAFReturnCode() > 4 or request.getRACFReturnCode() > 4) {
     request.setSEARReturnCode(4);
     // Raise Exception if Modify Failed.
-    const std::string &admin_type = request.getAdminType();
-    throw SEARError("unable to add '" + admin_type + "'");
+    const std::string &profile_type = request.getAdminType();
+    throw SEARError("unable to add '" + profile_type + "'");
   }
 
   request.setSEARReturnCode(0);
@@ -116,8 +116,8 @@ void KeyringModifier::deleteOrRemoveCertificate(SecurityRequest &request) {
   if (request.getSAFReturnCode() > 4 or request.getRACFReturnCode() > 4) {
     request.setSEARReturnCode(4);
     // Raise Exception if Modify Failed.
-    const std::string &admin_type = request.getAdminType();
-    throw SEARError("unable to delete '" + admin_type + "'");
+    const std::string &profile_type = request.getAdminType();
+    throw SEARError("unable to delete '" + profile_type + "'");
   }
 
   request.setSEARReturnCode(0);

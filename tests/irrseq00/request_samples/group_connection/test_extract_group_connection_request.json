@@ -1,6 +1,6 @@
 {
   "operation": "extract",
-  "admin_type": "group-connection",
+  "profile_type": "group-connection",
   "userid": "ESWIFT",
   "group": "TESTGRP0"
 }

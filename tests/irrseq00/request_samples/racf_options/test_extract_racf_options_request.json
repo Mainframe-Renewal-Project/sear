@@ -1,4 +1,4 @@
 {
   "operation": "extract",
-  "admin_type": "racf-options"
+  "profile_type": "racf-options"
 }

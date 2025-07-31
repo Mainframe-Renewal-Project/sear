@@ -1,6 +1,6 @@
 {
   "operation": "alter",
-  "admin_type": "racf-options",
+  "profile_type": "racf-options",
   "traits": {
     "base:raclist": "ELIJTEST"
   }
