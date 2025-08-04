@@ -15,8 +15,7 @@ class bdist_wheel(_bdist_wheel): # noqa: N801
     def finalize_options(self):
         super().finalize_options()
 
-        # marks built wheels as 'none-any' to allow installation on non-z/OS systems
-        self.root_is_pure = True
+        self.py_limited_api = "cp312"
 
 def assemble(asm_file: str, asm_directory: Path) -> None:
     """Assemble assembler code."""
