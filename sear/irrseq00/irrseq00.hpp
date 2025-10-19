@@ -261,6 +261,7 @@ typedef struct {
   char time_of_last_received_work[8];
   char date_of_last_sent_work[8];
   char time_of_last_sent_work[8];
+  char partner_node[4];
 } racf_rrsf_node_definitions_t;
 
 typedef struct {
