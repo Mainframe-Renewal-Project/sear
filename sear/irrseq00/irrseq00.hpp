@@ -277,7 +277,10 @@ typedef struct {
 } racf_rrsf_node_definitions_t;
 
 typedef struct {
-
+  char node_notification_destination[8];
+  char userid_notification_destination[8];
+  char output_level[6];
+  char notify_level[6];
 } racf_rrsf_set_settings_t;
 
 
