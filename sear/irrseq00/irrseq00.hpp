@@ -272,8 +272,7 @@ typedef struct {
 typedef struct {
   char eyecatcher[4];
   uint8_t subpool_buffer_length[1];
-  uint32_t output_buffer_length[3];
-  uint32_t output_buffer_length[4];
+  uint32_t total_length_output_buffer[3];
   char subsystem_prefix[8];
   uint32_t rrsf_node_index[4];
   uint8_t automatic_command_redirection[1];
