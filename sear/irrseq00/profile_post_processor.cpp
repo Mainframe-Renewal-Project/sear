@@ -205,6 +205,10 @@ void ProfilePostProcessor::postProcessRACFOptions(SecurityRequest &request) {
   request.setIntermediateResultJSON(profile);
 }
 
+void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
+
+}
+
 void ProfilePostProcessor::processGenericField(
     nlohmann::json &json_field, const generic_field_descriptor_t *p_field,
     const char *p_profile, const char sear_field_type) {

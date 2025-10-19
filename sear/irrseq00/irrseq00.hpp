@@ -16,6 +16,7 @@
 /* Function Codes                                                        */
 /*************************************************************************/
 const uint8_t RACF_OPTIONS_EXTRACT_FUNCTION_CODE     = 0x16;
+const uint8_t RRSF_EXTRACT_FUNCTION_CODE             = 0x21;
 const uint8_t USER_EXTRACT_FUNCTION_CODE             = 0x19;
 const uint8_t USER_EXTRACT_NEXT_FUNCTION_CODE        = 0x1a;
 const uint8_t GROUP_EXTRACT_FUNCTION_CODE            = 0x1b;
@@ -244,6 +245,16 @@ typedef struct {
   char type;
 } racf_options_field_type_t;
 
+/*************************************************************************/
+/* RRSF Options Extract Structures                                       */
+/*                                                                       */
+/* Specific to RACF Options Extract.                                     */
+/*************************************************************************/
+typedef struct {
+  char eyecatcher[4];
+  uint8_t subpool_buffer_length[1];
+  uint32_t output_buffer_length[2];
+}
 #pragma pack(pop)  // Restore default structure packing options.
 
 // Glue code to call IRRSEQ00 assembler code.

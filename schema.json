@@ -593,6 +593,21 @@
     {
       "properties": {
         "operation": {
+          "const": "extract"
+        },
+        "admin_type": {
+          "const": "racf-rrsf"
+        }
+      },
+      "required": [
+        "operation",
+        "admin_type"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "operation": {
           "const": "alter"
         },
         "admin_type": {
