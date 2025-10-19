@@ -273,7 +273,15 @@ typedef struct {
 } racf_rrsf_extract_results_t;
 
 typedef struct {
-
+  char rrsf_node_name[8]
+  char rrsf_multinode_system_node_name[8];
+  uint8_t rrsf_protocol[1];
+  uint8_t rrsf_node_state[1];
+  uint16_t reserved_space[2];
+  char date_of_last_received_work[8];
+  char time_of_last_sent_work[8];
+  char date_of_last_received_work[8];
+  char time_of_last_sent_work[8];
 } racf_rrsf_node_definitions_t;
 
 typedef struct {
