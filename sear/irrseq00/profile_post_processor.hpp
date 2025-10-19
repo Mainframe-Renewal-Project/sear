@@ -14,6 +14,7 @@ class ProfilePostProcessor {
   static void postProcessGeneric(SecurityRequest &request);
   static void postProcessSearchGeneric(SecurityRequest &request);
   static void postProcessRACFOptions(SecurityRequest &request);
+  static void postProcessRACFRRSF(SecurityRequest &request);
 
  private:
   static void processGenericField(nlohmann::json &json_field,
