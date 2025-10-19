@@ -418,14 +418,14 @@ void ProfileExtractor::buildRACFOptionsExtractRequest(
 }
 
 void ProfileExtractor::buildRACFRRSFExtractRequest(
-    racf_options_extract_underbar_arg_area_t *arg_area) {
+    racf_rrsf_extract_underbar_arg_area_t *arg_area) {
   // Make sure buffer is clear.
-  std::memset(arg_area, 0, sizeof(racf_options_extract_underbar_arg_area_t));
+  std::memset(arg_area, 0, sizeof(racf_rrsf_extract_underbar_arg_area_t));
 
-  racf_options_extract_args_t *args                 = &arg_area->args;
-  racf_options_extract_arg_pointers_t *arg_pointers = &arg_area->arg_pointers;
-  racf_options_extract_parms_t *racf_options_extract_parms =
-      &args->racf_options_extract_parms;
+  racf_rrsf_extract_args_t *args                 = &arg_area->args;
+  racf_rrsf_extract_arg_pointers_t *arg_pointers = &arg_area->arg_pointers;
+  racf_rrsf_extract_parms_t *racf_rrsf_extract_parms =
+      &args->racf_rrsf_extract_parms;
 
   /***************************************************************************/
   /* Set Extract Arguments */
@@ -435,7 +435,7 @@ void ProfileExtractor::buildRACFRRSFExtractRequest(
   args->ALET_RACF_rsn         = ALET;
   args->ACEE                  = ACEE;
   args->result_buffer_subpool = RESULT_BUFFER_SUBPOOL;
-  args->function_code         = RACF_OPTIONS_EXTRACT_FUNCTION_CODE;
+  args->function_code         = RACF_RRSF_EXTRACT_FUNCTION_CODE;
 
   /***************************************************************************/
   /* Set Extract Argument Pointers */
@@ -462,7 +462,7 @@ void ProfileExtractor::buildRACFRRSFExtractRequest(
   // which marks the end of the argument list.
   *(reinterpret_cast<uint32_t *__ptr32>(&arg_pointers->p_p_result_buffer)) |=
       0x80000000;
-  arg_pointers->p_racf_options_extract_parms = racf_options_extract_parms;
+  arg_pointers->p_racf_rrsf_extract_parms = racf_rrsf_extract_parms;
 }
 
 char *ProfileExtractor::cloneBuffer(const char *p_buffer, const int &length) {
