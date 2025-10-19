@@ -69,7 +69,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
     ProfileExtractor::buildRACFRRSFExtractRequest(p_arg_area);
     // Preserve the raw request data
     request.setRawRequestLength(
-        (int)sizeof(racf_options_extract_underbar_arg_area_t));
+        (int)sizeof(racf_rrsf_extract_underbar_arg_area_t));
     Logger::getInstance().debug("RACF RRSF extract request buffer:");
     Logger::getInstance().hexDump(reinterpret_cast<char *>(p_arg_area),
                                   request.getRawRequestLength());
