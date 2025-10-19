@@ -9,6 +9,7 @@
 #include <new>
 #include <sstream>
 
+#include "irrseq00.hpp"
 #include "sear_error.hpp"
 
 #ifdef __TOS_390__
@@ -58,6 +59,35 @@ void ProfileExtractor::extract(SecurityRequest &request) {
     request.setRACFReturnCode(ntohl(p_arg_area->args.RACF_rc));
     request.setRACFReasonCode(ntohl(p_arg_area->args.RACF_rsn));
   }
+  /*************************************************************************/
+  /* RACF RRSF Extract                                                     */
+  /*************************************************************************/
+  else if (function_code == RRSF_EXTRACT_FUNCTION_CODE) {
+    // Build 31-bit Arg Area
+    auto unique_ptr = make_unique31<racf_rrsf_extract_underbar_arg_area_t>();
+    racf_rrsf_extract_underbar_arg_area_t *p_arg_area = unique_ptr.get();
+    ProfileExtractor::buildRACFRRSFExtractRequest(p_arg_area);
+    // Preserve the raw request data
+    request.setRawRequestLength(
+        (int)sizeof(racf_options_extract_underbar_arg_area_t));
+    Logger::getInstance().debug("RACF RRSF extract request buffer:");
+    Logger::getInstance().hexDump(reinterpret_cast<char *>(p_arg_area),
+                                  request.getRawRequestLength());
+
+    request.setRawRequestPointer(ProfileExtractor::cloneBuffer(
+        reinterpret_cast<char *>(p_arg_area), request.getRawRequestLength()));
+
+    // Call R_Admin
+    Logger::getInstance().debug("Calling IRRSEQ00 ...");
+    rc = callRadmin(reinterpret_cast<char *__ptr32>(&p_arg_area->arg_pointers));
+    Logger::getInstance().debug("Done");
+
+    request.setRawResultPointer(p_arg_area->args.p_result_buffer);
+    // Preserve Return & Reason Codes
+    request.setSAFReturnCode(ntohl(p_arg_area->args.SAF_rc));
+    request.setRACFReturnCode(ntohl(p_arg_area->args.RACF_rc));
+    request.setRACFReasonCode(ntohl(p_arg_area->args.RACF_rsn));  
+  }
   /***************************************************************************/
   /* Generic Extract                                                         */
   /*                                                                         */
@@ -67,7 +97,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
   /*   - Group Connection Extract                                            */
   /*   - Resource Extract                                                    */
   /*   - Data Set Extract                                                    */
-  /***************************************************************************/
+  /***************************************************************************/  
   else {
     // Build 31-bit Arg Area
     auto unique_ptr = make_unique31<generic_extract_underbar_arg_area_t>();
@@ -217,7 +247,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
       request.setSEARReturnCode(4);
       // Raise Exception if Extract Failed.
       const std::string &admin_type = request.getAdminType();
-      if (admin_type != "racf-options") {
+      if (admin_type != "racf-options" && admin_type != "racf-rrsf") {
         throw SEARError("unable to extract '" + admin_type + "' profile '" +
                         request.getProfileName() + "'");
       } else {
@@ -340,6 +370,54 @@ void ProfileExtractor::buildGenericExtractRequest(
 }
 
 void ProfileExtractor::buildRACFOptionsExtractRequest(
+    racf_options_extract_underbar_arg_area_t *arg_area) {
+  // Make sure buffer is clear.
+  std::memset(arg_area, 0, sizeof(racf_options_extract_underbar_arg_area_t));
+
+  racf_options_extract_args_t *args                 = &arg_area->args;
+  racf_options_extract_arg_pointers_t *arg_pointers = &arg_area->arg_pointers;
+  racf_options_extract_parms_t *racf_options_extract_parms =
+      &args->racf_options_extract_parms;
+
+  /***************************************************************************/
+  /* Set Extract Arguments */
+  /***************************************************************************/
+  args->ALET_SAF_rc           = ALET;
+  args->ALET_RACF_rc          = ALET;
+  args->ALET_RACF_rsn         = ALET;
+  args->ACEE                  = ACEE;
+  args->result_buffer_subpool = RESULT_BUFFER_SUBPOOL;
+  args->function_code         = RACF_OPTIONS_EXTRACT_FUNCTION_CODE;
+
+  /***************************************************************************/
+  /* Set Extract Argument Pointers */
+  /*                                                                         */
+  /* Enable transition from 64-bit XPLINK to 31-bit OSLINK. */
+  /***************************************************************************/
+  arg_pointers->p_work_area =
+      reinterpret_cast<char *__ptr32>(&args->RACF_work_area);
+  arg_pointers->p_ALET_SAF_rc   = &(args->ALET_SAF_rc);
+  arg_pointers->p_SAF_rc        = &(args->SAF_rc);
+  arg_pointers->p_ALET_RACF_rc  = &(args->ALET_RACF_rc);
+  arg_pointers->p_RACF_rc       = &(args->RACF_rc);
+  arg_pointers->p_ALET_RACF_rsn = &(args->ALET_RACF_rsn);
+  arg_pointers->p_RACF_rsn      = &(args->RACF_rsn);
+
+  arg_pointers->p_function_code = &(args->function_code);
+  // Function specific parms between function code and profile name
+  arg_pointers->p_profile_name          = &(args->profile_name[0]);
+  arg_pointers->p_ACEE                  = &(args->ACEE);
+  arg_pointers->p_result_buffer_subpool = &(args->result_buffer_subpool);
+  arg_pointers->p_p_result_buffer       = &(args->p_result_buffer);
+
+  // Turn on the hight order bit of the last argument,
+  // which marks the end of the argument list.
+  *(reinterpret_cast<uint32_t *__ptr32>(&arg_pointers->p_p_result_buffer)) |=
+      0x80000000;
+  arg_pointers->p_racf_options_extract_parms = racf_options_extract_parms;
+}
+
+void ProfileExtractor::buildRACFRRSFExtractRequest(
     racf_options_extract_underbar_arg_area_t *arg_area) {
   // Make sure buffer is clear.
   std::memset(arg_area, 0, sizeof(racf_options_extract_underbar_arg_area_t));

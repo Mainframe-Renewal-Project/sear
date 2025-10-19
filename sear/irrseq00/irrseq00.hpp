@@ -250,6 +250,7 @@ typedef struct {
 /*                                                                       */
 /* Specific to RACF RRSF Extract.                                        */
 /*************************************************************************/
+
 typedef struct {
   char rrsf_node_name[8];
   char rrsf_multinode_system_node_name[8];
@@ -288,8 +289,54 @@ typedef struct {
   char racf_subsystem_userid[8];
   char reserved_space[52];
   racf_rrsf_node_definitions_t node_definitions;
-} racf_rrsf_extract_results_t;
+} racf_rrsf_extract_parms_t;
 
+typedef struct {
+  char RACF_work_area[1024];
+  // return and reason codes
+  uint32_t ALET_SAF_rc;
+  uint32_t SAF_rc;
+  uint32_t ALET_RACF_rc;
+  uint32_t RACF_rc;
+  uint32_t ALET_RACF_rsn;
+  uint32_t RACF_rsn;
+  // extract function to perform
+  uint8_t function_code;
+  racf_options_extract_parms_t racf_options_extract_parms;
+  // Max of 247 + 1 for null terimnator
+  char profile_name[PROFILE_NAME_MAX_LENGTH + 1];
+  // Result area for the service
+  uint32_t ACEE;
+  uint8_t result_buffer_subpool;
+  // R_admin returns data here
+  char *__ptr32 p_result_buffer;
+} racf_rrsf_extract_args_t;
+
+typedef struct {
+  char *__ptr32 p_work_area;
+  // return and reason code
+  uint32_t *__ptr32 p_ALET_SAF_rc;
+  uint32_t *__ptr32 p_SAF_rc;
+  uint32_t *__ptr32 p_ALET_RACF_rc;
+  uint32_t *__ptr32 p_RACF_rc;
+  uint32_t *__ptr32 p_ALET_RACF_rsn;
+  uint32_t *__ptr32 p_RACF_rsn;
+  // extract function to perform
+  uint8_t *__ptr32 p_function_code;
+  racf_rrsf_extract_parms_t *__ptr32 p_racf_options_extract_parms;
+  char *__ptr32 p_profile_name;
+  // Result area for the service
+  uint32_t *__ptr32 p_ACEE;
+  uint8_t *__ptr32 p_result_buffer_subpool;
+  // R_admin returns data here
+  char *__ptr32 *__ptr32 p_p_result_buffer;
+} racf_rrsf_extract_arg_pointers_t;
+
+// 31-bit for IRRSEQ00 arguments.
+typedef struct {
+  racf_rrsf_extract_args_t args;
+  racf_rrsf_extract_arg_pointers_t arg_pointers;
+} racf_rrsf_extract_underbar_arg_area_t;
 
 #pragma pack(pop)  // Restore default structure packing options.
 
