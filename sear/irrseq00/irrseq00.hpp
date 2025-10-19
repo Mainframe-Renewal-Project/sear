@@ -262,6 +262,10 @@ typedef struct {
   char date_of_last_sent_work[8];
   char time_of_last_sent_work[8];
   char partner_node[4];
+  uint32_t binary_partner_template_release_level[4];
+  uint32_t binary_partner_template_service_level[4];
+  uint32_t offset_partner_node_parse_level[4];
+  uint32_t offset_partner_node_description[4];
 } racf_rrsf_node_definitions_t;
 
 typedef struct {
