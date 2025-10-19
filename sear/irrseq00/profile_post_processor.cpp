@@ -211,6 +211,9 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
 
   // Profile Pointers and Information
   const char *p_profile = request.getRawResultPointer();
+
+  Logger::getInstance().debug("Raw RACF RRSF extract result:");
+  Logger::getInstance().hexDump(p_profile, request.getRawResultLength());
 }
 
 void ProfilePostProcessor::processGenericField(
