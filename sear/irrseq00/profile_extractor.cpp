@@ -370,7 +370,7 @@ void ProfileExtractor::buildGenericExtractRequest(
 }
 
 void ProfileExtractor::buildRACFOptionsExtractRequest(
-    racf_rrsf_extract_underbar_arg_area_t *arg_area) {
+    racf_options_extract_underbar_arg_area_t *arg_area) {
   // Make sure buffer is clear.
   std::memset(arg_area, 0, sizeof(racf_options_extract_underbar_arg_area_t));
 
