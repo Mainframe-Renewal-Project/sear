@@ -248,7 +248,7 @@ typedef struct {
 /*************************************************************************/
 /* RRSF Options Extract Structures                                       */
 /*                                                                       */
-/* Specific to RACF Options Extract.                                     */
+/* Specific to RACF RRSF Extract.                                        */
 /*************************************************************************/
 typedef struct {
   char eyecatcher[4];
