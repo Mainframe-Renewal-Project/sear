@@ -253,8 +253,24 @@ typedef struct {
 typedef struct {
   char eyecatcher[4];
   uint8_t subpool_buffer_length[1];
-  uint32_t output_buffer_length[2];
-}
+  uint32_t output_buffer_length[3];
+  uint32_t output_buffer_length[4];
+  char subsystem_prefix[8];
+  uint32_t rrsf_node_index[4];
+  uint8_t automatic_command_redirection[1];
+  //TODO add command redirection settings
+  uint8_t automatic_password_redirection[1];
+  //TODO add password redirection settings
+  uint8_t password_synchronization[1];
+  //TODO add password synchronization settings
+  uint8_t automation_redirection_application_updates[1];
+  //TODO add application update redirection settings
+  uint32_t number_of_rrsf_nodes[4];
+  char racf_subsystem_name[4];
+  char racf_subsystem_userid[8];
+  char reserved_space[52];
+} racf_rrsf_extract_results_t
+
 #pragma pack(pop)  // Restore default structure packing options.
 
 // Glue code to call IRRSEQ00 assembler code.
