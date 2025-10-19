@@ -269,7 +269,11 @@ typedef struct {
   char racf_subsystem_name[4];
   char racf_subsystem_userid[8];
   char reserved_space[52];
-} racf_rrsf_extract_results_t
+} racf_rrsf_extract_results_t;
+
+typedef struct {
+
+} racf_rrsf_node_definitions_t;
 
 #pragma pack(pop)  // Restore default structure packing options.
 
