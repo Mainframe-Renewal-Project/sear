@@ -206,7 +206,11 @@ void ProfilePostProcessor::postProcessRACFOptions(SecurityRequest &request) {
 }
 
 void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
+  nlohmann::json profile;
+  profile["profile"] = nlohmann::json::object();
 
+  // Profile Pointers and Information
+  const char *p_profile = request.getRawResultPointer();
 }
 
 void ProfilePostProcessor::processGenericField(
