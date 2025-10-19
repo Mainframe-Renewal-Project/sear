@@ -77,6 +77,8 @@ void ProfileExtractor::extract(SecurityRequest &request) {
     request.setRawRequestPointer(ProfileExtractor::cloneBuffer(
         reinterpret_cast<char *>(p_arg_area), request.getRawRequestLength()));
 
+    Logger::getInstance().debug(p_arg_area);
+
     // Call R_Admin
     Logger::getInstance().debug("Calling IRRSEQ00 ...");
     rc = callRadmin(reinterpret_cast<char *__ptr32>(&p_arg_area->arg_pointers));
