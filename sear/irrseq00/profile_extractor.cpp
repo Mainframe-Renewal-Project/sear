@@ -435,7 +435,7 @@ void ProfileExtractor::buildRACFRRSFExtractRequest(
   args->ALET_RACF_rsn         = ALET;
   args->ACEE                  = ACEE;
   args->result_buffer_subpool = RESULT_BUFFER_SUBPOOL;
-  args->function_code         = RACF_RRSF_EXTRACT_FUNCTION_CODE;
+  args->function_code         = RRSF_EXTRACT_FUNCTION_CODE;
 
   /***************************************************************************/
   /* Set Extract Argument Pointers */
