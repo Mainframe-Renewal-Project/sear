@@ -279,7 +279,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
   } else if (request.getAdminType() == "racf-rrsf") {
     const racf_rrsf_extract_results_t *p_rrsf_result =
         reinterpret_cast<const racf_rrsf_extract_results_t *>(p_raw_result);
-    raw_result_length = ntohl(p_rrsf_result->total_length_output_buffer);    
+    raw_result_length = ntohl(p_rrsf_result->result_buffer_length);    
   } else if (request.getAdminType() == "racf-options") {
     const racf_options_extract_results_t *p_setropts_result =
         reinterpret_cast<const racf_options_extract_results_t *>(p_raw_result);
