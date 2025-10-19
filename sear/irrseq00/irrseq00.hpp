@@ -302,7 +302,7 @@ typedef struct {
   uint32_t RACF_rsn;
   // extract function to perform
   uint8_t function_code;
-  racf_options_extract_parms_t racf_options_extract_parms;
+  racf_rrsf_extract_parms_t racf_rrsf_extract_parms;
   // Max of 247 + 1 for null terimnator
   char profile_name[PROFILE_NAME_MAX_LENGTH + 1];
   // Result area for the service
@@ -323,7 +323,7 @@ typedef struct {
   uint32_t *__ptr32 p_RACF_rsn;
   // extract function to perform
   uint8_t *__ptr32 p_function_code;
-  racf_rrsf_extract_parms_t *__ptr32 p_racf_options_extract_parms;
+  racf_rrsf_extract_parms_t *__ptr32 p_racf_rrsf_extract_parms;
   char *__ptr32 p_profile_name;
   // Result area for the service
   uint32_t *__ptr32 p_ACEE;
