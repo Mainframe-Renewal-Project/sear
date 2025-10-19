@@ -258,22 +258,28 @@ typedef struct {
   char subsystem_prefix[8];
   uint32_t rrsf_node_index[4];
   uint8_t automatic_command_redirection[1];
-  //TODO add command redirection settings
+  racf_rrsf_set_settings_t command_redirection_settings[112];
   uint8_t automatic_password_redirection[1];
-  //TODO add password redirection settings
+  racf_rrsf_set_settings_t password_redirection_settings[112];
   uint8_t password_synchronization[1];
-  //TODO add password synchronization settings
-  uint8_t automation_redirection_application_updates[1];
-  //TODO add application update redirection settings
+  racf_rrsf_set_settings_t password_synchronization_settings[112];
+  uint8_t automatic_redirection_application_updates[1];
+  racf_rrsf_set_settings_t application_updates_redirection_settings[112];
   uint32_t number_of_rrsf_nodes[4];
   char racf_subsystem_name[4];
   char racf_subsystem_userid[8];
   char reserved_space[52];
+  racf_rrsf_node_definitions_t node_definitions;
 } racf_rrsf_extract_results_t;
 
 typedef struct {
 
 } racf_rrsf_node_definitions_t;
+
+typedef struct {
+
+} racf_rrsf_set_settings_t;
+
 
 #pragma pack(pop)  // Restore default structure packing options.
 
