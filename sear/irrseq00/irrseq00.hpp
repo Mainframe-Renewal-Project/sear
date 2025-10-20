@@ -311,7 +311,7 @@ typedef struct {
   uint32_t RACF_rsn;
   // extract function to perform
   uint8_t function_code;
-  nullptr_t racf_rrsf_extract_parm_list;
+  racf_rrsf_extract_results_t racf_rrsf_extract_parm_list;
   // Result area for the service
   uint32_t ACEE;
   uint8_t result_buffer_subpool;
