@@ -265,7 +265,9 @@ typedef struct {
   uint32_t binary_partner_template_release_level[4];
   uint32_t binary_partner_template_service_level[4];
   uint32_t offset_partner_node_parse_level[4];
-  uint32_t offset_partner_node_description[4];
+  uint32_t offset_rrsf_node_description[4];
+  uint32_t offset_rrsf_node_workspace_dataset[4];
+  uint32_t offset_rrsf_workspace_sms_management_class[4];
 } racf_rrsf_node_definitions_t;
 
 typedef struct {
@@ -328,6 +330,7 @@ typedef struct {
   uint32_t *__ptr32 p_RACF_rsn;
   // extract function to perform
   uint8_t *__ptr32 p_function_code;
+  char *__ptr32 p_profile_name;
   // Result area for the service
   uint32_t *__ptr32 p_ACEE;
   uint8_t *__ptr32 p_result_buffer_subpool;
