@@ -252,14 +252,6 @@ typedef struct {
 /*************************************************************************/
 
 typedef struct {
-  char eyecatcher[4];
-  uint32_t result_buffer_length;
-  char reserved_2[4];
-  uint16_t segment_count;
-  // Start of first segment descriptor.
-} racf_rrsf_extract_results_t;
-
-typedef struct {
   char rrsf_node_name[8];
   char rrsf_multinode_system_node_name[8];
   uint8_t rrsf_protocol[1];
@@ -286,7 +278,7 @@ typedef struct {
 typedef struct {
   char eyecatcher[4];
   uint8_t subpool_buffer_length[1];
-  uint32_t total_length_output_buffer[3];
+  uint32_t total_length_output_buffer;
   uint32_t bit_flags[4];
   char subsystem_prefix[8];
   uint32_t rrsf_node_index[4];
@@ -303,7 +295,7 @@ typedef struct {
   char racf_subsystem_userid[8];
   char reserved_space[52];
   racf_rrsf_node_definitions_t node_definitions;
-} racf_rrsf_extract_results_args_t;
+} racf_rrsf_extract_results_t;
 
 typedef struct {
   char RACF_work_area[1024];
