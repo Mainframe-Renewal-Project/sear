@@ -466,7 +466,7 @@ void ProfileExtractor::buildRACFRRSFExtractRequest(
   // which marks the end of the argument list.
   *(reinterpret_cast<uint32_t *__ptr32>(&arg_pointers->p_p_result_buffer)) |=
       0x80000000;
-  arg_pointers->p_racf_options_extract_parms = racf_rrsf_extract_parm_list;
+  arg_pointers->p_racf_rrsf_extract_parms = racf_rrsf_extract_parm_list;
 }
 
 char *ProfileExtractor::cloneBuffer(const char *p_buffer, const int &length) {
