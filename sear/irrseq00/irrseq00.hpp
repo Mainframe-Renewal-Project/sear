@@ -250,9 +250,7 @@ typedef struct {
 /*                                                                       */
 /* Specific to RACF RRSF Extract.                                        */
 /*************************************************************************/
-typedef struct {
-
-} racf_rrsf_extract_parm_list_t;
+typedef struct racf_rrsf_extract_parm_list_t;
 
 typedef struct {
   char rrsf_node_name[8];
