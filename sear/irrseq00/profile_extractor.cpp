@@ -82,7 +82,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
     rc = callRadmin(reinterpret_cast<char *__ptr32>(&p_arg_area->arg_pointers));
     Logger::getInstance().debug("Done");
 
-    Logger::getInstance().debug(p_arg_area->args.profile_name)
+    Logger::getInstance().debug(p_arg_area->args.profile_name);
     request.setRawResultPointer(p_arg_area->args.p_result_buffer);
     // Preserve Return & Reason Codes
     request.setSAFReturnCode(ntohl(p_arg_area->args.SAF_rc));
