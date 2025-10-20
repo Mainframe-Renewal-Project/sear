@@ -312,8 +312,6 @@ typedef struct {
   // extract function to perform
   uint8_t function_code;
   nullptr_t racf_rrsf_extract_parm_list;
-  // Max of 247 + 1 for null terminator
-  char profile_name[PROFILE_NAME_MAX_LENGTH + 1];
   // Result area for the service
   uint32_t ACEE;
   uint8_t result_buffer_subpool;
@@ -333,7 +331,6 @@ typedef struct {
   // extract function to perform
   uint8_t *__ptr32 p_function_code;
   nullptr_t p_racf_rrsf_extract_parms;
-  char *__ptr32 p_profile_name;
   // Result area for the service
   uint32_t *__ptr32 p_ACEE;
   uint8_t *__ptr32 p_result_buffer_subpool;
