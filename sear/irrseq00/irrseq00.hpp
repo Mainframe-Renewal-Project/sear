@@ -254,20 +254,20 @@ typedef struct {
 typedef struct {
   char rrsf_node_name[8];
   char rrsf_multinode_system_node_name[8];
-  uint8_t rrsf_protocol[1];
-  uint8_t rrsf_node_state[1];
+  uint8_t rrsf_protocol;
+  uint8_t rrsf_node_state;
   uint16_t reserved_space[2];
   char date_of_last_received_work[8];
   char time_of_last_received_work[8];
   char date_of_last_sent_work[8];
   char time_of_last_sent_work[8];
   char partner_node[4];
-  uint32_t binary_partner_template_release_level[4];
-  uint32_t binary_partner_template_service_level[4];
-  uint32_t offset_partner_node_parse_level[4];
-  uint32_t offset_rrsf_node_description[4];
-  uint32_t offset_rrsf_node_workspace_dataset[4];
-  uint32_t offset_rrsf_workspace_sms_management_class[4];
+  uint32_t binary_partner_template_release_level;
+  uint32_t binary_partner_template_service_level;
+  uint32_t offset_partner_node_parse_level;
+  uint32_t offset_rrsf_node_description;
+  uint32_t offset_rrsf_node_workspace_dataset;
+  uint32_t offset_rrsf_workspace_sms_management_class;
 } racf_rrsf_node_definitions_t;
 
 typedef struct {
@@ -279,20 +279,20 @@ typedef struct {
 
 typedef struct {
   char eyecatcher[4];
-  uint8_t subpool_buffer_length[1];
+  uint8_t subpool_buffer_length;
   uint32_t result_buffer_length;
-  uint32_t bit_flags[4];
+  uint32_t bit_flags;
   char subsystem_prefix[8];
-  uint32_t rrsf_node_index[4];
-  uint8_t automatic_command_redirection[1];
-  racf_rrsf_set_settings_t command_redirection_settings[112];
-  uint8_t automatic_password_redirection[1];
-  racf_rrsf_set_settings_t password_redirection_settings[112];
-  uint8_t password_synchronization[1];
-  racf_rrsf_set_settings_t password_synchronization_settings[112];
-  uint8_t automatic_redirection_application_updates[1];
-  racf_rrsf_set_settings_t application_updates_redirection_settings[112];
-  uint32_t number_of_rrsf_nodes[4];
+  uint32_t rrsf_node_index;
+  uint8_t automatic_command_redirection;
+  racf_rrsf_set_settings_t command_redirection_settings;
+  uint8_t automatic_password_redirection;
+  racf_rrsf_set_settings_t password_redirection_settings;
+  uint8_t password_synchronization;
+  racf_rrsf_set_settings_t password_synchronization_settings;
+  uint8_t automatic_redirection_application_updates;
+  racf_rrsf_set_settings_t application_updates_redirection_settings;
+  uint32_t number_of_rrsf_nodes;
   char racf_subsystem_name[4];
   char racf_subsystem_userid[8];
   char reserved_space[52];
