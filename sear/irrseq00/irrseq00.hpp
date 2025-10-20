@@ -313,7 +313,7 @@ typedef struct {
   uint32_t RACF_rsn;
   // extract function to perform
   uint8_t function_code;
-  racf_rrsf_extract_parm_list_t racf_rrsf_parm_list;
+  racf_rrsf_extract_parm_list_t racf_rrsf_extract_parm_list;
   // Max of 247 + 1 for null terminator
   char profile_name[PROFILE_NAME_MAX_LENGTH + 1];
   // Result area for the service
