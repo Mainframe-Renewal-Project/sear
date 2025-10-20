@@ -428,7 +428,7 @@ void ProfileExtractor::buildRACFRRSFExtractRequest(
 
   racf_rrsf_extract_args_t *args                 = &arg_area->args;
   racf_rrsf_extract_arg_pointers_t *arg_pointers = &arg_area->arg_pointers;
-  racf_rrsf_extract_parm_list_t *racf_rrsf_extract_parm_list =
+  nullptr_t *racf_rrsf_extract_parm_list =
       &args->racf_rrsf_extract_parm_list;
 
   /***************************************************************************/
