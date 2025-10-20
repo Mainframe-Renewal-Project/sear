@@ -328,7 +328,6 @@ typedef struct {
   uint32_t *__ptr32 p_RACF_rsn;
   // extract function to perform
   uint8_t *__ptr32 p_function_code;
-  char *__ptr32 p_profile_name;
   // Result area for the service
   uint32_t *__ptr32 p_ACEE;
   uint8_t *__ptr32 p_result_buffer_subpool;
