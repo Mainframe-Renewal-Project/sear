@@ -1,6 +1,7 @@
 #ifndef __IRRSEQ00_H_
 #define __IRRSEQ00_H_
 
+#include <cstddef>
 #include <cstdint>
 #include <memory>
 
@@ -310,7 +311,7 @@ typedef struct {
   uint32_t RACF_rsn;
   // extract function to perform
   uint8_t function_code;
-  auto racf_rrsf_extract_parm_list;
+  nullptr_t racf_rrsf_extract_parm_list;
   // Max of 247 + 1 for null terminator
   char profile_name[PROFILE_NAME_MAX_LENGTH + 1];
   // Result area for the service
@@ -331,7 +332,7 @@ typedef struct {
   uint32_t *__ptr32 p_RACF_rsn;
   // extract function to perform
   uint8_t *__ptr32 p_function_code;
-  auto p_racf_rrsf_extract_parms;
+  nullptr_t p_racf_rrsf_extract_parms;
   char *__ptr32 p_profile_name;
   // Result area for the service
   uint32_t *__ptr32 p_ACEE;
