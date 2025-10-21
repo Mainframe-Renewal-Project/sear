@@ -312,7 +312,7 @@ typedef struct {
   uint32_t RACF_rsn;
   // extract function to perform
   uint8_t function_code;
-  uint8_t parameter_list = 0;
+  uint8_t parameter_list;
   char profile_name[PROFILE_NAME_MAX_LENGTH + 1];
   // Result area for the service
   uint32_t ACEE;
