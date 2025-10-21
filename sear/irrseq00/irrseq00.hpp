@@ -299,7 +299,7 @@ typedef struct {
   char racf_subsystem_userid[8];
   char reserved_space[52];
   racf_rrsf_node_definitions_t node_definitions;
-} racf_rrsf_extract_results_t;
+} racf_rrsf_extract_results_t;racf_rrsf_extract_results_t
 
 typedef struct {
   char RACF_work_area[1024];
@@ -312,7 +312,7 @@ typedef struct {
   uint32_t RACF_rsn;
   // extract function to perform
   uint8_t function_code;
-  racf_rrsf_extract_results_t racf_rrsf_extract_parm_list;
+  nullptr_t racf_rrsf_extract_parm_list;
   nullptr_t profile_name;
   // Result area for the service
   uint32_t ACEE;
