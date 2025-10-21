@@ -284,8 +284,8 @@ void ProfileExtractor::extract(SecurityRequest &request) {
     const racf_rrsf_extract_results_t *p_rrsf_result =
         reinterpret_cast<const racf_rrsf_extract_results_t *>(p_raw_result);
     raw_result_length = ntohl(p_rrsf_result->result_buffer_length);    
-    Logger::getInstance().debug("Raw result length:")
-    Logger::getInstance().debug(raw_result_length)
+    Logger::getInstance().debug("Raw result length:");
+    Logger::getInstance().debug(raw_result_length);
   } else if (request.getAdminType() == "racf-options") {
     const racf_options_extract_results_t *p_setropts_result =
         reinterpret_cast<const racf_options_extract_results_t *>(p_raw_result);
