@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <memory>
+#include <optional>
 
 #ifdef __TOS_390__
 #include <unistd.h>
@@ -312,6 +313,7 @@ typedef struct {
   // extract function to perform
   uint8_t function_code;
   racf_rrsf_extract_results_t racf_rrsf_extract_parm_list;
+  nullptr_t profile_name;
   // Result area for the service
   uint32_t ACEE;
   uint8_t result_buffer_subpool;
@@ -331,6 +333,7 @@ typedef struct {
   // extract function to perform
   uint8_t *__ptr32 p_function_code;
   nullptr_t p_racf_rrsf_extract_parms;
+  nullptr_t p_profile_name;
   // Result area for the service
   uint32_t *__ptr32 p_ACEE;
   uint8_t *__ptr32 p_result_buffer_subpool;
