@@ -293,6 +293,21 @@ typedef struct {
   uint32_t outmsg2_records;
   uint32_t outmsg2_extents;
   uint32_t node_requests_denied;
+  offset_field_t offset_tcpip_address_target_command;
+  offset_field_t offset_tcpip_address_resolved_by_system;
+  offset_field_t offset_tcpip_port;
+  offset_field_t offset_tcpip_tls_rule;
+  offset_field_t offset_tcpip_cipher_policy;
+  offset_field_t offset_tcpip_certificate_user;
+  offset_field_t offset_tcpip_client_authentication;
+  uint8_t tcp_listener_status;
+  uint8_t appc_listener_status;
+  uint32_t reserved[4];
+  offset_field_t offset_appc_lu_name;
+  offset_field_t offset_appc_modename;
+  offset_field_t offset_appc_tp_name;
+  offset_field_t offset_appc_netname;
+  uint32_t reserved2[4];
 } racf_rrsf_node_definitions_t;
 
 typedef struct {
