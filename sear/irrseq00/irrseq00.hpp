@@ -279,6 +279,13 @@ typedef struct {
   offset_field_t offset_rrsf_workspace_dataset_volume;
   uint32_t rrsf_workspace_file_size;
   offset_field_t offset_workspace_dataset_wdsqual;
+  uint32_t bit_flags;
+  offset_field_t offset_inmsg_dataset_name;
+  uint32_t inmsg_records;
+  uint32_t inmsg_extents;
+  offset_field_t offset_outmsg_dataset_name;
+  uint32_t outmsg_records;
+  uint32_t outmsg_extents;
 } racf_rrsf_node_definitions_t;
 
 typedef struct {
