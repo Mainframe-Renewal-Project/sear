@@ -282,7 +282,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
     raw_result_length = ntohl(p_generic_result->result_buffer_length);
   } else if (request.getAdminType() == "racf-rrsf") {
     Logger::getInstance().debug("BOOP:");
-    Logger::getInstance().debug(std::to_string(p_raw_result));
+    Logger::getInstance().debug(p_raw_result);
     const racf_rrsf_extract_results_t *p_rrsf_result =
         reinterpret_cast<const racf_rrsf_extract_results_t *>(p_raw_result);
     raw_result_length = ntohl(p_rrsf_result->result_buffer_length);    
