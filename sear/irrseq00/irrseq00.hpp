@@ -254,6 +254,11 @@ typedef struct {
 /*************************************************************************/
 
 typedef struct {
+  uint32_t length;
+  char data;
+} offset_field_t;
+
+typedef struct {
   char rrsf_node_name[8];
   char rrsf_multinode_system_node_name[8];
   uint8_t rrsf_protocol;
@@ -266,10 +271,14 @@ typedef struct {
   char partner_node[4];
   uint32_t binary_partner_template_release_level;
   uint32_t binary_partner_template_service_level;
-  uint32_t offset_partner_node_parse_level;
-  uint32_t offset_rrsf_node_description;
-  uint32_t offset_rrsf_node_workspace_dataset;
-  uint32_t offset_rrsf_workspace_sms_management_class;
+  offset_field_t offset_partner_node_parse_level;
+  offset_field_t offset_rrsf_node_description;
+  offset_field_t offset_rrsf_node_workspace_dataset;
+  offset_field_t offset_rrsf_workspace_sms_management_class;
+  offset_field_t offset_rrsf_workspace_sms_storage_class;
+  offset_field_t offset_rrsf_workspace_dataset_volume;
+  uint32_t rrsf_workspace_file_size;
+  offset_field_t offset_workspace_dataset_wdsqual;
 } racf_rrsf_node_definitions_t;
 
 typedef struct {
