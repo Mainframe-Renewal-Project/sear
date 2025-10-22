@@ -277,7 +277,7 @@ typedef struct {
   offset_field_t offset_rrsf_workspace_sms_management_class;
   offset_field_t offset_rrsf_workspace_sms_storage_class;
   offset_field_t offset_rrsf_workspace_dataset_volume;
-  uint32_t rrsf_workspace_file_size;
+  uint16_t rrsf_workspace_file_size;
   offset_field_t offset_workspace_dataset_wdsqual;
   uint32_t bit_flags;
   offset_field_t offset_inmsg_dataset_name;
@@ -323,7 +323,7 @@ typedef struct {
   uint32_t result_buffer_length;
   uint32_t bit_flags;
   char subsystem_prefix[8];
-  uint32_t rrsf_node_index;
+  uint16_t rrsf_node_index;
   uint8_t automatic_command_redirection;
   racf_rrsf_set_settings_t command_redirection_settings;
   uint8_t automatic_password_redirection;
@@ -332,7 +332,7 @@ typedef struct {
   racf_rrsf_set_settings_t password_synchronization_settings;
   uint8_t automatic_redirection_application_updates;
   racf_rrsf_set_settings_t application_updates_redirection_settings;
-  uint32_t number_of_rrsf_nodes;
+  uint16_t number_of_rrsf_nodes;
   char racf_subsystem_name[4];
   char racf_subsystem_userid[8];
   char reserved_space[52];
