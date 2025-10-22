@@ -281,7 +281,7 @@ typedef struct {
 
 typedef struct {
   char eyecatcher[4];
-  uint8_t subpool_buffer_length;
+  uint32_t subpool_buffer_length;
   uint32_t result_buffer_length;
   uint32_t bit_flags;
   char subsystem_prefix[8];
