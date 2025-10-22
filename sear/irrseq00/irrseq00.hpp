@@ -254,7 +254,7 @@ typedef struct {
 /*************************************************************************/
 
 typedef struct {
-  uint32_t length;
+  uint16_t length;
   char data;
 } offset_field_t;
 
