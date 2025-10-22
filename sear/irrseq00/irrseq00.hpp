@@ -286,6 +286,13 @@ typedef struct {
   offset_field_t offset_outmsg_dataset_name;
   uint32_t outmsg_records;
   uint32_t outmsg_extents;
+  offset_field_t offset_inmsg2_dataset_name;
+  uint32_t inmsg2_records;
+  uint32_t inmsg2_extents;
+  offset_field_t offset_outmsg2_dataset_name;
+  uint32_t outmsg2_records;
+  uint32_t outmsg2_extents;
+  uint32_t node_requests_denied;
 } racf_rrsf_node_definitions_t;
 
 typedef struct {
