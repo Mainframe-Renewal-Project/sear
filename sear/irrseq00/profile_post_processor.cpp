@@ -220,11 +220,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       reinterpret_cast<const racf_rrsf_node_definitions_t *>(
           p_profile + sizeof(racf_rrsf_extract_results_t));
 
-  profile["profile"]["subsystem_name"] = p_profile->racf_subsystem_name
-  // Post process nodes
-  for (int i = 1; i <= ntohs(p_profile->number_of_rrsf_nodes); i++) {
-  
-  }
+  profile["profile"]["subsystem_name"] = p_profile->racf_subsystem_name;
   
   request.setIntermediateResultJSON(profile);
 }
