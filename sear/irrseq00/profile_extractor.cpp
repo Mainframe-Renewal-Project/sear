@@ -458,6 +458,7 @@ void ProfileExtractor::buildRACFRRSFExtractRequest(
 
   arg_pointers->p_function_code = &(args->function_code);
   // Function specific parms between function code and profile name
+  arg_pointers->p_profile_name          = &(args->profile_name[0]);
   arg_pointers->p_ACEE                  = &(args->ACEE);
   arg_pointers->p_result_buffer_subpool = &(args->result_buffer_subpool);
   arg_pointers->p_p_result_buffer       = &(args->p_result_buffer);
