@@ -214,6 +214,13 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
 
   Logger::getInstance().debug("Raw RACF RRSF extract result:");
   Logger::getInstance().hexDump(p_profile, request.getRawResultLength());
+
+  // Node variables
+  const racf_rrsf_node_definitions_t *p_nodes =
+      reinterpret_cast<const racf_rrsf_node_definitions_t *>(
+          p_profile + sizeof(racf_rrsf_extract_results_t));
+  
+  request.setIntermediateResultJSON(profile);
 }
 
 void ProfilePostProcessor::processGenericField(
