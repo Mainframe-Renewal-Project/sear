@@ -85,8 +85,8 @@ void ProfileExtractor::extract(SecurityRequest &request) {
 
     Logger::getInstance().debug(std::to_string(p_arg_area->args.function_code));
     Logger::getInstance().debug(std::to_string(p_arg_area->args.ACEE));
-    Logger::getInstance().debug(p_arg_area->args.result_buffer_subpool);
-    request.setRawResultPointer(p_arg_area->args.result_buffer_subpool);
+    Logger::getInstance().debug(p_arg_area->args.p_result_buffer);
+    request.setRawResultPointer(p_arg_area->args.p_result_buffer);
     // Preserve Return & Reason Codes
     request.setSAFReturnCode(ntohl(p_arg_area->args.SAF_rc));
     request.setRACFReturnCode(ntohl(p_arg_area->args.RACF_rc));
