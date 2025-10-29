@@ -209,7 +209,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   nlohmann::json profile;
   profile["profile"] = nlohmann::json::object();
 
-  // Profile Pointers and Information
+  // Profile pointers and information
   const char *p_profile = request.getRawResultPointer();
 
   Logger::getInstance().debug("Raw RACF RRSF extract result:");
@@ -219,6 +219,12 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   const racf_rrsf_node_definitions_t *p_nodes =
       reinterpret_cast<const racf_rrsf_node_definitions_t *>(
           p_profile + sizeof(racf_rrsf_extract_results_t));
+
+  profile["profile"]["subsystem_name"] = p_profile->racf_subsystem_name
+  // Post process nodes
+  for (int i = 1; i <= ntohs(p_profile->number_of_rrsf_nodes); i++) {
+  
+  }
   
   request.setIntermediateResultJSON(profile);
 }
