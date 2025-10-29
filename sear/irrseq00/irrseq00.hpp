@@ -248,7 +248,7 @@ typedef struct {
 } racf_options_field_type_t;
 
 /*************************************************************************/
-/* RRSF Options Extract Structures                                       */
+/* RRSF settings and node definition extract structures                  */
 /*                                                                       */
 /* Specific to RACF RRSF Extract.                                        */
 /*************************************************************************/
