@@ -1,5 +1,6 @@
 * text git-encoding=utf-8 zos-working-tree-encoding=iso8859-1 working-tree-encoding=utf-8 eol=lf
 *.png binary
 *.bin binary
+*.py git-encoding=utf-8 zos-working-tree-encoding=utf-8
 tests/validation/request_samples/test_syntax_error_binary_data_request.json binary
 README.md git-encoding=utf-8 zos-working-tree-encoding=utf-8 working-tree-encoding=utf-8 eol=lf
