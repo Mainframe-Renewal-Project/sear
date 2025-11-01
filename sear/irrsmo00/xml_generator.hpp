@@ -14,6 +14,7 @@ class XMLGenerator {
   std::string xml_string_;
   static std::string replaceXMLChars(std::string data);
   void buildOpenTag(std::string tag);
+  void buildMetaTag();
   void buildAttribute(std::string name, std::string value);
   void buildValue(std::string value);
   void buildEndNestedTag();

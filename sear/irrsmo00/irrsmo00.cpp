@@ -10,6 +10,8 @@
 #include "xml_generator.hpp"
 #include "xml_parser.hpp"
 
+#include "../conversion.hpp"
+
 #ifdef __TOS_390__
 #include <unistd.h>
 #else
@@ -103,7 +105,7 @@ bool IRRSMO00::does_profile_exist(SecurityRequest &request) {
   const std::string &admin_type   = request.getAdminType();
   const std::string &profile_name = request.getProfileName();
   const std::string &class_name   = request.getClassName();
-
+  
   std::string xml_string;
 
   if (admin_type == "resource") {
@@ -127,20 +129,21 @@ bool IRRSMO00::does_profile_exist(SecurityRequest &request) {
 
   Logger::getInstance().debug("Request XML:", xml_string);
 
-  // convert our c++ string to a char * buffer
-  auto request_unique_ptr = std::make_unique<char[]>(xml_string.length());
-  Logger::getInstance().debugAllocate(request_unique_ptr.get(), 64,
-                                      xml_string.length());
-  std::strncpy(request_unique_ptr.get(), xml_string.c_str(),
-               xml_string.length());
-  __a2e_l(request_unique_ptr.get(), xml_string.length());
+  std::string request_str_ebcdic = fromUTF8(xml_string, "IBM-1047");
+
+  auto request_unique_ptr_ebcdic = std::make_unique<char[]>(request_str_ebcdic.length());
+
+  std::strncpy(request_unique_ptr_ebcdic.get(), request_str_ebcdic.c_str(), request_str_ebcdic.length());
 
   Logger::getInstance().debug("EBCDIC encoded request XML:");
-  Logger::getInstance().hexDump(request_unique_ptr.get(), xml_string.length());
+  Logger::getInstance().hexDump(request_unique_ptr_ebcdic.get(), request_str_ebcdic.length());
 
-  request.setRawRequestPointer(request_unique_ptr.get());
-  request_unique_ptr.release();
-  request.setRawRequestLength(xml_string.length());
+  Logger::getInstance().debugAllocate(request_unique_ptr_ebcdic.get(), 64,
+                                      request_str_ebcdic.length());
+
+  request.setRawRequestPointer(request_unique_ptr_ebcdic.get());
+  request_unique_ptr_ebcdic.release();
+  request.setRawRequestLength(request_str_ebcdic.length());
 
   IRRSMO00::call_irrsmo00(request, true);
 

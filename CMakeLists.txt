@@ -95,6 +95,7 @@ add_library(
     sear/sear.cpp
     sear/security_admin.cpp
     sear/security_request.cpp
+    sear/conversion.cpp
 
     externals/json-schema-validator/json-patch.cpp
     externals/json-schema-validator/json-schema-draft7.json.cpp
@@ -114,6 +115,7 @@ target_include_directories(
     sear/validation
     externals/json
     externals/json-schema-validator
+    externals/iconv
     # tests/zoslib include directory only needed on Linux build
     "${ZOSLIB_INCLUDE}"
     # add generated header to include path
@@ -180,6 +182,7 @@ target_include_directories(
     sear/validation
     externals/json
     externals/json-schema-validator
+    externals/iconv
     tests/irrsdl00
     tests/zoslib
 )
@@ -262,6 +265,7 @@ add_executable(
     sear/sear.cpp
     sear/security_admin.cpp
     sear/security_request.cpp
+    sear/conversion.cpp
 
     externals/json-schema-validator/json-patch.cpp
     externals/json-schema-validator/json-schema-draft7.json.cpp
@@ -282,6 +286,7 @@ target_include_directories(
     sear/validation
     externals/json
     externals/json-schema-validator
+    externals/iconv
     tests/irrsdl00
     tests/zoslib
     "${CMAKE_CURRENT_BINARY_DIR}/sear"

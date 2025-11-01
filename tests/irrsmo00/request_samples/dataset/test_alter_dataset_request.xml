@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="IBM-1047" ?>
 <securityrequest xmlns="http://www.ibm.com/systems/zos/saf" xmlns:racf="http://www.ibm.com/systems/zos/racf">
   <dataset operation="set" name="ESWIFT.TEST.T1136242.P3020470" requestid="dataset_request">
     <base>

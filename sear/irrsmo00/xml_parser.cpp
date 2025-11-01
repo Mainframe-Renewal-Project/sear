@@ -3,7 +3,9 @@
 #include <cstring>
 #include <memory>
 #include <regex>
+#include <string>
 
+#include "../conversion.hpp"
 #include "logger.hpp"
 #include "sear_error.hpp"
 
@@ -32,8 +34,10 @@ nlohmann::json XMLParser::buildJSONString(SecurityRequest& request) {
 
   std::memcpy(xml_ascii_result_unique_ptr.get(), p_raw_result,
               raw_result_length);
-  __e2a_l(xml_ascii_result_unique_ptr.get(), raw_result_length);
-  xml_buffer = xml_ascii_result_unique_ptr.get();
+
+  std::string ebcdic_string = std::string(xml_ascii_result_unique_ptr.get());
+
+  xml_buffer = toUTF8(ebcdic_string, "IBM-1047");
 
   Logger::getInstance().debug("Decoded result XML:", xml_buffer);
 

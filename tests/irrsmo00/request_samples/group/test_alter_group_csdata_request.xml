@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="IBM-1047" ?>
 <securityrequest xmlns="http://www.ibm.com/systems/zos/saf" xmlns:racf="http://www.ibm.com/systems/zos/racf">
   <group operation="set" name="TESTGRP0" requestid="group_request">
     <csdata>

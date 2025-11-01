@@ -9,6 +9,7 @@
 #include "logger.hpp"
 #include "sear_error.hpp"
 #include "trait_validation.hpp"
+#include "../conversion.hpp"
 
 #ifdef __TOS_390__
 #include <unistd.h>
@@ -23,8 +24,12 @@ void XMLGenerator::buildXMLString(SecurityRequest& request) {
   const std::string& admin_type = request.getAdminType();
   const nlohmann::json& traits  = request.getTraits();
 
+  // Build meta tag
+  XMLGenerator::buildMetaTag();
+
   // Build the securityrequest tag (Consistent)
   XMLGenerator::buildOpenTag("securityrequest");
+
   XMLGenerator::buildAttribute("xmlns", "http://www.ibm.com/systems/zos/saf");
   XMLGenerator::buildAttribute("xmlns:racf",
                                "http://www.ibm.com/systems/zos/racf");
@@ -62,20 +67,23 @@ void XMLGenerator::buildXMLString(SecurityRequest& request) {
 
   Logger::getInstance().debug("Request XML:", xml_string_);
 
-  // convert our c++ string to a char * buffer
-  auto request_unique_ptr = std::make_unique<char[]>(xml_string_.length());
-  Logger::getInstance().debugAllocate(request_unique_ptr.get(), 64,
-                                      xml_string_.length());
-  std::strncpy(request_unique_ptr.get(), xml_string_.c_str(),
-               xml_string_.length());
-  __a2e_l(request_unique_ptr.get(), xml_string_.length());
+  std::string request_str_ebcdic = fromUTF8(xml_string_, "IBM-1047");
+
+  auto request_unique_ptr_ebcdic = std::make_unique<char[]>(request_str_ebcdic.length());
+
+  std::strncpy(request_unique_ptr_ebcdic.get(), request_str_ebcdic.c_str(),
+               request_str_ebcdic.length());
 
   Logger::getInstance().debug("EBCDIC encoded request XML:");
-  Logger::getInstance().hexDump(request_unique_ptr.get(), xml_string_.length());
+  Logger::getInstance().hexDump(request_unique_ptr_ebcdic.get(), request_str_ebcdic.length());
 
-  request.setRawRequestPointer(request_unique_ptr.get());
-  request_unique_ptr.release();
-  request.setRawRequestLength(xml_string_.length());
+  Logger::getInstance().debugAllocate(request_unique_ptr_ebcdic.get(), 64,
+                                      request_str_ebcdic.length());
+
+
+  request.setRawRequestPointer(request_unique_ptr_ebcdic.get());
+  request_unique_ptr_ebcdic.release();
+  request.setRawRequestLength(request_str_ebcdic.length());
 }
 
 // Private Functions of XMLGenerator
@@ -111,6 +119,11 @@ void XMLGenerator::buildOpenTag(std::string tag) {
   // Ex: "<base:universal_access"
   tag = XMLGenerator::replaceXMLChars(tag);
   xml_string_.append("<" + tag);
+}
+void XMLGenerator::buildMetaTag() {
+  // Ex: "<?xml version="1.0" encoding="IBM-1047">"
+  std::string tag = XMLGenerator::replaceXMLChars("IBM-1047");
+  xml_string_.append("<?xml version=\"1.0\" encoding=\"" + tag + "\" ?>");
 }
 void XMLGenerator::buildAttribute(std::string name, std::string value) {
   // Ex: " operation=set"

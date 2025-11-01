@@ -3,7 +3,7 @@
 #include <arpa/inet.h>
 
 #include <memory>
-#include <stdexcept>
+#include <nlohmann/json.hpp>
 
 #include "irrsmo00.hpp"
 #include "irrsmo00_error.hpp"

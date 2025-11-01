@@ -20,6 +20,94 @@ def test_add_user(delete_user):
     assert "errors" not in str(add_result.result)
     assert add_result.result["return_codes"] == successful_return_codes
 
+def test_add_user_with_danish_characters(delete_user):
+    """This test is supposed to succeed"""
+    username = delete_user
+
+    name = "BØLLE MÅNEN ER STÆRK"
+
+    add_result = sear(
+            {
+            "operation": "add", 
+            "admin_type": "user", 
+            "userid": username,
+            "traits": {
+                "base:name": name,  # noqa: E501
+            },
+            },
+        )
+    
+    extract_result = sear(
+            {
+            "operation": "extract",
+            "admin_type": "user",
+            "userid": username,
+            },
+        )
+    
+    assert "errors" not in str(add_result.result)
+    assert extract_result.result["return_codes"] == successful_return_codes
+    assert extract_result.result["profile"]["base"]["name"] == name
+
+def test_add_user_with_german_characters(delete_user):
+    """This test is supposed to succeed"""
+    username = delete_user
+
+    name = "ÖSTERREICH IST ÜBER"
+
+    add_result = sear(
+            {
+            "operation": "add", 
+            "admin_type": "user", 
+            "userid": username,
+            "traits": {
+                "base:name": name,  # noqa: E501
+            },
+            },
+        )
+    
+    extract_result = sear(
+            {
+            "operation": "extract",
+            "admin_type": "user",
+            "userid": username,
+            },
+        )
+    
+    assert "errors" not in str(add_result.result)
+    assert extract_result.result["return_codes"] == successful_return_codes
+    assert extract_result.result["profile"]["base"]["name"] == name
+
+def test_add_user_with_spanish_characters(delete_user):
+    """This test is supposed to succeed"""
+    username = delete_user
+
+    name = "DIEGO VELÁZQUEZ"
+
+    add_result = sear(
+            {
+            "operation": "add", 
+            "admin_type": "user", 
+            "userid": username,
+            "traits": {
+                "base:name": name,  # noqa: E501
+                "base:installation_data": "Diego Rodríguez de Silva y Velázquez (Sevilla, bautizado el 6 de junio de 1599-Madrid, 6 de agosto de 1660), conocido como Diego Velázquez",  # noqa: E501
+            },
+            },
+        )
+    
+    extract_result = sear(
+            {
+            "operation": "extract",
+            "admin_type": "user",
+            "userid": username,
+            },
+        )
+    
+    assert "errors" not in str(add_result.result)
+    assert extract_result.result["return_codes"] == successful_return_codes
+    assert extract_result.result["profile"]["base"]["name"] == name
+
 def test_add_user_missing_userid():
     """This test is supposed to fail"""
     add_result = sear(

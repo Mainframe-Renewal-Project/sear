@@ -1,5 +1,9 @@
 ## C/C++ related ignore statements
 
+# Cmake
+CMakeFiles
+CMakeCache.txt
+
 # Prerequisites
 *.d
 

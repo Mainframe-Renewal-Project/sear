@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="IBM-1047" ?>
 <securityrequest xmlns="http://www.ibm.com/systems/zos/saf" xmlns:racf="http://www.ibm.com/systems/zos/racf">
   <permission operation="del" name="IRR.IRRSMO00.PRECHECK" class="XFACILIT" requestid="permission_request">
     <racf:id operation="set">SQUIDWRD</racf:id>

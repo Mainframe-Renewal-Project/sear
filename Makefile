@@ -13,6 +13,7 @@ VALIDATION		= ${PWD}/sear/validation
 EXTERNALS		= ${PWD}/externals
 JSON			= $(EXTERNALS)/json
 JSON_SCHEMA		= $(EXTERNALS)/json-schema-validator
+ICONV			= $(EXTERNALS)/iconv
 TESTS			= ${PWD}/tests
 ZOSLIB			= $(TESTS)/zoslib
 
@@ -28,6 +29,7 @@ COMMON_INC		= \
 				-I $(VALIDATION) \
 				-I $(JSON) \
 				-I $(JSON_SCHEMA)
+				-I $(ICONV) \
 
 # JSON Schemas
 SEAR_SCHEMA	= $(shell cat ${PWD}/schema.json | jq -c)
