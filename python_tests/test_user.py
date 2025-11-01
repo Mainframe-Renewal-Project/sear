@@ -47,7 +47,7 @@ def test_add_user_with_danish_characters(delete_user):
     
     assert "errors" not in str(add_result.result)
     assert extract_result.result["return_codes"] == successful_return_codes
-    assert extract_result.result["profile"]["base"]["name"] == name
+    assert extract_result.result["profile"]["base"]["base:name"] == name
 
 def test_add_user_with_german_characters(delete_user):
     """This test is supposed to succeed"""
@@ -76,7 +76,7 @@ def test_add_user_with_german_characters(delete_user):
     
     assert "errors" not in str(add_result.result)
     assert extract_result.result["return_codes"] == successful_return_codes
-    assert extract_result.result["profile"]["base"]["name"] == name
+    assert extract_result.result["profile"]["base"]["base:name"] == name
 
 def test_add_user_with_spanish_characters(delete_user):
     """This test is supposed to succeed"""
@@ -106,7 +106,7 @@ def test_add_user_with_spanish_characters(delete_user):
     
     assert "errors" not in str(add_result.result)
     assert extract_result.result["return_codes"] == successful_return_codes
-    assert extract_result.result["profile"]["base"]["name"] == name
+    assert extract_result.result["profile"]["base"]["base:name"] == name
 
 def test_add_user_missing_userid():
     """This test is supposed to fail"""
