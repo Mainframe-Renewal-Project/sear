@@ -222,9 +222,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       reinterpret_cast<const racf_rrsf_extract_results_t *>(
           p_profile + sizeof(racf_rrsf_extract_results_t));
 
-  rrsf_extract_result->racf_subsystem_name
-
-  profile["profile"]["rrsf:base"]["base:subsystem_name"] = toUTF8(std::to_string(rrsf_extract_result->racf_subsystem_name));
+  profile["profile"]["rrsf:base"]["base:subsystem_name"] = toUTF8(rrsf_extract_result->racf_subsystem_name);
   
   request.setIntermediateResultJSON(profile);
 }
