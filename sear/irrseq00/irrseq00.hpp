@@ -327,13 +327,13 @@ typedef struct {
   char subsystem_prefix[8];
   uint32_t rrsf_node_index;
   uint8_t automatic_command_redirection;
-  racf_rrsf_set_settings_t command_redirection_settings;
+  racf_rrsf_set_settings_t command_redirection_settings[4];
   uint8_t automatic_password_redirection;
-  racf_rrsf_set_settings_t password_redirection_settings;
+  racf_rrsf_set_settings_t password_redirection_settings[4];
   uint8_t password_synchronization;
-  racf_rrsf_set_settings_t password_synchronization_settings;
+  racf_rrsf_set_settings_t password_synchronization_settings[4];
   uint8_t automatic_redirection_application_updates;
-  racf_rrsf_set_settings_t application_updates_redirection_settings;
+  racf_rrsf_set_settings_t application_updates_redirection_settings[4];
   uint32_t number_of_rrsf_nodes;
   char racf_subsystem_name[4];
   char racf_subsystem_userid[8];
