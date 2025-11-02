@@ -254,7 +254,7 @@ typedef struct {
 /*************************************************************************/
 
 typedef struct {
-  uint16_t length;
+  uint32_t length;
   char data;
 } offset_field_t;
 
@@ -263,36 +263,36 @@ typedef struct {
   char rrsf_multinode_system_node_name[8];
   uint8_t rrsf_protocol;
   uint8_t rrsf_node_state;
-  uint16_t reserved_space[2];
+  uint16_t reserved_space;
   char date_of_last_received_work[8];
   char time_of_last_received_work[8];
   char date_of_last_sent_work[8];
   char time_of_last_sent_work[8];
   char partner_node[4];
-  uint16_t binary_partner_template_release_level;
-  uint16_t binary_partner_template_service_level;
+  uint32_t binary_partner_template_release_level;
+  uint32_t binary_partner_template_service_level;
   offset_field_t offset_partner_node_parse_level;
   offset_field_t offset_rrsf_node_description;
   offset_field_t offset_rrsf_node_workspace_dataset;
   offset_field_t offset_rrsf_workspace_sms_management_class;
   offset_field_t offset_rrsf_workspace_sms_storage_class;
   offset_field_t offset_rrsf_workspace_dataset_volume;
-  uint16_t rrsf_workspace_file_size;
+  uint32_t rrsf_workspace_file_size;
   offset_field_t offset_workspace_dataset_wdsqual;
   uint32_t bit_flags;
   offset_field_t offset_inmsg_dataset_name;
-  uint16_t inmsg_records;
-  uint16_t inmsg_extents;
+  uint32_t inmsg_records;
+  uint32_t inmsg_extents;
   offset_field_t offset_outmsg_dataset_name;
-  uint16_t outmsg_records;
-  uint16_t outmsg_extents;
+  uint32_t outmsg_records;
+  uint32_t outmsg_extents;
   offset_field_t offset_inmsg2_dataset_name;
-  uint16_t inmsg2_records;
-  uint16_t inmsg2_extents;
+  uint32_t inmsg2_records;
+  uint32_t inmsg2_extents;
   offset_field_t offset_outmsg2_dataset_name;
-  uint16_t outmsg2_records;
-  uint16_t outmsg2_extents;
-  uint16_t node_requests_denied;
+  uint32_t outmsg2_records;
+  uint32_t outmsg2_extents;
+  uint32_t node_requests_denied;
   offset_field_t offset_tcpip_address_target_command;
   offset_field_t offset_tcpip_address_resolved_by_system;
   offset_field_t offset_tcpip_port;
@@ -301,8 +301,8 @@ typedef struct {
   offset_field_t offset_tcpip_certificate_user;
   offset_field_t offset_tcpip_client_authentication;
   uint8_t tcp_listener_status;
-  uint8_t appc_listener_status;
-  uint32_t reserved[4];
+  uint16_t appc_listener_status;
+  uint32_t reserved[2];
   offset_field_t offset_appc_lu_name;
   offset_field_t offset_appc_modename;
   offset_field_t offset_appc_tp_name;
