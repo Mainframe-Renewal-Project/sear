@@ -320,6 +320,8 @@ typedef struct {
 typedef struct {
   char eyecatcher[4];
   uint8_t subpool_buffer_length;
+  // This data is in 3 bytes,
+  // so I had to do this stupid solution to get it work
   unsigned int result_buffer_length : 24;
   uint16_t bit_flags;
   char subsystem_prefix[8];
