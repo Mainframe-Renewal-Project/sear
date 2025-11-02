@@ -5,6 +5,7 @@
 #include <cstdio>
 #include <cstring>
 #include <memory>
+#include <string>
 #include <vector>
 
 #include "../conversion.hpp"
@@ -15,6 +16,7 @@
 // both big endian. This is only necessary for unit testing off platform.
 #include <arpa/inet.h>
 
+#include "irrseq00.hpp"
 #include "key_map.hpp"
 
 #ifdef __TOS_390__
@@ -216,9 +218,13 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   Logger::getInstance().hexDump(p_profile, request.getRawResultLength());
 
   // Node variables
-  const racf_rrsf_node_definitions_t *p_nodes =
-      reinterpret_cast<const racf_rrsf_node_definitions_t *>(
+  const racf_rrsf_extract_results_t *rrsf_extract_result =
+      reinterpret_cast<const racf_rrsf_extract_results_t *>(
           p_profile + sizeof(racf_rrsf_extract_results_t));
+
+  rrsf_extract_result->racf_subsystem_name
+
+  profile["profile"]["rrsf:base"]["base:subsystem_name"] = toUTF8(std::to_string(rrsf_extract_result->racf_subsystem_name))
   
   request.setIntermediateResultJSON(profile);
 }
