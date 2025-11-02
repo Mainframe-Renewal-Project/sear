@@ -320,7 +320,7 @@ typedef struct {
 typedef struct {
   char eyecatcher[4];
   uint8_t subpool_buffer_length;
-  uint16_t result_buffer_length;
+  char result_buffer_length[3];
   uint16_t bit_flags;
   char subsystem_prefix[8];
   uint16_t rrsf_node_index;
