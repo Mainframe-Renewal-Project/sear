@@ -217,10 +217,9 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   Logger::getInstance().debug("Raw RACF RRSF extract result:");
   Logger::getInstance().hexDump(p_profile, request.getRawResultLength());
 
-  // Node variables
+  // RRSF variables
   const racf_rrsf_extract_results_t *rrsf_extract_result =
-      reinterpret_cast<const racf_rrsf_extract_results_t *>(
-          p_profile + sizeof(racf_rrsf_extract_results_t));
+      reinterpret_cast<const generic_extract_parms_results_t *>(p_profile);
   std::string subsystem_name = rrsf_extract_result->racf_subsystem_name;
   profile["profile"]["rrsf:base"]["base:subsystem_name"] = toUTF8(subsystem_name);
   
