@@ -227,7 +227,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   profile["profile"]["rrsf:base"]["base:subsystem_userid"] = toUTF8(subsystem_userid);
   if (rrsf_extract_result->automatic_command_redirection == RRSF_DIRECTION_FLAG_NOTIFICATION_ACTIVE) {
     profile["profile"]["rrsf:base"]["base:automatic_command_redirection"] = "notification_active";
-  } else {
+  } else if (rrsf_extract_result->automatic_command_redirection == RRSF_DIRECTION_FLAG_OUTPUT_ACTIVE) {
     profile["profile"]["rrsf:base"]["base:automatic_command_redirection"] = "output_active";
   }
   
