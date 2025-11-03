@@ -254,8 +254,8 @@ typedef struct {
 /*************************************************************************/
 
 // RRSF direction flags
-const uint8_t RRSF_DIRECTION_FLAG_NOTIFICATION_ACTIVE = 0x80
-const uint8_t RRSF_DIRECTION_FLAG_OUTPUT_ACTIVE       = 0x40
+const uint8_t RRSF_DIRECTION_FLAG_NOTIFICATION_ACTIVE = 0x80;
+const uint8_t RRSF_DIRECTION_FLAG_OUTPUT_ACTIVE       = 0x40;
 
 typedef struct {
   uint32_t length;
