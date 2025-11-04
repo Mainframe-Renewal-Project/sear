@@ -273,7 +273,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
   // allocated using "new" under the covers, and free the original
   // buffer using "free()"".
   char *p_raw_result = request.getRawResultPointer();
-  int raw_result_length;
+  int raw_result_length = 0;
   if (request.getAdminType() != "racf-options" && request.getAdminType() != "racf-rrsf") {
     const generic_extract_parms_results_t *p_generic_result =
         reinterpret_cast<const generic_extract_parms_results_t *>(p_raw_result);
