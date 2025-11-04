@@ -257,6 +257,19 @@ typedef struct {
 const uint8_t RRSF_DIRECTION_FLAG_NOTIFICATION_ACTIVE = 0x80;
 const uint8_t RRSF_DIRECTION_FLAG_OUTPUT_ACTIVE       = 0x40;
 
+// RRSF bit flags
+const uint32_t RRSF_SET_AUTODIRECT_ACTIVE       = 0x80000000;
+const uint32_t RRSF_SET_AUTO_PASSWORD_DIRECTION = 0x40000000;
+const uint32_t RRSF_SET_PASSWORD_SYNC_ACTIVE    = 0x20000000;
+const uint32_t RRSF_SET_AUTODIRECT_APP_UPDATES  = 0x10000000;
+const uint32_t RRSF_FULLRRSFCOMM_ACTIVE         = 0x08000000;
+const uint32_t RRSF_FULLRRSFCOMM_ACTIVE         = 0x04000000;
+const uint32_t RRSF_FULLRRSFCOMM_ACTIVE         = 0x02000000;
+const uint32_t RRSF_FULLRRSFCOMM_ACTIVE         = 0x01000000;
+const uint32_t RRSF_FULLRRSFCOMM_ACTIVE         = 0x00800000;
+const uint32_t RRSF_FULLRRSFCOMM_ACTIVE         = 0x00400000;
+const uint32_t RRSF_FULLRRSFCOMM_ACTIVE         = 0x00200000;
+
 typedef struct {
   uint32_t length;
 } offset_field_t;
@@ -377,7 +390,7 @@ typedef struct {
   uint32_t *__ptr32 p_RACF_rsn;
   // extract function to perform
   uint8_t *__ptr32 p_function_code;
-  uint8_t *__ptr32 p_parameter_list{0};
+  uint8_t *__ptr32 p_parameter_list;
   char *__ptr32 p_profile_name;
   // Result area for the service
   uint32_t *__ptr32 p_ACEE;
