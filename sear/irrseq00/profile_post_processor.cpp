@@ -224,7 +224,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   const racf_rrsf_extract_results_t *rrsf_extract_result =
       reinterpret_cast<const racf_rrsf_extract_results_t *>(p_profile);
   
-  std::string subsystem_name str(4, '\0') = rrsf_extract_result->racf_subsystem_name;
+  std::string subsystem_name = str(4, rrsf_extract_result->racf_subsystem_name);
   profile["profile"]["rrsf:base"]["base:subsystem_name"] = toUTF8(subsystem_name);
   std::string subsystem_userid = rrsf_extract_result->racf_subsystem_userid;
   profile["profile"]["rrsf:base"]["base:subsystem_userid"] = toUTF8(subsystem_userid);
