@@ -347,8 +347,8 @@ typedef struct {
   uint8_t automatic_redirection_application_updates;
   racf_rrsf_set_settings_t application_updates_redirection_settings[4];
   uint32_t number_of_rrsf_nodes;
-  char racf_subsystem_name[4];
-  char racf_subsystem_userid[8];
+  char racf_subsystem_name[4 + 1];
+  char racf_subsystem_userid[8 + 1];
   char reserved_space[52];
   racf_rrsf_node_definitions_t node_definitions;
 } racf_rrsf_extract_results_t;

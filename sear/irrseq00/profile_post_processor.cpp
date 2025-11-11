@@ -207,6 +207,9 @@ void ProfilePostProcessor::postProcessRACFOptions(SecurityRequest &request) {
   request.setIntermediateResultJSON(profile);
 }
 
+//////////////////////////////////////////////////////////////////////////
+// RRSF post processing                                                 //
+//////////////////////////////////////////////////////////////////////////
 void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   nlohmann::json profile;
   profile["profile"] = nlohmann::json::object();
