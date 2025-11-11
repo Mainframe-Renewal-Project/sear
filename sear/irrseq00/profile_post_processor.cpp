@@ -227,7 +227,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   profile["profile"]["rrsf:base"]["base:subsystem_name"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->racf_subsystem_name, 4);
   profile["profile"]["rrsf:base"]["base:subsystem_userid"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->racf_subsystem_userid, 8);
   profile["profile"]["rrsf:base"]["base:subsystem_operator_prefix"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->subsystem_prefix, 8);
-  profile["profile"]["rrsf:base"]["base:defined_nodes_total"] = std::stoi(ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->number_of_rrsf_nodes, 4));
+  profile["profile"]["rrsf:base"]["base:defined_nodes_total"] = rrsf_extract_result->number_of_rrsf_nodes;
   if (rrsf_extract_result->automatic_command_redirection == RRSF_DIRECTION_FLAG_NOTIFICATION_ACTIVE) {
     profile["profile"]["rrsf:base"]["base:automatic_command_redirection"] = "notification_active";
   } else if (rrsf_extract_result->automatic_command_redirection == RRSF_DIRECTION_FLAG_OUTPUT_ACTIVE) {
