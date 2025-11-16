@@ -229,6 +229,26 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   profile["profile"]["rrsf:base"]["base:subsystem_operator_prefix"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->subsystem_prefix, 8);
   profile["profile"]["rrsf:base"]["base:number_of_defined_nodes"] = rrsf_extract_result->number_of_rrsf_nodes;
   
+  if (rrsf_extract_result->bit_flags == RRSF_FULLRRSFCOMM_ACTIVE) {
+    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "full_rrsf_communication_active";
+  } else if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_ACTIVE) {
+    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "autodirect_active";
+  } else if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_APP_UPDATES) {
+    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "autodirect_application_updates";
+  } else if (rrsf_extract_result->bit_flags == RRSF_SET_AUTO_PASSWORD_DIRECTION) {
+    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "autodirect_passwords";
+  } else if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_APPC_ACTIVE) {
+    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "appc_trace_active";
+  } else if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_IMAGE_ACTIVE) {
+    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "image_trace_active";
+  } else if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_SSL_ACTIVE) {
+    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "ssl_trace_active";
+  } else if (rrsf_extract_result->bit_flags == RRSF_NOT_ENOUGH_SPACE) {
+      request.setSEARReturnCode(4);
+      // Raise Exception if Search Failed.
+      throw SEARError("Not enough storage to extract RRSF settings");
+  }
+
   if (rrsf_extract_result->automatic_command_redirection == RRSF_DIRECTION_FLAG_NOTIFICATION_ACTIVE) {
     profile["profile"]["rrsf:base"]["base:automatic_command_redirection"] = "notification_active";
   } else if (rrsf_extract_result->automatic_command_redirection == RRSF_DIRECTION_FLAG_OUTPUT_ACTIVE) {
