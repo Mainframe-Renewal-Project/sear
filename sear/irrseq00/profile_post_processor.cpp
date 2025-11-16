@@ -232,19 +232,44 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   
   if (rrsf_extract_result->bit_flags == RRSF_FULLRRSFCOMM_ACTIVE) {
     profile["profile"]["rrsf:base"]["base:full_rrsf_communication_active"] = true;
-  } else if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:autodirect_active"] = true;
-  } else if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_APP_UPDATES) {
+  } else {
+    profile["profile"]["rrsf:base"]["base:full_rrsf_communication_active"] = false;
+  }
+
+  if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_ACTIVE) {
+    profile["profile"]["rrsf:base"]["base:full_autodirect_active"] = true;
+  } else {
+    profile["profile"]["rrsf:base"]["base:full_autodirect_active"] = false;
+  }
+
+  if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_APP_UPDATES) {
     profile["profile"]["rrsf:base"]["base:autodirect_application_updates"] = true;
-  } else if (rrsf_extract_result->bit_flags == RRSF_SET_AUTO_PASSWORD_DIRECTION) {
+  } else {
+    profile["profile"]["rrsf:base"]["base:autodirect_application_updates"] = false;
+  }
+  if (rrsf_extract_result->bit_flags == RRSF_SET_AUTO_PASSWORD_DIRECTION) {
     profile["profile"]["rrsf:base"]["base:autodirect_passwords"] = true;
-  } else if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_APPC_ACTIVE) {
+  } else {
+    profile["profile"]["rrsf:base"]["base:autodirect_passwords"] = false;
+  }
+  if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_APPC_ACTIVE) {
     profile["profile"]["rrsf:base"]["base:appc_trace_active"] = true;
-  } else if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_IMAGE_ACTIVE) {
+  } else {
+    profile["profile"]["rrsf:base"]["base:appc_trace_active"] = false;
+  }
+
+  if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_IMAGE_ACTIVE) {
     profile["profile"]["rrsf:base"]["base:image_trace_active"] = true;
-  } else if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_SSL_ACTIVE) {
+  } else {
+    profile["profile"]["rrsf:base"]["base:image_trace_active"] = false;
+  }
+  if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_SSL_ACTIVE) {
     profile["profile"]["rrsf:base"]["base:ssl_trace_active"] = true;
-  } else if (rrsf_extract_result->bit_flags == RRSF_NOT_ENOUGH_SPACE) {
+  } else {
+    profile["profile"]["rrsf:base"]["base:ssl_trace_active"] = false;
+  }
+  
+  if (rrsf_extract_result->bit_flags == RRSF_NOT_ENOUGH_SPACE) {
       request.setSEARReturnCode(4);
       // Raise Exception if RRSF extract Failed.
       throw SEARError("Not enough storage to extract RRSF settings");
