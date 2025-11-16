@@ -247,11 +247,13 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   } else {
     profile["profile"]["rrsf:base"]["base:autodirect_application_updates"] = false;
   }
+
   if (rrsf_extract_result->bit_flags == RRSF_SET_AUTO_PASSWORD_DIRECTION) {
     profile["profile"]["rrsf:base"]["base:autodirect_passwords"] = true;
   } else {
     profile["profile"]["rrsf:base"]["base:autodirect_passwords"] = false;
   }
+
   if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_APPC_ACTIVE) {
     profile["profile"]["rrsf:base"]["base:appc_trace_active"] = true;
   } else {
@@ -263,12 +265,13 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   } else {
     profile["profile"]["rrsf:base"]["base:image_trace_active"] = false;
   }
+  
   if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_SSL_ACTIVE) {
     profile["profile"]["rrsf:base"]["base:ssl_trace_active"] = true;
   } else {
     profile["profile"]["rrsf:base"]["base:ssl_trace_active"] = false;
   }
-  
+
   if (rrsf_extract_result->bit_flags == RRSF_NOT_ENOUGH_SPACE) {
       request.setSEARReturnCode(4);
       // Raise Exception if RRSF extract Failed.
