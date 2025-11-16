@@ -231,19 +231,19 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   profile["profile"]["rrsf:base"]["base:number_of_defined_nodes"] = rrsf_extract_result->number_of_rrsf_nodes;
   
   if (rrsf_extract_result->bit_flags == RRSF_FULLRRSFCOMM_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "full_rrsf_communication_active";
+    profile["profile"]["rrsf:base"]["base:full_rrsf_communication_active"] = true;
   } else if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "autodirect_active";
+    profile["profile"]["rrsf:base"]["base:autodirect_active"] = true;
   } else if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_APP_UPDATES) {
-    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "autodirect_application_updates";
+    profile["profile"]["rrsf:base"]["base:autodirect_application_updates"] = true;
   } else if (rrsf_extract_result->bit_flags == RRSF_SET_AUTO_PASSWORD_DIRECTION) {
-    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "autodirect_passwords";
+    profile["profile"]["rrsf:base"]["base:autodirect_passwords"] = true;
   } else if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_APPC_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "appc_trace_active";
+    profile["profile"]["rrsf:base"]["base:appc_trace_active"] = true;
   } else if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_IMAGE_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "image_trace_active";
+    profile["profile"]["rrsf:base"]["base:image_trace_active"] = true;
   } else if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_SSL_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:rrsf_state"] = "ssl_trace_active";
+    profile["profile"]["rrsf:base"]["base:ssl_trace_active"] = true;
   } else if (rrsf_extract_result->bit_flags == RRSF_NOT_ENOUGH_SPACE) {
       request.setSEARReturnCode(4);
       // Raise Exception if Search Failed.
