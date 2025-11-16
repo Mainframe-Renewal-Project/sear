@@ -246,7 +246,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
     profile["profile"]["rrsf:base"]["base:ssl_trace_active"] = true;
   } else if (rrsf_extract_result->bit_flags == RRSF_NOT_ENOUGH_SPACE) {
       request.setSEARReturnCode(4);
-      // Raise Exception if Search Failed.
+      // Raise Exception if RRSF extract Failed.
       throw SEARError("Not enough storage to extract RRSF settings");
   }
 
