@@ -275,7 +275,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   if (rrsf_extract_result->bit_flags == RRSF_NOT_ENOUGH_SPACE) {
       request.setSEARReturnCode(4);
       // Raise Exception if RRSF extract Failed.
-      throw SEARError("Not enough storage to extract RRSF settings");
+      throw SEARError("Not enough memory to extract RRSF settings");
   }
   
   request.setIntermediateResultJSON(profile);
