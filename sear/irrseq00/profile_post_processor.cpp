@@ -277,24 +277,6 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       // Raise Exception if RRSF extract Failed.
       throw SEARError("Not enough storage to extract RRSF settings");
   }
-
-  if (rrsf_extract_result->automatic_command_redirection == RRSF_DIRECTION_FLAG_NOTIFICATION_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:automatic_command_redirection"] = "notification_active";
-  } else if (rrsf_extract_result->automatic_command_redirection == RRSF_DIRECTION_FLAG_OUTPUT_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:automatic_command_redirection"] = "output_active";
-  }
-
-  if (rrsf_extract_result->automatic_password_redirection == RRSF_DIRECTION_FLAG_NOTIFICATION_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:automatic_password_redirection"] = "notification_active";
-  } else if (rrsf_extract_result->automatic_password_redirection == RRSF_DIRECTION_FLAG_OUTPUT_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:automatic_password_redirection"] = "output_active";
-  }
-
-  if (rrsf_extract_result->automatic_redirection_application_updates == RRSF_DIRECTION_FLAG_NOTIFICATION_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:automatic_application_update_redirection"] = "notification_active";
-  } else if (rrsf_extract_result->automatic_redirection_application_updates == RRSF_DIRECTION_FLAG_OUTPUT_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:automatic_application_update_redirection"] = "output_active";
-  }
   
   request.setIntermediateResultJSON(profile);
 }
