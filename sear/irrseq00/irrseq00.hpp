@@ -270,6 +270,9 @@ const uint32_t RRSF_SET_TRACE_RRSF_ACTIVE       = 0x00800000;
 const uint32_t RRSF_NOT_ENOUGH_SPACE            = 0x00400000;
 const uint32_t RRSF_NOT_AUTHORIZED_SET_LIST     = 0x00200000;
 const uint32_t RRSF_NOT_AUTHORIZED_TARGET_LIST  = 0x00100000;
+const uint32_t RRSF_TRUSTED_ATTRIBUTE           = 0x00080000;
+// And lastly the little prep school kid
+const uint32_t RRSF_PRIVILEGED_ATTRIBUTE        = 0x00040000;
 
 typedef struct {
   uint32_t length;
