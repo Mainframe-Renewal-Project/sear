@@ -31,13 +31,17 @@ All versions of **z/OS** and the **IBM Open Enterprise SDK for Python** that are
 * **z/OS Language Environment Runtime Support**: _SEAR_ is compiled using the **IBM Open XL C/C++ 2.1** compiler, which is still fairly new and requires **z/OS Language Environment** service updates for runtime support.
   * More information can be found in section **5.2.2.2 Operational Requisites** on page **9** in the [Program Directory for IBM Open XL C/C++ 2.1 for z/OS](https://publibfp.dhe.ibm.com/epubs/pdf/i1357012.pdf).
 
-### Installation
+### Getting started
 
 > :bulb: _Note: You can also [Download & Install SEAR from GitHub](https://github.com/Mainframe-Renewal-Project/sear/releases)_
 
 ```shell
 pip install pysear
 ```
+
+Make sure you have the right authorizations, [detailed in the documentation](https://mainframe-renewal-project.github.io/sear-docs/authorizations/).
+
+Examples are located [in the documentation](https://mainframe-renewal-project.github.io/sear-docs/examples/).
 
 ### Build from source
 
