@@ -1,5 +1,6 @@
 
-[![Build](https://img.shields.io/github/actions/workflow/status/Mainframe-Renewal-Project/sear/.github%2Fworkflows%2Fpublish-pysear.yml?label=Build)](https://github.com/Mainframe-Renewal-Project/sear/actions/workflows/publish-pysear.yml)
+[![Build](https://img.shields.io/github/actions/workflow/status/Mainframe-Renewal-Project/sear/.github%2Fworkflows%2Fpublish-pysear.yml?label=Build)](https://github.com/Mainframe-Renewal-Project/sear/actions/workflows/publish-pysear.yml) [![PyPi](https://img.shields.io/pypi/pyversions/pysear)](https://pypi.org/project/pysear/)
+
 
 ![SEAR Logo](https://raw.githubusercontent.com/Mainframe-Renewal-Project/sear/refs/heads/main/logo.svg)
 
