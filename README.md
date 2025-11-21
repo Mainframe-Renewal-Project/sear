@@ -1,5 +1,6 @@
 
-[![Build](https://img.shields.io/github/actions/workflow/status/Mainframe-Renewal-Project/sear/.github%2Fworkflows%2Fpublish-pysear.yml?label=Build)](https://github.com/Mainframe-Renewal-Project/sear/actions/workflows/publish-pysear.yml)
+[![Build](https://img.shields.io/github/actions/workflow/status/Mainframe-Renewal-Project/sear/.github%2Fworkflows%2Fpublish-pysear.yml?label=Build)](https://github.com/Mainframe-Renewal-Project/sear/actions/workflows/publish-pysear.yml) [![PyPi](https://img.shields.io/pypi/pyversions/pysear)](https://pypi.org/project/pysear/)
+
 
 ![SEAR Logo](https://raw.githubusercontent.com/Mainframe-Renewal-Project/sear/refs/heads/main/logo.svg)
 
@@ -31,13 +32,17 @@ All versions of **z/OS** and the **IBM Open Enterprise SDK for Python** that are
 * **z/OS Language Environment Runtime Support**: _SEAR_ is compiled using the **IBM Open XL C/C++ 2.1** compiler, which is still fairly new and requires **z/OS Language Environment** service updates for runtime support.
   * More information can be found in section **5.2.2.2 Operational Requisites** on page **9** in the [Program Directory for IBM Open XL C/C++ 2.1 for z/OS](https://publibfp.dhe.ibm.com/epubs/pdf/i1357012.pdf).
 
-### Installation
+### Getting started
 
 > :bulb: _Note: You can also [Download & Install SEAR from GitHub](https://github.com/Mainframe-Renewal-Project/sear/releases)_
 
 ```shell
 pip install pysear
 ```
+
+Make sure you have the right authorizations, [detailed in the documentation](https://mainframe-renewal-project.github.io/sear-docs/authorizations/).
+
+Examples are located [in the documentation](https://mainframe-renewal-project.github.io/sear-docs/examples/).
 
 ### Build from source
 
