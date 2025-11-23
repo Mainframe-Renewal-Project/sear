@@ -40,7 +40,7 @@ All versions of **z/OS** and the **IBM Open Enterprise SDK for Python** that are
 pip install pysear
 ```
 
-Make sure you have the right authorizations, [detailed in the documentation](https://mainframe-renewal-project.github.io/sear-docs/authorizations/).
+Make sure you have the right authorizations, [detailed in the full documentation](https://mainframe-renewal-project.github.io/sear-docs/authorizations/).
 
 How to create a simple userid using SEAR:
 ```py
@@ -60,7 +60,7 @@ result = sear(
 print(result.result)
 ```
 
-Examples are located [in the documentation](https://mainframe-renewal-project.github.io/sear-docs/examples/).
+Further examples are located [under examples in the documentation](https://mainframe-renewal-project.github.io/sear-docs/examples/).
 
 ### Build from source
 
