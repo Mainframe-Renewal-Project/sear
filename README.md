@@ -1,6 +1,6 @@
 
-[![Build](https://img.shields.io/github/actions/workflow/status/Mainframe-Renewal-Project/sear/.github%2Fworkflows%2Fpublish-pysear.yml?label=Build)](https://github.com/Mainframe-Renewal-Project/sear/actions/workflows/publish-pysear.yml) [![PyPi](https://img.shields.io/pypi/pyversions/pysear)](https://pypi.org/project/pysear/)
-
+[![Build](https://img.shields.io/github/actions/workflow/status/Mainframe-Renewal-Project/sear/.github%2Fworkflows%2Fpublish-pysear.yml?label=Build)](https://github.com/Mainframe-Renewal-Project/sear/actions/workflows/publish-pysear.yml) [![PyPi version](https://img.shields.io/pypi/pyversions/pysear)](https://pypi.org/project/pysear/)
+[![PyPi status](https://img.shields.io/pypi/status/pysear)](https://pypi.org/project/pysear/)
 
 ![SEAR Logo](https://raw.githubusercontent.com/Mainframe-Renewal-Project/sear/refs/heads/main/logo.svg)
 
@@ -27,6 +27,8 @@ All versions of **z/OS** and the **IBM Open Enterprise SDK for Python** that are
   * More details about the authorizations required for **IRRSMO00** can be found [in the IBM documentation](https://www.ibm.com/docs/en/zos/latest?topic=operations-racf-authorization).
 * **R_Admin (IRRSEQ00)**: RACF Administration API.
   * More details about the authorizations required for **IRRSEQ00** can be found [in the IBM documentation](https://www.ibm.com/docs/en/zos/latest?topic=api-racf-authorization).
+* **R_Datalib (IRRSDL64)**: RACF Certificate data library.
+  * More details about the authorizations required for **IRRSDL64** can be found [in the IBM documentation](https://www.ibm.com/docs/en/zos/latest?topic=library-racf-authorization).
 * **RACF Subsystem Address Space**: This is a dependency for both **IRRSMO00** and **IRRSEQ00**.
   * More information can be found [in the IBM documentation](https://www.ibm.com/docs/en/zos/latest?topic=considerations-racf-subsystem).
 * **z/OS Language Environment Runtime Support**: _SEAR_ is compiled using the **IBM Open XL C/C++ 2.1** compiler, which is still fairly new and requires **z/OS Language Environment** service updates for runtime support.
@@ -40,9 +42,32 @@ All versions of **z/OS** and the **IBM Open Enterprise SDK for Python** that are
 pip install pysear
 ```
 
-Make sure you have the right authorizations, [detailed in the documentation](https://mainframe-renewal-project.github.io/sear-docs/authorizations/).
+Make sure you have the right authorizations, [detailed in the full documentation](https://mainframe-renewal-project.github.io/sear-docs/authorizations/).
 
-Examples are located [in the documentation](https://mainframe-renewal-project.github.io/sear-docs/examples/).
+How to create a simple userid using SEAR:
+```py
+from sear import sear
+
+result = sear(
+    {
+        "operation": "extract",
+        "admin_type": "user",
+        "userid": "FDEGILIO",
+        "traits": {
+            "base:name": "FRANK D",
+        },
+    },
+)
+
+print(result.result)
+```
+
+Further examples are located [under examples in the documentation](https://mainframe-renewal-project.github.io/sear-docs/examples/).
+
+Additional help can be found in the following communities:
+
+* [GitHub Discussions](https://github.com/Mainframe-Renewal-Project/sear/discussions)
+* [System Z Enthusiasts discord](https://discord.gg/sze)
 
 ### Build from source
 
@@ -66,11 +91,6 @@ A complete list of available CMake presets can be found in [CMakePresets.json](C
 Build artifacts are located within the build directory.
 
 The CMake build process builds static libraries by default. If you instead wish to build shared libraries, append `-DBUILD_SHARED_LIBS=on` to the CMake configure step command (the first of the two) shown above.
-
-## Help
-
-* [GitHub Discussions](https://github.com/Mainframe-Renewal-Project/sear/discussions)
-* [System Z Enthusiasts discord](https://discord.gg/sze)
 
 ## Maintainers
 
