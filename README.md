@@ -1,6 +1,6 @@
 
-[![Build](https://img.shields.io/github/actions/workflow/status/Mainframe-Renewal-Project/sear/.github%2Fworkflows%2Fpublish-pysear.yml?label=Build)](https://github.com/Mainframe-Renewal-Project/sear/actions/workflows/publish-pysear.yml) [![PyPi](https://img.shields.io/pypi/pyversions/pysear)](https://pypi.org/project/pysear/)
-
+[![Build](https://img.shields.io/github/actions/workflow/status/Mainframe-Renewal-Project/sear/.github%2Fworkflows%2Fpublish-pysear.yml?label=Build)](https://github.com/Mainframe-Renewal-Project/sear/actions/workflows/publish-pysear.yml) [![PyPi version](https://img.shields.io/pypi/pyversions/pysear)](https://pypi.org/project/pysear/)
+[![PyPi status](https://img.shields.io/pypi/status/pysear)](https://pypi.org/project/pysear/)
 
 ![SEAR Logo](https://raw.githubusercontent.com/Mainframe-Renewal-Project/sear/refs/heads/main/logo.svg)
 
@@ -41,6 +41,24 @@ pip install pysear
 ```
 
 Make sure you have the right authorizations, [detailed in the documentation](https://mainframe-renewal-project.github.io/sear-docs/authorizations/).
+
+How to create a simple userid using SEAR:
+```py
+from sear import sear
+
+result = sear(
+    {
+        "operation": "extract",
+        "admin_type": "user",
+        "userid": "FDEGILIO",
+        "traits": {
+            "base:name": "FRANK D",
+        },
+    },
+)
+
+print(result.result)
+```
 
 Examples are located [in the documentation](https://mainframe-renewal-project.github.io/sear-docs/examples/).
 
