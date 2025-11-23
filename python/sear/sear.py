@@ -22,7 +22,7 @@ class SecurityResult:
 
 
 def sear(request: dict, debug: bool = False) -> SecurityResult:
-    """Call SEAR Python extenion."""
+    """Call SEAR Python extension."""
     response = call_sear(json.dumps(request), debug=debug)
     return SecurityResult(
         request=request,
