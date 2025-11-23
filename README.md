@@ -62,6 +62,11 @@ print(result.result)
 
 Further examples are located [under examples in the documentation](https://mainframe-renewal-project.github.io/sear-docs/examples/).
 
+Additional help can be found in the following communities:
+
+* [GitHub Discussions](https://github.com/Mainframe-Renewal-Project/sear/discussions)
+* [System Z Enthusiasts discord](https://discord.gg/sze)
+
 ### Build from source
 
 Alternatively to installing from Pip, _SEAR_ can be built from source on a z/OS system. _SEAR_ uses a CMake build system, and can be built via a two-step process:
@@ -84,11 +89,6 @@ A complete list of available CMake presets can be found in [CMakePresets.json](C
 Build artifacts are located within the build directory.
 
 The CMake build process builds static libraries by default. If you instead wish to build shared libraries, append `-DBUILD_SHARED_LIBS=on` to the CMake configure step command (the first of the two) shown above.
-
-## Help
-
-* [GitHub Discussions](https://github.com/Mainframe-Renewal-Project/sear/discussions)
-* [System Z Enthusiasts discord](https://discord.gg/sze)
 
 ## Maintainers
 
