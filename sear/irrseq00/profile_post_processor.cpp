@@ -234,7 +234,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   if (rrsf_extract_result->number_of_rrsf_nodes) {
     int first_node_offset = 544;
 
-    // Node definitions
+    // Node definitions to be added to result JSON
     std::vector<nlohmann::json> nodes;
     for (int i = 1; i <= ntohl(rrsf_extract_result->number_of_rrsf_nodes); i++) {
         const racf_rrsf_node_definitions_t *p_nodes =
@@ -270,8 +270,10 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
 
         node_definition["base:requests_denied"] = p_nodes->node_requests_denied;
 
+        // Add node definition to result JSON
         nodes.push_back(node_definition);
 
+        // Increment to next node offset
         first_node_offset = first_node_offset + sizeof(racf_rrsf_node_definitions_t);  
     }
     profile["profile"]["rrsf:base"]["base:nodes"] = nodes;
