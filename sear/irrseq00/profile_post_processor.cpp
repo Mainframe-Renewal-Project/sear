@@ -254,7 +254,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
         }
         nodes.push_back(node_definition);
 
-        first_node_offset = first_node_offset + 224;  
+        first_node_offset = first_node_offset + sizeof(racf_rrsf_node_definitions_t);  
     }
     profile["profile"]["rrsf:base"]["base:nodes"] = nodes;
   }
