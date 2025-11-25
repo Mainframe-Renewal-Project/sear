@@ -296,7 +296,7 @@ typedef struct {
   offset_field_t offset_rrsf_node_workspace_dataset_prefix;
   offset_field_t offset_rrsf_workspace_sms_management_class;
   offset_field_t offset_rrsf_workspace_sms_storage_class;
-  offset_field_t offset_rrsf_workspace_dataset_volume;
+  offset_field_t offset_rrsf_workspace_data_class;
   offset_field_t offset_rrsf_workspace_dataset_volume;
   uint32_t rrsf_workspace_file_size;
   offset_field_t offset_workspace_dataset_wdsqual;
@@ -323,7 +323,7 @@ typedef struct {
   uint8_t offset_tcpip_client_authentication;
   uint8_t tcp_listener_status;
   uint16_t appc_listener_status;
-  uint32_t reserved[2];
+  uint16_t reserved[2];
   offset_field_t offset_appc_lu_name;
   offset_field_t offset_appc_modename;
   offset_field_t offset_appc_tp_name;
