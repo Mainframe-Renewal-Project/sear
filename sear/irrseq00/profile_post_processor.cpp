@@ -242,6 +242,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
 
         nlohmann::json node_definition;
         node_definition["base:node_name"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_node_name,8);
+        node_definition["base:multisystem_node_name"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_multinode_system_node_name,8);
         node_definition["base:date_of_last_received_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->date_of_last_received_work,8);
         node_definition["base:time_of_last_received_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_received_work,8);
         node_definition["base:date_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->date_of_last_sent_work,8);
