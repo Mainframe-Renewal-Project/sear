@@ -241,11 +241,18 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
     std::vector<nlohmann::json> nodes;
     for (int i = 1; i <= ntohl(rrsf_extract_result->number_of_rrsf_nodes); i++) {
         nlohmann::json node_definition;
-        node_definition["base:node_name"] = p_nodes->rrsf_node_name;
-        node_definition["base:date_of_last_received_work"] = p_nodes->date_of_last_received_work;
-        node_definition["base:time_of_last_received_work"] = p_nodes->time_of_last_received_work;
-        node_definition["base:node_state"] = p_nodes->rrsf_node_state;
-        node_definition["base:node_protocol"] = p_nodes->rrsf_protocol;
+        node_definition["base:node_name"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_node_name,8);
+        node_definition["base:date_of_last_received_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->date_of_last_received_work,8);
+        node_definition["base:time_of_last_received_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_received_work,8);
+        node_definition["base:node_state"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_node_state,1);
+        if (p_nodes->rrsf_protocol == 01) {
+          node_definition["base:node_protocol"] = "appc";
+        } else if (p_nodes->rrsf_protocol == 02) {
+          node_definition["base:node_protocol"] = "tcp";
+        } else {
+          node_definition["base:node_protocol"] = "none";
+        }
+        node_definition["base:node_protocol"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_protocol,1);
         nodes.push_back(node_definition);
     }
     profile["profile"]["rrsf:base"]["nodes"] = nodes;
