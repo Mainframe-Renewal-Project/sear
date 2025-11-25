@@ -248,6 +248,8 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
         node_definition["base:time_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_sent_work,8);
         node_definition["base:node_state"] = p_nodes->rrsf_node_state;
 
+        node_definition["base:partner_node_operating_system_version"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->partner_node_os_version,4);
+
         if (p_nodes->tcpip_listener_status == 2) {
           node_definition["base:tcpip_listener_status_active"] = true;
         } else {
