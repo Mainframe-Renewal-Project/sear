@@ -232,14 +232,15 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
 
   // Post process nodes if any are defined
   if (rrsf_extract_result->number_of_rrsf_nodes) {
-    // Node definitions
     int first_node_offset = 544;
-    const racf_rrsf_node_definitions_t *p_nodes =
+
+    // Node definitions
+    std::vector<nlohmann::json> nodes;
+    for (int i = 1; i <= ntohl(rrsf_extract_result->number_of_rrsf_nodes); i++) {
+        const racf_rrsf_node_definitions_t *p_nodes =
         reinterpret_cast<const racf_rrsf_node_definitions_t *>(
             p_profile + first_node_offset);
 
-    std::vector<nlohmann::json> nodes;
-    for (int i = 1; i <= ntohl(rrsf_extract_result->number_of_rrsf_nodes); i++) {
         nlohmann::json node_definition;
         node_definition["base:node_name"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_node_name,8);
         node_definition["base:date_of_last_received_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->date_of_last_received_work,8);
@@ -253,6 +254,8 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
           node_definition["base:node_protocol"] = "none";
         }
         nodes.push_back(node_definition);
+
+        first_node_offset = first_node_offset + 204;
     }
     profile["profile"]["rrsf:base"]["base:nodes"] = nodes;
   }
