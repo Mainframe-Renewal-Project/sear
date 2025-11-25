@@ -243,6 +243,9 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
         nlohmann::json node_definition;
         node_definition["base:node_name"] = p_nodes->rrsf_node_name;
         node_definition["base:date_of_last_received_work"] = p_nodes->date_of_last_received_work;
+        node_definition["base:time_of_last_received_work"] = p_nodes->time_of_last_received_work;
+        node_definition["base:node_state"] = p_nodes->rrsf_node_state;
+        node_definition["base:node_protocol"] = p_nodes->rrsf_protocol;
         nodes.push_back(node_definition);
     }
     profile["profile"]["rrsf:base"]["nodes"] = nodes;
