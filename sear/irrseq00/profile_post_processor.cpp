@@ -244,7 +244,22 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
         node_definition["base:node_name"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_node_name,8);
         node_definition["base:date_of_last_received_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->date_of_last_received_work,8);
         node_definition["base:time_of_last_received_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_received_work,8);
+        node_definition["base:date_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->date_of_last_sent_work,8);
+        node_definition["base:time_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_sent_work,8);
         node_definition["base:node_state"] = p_nodes->rrsf_node_state;
+
+        if (p_nodes->tcpip_listener_status == 2) {
+          node_definition["base:tcpip_listener_status_active"] = true;
+        } else {
+          node_definition["base:tcpip_listener_status_active"] = false;
+        } 
+
+        if (p_nodes->appc_listener_status == 2) {
+          node_definition["base:appc_listener_status_active"] = true;
+        } else {
+          node_definition["base:appc_listener_status_active"] = false;
+        } 
+
         if (p_nodes->rrsf_protocol == 01) {
           node_definition["base:node_protocol"] = "appc";
         } else if (p_nodes->rrsf_protocol == 02) {
@@ -252,6 +267,9 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
         } else {
           node_definition["base:node_protocol"] = "none";
         }
+
+        node_definition["base:requests_denied"] = p_nodes->node_requests_denied;
+
         nodes.push_back(node_definition);
 
         first_node_offset = first_node_offset + sizeof(racf_rrsf_node_definitions_t);  

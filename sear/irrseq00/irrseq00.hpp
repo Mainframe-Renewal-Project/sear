@@ -321,7 +321,7 @@ typedef struct {
   offset_field_t offset_tcpip_cipher_policy;
   offset_field_t offset_tcpip_certificate_user;
   uint8_t offset_tcpip_client_authentication;
-  uint8_t tcp_listener_status;
+  uint8_t tcpip_listener_status;
   uint16_t appc_listener_status;
   uint16_t reserved[2];
   offset_field_t offset_appc_lu_name;
