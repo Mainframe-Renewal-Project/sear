@@ -230,7 +230,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   profile["profile"]["rrsf:base"]["base:subsystem_operator_prefix"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->subsystem_prefix, 8);
   profile["profile"]["rrsf:base"]["base:number_of_defined_nodes"] = rrsf_extract_result->number_of_rrsf_nodes;
 
-  // Post process nodes
+  // Post process nodes if any are defined
   if (rrsf_extract_result->number_of_rrsf_nodes) {
     // Node definitions
     int first_node_offset = 544;
