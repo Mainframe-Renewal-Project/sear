@@ -229,7 +229,23 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   profile["profile"]["rrsf:base"]["base:subsystem_userid"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->racf_subsystem_userid, 8);
   profile["profile"]["rrsf:base"]["base:subsystem_operator_prefix"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->subsystem_prefix, 8);
   profile["profile"]["rrsf:base"]["base:number_of_defined_nodes"] = rrsf_extract_result->number_of_rrsf_nodes;
-  
+
+  // Post process nodes
+  if (rrsf_extract_result->number_of_rrsf_nodes) {
+    // Node definitions
+    int first_node_offset = 544;
+    const racf_rrsf_node_definitions_t *p_nodes =
+        reinterpret_cast<const racf_rrsf_node_definitions_t *>(
+            p_profile + first_node_offset);
+
+    std::vector<nlohmann::json> nodes;
+    for (int i = 1; i <= ntohl(rrsf_extract_result->number_of_rrsf_nodes); i++) {
+        nlohmann::object node_definition = {"base:node_name" = p_nodes->rrsf_node_name, "base:date_of_last_received_work" = p_nodes->date_of_last_received_work}
+        nodes.push_back(node_definition);
+    }
+    profile["profile"]["rrsf:base"]["nodes"] = nodes;
+  }
+
   if (rrsf_extract_result->bit_flags == RRSF_FULLRRSFCOMM_ACTIVE) {
     profile["profile"]["rrsf:base"]["base:full_rrsf_communication_active"] = true;
   } else {
