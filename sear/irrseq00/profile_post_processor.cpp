@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-#include "../conversion.hpp"
+#include "conversion.hpp"
 #include "sear_error.hpp"
 
 // Use ntohl() to convert 32-bit values from big endian to little endian.
