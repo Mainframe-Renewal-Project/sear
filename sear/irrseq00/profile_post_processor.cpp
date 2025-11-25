@@ -254,7 +254,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
         }
         nodes.push_back(node_definition);
     }
-    profile["profile"]["rrsf:base"]["nodes"] = nodes;
+    profile["profile"]["rrsf:base"]["base:nodes"] = nodes;
   }
 
   if (rrsf_extract_result->bit_flags == RRSF_FULLRRSFCOMM_ACTIVE) {
