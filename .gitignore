@@ -220,3 +220,7 @@ _site/
 
 # This header is generated at build time and should not be pushed to git.
 sear_schema.hpp
+
+# Python wheels
+
+*.whl
