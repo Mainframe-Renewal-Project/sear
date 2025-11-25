@@ -240,7 +240,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
 
     std::vector<nlohmann::json> nodes;
     for (int i = 1; i <= ntohl(rrsf_extract_result->number_of_rrsf_nodes); i++) {
-        nlohmann::object node_definition = {"base:node_name" = p_nodes->rrsf_node_name, "base:date_of_last_received_work" = p_nodes->date_of_last_received_work}
+        nlohmann::object node_definition = {"base:node_name" = p_nodes->rrsf_node_name, "base:date_of_last_received_work" = p_nodes->date_of_last_received_work};
         nodes.push_back(node_definition);
     }
     profile["profile"]["rrsf:base"]["nodes"] = nodes;
