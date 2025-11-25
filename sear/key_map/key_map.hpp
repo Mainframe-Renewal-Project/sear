@@ -9,7 +9,6 @@
 #include "key_map_group_connection.hpp"
 #include "key_map_permission.hpp"
 #include "key_map_racf_options.hpp"
-#include "key_map_racf_rrsf.hpp"
 #include "key_map_resource.hpp"
 #include "key_map_structs.hpp"
 #include "key_map_user.hpp"
@@ -40,11 +39,6 @@ const key_mapping_t KEY_MAP[] = {
      "racf-options",
      segment_count(RACF_OPTIONS_SEGMENT_KEY_MAP),
      RACF_OPTIONS_SEGMENT_KEY_MAP
-     },
-    {
-     "racf-rrsf",
-     segment_count(RACF_RRSF_SEGMENT_KEY_MAP),
-     RACF_RRSF_SEGMENT_KEY_MAP
      },
     {
      "resource",
