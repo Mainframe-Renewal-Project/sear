@@ -252,7 +252,6 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
         } else {
           node_definition["base:node_protocol"] = "none";
         }
-        node_definition["base:node_protocol"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_protocol,1);
         nodes.push_back(node_definition);
     }
     profile["profile"]["rrsf:base"]["nodes"] = nodes;
