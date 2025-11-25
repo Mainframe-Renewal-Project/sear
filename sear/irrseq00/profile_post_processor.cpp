@@ -238,8 +238,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
     std::vector<nlohmann::json> nodes;
     for (int i = 1; i <= ntohl(rrsf_extract_result->number_of_rrsf_nodes); i++) {
         const racf_rrsf_node_definitions_t *p_nodes =
-        reinterpret_cast<const racf_rrsf_node_definitions_t *>(
-            p_profile + first_node_offset);
+        reinterpret_cast<const racf_rrsf_node_definitions_t *>(first_node_offset);
 
         nlohmann::json node_definition;
         node_definition["base:node_name"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_node_name,8);
@@ -255,7 +254,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
         }
         nodes.push_back(node_definition);
 
-        first_node_offset = first_node_offset + sizeof(p_nodes);
+        first_node_offset = first_node_offset + sizeof(p_nodes);  
     }
     profile["profile"]["rrsf:base"]["base:nodes"] = nodes;
   }
