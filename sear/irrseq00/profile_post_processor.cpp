@@ -271,7 +271,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
         if (p_nodes->rrsf_protocol == 01) {
           node_definition["base:node_protocol"] = "appc";
         } else if (p_nodes->rrsf_protocol == 02) {
-          node_definition["base:node_protocol"] = "tcp";
+          node_definition["base:node_protocol"] = "tcpip";
         } else {
           node_definition["base:node_protocol"] = "none";
         }
