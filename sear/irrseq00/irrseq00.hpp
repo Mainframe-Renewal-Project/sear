@@ -338,20 +338,14 @@ typedef struct {
   char notify_level[6];
 } racf_rrsf_set_settings_t;
 
-/// Unsigned big endian, 24-bit packed integer.
-struct bu24 {
-    std::array<uint8_t, 3> data{};
-
-    operator unsigned() const noexcept {
-        return (data[0] << 16) | (data[1] << 8) | data[2];
-    }
-};
-
 typedef struct {
   char eyecatcher[4];
   uint8_t subpool_buffer_length;
-  // Weird 3 bytes long data
-  bu24 result_buffer_length;
+  // This data is 3 bytes long, 3 bytes = 24 bits.
+  // I had to do this stupid solution to get it work.
+  // If you can find a better solution I will marry you,
+  // ew no, I was just kidding.
+  unsigned int result_buffer_length : 24;
   uint32_t bit_flags;
   char subsystem_prefix[8];
   uint32_t rrsf_node_index;
