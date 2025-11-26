@@ -9,12 +9,14 @@
     "python.analysis.typeCheckingMode": "standard",
     "cSpell.words": [
         "adsp",
+        "APPC",
         "cics",
         "IRRSEQ",
         "IRRSMO",
         "omvs",
         "pysear",
         "RACF",
+        "RRSF",
         "rvary",
         "uacc"
     ]

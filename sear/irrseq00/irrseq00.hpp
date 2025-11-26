@@ -1,8 +1,10 @@
 #ifndef __IRRSEQ00_H_
 #define __IRRSEQ00_H_
 
+#include <cstddef>
 #include <cstdint>
 #include <memory>
+#include <optional>
 
 #ifdef __TOS_390__
 #include <unistd.h>
@@ -16,6 +18,7 @@
 /* Function Codes                                                        */
 /*************************************************************************/
 const uint8_t RACF_OPTIONS_EXTRACT_FUNCTION_CODE     = 0x16;
+const uint8_t RRSF_EXTRACT_FUNCTION_CODE             = 0x21;
 const uint8_t USER_EXTRACT_FUNCTION_CODE             = 0x19;
 const uint8_t USER_EXTRACT_NEXT_FUNCTION_CODE        = 0x1a;
 const uint8_t GROUP_EXTRACT_FUNCTION_CODE            = 0x1b;
@@ -243,6 +246,169 @@ typedef struct {
   char key[8 + 1];
   char type;
 } racf_options_field_type_t;
+
+/*************************************************************************/
+/* RRSF settings and node definition extract structures                  */
+/*                                                                       */
+/* Specific to RACF RRSF Extract.                                        */
+/*************************************************************************/
+
+// RRSF direction flags
+const uint8_t RRSF_DIRECTION_FLAG_NOTIFICATION_ACTIVE = 0x80;
+const uint8_t RRSF_DIRECTION_FLAG_OUTPUT_ACTIVE       = 0x40;
+
+// RRSF bit flags
+const uint32_t RRSF_SET_AUTODIRECT_ACTIVE       = 0x80000000;
+const uint32_t RRSF_SET_AUTO_PASSWORD_DIRECTION = 0x40000000;
+const uint32_t RRSF_SET_PASSWORD_SYNC_ACTIVE    = 0x20000000;
+const uint32_t RRSF_SET_AUTODIRECT_APP_UPDATES  = 0x10000000;
+const uint32_t RRSF_FULLRRSFCOMM_ACTIVE         = 0x08000000;
+const uint32_t RRSF_SET_TRACE_IMAGE_ACTIVE      = 0x04000000;
+const uint32_t RRSF_SET_TRACE_APPC_ACTIVE       = 0x02000000;
+const uint32_t RRSF_SET_TRACE_SSL_ACTIVE        = 0x01000000;
+const uint32_t RRSF_SET_TRACE_RRSF_ACTIVE       = 0x00800000;
+const uint32_t RRSF_NOT_ENOUGH_SPACE            = 0x00400000;
+const uint32_t RRSF_NOT_AUTHORIZED_SET_LIST     = 0x00200000;
+const uint32_t RRSF_NOT_AUTHORIZED_TARGET_LIST  = 0x00100000;
+const uint32_t RRSF_TRUSTED_ATTRIBUTE           = 0x00080000;
+// And lastly the little prep school kid
+const uint32_t RRSF_PRIVILEGED_ATTRIBUTE        = 0x00040000;
+
+typedef struct {
+  uint32_t length;
+} offset_field_t;
+
+typedef struct {
+  char rrsf_node_name[8];
+  char rrsf_multinode_system_node_name[8];
+  uint8_t rrsf_protocol;
+  uint8_t rrsf_node_state;
+  uint16_t reserved_space;
+  char date_of_last_received_work[8];
+  char time_of_last_received_work[8];
+  char date_of_last_sent_work[8];
+  char time_of_last_sent_work[8];
+  char partner_node_os_version[4];
+  uint32_t binary_partner_template_release_level;
+  uint32_t binary_partner_template_service_level;
+  offset_field_t offset_partner_node_parse_level;
+  offset_field_t offset_rrsf_node_description;
+  offset_field_t offset_rrsf_node_workspace_dataset_prefix;
+  offset_field_t offset_rrsf_workspace_sms_management_class;
+  offset_field_t offset_rrsf_workspace_sms_storage_class;
+  offset_field_t offset_rrsf_workspace_data_class;
+  offset_field_t offset_rrsf_workspace_dataset_volume;
+  uint32_t rrsf_workspace_file_size;
+  offset_field_t offset_workspace_dataset_wdsqual;
+  uint32_t bit_flags;
+  offset_field_t offset_inmsg_dataset_name;
+  uint32_t inmsg_records;
+  uint32_t inmsg_extents;
+  offset_field_t offset_outmsg_dataset_name;
+  uint32_t outmsg_records;
+  uint32_t outmsg_extents;
+  offset_field_t offset_inmsg2_dataset_name;
+  uint32_t inmsg2_records;
+  uint32_t inmsg2_extents;
+  offset_field_t offset_outmsg2_dataset_name;
+  uint32_t outmsg2_records;
+  uint32_t outmsg2_extents;
+  uint32_t node_requests_denied;
+  offset_field_t offset_tcpip_address_target_command;
+  offset_field_t offset_tcpip_address_resolved_by_system;
+  offset_field_t offset_tcpip_port;
+  offset_field_t offset_tcpip_tls_rule;
+  offset_field_t offset_tcpip_cipher_policy;
+  offset_field_t offset_tcpip_certificate_user;
+  uint8_t offset_tcpip_client_authentication;
+  uint8_t tcpip_listener_status;
+  uint16_t appc_listener_status;
+  uint16_t reserved[2];
+  offset_field_t offset_appc_lu_name;
+  offset_field_t offset_appc_modename;
+  offset_field_t offset_appc_tp_name;
+  offset_field_t offset_appc_netname;
+  uint32_t reserved2[4];
+} racf_rrsf_node_definitions_t;
+
+typedef struct {
+  char node_notification_destination[8];
+  char userid_notification_destination[8];
+  char output_level[6];
+  char notify_level[6];
+} racf_rrsf_set_settings_t;
+
+typedef struct {
+  char eyecatcher[4];
+  uint8_t subpool_buffer_length;
+  // This data is 3 bytes long, 3 bytes = 24 bits.
+  // I had to do this stupid solution to get it work.
+  // If you can find a better solution I will marry you,
+  // ew no, I was just kidding.
+  unsigned int result_buffer_length : 24;
+  uint32_t bit_flags;
+  char subsystem_prefix[8];
+  uint32_t rrsf_node_index;
+  uint8_t automatic_command_redirection;
+  racf_rrsf_set_settings_t command_redirection_settings[4];
+  uint8_t automatic_password_redirection;
+  racf_rrsf_set_settings_t password_redirection_settings[4];
+  uint8_t password_synchronization;
+  racf_rrsf_set_settings_t password_synchronization_settings[4];
+  uint8_t automatic_redirection_application_updates;
+  racf_rrsf_set_settings_t application_updates_redirection_settings[4];
+  uint32_t number_of_rrsf_nodes;
+  char racf_subsystem_name[4];
+  char racf_subsystem_userid[8];
+  char reserved_space[52];
+  racf_rrsf_node_definitions_t node_definitions;
+} racf_rrsf_extract_results_t;
+
+typedef struct {
+  char RACF_work_area[1024];
+  // return and reason codes
+  uint32_t ALET_SAF_rc;
+  uint32_t SAF_rc;
+  uint32_t ALET_RACF_rc;
+  uint32_t RACF_rc;
+  uint32_t ALET_RACF_rsn;
+  uint32_t RACF_rsn;
+  // extract function to perform
+  uint8_t function_code;
+  uint8_t parameter_list;
+  char profile_name[PROFILE_NAME_MAX_LENGTH + 1];
+  // Result area for the service
+  uint32_t ACEE;
+  uint8_t result_buffer_subpool;
+  // R_admin returns data here
+  char *__ptr32 p_result_buffer;
+} racf_rrsf_extract_args_t;
+
+typedef struct {
+  char *__ptr32 p_work_area;
+  // return and reason code
+  uint32_t *__ptr32 p_ALET_SAF_rc;
+  uint32_t *__ptr32 p_SAF_rc;
+  uint32_t *__ptr32 p_ALET_RACF_rc;
+  uint32_t *__ptr32 p_RACF_rc;
+  uint32_t *__ptr32 p_ALET_RACF_rsn;
+  uint32_t *__ptr32 p_RACF_rsn;
+  // extract function to perform
+  uint8_t *__ptr32 p_function_code;
+  uint8_t *__ptr32 p_parameter_list;
+  char *__ptr32 p_profile_name;
+  // Result area for the service
+  uint32_t *__ptr32 p_ACEE;
+  uint8_t *__ptr32 p_result_buffer_subpool;
+  // R_admin returns data here
+  char *__ptr32 *__ptr32 p_p_result_buffer;
+} racf_rrsf_extract_arg_pointers_t;
+
+// 31-bit for IRRSEQ00 arguments.
+typedef struct {
+  racf_rrsf_extract_args_t args;
+  racf_rrsf_extract_arg_pointers_t arg_pointers;
+} racf_rrsf_extract_underbar_arg_area_t;
 
 #pragma pack(pop)  // Restore default structure packing options.
 

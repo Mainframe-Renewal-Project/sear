@@ -5,9 +5,11 @@
 #include <cstdio>
 #include <cstring>
 #include <memory>
+#include <string>
 #include <vector>
 
-#include "../conversion.hpp"
+#include "conversion.hpp"
+#include "sear_error.hpp"
 
 // Use ntohl() to convert 32-bit values from big endian to little endian.
 // use ntohs() to convert 16-bit values from big endian to little endian.
@@ -15,6 +17,7 @@
 // both big endian. This is only necessary for unit testing off platform.
 #include <arpa/inet.h>
 
+#include "irrseq00.hpp"
 #include "key_map.hpp"
 
 #ifdef __TOS_390__
@@ -202,6 +205,131 @@ void ProfilePostProcessor::postProcessRACFOptions(SecurityRequest &request) {
         reinterpret_cast<const char *>(p_field) +
         sizeof(racf_options_field_descriptor_t) + field_length);
   }
+  request.setIntermediateResultJSON(profile);
+}
+
+//////////////////////////////////////////////////////////////////////////
+// RRSF post processing                                                 //
+//////////////////////////////////////////////////////////////////////////
+void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
+  nlohmann::json profile;
+  profile["profile"] = nlohmann::json::object();
+
+  // Profile pointers and information
+  const char *p_profile = request.getRawResultPointer();
+
+  Logger::getInstance().debug("Raw RACF RRSF extract result:");
+  Logger::getInstance().hexDump(p_profile, request.getRawResultLength());
+
+  // RRSF variables
+  const racf_rrsf_extract_results_t *rrsf_extract_result =
+      reinterpret_cast<const racf_rrsf_extract_results_t *>(p_profile);
+  
+  profile["profile"]["rrsf:base"]["base:subsystem_name"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->racf_subsystem_name, 4);
+  profile["profile"]["rrsf:base"]["base:subsystem_userid"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->racf_subsystem_userid, 8);
+  profile["profile"]["rrsf:base"]["base:subsystem_operator_prefix"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->subsystem_prefix, 8);
+  profile["profile"]["rrsf:base"]["base:number_of_defined_nodes"] = rrsf_extract_result->number_of_rrsf_nodes;
+
+  // Post process nodes if any are defined
+  if (rrsf_extract_result->number_of_rrsf_nodes) {
+    int first_node_offset = 544;
+
+    // Node definitions to be added to result JSON
+    std::vector<nlohmann::json> nodes;
+    for (int i = 1; i <= ntohl(rrsf_extract_result->number_of_rrsf_nodes); i++) {
+        const racf_rrsf_node_definitions_t *p_nodes =
+        reinterpret_cast<const racf_rrsf_node_definitions_t *>(p_profile + first_node_offset);
+
+        nlohmann::json node_definition;
+        node_definition["base:node_name"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_node_name,8);
+        node_definition["base:multisystem_node_name"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_multinode_system_node_name,8);
+        node_definition["base:date_of_last_received_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->date_of_last_received_work,8);
+        node_definition["base:time_of_last_received_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_received_work,8);
+        node_definition["base:date_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->date_of_last_sent_work,8);
+        node_definition["base:time_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_sent_work,8);
+        node_definition["base:node_state"] = p_nodes->rrsf_node_state;
+
+        node_definition["base:partner_node_operating_system_version"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->partner_node_os_version,4);
+
+        if (p_nodes->tcpip_listener_status == 2) {
+          node_definition["base:tcpip_listener_status_active"] = true;
+        } else {
+          node_definition["base:tcpip_listener_status_active"] = false;
+        } 
+
+        if (p_nodes->appc_listener_status == 2) {
+          node_definition["base:appc_listener_status_active"] = true;
+        } else {
+          node_definition["base:appc_listener_status_active"] = false;
+        } 
+
+        if (p_nodes->rrsf_protocol == 01) {
+          node_definition["base:node_protocol"] = "appc";
+        } else if (p_nodes->rrsf_protocol == 02) {
+          node_definition["base:node_protocol"] = "tcp";
+        } else {
+          node_definition["base:node_protocol"] = "none";
+        }
+
+        node_definition["base:requests_denied"] = p_nodes->node_requests_denied;
+
+        // Add node definition to result JSON
+        nodes.push_back(node_definition);
+
+        // Increment to next node offset
+        first_node_offset = first_node_offset + sizeof(racf_rrsf_node_definitions_t);  
+    }
+    profile["profile"]["rrsf:base"]["base:nodes"] = nodes;
+  }
+
+  if (rrsf_extract_result->bit_flags == RRSF_FULLRRSFCOMM_ACTIVE) {
+    profile["profile"]["rrsf:base"]["base:full_rrsf_communication_active"] = true;
+  } else {
+    profile["profile"]["rrsf:base"]["base:full_rrsf_communication_active"] = false;
+  }
+
+  if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_ACTIVE) {
+    profile["profile"]["rrsf:base"]["base:full_autodirect_active"] = true;
+  } else {
+    profile["profile"]["rrsf:base"]["base:full_autodirect_active"] = false;
+  }
+
+  if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_APP_UPDATES) {
+    profile["profile"]["rrsf:base"]["base:autodirect_application_updates"] = true;
+  } else {
+    profile["profile"]["rrsf:base"]["base:autodirect_application_updates"] = false;
+  }
+
+  if (rrsf_extract_result->bit_flags == RRSF_SET_AUTO_PASSWORD_DIRECTION) {
+    profile["profile"]["rrsf:base"]["base:autodirect_passwords"] = true;
+  } else {
+    profile["profile"]["rrsf:base"]["base:autodirect_passwords"] = false;
+  }
+
+  if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_APPC_ACTIVE) {
+    profile["profile"]["rrsf:base"]["base:appc_trace_active"] = true;
+  } else {
+    profile["profile"]["rrsf:base"]["base:appc_trace_active"] = false;
+  }
+
+  if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_IMAGE_ACTIVE) {
+    profile["profile"]["rrsf:base"]["base:image_trace_active"] = true;
+  } else {
+    profile["profile"]["rrsf:base"]["base:image_trace_active"] = false;
+  }
+  
+  if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_SSL_ACTIVE) {
+    profile["profile"]["rrsf:base"]["base:ssl_trace_active"] = true;
+  } else {
+    profile["profile"]["rrsf:base"]["base:ssl_trace_active"] = false;
+  }
+
+  if (rrsf_extract_result->bit_flags == RRSF_NOT_ENOUGH_SPACE) {
+      request.setSEARReturnCode(4);
+      // Raise Exception if RRSF extract Failed.
+      throw SEARError("Not enough memory to extract RRSF settings");
+  }
+  
   request.setIntermediateResultJSON(profile);
 }
 
