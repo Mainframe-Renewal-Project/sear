@@ -289,8 +289,8 @@ typedef struct {
   char date_of_last_sent_work[8];
   char time_of_last_sent_work[8];
   char partner_node_os_version[4];
-  uint32_t binary_partner_template_release_level;
-  uint32_t binary_partner_template_service_level;
+  uint32_t binary_partner_node_template_release_level;
+  uint32_t binary_partner_node_template_service_level;
   offset_field_t offset_partner_node_parse_level;
   offset_field_t offset_rrsf_node_description;
   offset_field_t offset_rrsf_node_workspace_dataset_prefix;
