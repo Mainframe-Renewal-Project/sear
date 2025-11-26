@@ -232,6 +232,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
 
   // Post process nodes if any are defined
   if (rrsf_extract_result->number_of_rrsf_nodes) {
+    // Node definitions start at 544, per IBM documentation
     int first_node_offset = 544;
 
     // Node definitions to be added to result JSON
