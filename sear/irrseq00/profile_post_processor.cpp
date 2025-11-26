@@ -283,7 +283,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
         // Increment to next node offset
         first_node_offset = first_node_offset + sizeof(racf_rrsf_node_definitions_t);  
     }
-    // Append node definitions to result JSON
+    // Append node definitions to result JSON after processing them
     profile["profile"]["base"]["base:nodes"] = nodes;
   }
 
