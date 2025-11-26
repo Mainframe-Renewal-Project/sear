@@ -249,6 +249,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
         node_definition["base:time_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_sent_work,8);
         node_definition["base:node_state"] = p_nodes->rrsf_node_state;
 
+        // Partner node information
         node_definition["base:partner_node_operating_system_version"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->partner_node_os_version,4);
         node_definition["base:partner_node_template_release_level"] = p_nodes->binary_partner_node_template_release_level;
         node_definition["base:partner_node_template_service_level"] = p_nodes->binary_partner_node_template_service_level;
@@ -265,6 +266,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
           node_definition["base:appc_listener_status_active"] = false;
         } 
 
+        // Determines which protocol the RRSF node is using and adds it to the result JSON
         if (p_nodes->rrsf_protocol == 01) {
           node_definition["base:node_protocol"] = "appc";
         } else if (p_nodes->rrsf_protocol == 02) {
