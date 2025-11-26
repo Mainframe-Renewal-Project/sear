@@ -225,10 +225,10 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   const racf_rrsf_extract_results_t *rrsf_extract_result =
       reinterpret_cast<const racf_rrsf_extract_results_t *>(p_profile);
   
-  profile["profile"]["rrsf:base"]["base:subsystem_name"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->racf_subsystem_name, 4);
-  profile["profile"]["rrsf:base"]["base:subsystem_userid"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->racf_subsystem_userid, 8);
-  profile["profile"]["rrsf:base"]["base:subsystem_operator_prefix"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->subsystem_prefix, 8);
-  profile["profile"]["rrsf:base"]["base:number_of_defined_nodes"] = rrsf_extract_result->number_of_rrsf_nodes;
+  profile["profile"]["base"]["base:subsystem_name"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->racf_subsystem_name, 4);
+  profile["profile"]["base"]["base:subsystem_userid"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->racf_subsystem_userid, 8);
+  profile["profile"]["base"]["base:subsystem_operator_prefix"] = ProfilePostProcessor::decodeEBCDICBytes(rrsf_extract_result->subsystem_prefix, 8);
+  profile["profile"]["base"]["base:number_of_defined_nodes"] = rrsf_extract_result->number_of_rrsf_nodes;
 
   // Post process nodes if any are defined
   if (rrsf_extract_result->number_of_rrsf_nodes) {
@@ -279,49 +279,49 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
         // Increment to next node offset
         first_node_offset = first_node_offset + sizeof(racf_rrsf_node_definitions_t);  
     }
-    profile["profile"]["rrsf:base"]["base:nodes"] = nodes;
+    profile["profile"]["base"]["base:nodes"] = nodes;
   }
 
   if (rrsf_extract_result->bit_flags == RRSF_FULLRRSFCOMM_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:full_rrsf_communication_active"] = true;
+    profile["profile"]["base"]["base:full_rrsf_communication_active"] = true;
   } else {
-    profile["profile"]["rrsf:base"]["base:full_rrsf_communication_active"] = false;
+    profile["profile"]["base"]["base:full_rrsf_communication_active"] = false;
   }
 
   if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:full_autodirect_active"] = true;
+    profile["profile"]["base"]["base:full_autodirect_active"] = true;
   } else {
-    profile["profile"]["rrsf:base"]["base:full_autodirect_active"] = false;
+    profile["profile"]["base"]["base:full_autodirect_active"] = false;
   }
 
   if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_APP_UPDATES) {
-    profile["profile"]["rrsf:base"]["base:autodirect_application_updates"] = true;
+    profile["profile"]["base"]["base:autodirect_application_updates"] = true;
   } else {
-    profile["profile"]["rrsf:base"]["base:autodirect_application_updates"] = false;
+    profile["profile"]["base"]["base:autodirect_application_updates"] = false;
   }
 
   if (rrsf_extract_result->bit_flags == RRSF_SET_AUTO_PASSWORD_DIRECTION) {
-    profile["profile"]["rrsf:base"]["base:autodirect_passwords"] = true;
+    profile["profile"]["base"]["base:autodirect_passwords"] = true;
   } else {
-    profile["profile"]["rrsf:base"]["base:autodirect_passwords"] = false;
+    profile["profile"]["base"]["base:autodirect_passwords"] = false;
   }
 
   if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_APPC_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:appc_trace_active"] = true;
+    profile["profile"]["base"]["base:appc_trace_active"] = true;
   } else {
-    profile["profile"]["rrsf:base"]["base:appc_trace_active"] = false;
+    profile["profile"]["base"]["base:appc_trace_active"] = false;
   }
 
   if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_IMAGE_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:image_trace_active"] = true;
+    profile["profile"]["base"]["base:image_trace_active"] = true;
   } else {
-    profile["profile"]["rrsf:base"]["base:image_trace_active"] = false;
+    profile["profile"]["base"]["base:image_trace_active"] = false;
   }
   
   if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_SSL_ACTIVE) {
-    profile["profile"]["rrsf:base"]["base:ssl_trace_active"] = true;
+    profile["profile"]["base"]["base:ssl_trace_active"] = true;
   } else {
-    profile["profile"]["rrsf:base"]["base:ssl_trace_active"] = false;
+    profile["profile"]["base"]["base:ssl_trace_active"] = false;
   }
 
   if (rrsf_extract_result->bit_flags == RRSF_NOT_ENOUGH_SPACE) {
