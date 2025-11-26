@@ -231,7 +231,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   profile["profile"]["base"]["base:number_of_defined_nodes"] = rrsf_extract_result->number_of_rrsf_nodes;
 
   // Post process nodes if any are defined
-  if (rrsf_extract_result->number_of_rrsf_nodes) {
+  if (rrsf_extract_result->number_of_rrsf_nodes > 0) {
     // Node definitions start at 544, per IBM documentation
     int first_node_offset = 544;
 
