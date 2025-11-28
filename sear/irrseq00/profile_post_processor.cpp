@@ -236,7 +236,8 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
     const int local_node& = rrsf_extract_result->local_node;
 
     // Node definitions start at 544, per IBM documentation
-    int first_node_offset = 544;
+    // It dynamically calculates it in case it ever changes to beyond 544
+    int first_node_offset = sizeof(racf_rrsf_extract_results_t) - sizeof(racf_rrsf_node_definitions_t);
 
     // Node definitions to be added to result JSON
     std::vector<nlohmann::json> nodes;
