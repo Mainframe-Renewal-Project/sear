@@ -104,6 +104,8 @@ void SecurityAdmin::doExtract(Extractor &extractor) {
     if (request_.getAdminType() == "racf-options") {
       // Post Process RACF Options Extract Result
       post_processor.postProcessRACFOptions(request_);
+    } else if (request_.getAdminType() == "racf-rrsf") {
+      post_processor.postProcessRACFRRSF(request_);
     } else {
       if (request_.getOperation() == "search") {
         // Post Process Generic Search Result

@@ -253,6 +253,8 @@ void SecurityRequest::load(const nlohmann::json& request) {
     }
   } else if (admin_type_ == "racf-options") {
     function_code_ = RACF_OPTIONS_EXTRACT_FUNCTION_CODE;
+  } else if (admin_type_ == "racf-rrsf") {
+    function_code_ = RRSF_EXTRACT_FUNCTION_CODE;
   } else if (admin_type_ == "permission") {
     if (request.contains("dataset")) {
       profile_name_ = request["dataset"].get<std::string>();

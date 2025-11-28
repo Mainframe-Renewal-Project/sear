@@ -13,7 +13,7 @@ class SecurityResult:
             request: dict,
             raw_request: bytes | None,
             raw_result: bytes | None,
-            result: dict[str, Any] | None,
+            result: dict[str, Any[Any]] | None,
     ):
         self.request = request
         self.raw_request = raw_request
@@ -22,7 +22,7 @@ class SecurityResult:
 
 
 def sear(request: dict, debug: bool = False) -> SecurityResult:
-    """Call SEAR Python extenion."""
+    """Call SEAR Python extension."""
     response = call_sear(json.dumps(request), debug=debug)
     return SecurityResult(
         request=request,

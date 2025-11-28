@@ -1,9 +1,9 @@
 name: Ruff
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ]
   push:
-    branches: [ "push" ]
+    branches: [ "main", "dev" ]
 jobs:
   build:
     runs-on: ubuntu-latest
