@@ -250,6 +250,8 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
 
       if (i == local_node) {
         node_definition["base:is_local_node"] = true;
+      } else {
+        node_definition["base:is_local_node"] = false;
       }
 
       node_definition["base:node_name"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_node_name,8);
