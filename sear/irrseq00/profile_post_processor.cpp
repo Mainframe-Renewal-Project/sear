@@ -233,7 +233,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   // Post process nodes if any are defined
   if (rrsf_extract_result->number_of_rrsf_nodes > 0) {
     // Retrieve local node index
-    const int local_node& = rrsf_extract_result->rrsf_node_index;
+    const int &local_node = rrsf_extract_result->rrsf_node_index;
 
     // Node definitions start at 544, per IBM documentation,
     // it dynamically calculates it in case it ever changes to be beyond 544
