@@ -342,6 +342,18 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
     profile["profile"]["base"]["base:ssl_trace_active"] = false;
   }
 
+  if (rrsf_extract_result->bit_flags == RRSF_PRIVILEGED_ATTRIBUTE) {
+    profile["profile"]["base"]["base:privileged_attribute_on"] = true;
+  } else {
+    profile["profile"]["base"]["base:privileged_attribute_on"] = false;
+  }
+
+  if (rrsf_extract_result->bit_flags == RRSF_TRUSTED_ATTRIBUTE) {
+    profile["profile"]["base"]["base:trusted_attribute_on"] = true;
+  } else {
+    profile["profile"]["base"]["base:trusted_attribute_on"] = false;
+  }
+
   if (rrsf_extract_result->bit_flags == RRSF_NOT_ENOUGH_SPACE) {
       request.setSEARReturnCode(4);
       // Raise Exception if RRSF extract Failed.
