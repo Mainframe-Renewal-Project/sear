@@ -263,7 +263,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       node_definition["base:node_state"] = p_nodes->rrsf_node_state;
 
       // Partner node information
-      node_definition["base:partner_node_operating_system_version"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->partner_node_os_version,4);
+      node_definition["base:partner_node_operating_system_version"] = p_nodes->partner_node_os_version;
       node_definition["base:partner_node_template_release_level"] = p_nodes->binary_partner_node_template_release_level;
       node_definition["base:partner_node_template_service_level"] = p_nodes->binary_partner_node_template_service_level;
 
