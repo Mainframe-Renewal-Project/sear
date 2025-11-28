@@ -232,57 +232,66 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
 
   // Post process nodes if any are defined
   if (rrsf_extract_result->number_of_rrsf_nodes > 0) {
+    // Retrieve local node index
+    const int local_node& = rrsf_extract_result->local_node;
+
     // Node definitions start at 544, per IBM documentation
     int first_node_offset = 544;
 
     // Node definitions to be added to result JSON
     std::vector<nlohmann::json> nodes;
     for (int i = 1; i <= ntohl(rrsf_extract_result->number_of_rrsf_nodes); i++) {
-        const racf_rrsf_node_definitions_t *p_nodes =
-        reinterpret_cast<const racf_rrsf_node_definitions_t *>(p_profile + first_node_offset);
+      
+      const racf_rrsf_node_definitions_t *p_nodes =
+      reinterpret_cast<const racf_rrsf_node_definitions_t *>(p_profile + first_node_offset);
+      
+      nlohmann::json node_definition;
 
-        nlohmann::json node_definition;
-        node_definition["base:node_name"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_node_name,8);
-        node_definition["base:multisystem_node_name"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_multinode_system_node_name,8);
-        node_definition["base:date_of_last_received_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->date_of_last_received_work,8);
-        node_definition["base:time_of_last_received_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_received_work,8);
-        node_definition["base:date_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->date_of_last_sent_work,8);
-        node_definition["base:time_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_sent_work,8);
-        node_definition["base:node_state"] = p_nodes->rrsf_node_state;
+      if (i == local_node) {
+        node_definition["base:is_local_node"] = true;
+      }
 
-        // Partner node information
-        node_definition["base:partner_node_operating_system_version"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->partner_node_os_version,4);
-        node_definition["base:partner_node_template_release_level"] = p_nodes->binary_partner_node_template_release_level;
-        node_definition["base:partner_node_template_service_level"] = p_nodes->binary_partner_node_template_service_level;
+      node_definition["base:node_name"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_node_name,8);
+      node_definition["base:multisystem_node_name"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->rrsf_multinode_system_node_name,8);
+      node_definition["base:date_of_last_received_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->date_of_last_received_work,8);
+      node_definition["base:time_of_last_received_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_received_work,8);
+      node_definition["base:date_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->date_of_last_sent_work,8);
+      node_definition["base:time_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_sent_work,8);
+      node_definition["base:node_state"] = p_nodes->rrsf_node_state;
 
-        if (p_nodes->tcpip_listener_status == 2) {
-          node_definition["base:tcpip_listener_status_active"] = true;
-        } else {
-          node_definition["base:tcpip_listener_status_active"] = false;
-        } 
+      // Partner node information
+      node_definition["base:partner_node_operating_system_version"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->partner_node_os_version,4);
+      node_definition["base:partner_node_template_release_level"] = p_nodes->binary_partner_node_template_release_level;
+      node_definition["base:partner_node_template_service_level"] = p_nodes->binary_partner_node_template_service_level;
 
-        if (p_nodes->appc_listener_status == 2) {
-          node_definition["base:appc_listener_status_active"] = true;
-        } else {
-          node_definition["base:appc_listener_status_active"] = false;
-        } 
+      if (p_nodes->tcpip_listener_status == 2) {
+        node_definition["base:tcpip_listener_status_active"] = true;
+      } else {
+        node_definition["base:tcpip_listener_status_active"] = false;
+      } 
 
-        // Determines which protocol the RRSF node is using and adds it to the result JSON
-        if (p_nodes->rrsf_protocol == 01) {
-          node_definition["base:node_protocol"] = "appc";
-        } else if (p_nodes->rrsf_protocol == 02) {
-          node_definition["base:node_protocol"] = "tcpip";
-        } else {
-          node_definition["base:node_protocol"] = "none";
-        }
+      if (p_nodes->appc_listener_status == 2) {
+        node_definition["base:appc_listener_status_active"] = true;
+      } else {
+        node_definition["base:appc_listener_status_active"] = false;
+      } 
 
-        node_definition["base:requests_denied"] = p_nodes->node_requests_denied;
+      // Determines which protocol the RRSF node is using and adds it to the result JSON
+      if (p_nodes->rrsf_protocol == 01) {
+        node_definition["base:node_protocol"] = "appc";
+      } else if (p_nodes->rrsf_protocol == 02) {
+        node_definition["base:node_protocol"] = "tcpip";
+      } else {
+        node_definition["base:node_protocol"] = "none";
+      }
 
-        // Add node definition to result JSON
-        nodes.push_back(node_definition);
+      node_definition["base:requests_denied"] = p_nodes->node_requests_denied;
 
-        // Increment to next node offset
-        first_node_offset = first_node_offset + sizeof(racf_rrsf_node_definitions_t);  
+      // Add node definition to result JSON
+      nodes.push_back(node_definition);
+
+      // Increment to next node offset
+      first_node_offset = first_node_offset + sizeof(racf_rrsf_node_definitions_t);  
     }
     // Append node definitions to result JSON after processing them
     profile["profile"]["base"]["base:nodes"] = nodes;
