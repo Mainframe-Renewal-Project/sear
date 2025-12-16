@@ -276,7 +276,7 @@ const uint32_t RRSF_PRIVILEGED_ATTRIBUTE        = 0x00040000;
 
 typedef struct {
   uint32_t length;
-  char data[*];
+  char * data;
 } racf_rrsf_offset_field_t;
 
 typedef struct {
@@ -325,10 +325,10 @@ typedef struct {
   uint8_t tcpip_listener_status;
   uint16_t appc_listener_status;
   uint16_t reserved[2];
-  offset_field_t offset_appc_lu_name;
-  offset_field_t offset_appc_modename;
-  offset_field_t offset_appc_tp_name;
-  offset_field_t offset_appc_netname;
+  uint32_t offset_appc_lu_name;
+  uint32_t offset_appc_modename;
+  uint32_t offset_appc_tp_name;
+  uint32_t offset_appc_netname;
   uint32_t reserved2[4];
 } racf_rrsf_node_definitions_t;
 
