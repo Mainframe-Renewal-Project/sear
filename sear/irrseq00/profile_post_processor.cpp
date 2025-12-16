@@ -210,7 +210,7 @@ void ProfilePostProcessor::postProcessRACFOptions(SecurityRequest &request) {
 
 // There are a bunch of these weird offset fields
 // This function allow offset fields to easily be processed
-std::string ProfilePostProcessor::postprocessRRSFOffsetField(const char &p_profile, int offset) {
+std::string ProfilePostProcessor::postprocessRRSFOffsetField(const char *p_profile, int offset) {
   const racf_rrsf_offset_field_t *p_field =
     reinterpret_cast<const racf_rrsf_offset_field_t *>(p_profile + offset);
   
