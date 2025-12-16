@@ -210,7 +210,7 @@ void ProfilePostProcessor::postProcessRACFOptions(SecurityRequest &request) {
 
 // There are a bunch of these weird offset fields
 // This function allow offset fields to easily be processed
-std::string ProfilePostProcessor::postprocessRRSFOffsetField(const char p_profile, int offset) {
+std::string ProfilePostProcessor::postprocessRRSFOffsetField(const char &p_profile, int offset) {
   const racf_rrsf_offset_field_t *p_field =
     reinterpret_cast<const racf_rrsf_offset_field_t *>(p_profile + offset);
   
@@ -280,7 +280,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       node_definition["base:in_message2_extents"] = p_nodes->inmsg2_extents;
       node_definition["base:out_message2_extents"] = p_nodes->outmsg2_extents;
 
-      node_definition["base:workspace_dataset_name"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_workspace_dataset_wdsqual)
+      node_definition["base:workspace_dataset_name"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_workspace_dataset_wdsqual);
 
       // Partner node information
       node_definition["base:partner_node_operating_system_version"] = p_nodes->partner_node_os_version;
