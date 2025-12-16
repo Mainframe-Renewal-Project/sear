@@ -279,6 +279,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       node_definition["base:partner_node_dynamic_parse_level"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_partner_node_parse_level);
 
       // Workspace dataset information
+      node_definition["base:workspace_dataset_prefix"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_rrsf_node_workspace_dataset_prefix);
       node_definition["base:workspace_dataset_name"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_workspace_dataset_wdsqual);
       node_definition["base:workspace_dataset_sms_management_class"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_rrsf_workspace_sms_management_class);
       node_definition["base:workspace_dataset_sms_storage_class"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_rrsf_workspace_sms_storage_class);
