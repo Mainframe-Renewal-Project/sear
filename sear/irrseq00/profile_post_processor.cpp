@@ -275,7 +275,8 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       node_definition["base:time_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_sent_work,8);
       node_definition["base:node_state"] = p_nodes->rrsf_node_state;
 
-      node_definition["base:rrsf_node_description"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_rrsf_node_description);
+      node_definition["base:node_description"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_rrsf_node_description);
+      node_definition["base:partner_node_dynamic_parse_level"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_partner_node_parse_level);
 
       // Workspace dataset information
       node_definition["base:workspace_dataset_name"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_workspace_dataset_wdsqual);
@@ -321,6 +322,14 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
         node_definition["base:node_protocol"] = "appc";
       } else if (p_nodes->rrsf_protocol == 02) {
         node_definition["base:node_protocol"] = "tcpip";
+
+        // These are only relevant if system is using TCPIP for RRSF
+        node_definition["base:resolved_tcpip_address"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_tcpip_address_resolved_by_system);
+        node_definition["base:target_tcpip_address"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_tcpip_address_target_command);
+        node_definition["base:tcpip_port"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_tcpip_port);
+        node_definition["base:tcpip_attls_rule"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_tcpip_tls_rule);
+        node_definition["base:tcpip_attls_cipher"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_tcpip_cipher_policy);
+        node_definition["base:tcpip_attls_certificate_user"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_tcpip_certificate_user);
       } else {
         node_definition["base:node_protocol"] = "none";
       }
