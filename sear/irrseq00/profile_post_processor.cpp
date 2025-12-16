@@ -214,7 +214,11 @@ std::string ProfilePostProcessor::postprocessRRSFOffsetField(const char *p_profi
   const racf_rrsf_offset_field_t *p_field =
     reinterpret_cast<const racf_rrsf_offset_field_t *>(p_profile + offset);
   
-  return ProfilePostProcessor::decodeEBCDICBytes(p_field->data,p_field->length);
+  if (p_field->length > 0) {
+    return ProfilePostProcessor::decodeEBCDICBytes(p_field->data,p_field->length);
+  } else {
+    return "undefined"
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////
