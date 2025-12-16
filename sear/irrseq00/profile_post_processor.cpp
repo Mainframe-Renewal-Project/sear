@@ -320,6 +320,12 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       // Determines which protocol the RRSF node is using and adds it to the result JSON
       if (p_nodes->rrsf_protocol == 01) {
         node_definition["base:node_protocol"] = "appc";
+
+        // These are only relevant if system is using APPC, instead of the modern TCP/IP
+        node_definition["base:appc_modename"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_appc_modename);
+        node_definition["base:appc_lu_name"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_appc_lu_name);
+        node_definition["base:appc_tp_name"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_appc_tp_name);
+        node_definition["base:appc_netname"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_appc_netname);
       } else if (p_nodes->rrsf_protocol == 02) {
         node_definition["base:node_protocol"] = "tcpip";
 
