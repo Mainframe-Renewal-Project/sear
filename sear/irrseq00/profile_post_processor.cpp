@@ -270,7 +270,22 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       node_definition["base:date_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->date_of_last_sent_work,8);
       node_definition["base:time_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_sent_work,8);
       node_definition["base:node_state"] = p_nodes->rrsf_node_state;
+
+      node_definition["base:rrsf_node_description"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_rrsf_node_description);
+
+      // Workspace dataset information
+      node_definition["base:workspace_dataset_name"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_workspace_dataset_wdsqual);
+      node_definition["base:workspace_dataset_sms_management_class"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_rrsf_workspace_sms_management_class);
+      node_definition["base:workspace_dataset_sms_storage_class"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_rrsf_workspace_sms_storage_class);
+      node_definition["base:workspace_dataset_sms_data_class"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_rrsf_workspace_data_class);
+      node_definition["base:workspace_dataset_volume"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_rrsf_workspace_dataset_volume);
+
       node_definition["base:workspace_file_size"] = p_nodes->rrsf_workspace_file_size;
+
+      // inmsg and outmsg dataset information
+      node_definition["base:inmsg_dataset_name"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_inmsg_dataset_name);
+      node_definition["base:outmsg_dataset_name"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_outmsg_dataset_name);
+
       node_definition["base:in_message_records"] = p_nodes->inmsg_records;
       node_definition["base:out_message_records"] = p_nodes->outmsg_records;
       node_definition["base:in_message2_records"] = p_nodes->inmsg2_records;
@@ -279,8 +294,6 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       node_definition["base:out_message_extents"] = p_nodes->outmsg_extents;
       node_definition["base:in_message2_extents"] = p_nodes->inmsg2_extents;
       node_definition["base:out_message2_extents"] = p_nodes->outmsg2_extents;
-
-      node_definition["base:workspace_dataset_name"] = ProfilePostProcessor::postprocessRRSFOffsetField(p_profile, p_nodes->offset_workspace_dataset_wdsqual);
 
       // Partner node information
       node_definition["base:partner_node_operating_system_version"] = p_nodes->partner_node_os_version;
