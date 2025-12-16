@@ -276,7 +276,7 @@ const uint32_t RRSF_PRIVILEGED_ATTRIBUTE        = 0x00040000;
 
 typedef struct {
   uint32_t length;
-  char * data;
+  char data[length];
 } racf_rrsf_offset_field_t;
 
 typedef struct {
