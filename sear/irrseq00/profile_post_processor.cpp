@@ -214,6 +214,7 @@ void ProfilePostProcessor::postprocessRRSFOffsetField(nlohmann::json &profile, c
   const racf_rrsf_offset_field_t *p_field =
     reinterpret_cast<const racf_rrsf_offset_field_t *>(p_profile + offset);
   
+  // Only create the key if there actually is any data in the offset field, avoids empty quotes
   if (p_field->length > 0) {
     profile[key] = ProfilePostProcessor::decodeEBCDICBytes(p_field->data,p_field->length);
   }
