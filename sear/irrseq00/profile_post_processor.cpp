@@ -210,7 +210,7 @@ void ProfilePostProcessor::postProcessRACFOptions(SecurityRequest &request) {
 
 // There are a bunch of these weird offset fields
 // This function allow offset fields to easily be processed
-void ProfilePostProcessor::postprocessRRSFOffsetField(nlohmann::json profile, const std::string &key, const char *p_profile, int offset) {
+void ProfilePostProcessor::postprocessRRSFOffsetField(nlohmann::json &profile, const std::string &key, const char *p_profile, int offset) {
   const racf_rrsf_offset_field_t *p_field =
     reinterpret_cast<const racf_rrsf_offset_field_t *>(p_profile + offset);
   
