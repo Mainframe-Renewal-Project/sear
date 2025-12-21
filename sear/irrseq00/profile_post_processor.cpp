@@ -287,8 +287,8 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       node_definition["base:workspace_file_size"] = p_nodes->rrsf_workspace_file_size;
 
       // inmsg and outmsg dataset information
-      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:inmsg_dataset_name", p_profile, p_nodes->offset_inmsg_dataset_name);
-      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:outmsg_dataset_name", p_profile, p_nodes->offset_outmsg_dataset_name);
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:in_message_dataset_name", p_profile, p_nodes->offset_inmsg_dataset_name);
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:out_message_dataset_name", p_profile, p_nodes->offset_outmsg_dataset_name);
 
       node_definition["base:in_message_records"] = p_nodes->inmsg_records;
       node_definition["base:out_message_records"] = p_nodes->outmsg_records;
