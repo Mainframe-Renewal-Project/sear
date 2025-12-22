@@ -17,6 +17,7 @@ class ProfilePostProcessor {
   static void postProcessRACFRRSF(SecurityRequest &request);
 
  private:
+  static void postprocessRRSFOffsetField(nlohmann::json &profile, const std::string &key, const char *p_profile, int offset);
   static void processGenericField(nlohmann::json &json_field,
                                   const generic_field_descriptor_t *p_field,
                                   const char *p_profile,
