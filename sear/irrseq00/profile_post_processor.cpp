@@ -291,8 +291,8 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:in_message_dataset_name", p_profile, p_nodes->offset_inmsg_dataset_name);
       ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:out_message_dataset_name", p_profile, p_nodes->offset_outmsg_dataset_name);
 
-      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:temporary_in_message_dataset_name", p_profile, p_nodes->offset_inmsg_dataset_name);
-      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:temporary_out_message_dataset_name", p_profile, p_nodes->offset_outmsg_dataset_name);
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:temporary_in_message_dataset_name", p_profile, p_nodes->offset_inmsg2_dataset_name);
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:temporary_out_message_dataset_name", p_profile, p_nodes->offset_outmsg2_dataset_name);
 
       node_definition["base:in_message_records"] = p_nodes->inmsg_records;
       node_definition["base:out_message_records"] = p_nodes->outmsg_records;
