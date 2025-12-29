@@ -334,7 +334,7 @@ void SecurityRequest::load(const nlohmann::json& request) {
                                 surrogate_userid_string);
     const int userid_length = surrogate_userid_string.length();
     std::strncpy(surrogate_userid_,
-                 surrogate_userid_string,
+                 surrogate_userid_string.c_str(),
                  userid_length );
   }
 }
