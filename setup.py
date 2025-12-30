@@ -71,7 +71,7 @@ class BuildExtensionWithAssemblerAndC(build_ext):
         os.environ["CC"] = "ibm-clang64"
         os.environ["CFLAGS"] = "-std=c99"
         os.environ["CXX"] = "ibm-clang++64"
-        os.environ["CXXFLAGS"] = "-std=c++14"
+        os.environ["CXXFLAGS"] = "-std=c++17"
         sear_source_path = Path("sear")
         assemble("irrseq00.s", sear_source_path / "irrseq00")
         super().run()
