@@ -117,9 +117,13 @@ void ProfilePostProcessor::postProcessSearchGeneric(SecurityRequest &request) {
 
   for (int i = 0; i < found_profiles.size(); i++) {
     int len = std::strlen(found_profiles[i]);
-    std::string profile_name =
-        ProfilePostProcessor::decodeEBCDICBytes(found_profiles[i], len);
-    repeat_group_profiles.push_back(profile_name);
+    if (len > 0) {
+      std::string profile_name =
+          ProfilePostProcessor::decodeEBCDICBytes(found_profiles[i], len);
+      if (profile_name != " " && profile_name != "") {
+        repeat_group_profiles.push_back(profile_name);
+      }
+    }
     free(found_profiles[i]);
   }
 
