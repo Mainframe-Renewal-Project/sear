@@ -43,7 +43,7 @@
 cmake_minimum_required(VERSION 3.24)
 
 project(sear C CXX ASM)
-set(CXX_STANDARD 14)
+set(CXX_STANDARD 17)
 
 # This option is used when building the Python wheel
 option(SEAR_ENABLE_PYTHON "Enables building the Python language module." OFF)

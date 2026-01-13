@@ -50,7 +50,7 @@ from sear import sear
 
 result = sear(
     {
-        "operation": "extract",
+        "operation": "add",
         "admin_type": "user",
         "userid": "FDEGILIO",
         "traits": {

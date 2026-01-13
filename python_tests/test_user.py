@@ -220,6 +220,18 @@ def test_extract_user(create_user):
     assert "errors" not in str(extract_result.result)
     assert extract_result.result["return_codes"] == successful_return_codes
 
+def test_extract_user_empty_string():
+    """This test is supposed to fail"""
+    extract_result = sear(
+            {
+            "operation": "extract",
+            "admin_type": "user",
+            "userid": "",
+            },
+        )
+    assert "errors" in str(extract_result.result)
+    assert extract_result.result["return_codes"] != successful_return_codes
+
 def test_user_extract_not_found():
     """This test is supposed to fail"""
     user_not_found_result = sear(

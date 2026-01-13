@@ -117,9 +117,13 @@ void ProfilePostProcessor::postProcessSearchGeneric(SecurityRequest &request) {
 
   for (int i = 0; i < found_profiles.size(); i++) {
     int len = std::strlen(found_profiles[i]);
-    std::string profile_name =
-        ProfilePostProcessor::decodeEBCDICBytes(found_profiles[i], len);
-    repeat_group_profiles.push_back(profile_name);
+    if (len > 0) {
+      std::string profile_name =
+          ProfilePostProcessor::decodeEBCDICBytes(found_profiles[i], len);
+      if (profile_name != " " && profile_name != "") {
+        repeat_group_profiles.push_back(profile_name);
+      }
+    }
     free(found_profiles[i]);
   }
 
@@ -208,6 +212,18 @@ void ProfilePostProcessor::postProcessRACFOptions(SecurityRequest &request) {
   request.setIntermediateResultJSON(profile);
 }
 
+// There are a bunch of these weird offset fields
+// This function allow offset fields to easily be processed
+void ProfilePostProcessor::postprocessRRSFOffsetField(nlohmann::json &profile, const std::string &key, const char *p_profile, int offset) {
+  const racf_rrsf_offset_field_t *p_field =
+    reinterpret_cast<const racf_rrsf_offset_field_t *>(p_profile + offset);
+  
+  // Only create the key if there actually is any data in the offset field, avoids empty quotes
+  if (p_field->length > 0) {
+    profile[key] = ProfilePostProcessor::decodeEBCDICBytes(p_field->data,p_field->length);
+  }
+}
+
 //////////////////////////////////////////////////////////////////////////
 // RRSF post processing                                                 //
 //////////////////////////////////////////////////////////////////////////
@@ -262,6 +278,35 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       node_definition["base:time_of_last_sent_work"] = ProfilePostProcessor::decodeEBCDICBytes(p_nodes->time_of_last_sent_work,8);
       node_definition["base:node_state"] = p_nodes->rrsf_node_state;
 
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:node_description", p_profile, p_nodes->offset_rrsf_node_description);
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:partner_node_dynamic_parse_level",p_profile, p_nodes->offset_partner_node_parse_level);
+
+      // Workspace dataset information
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:workspace_dataset_prefix", p_profile, p_nodes->offset_rrsf_node_workspace_dataset_prefix);
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:workspace_dataset_name", p_profile, p_nodes->offset_workspace_dataset_wdsqual);
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:workspace_dataset_sms_management_class", p_profile, p_nodes->offset_rrsf_workspace_sms_management_class);
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:workspace_dataset_sms_storage_class", p_profile, p_nodes->offset_rrsf_workspace_sms_storage_class);
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:workspace_dataset_sms_data_class", p_profile, p_nodes->offset_rrsf_workspace_data_class);
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:workspace_dataset_volume", p_profile, p_nodes->offset_rrsf_workspace_dataset_volume);
+
+      node_definition["base:workspace_file_size"] = p_nodes->rrsf_workspace_file_size;
+
+      // inmsg and outmsg dataset information
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:in_message_dataset_name", p_profile, p_nodes->offset_inmsg_dataset_name);
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:out_message_dataset_name", p_profile, p_nodes->offset_outmsg_dataset_name);
+
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:temporary_in_message_dataset_name", p_profile, p_nodes->offset_inmsg2_dataset_name);
+      ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:temporary_out_message_dataset_name", p_profile, p_nodes->offset_outmsg2_dataset_name);
+
+      node_definition["base:in_message_records"] = p_nodes->inmsg_records;
+      node_definition["base:out_message_records"] = p_nodes->outmsg_records;
+      node_definition["base:temporary_in_message_records"] = p_nodes->inmsg2_records;
+      node_definition["base:temporary_out_message_records"] = p_nodes->outmsg2_records;
+      node_definition["base:in_message_extents"] = p_nodes->inmsg_extents;
+      node_definition["base:out_message_extents"] = p_nodes->outmsg_extents;
+      node_definition["base:in_message2_extents"] = p_nodes->inmsg2_extents;
+      node_definition["base:out_message2_extents"] = p_nodes->outmsg2_extents;
+
       // Partner node information
       node_definition["base:partner_node_operating_system_version"] = p_nodes->partner_node_os_version;
       node_definition["base:partner_node_template_release_level"] = p_nodes->binary_partner_node_template_release_level;
@@ -282,8 +327,22 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       // Determines which protocol the RRSF node is using and adds it to the result JSON
       if (p_nodes->rrsf_protocol == 01) {
         node_definition["base:node_protocol"] = "appc";
+
+        // These are only relevant if system is using APPC, instead of the modern TCP/IP
+        ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:appc_modename", p_profile, p_nodes->offset_appc_modename);
+        ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:appc_lu_name", p_profile, p_nodes->offset_appc_lu_name);
+        ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:appc_tp_name", p_profile, p_nodes->offset_appc_tp_name);
+        ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:appc_netname", p_profile, p_nodes->offset_appc_netname);
       } else if (p_nodes->rrsf_protocol == 02) {
         node_definition["base:node_protocol"] = "tcpip";
+
+        // These are only relevant if system is using TCPIP for RRSF
+        ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:resolved_tcpip_address", p_profile, p_nodes->offset_tcpip_address_resolved_by_system);
+        ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:target_tcpip_address", p_profile, p_nodes->offset_tcpip_address_target_command);
+        ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:tcpip_port", p_profile, p_nodes->offset_tcpip_port);
+        ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:tcpip_attls_rule", p_profile, p_nodes->offset_tcpip_tls_rule);
+        ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:tcpip_attls_cipher", p_profile, p_nodes->offset_tcpip_cipher_policy);
+        ProfilePostProcessor::postprocessRRSFOffsetField(node_definition, "base:tcpip_attls_certificate_user", p_profile, p_nodes->offset_tcpip_certificate_user);
       } else {
         node_definition["base:node_protocol"] = "none";
       }
