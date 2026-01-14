@@ -304,8 +304,8 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       node_definition["base:temporary_out_message_records"] = p_nodes->outmsg2_records;
       node_definition["base:in_message_extents"] = p_nodes->inmsg_extents;
       node_definition["base:out_message_extents"] = p_nodes->outmsg_extents;
-      node_definition["base:in_message2_extents"] = p_nodes->inmsg2_extents;
-      node_definition["base:out_message2_extents"] = p_nodes->outmsg2_extents;
+      node_definition["base:temporary_in_message_extents"] = p_nodes->inmsg2_extents;
+      node_definition["base:temporary_out_message_extents"] = p_nodes->outmsg2_extents;
 
       // Partner node information
       node_definition["base:partner_node_operating_system_version"] = p_nodes->partner_node_os_version;
