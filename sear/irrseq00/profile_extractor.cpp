@@ -175,7 +175,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
       generic_extract_parms_results_t *p_save_generic_result;
 
       p_arg_area->arg_pointers.p_profile_extract_parms->flags |=
-          htonl(0x14000000);
+          htonl(0x04000000);
 
       do {
         p_save_generic_result =
@@ -352,10 +352,9 @@ void ProfileExtractor::buildGenericExtractRequest(
 
   if (function_code == USER_EXTRACT_NEXT_FUNCTION_CODE ||
       function_code == GROUP_EXTRACT_NEXT_FUNCTION_CODE ||
-      function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE) {
+      function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE ||
+      function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE) {
     profile_extract_parms->flags = htonl(0x4000000);
-  } else if (function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE) {
-    profile_extract_parms->flags = htonl(0x10000000);
   }
 
   /***************************************************************************/
