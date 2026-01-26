@@ -154,7 +154,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
       p_arg_area->args.function_code = function_code;
 
       p_arg_area->arg_pointers.p_profile_extract_parms->flags |=
-          htonl(0x14000000);
+          htonl(0x04000000);
 
       // Call R_Admin
       Logger::getInstance().debug("Calling IRRSEQ00 ...");
