@@ -354,7 +354,7 @@ void ProfileExtractor::buildGenericExtractRequest(
       function_code == GROUP_EXTRACT_NEXT_FUNCTION_CODE ||
       function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE) {
     profile_extract_parms->flags = htonl(0x4000000);
-  } else if (function_code == function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE) {
+  } else if (function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE) {
     profile_extract_parms->flags = htonl(0x10000000);
   }
 
