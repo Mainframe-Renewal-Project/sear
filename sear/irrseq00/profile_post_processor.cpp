@@ -16,6 +16,7 @@
 // On z/OS these macros do nothing since "network order" and z/Architecture are
 // both big endian. This is only necessary for unit testing off platform.
 #include <arpa/inet.h>
+#include <netinet/in.h>
 
 #include "irrseq00.hpp"
 #include "key_map.hpp"
@@ -105,6 +106,17 @@ void ProfilePostProcessor::postProcessGeneric(SecurityRequest &request) {
     }
     p_segment++;
   }
+
+  if (admin_type == "dataset" || admin_type == "resource") {
+    // Generic checking for dataset & resource profiles isn't done through a field key
+    // like the rest of the data
+    if (ntohl(p_generic_result->flags) & GENERIC_FLAG) {
+      profile["profile"]["base"]["base:is_generic"] = true;
+    } else {
+      profile["profile"]["base"]["base:is_generic"] = false;
+    }
+  }
+
   request.setIntermediateResultJSON(profile);
 }
 

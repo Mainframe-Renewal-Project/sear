@@ -42,6 +42,9 @@ const uint16_t t_repeat_field_header = 0x1000;  // repeat field header
 const uint32_t f_boolean_field = 0x80000000;  // value of a boolean field
 const uint32_t f_output_only   = 0x40000000;  // output-only field
 
+// For dataset requests
+const uint32_t GENERIC_FLAG = 0x10000000;  // output-only field
+
 #pragma pack(push, 1)  // Don't byte align structure members.
 
 /*************************************************************************/

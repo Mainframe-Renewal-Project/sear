@@ -6,6 +6,7 @@
       "base:control_access_count": 0,
       "base:create_date": "12/20/23",
       "base:global_auditing": "NONE",
+      "base:is_generic":false,
       "base:last_change_date": "12/20/23",
       "base:last_reference_date": "12/20/23",
       "base:level": "0",
