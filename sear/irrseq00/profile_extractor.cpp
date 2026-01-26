@@ -176,10 +176,17 @@ void ProfileExtractor::extract(SecurityRequest &request) {
         p_arg_area->args.p_result_buffer != nullptr &&
         (function_code == USER_EXTRACT_NEXT_FUNCTION_CODE ||
          function_code == GROUP_EXTRACT_NEXT_FUNCTION_CODE ||
-         function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE)) {
+         function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE ||
+         function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE)) {
       generic_extract_parms_results_t *p_save_generic_result;
 
-      p_arg_area->arg_pointers.p_profile_extract_parms->flags = htonl(0x04000000);
+      if (function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE) {
+        p_arg_area->arg_pointers.p_profile_extract_parms->flags |=
+          htonl(0x14000000);
+      } else {
+        p_arg_area->arg_pointers.p_profile_extract_parms->flags =
+          htonl(0x04000000);
+      }
 
       do {
         p_save_generic_result =
@@ -231,9 +238,6 @@ void ProfileExtractor::extract(SecurityRequest &request) {
 
       *p_arg_area->arg_pointers.p_p_result_buffer =
           reinterpret_cast<char *>(p_save_generic_result);
-    } else if (function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE) {
-      p_arg_area->arg_pointers.p_profile_extract_parms->flags |=
-          htonl(0x14000000);
     }
 
     request.setRawResultPointer(p_arg_area->args.p_result_buffer);
