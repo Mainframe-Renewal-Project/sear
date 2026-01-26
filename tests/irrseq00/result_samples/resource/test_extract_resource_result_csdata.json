@@ -13,7 +13,7 @@
       "base:control_access_count": 0,
       "base:create_date": "03/10/25",
       "base:global_auditing": "NONE",
-      "base:is_generic":true,
+      "base:is_generic":false,
       "base:last_change_date": "03/10/25",
       "base:last_reference_date": "03/10/25",
       "base:level": "0",
