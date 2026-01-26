@@ -100,6 +100,25 @@ def create_resource(delete_resource):
     yield profile_name, class_name
 
 @pytest.fixture
+def delete_resource_in_search_class():
+    profile_name=f"SEARTEST.DISCRETE{secrets.token_hex(2)}.**".upper()
+    class_name = "SEARTEST"
+    yield profile_name, class_name
+    try:  # noqa: SIM105
+        run_tso_command(f"RDELETE {class_name} ({profile_name})")
+    except:  # noqa: E722
+        pass
+
+@pytest.fixture
+def create_resource_in_search_class(delete_resource_in_search_class):
+    """Create a new resource profile for a test"""
+    profile_name, class_name = delete_resource_in_search_class
+    run_tso_command(f"RDEFINE {class_name} {profile_name} DATA('RESOURCE PROFILE GENERATED DURING SEAR TESTING, NOT IMPORTANT') OWNER(SYS1) FGENERIC")  # noqa: E501
+    run_tso_command(f"SETROPTS GENERIC({class_name}) REFRESH")
+    run_tso_command(f"SETROPTS RACLIST({class_name}) REFRESH")
+    yield profile_name, class_name
+
+@pytest.fixture
 def delete_keyring():
     ring_name=f"SEARTEST.RING{secrets.token_hex(2)}".upper()
     owner = "SEARTEST"
