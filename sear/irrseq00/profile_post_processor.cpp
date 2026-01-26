@@ -41,10 +41,9 @@ void ProfilePostProcessor::postProcessGeneric(SecurityRequest &request) {
   // Generic checking for dataset profile isn't done through a field key
   // like the rest of the data
   if (ntohl(p_generic_result->flags) & GENERIC_DATASET_FLAG) {
-      profile["profile"]["base"]["base:is_generic"] = true;
-    } else {
-      profile["profile"]["base"]["base:is_generic"] = false;
-    }
+    profile["profile"]["base"]["base:is_generic"] = true;
+  } else {
+    profile["profile"]["base"]["base:is_generic"] = false;
   }
 
   Logger::getInstance().debug("Raw generic profile extract result:");
