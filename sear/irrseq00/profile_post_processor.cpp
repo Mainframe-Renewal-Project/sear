@@ -107,14 +107,16 @@ void ProfilePostProcessor::postProcessGeneric(SecurityRequest &request) {
     p_segment++;
   }
 
-  // Generic checking for dataset profile isn't done through a field key
-  // like the rest of the data
-  if (ntohl(p_generic_result->flags) & GENERIC_FLAG) {
-    profile["profile"]["base"]["base:is_generic"] = true;
-  } else {
-    profile["profile"]["base"]["base:is_generic"] = false;
+  if (request.admin_type == "dataset" || request.admin_type == "resource") {
+    // Generic checking for dataset & resource profiles isn't done through a field key
+    // like the rest of the data
+    if (ntohl(p_generic_result->flags) & GENERIC_FLAG) {
+      profile["profile"]["base"]["base:is_generic"] = true;
+    } else {
+      profile["profile"]["base"]["base:is_generic"] = false;
+    }
   }
-  
+
   request.setIntermediateResultJSON(profile);
 }
 
