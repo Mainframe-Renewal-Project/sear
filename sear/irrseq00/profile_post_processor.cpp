@@ -39,14 +39,6 @@ void ProfilePostProcessor::postProcessGeneric(SecurityRequest &request) {
   const generic_extract_parms_results_t *p_generic_result =
       reinterpret_cast<const generic_extract_parms_results_t *>(p_profile);
 
-  // Generic checking for dataset profile isn't done through a field key
-  // like the rest of the data
-  if (ntohl(p_generic_result->flags) & GENERIC_FLAG) {
-    profile["profile"]["base"]["base:is_generic"] = true;
-  } else {
-    profile["profile"]["base"]["base:is_generic"] = false;
-  }
-
   Logger::getInstance().debug("Raw generic profile extract result:");
   Logger::getInstance().hexDump(p_profile, request.getRawResultLength());
 
@@ -114,6 +106,15 @@ void ProfilePostProcessor::postProcessGeneric(SecurityRequest &request) {
     }
     p_segment++;
   }
+
+  // Generic checking for dataset profile isn't done through a field key
+  // like the rest of the data
+  if (ntohl(p_generic_result->flags) & GENERIC_FLAG) {
+    profile["profile"]["base"]["base:is_generic"] = true;
+  } else {
+    profile["profile"]["base"]["base:is_generic"] = false;
+  }
+  
   request.setIntermediateResultJSON(profile);
 }
 
