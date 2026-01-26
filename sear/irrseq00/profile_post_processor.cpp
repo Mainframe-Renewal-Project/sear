@@ -107,7 +107,7 @@ void ProfilePostProcessor::postProcessGeneric(SecurityRequest &request) {
     p_segment++;
   }
 
-  if (request.admin_type == "dataset" || request.admin_type == "resource") {
+  if (admin_type == "dataset" || admin_type == "resource") {
     // Generic checking for dataset & resource profiles isn't done through a field key
     // like the rest of the data
     if (ntohl(p_generic_result->flags) & GENERIC_FLAG) {
