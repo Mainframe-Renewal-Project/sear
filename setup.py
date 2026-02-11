@@ -94,8 +94,8 @@ def main():
         )
     if "ZOPEN_ROOTFS" not in os.environ:
         openssl_lib_path = os.environ["OPENSSL_ROOT"] + "/lib/"
-        zoslib_lib_path = os.environ["ZOSLIB_ROOT"] + "/lib/"
         openssl_include_path = os.environ["OPENSSL_ROOT"] +  "/include/"
+        zoslib_lib_path = os.environ["ZOSLIB_ROOT"] + "/lib/"
     else:
         openssl_lib_path = os.environ["ZOPEN_ROOTFS"] + "/usr/local/lib/"
         openssl_include_path = os.environ["ZOPEN_ROOTFS"] +  "/usr/local/include/"
