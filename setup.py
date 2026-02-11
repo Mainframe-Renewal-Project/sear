@@ -82,14 +82,14 @@ def main():
     cwd = Path.cwd()
 
     # Use ZOPEN_ROOTFS to find OpenSSL and ZOSLIB.
-    if "ZOPEN_ROOTFS" not in os.environ and not ("zoslib" in os.environ["PATH"] and "OPENSSL_ROOT" in os.environ):
+    if "ZOPEN_ROOTFS" not in os.environ and not ("zoslib" in os.environ["PATH"] and "OPENSSL_ROOT" in os.environ): # noqa: E501
         raise RuntimeError(
             "ZOPEN_ROOTFS is not set, but is required in order to "
             + "find the zopen community distributions of of OpenSSL "
             + "and ZOSLIB since they are build dependencies.\n"
             + "You can find more information about setting up zopen "
             + "community here: "
-            + "https://zopen.community/#/Guides/QuickStart?id=installing-zopen-package-manager \n"
+            + "https://zopen.community/#/Guides/QuickStart?id=installing-zopen-package-manager \n" # noqa: E501
             + "Alternatively set ZOSLIB_ROOT or OPENSSL_ROOT",
         )
     if "ZOPEN_ROOTFS" not in os.environ:
