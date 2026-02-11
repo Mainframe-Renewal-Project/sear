@@ -90,9 +90,9 @@ def main():
             + "You can find more information about setting up zopen "
             + "community here: "
             + "https://zopen.community/#/Guides/QuickStart?id=installing-zopen-package-manager \n" # noqa: E501
-            + "Alternatively set ZOSLIB_ROOT or OPENSSL_ROOT",
+            + "Alternatively set ZOSLIB_ROOT and OPENSSL_ROOT",
         )
-    
+
     if "ZOPEN_ROOTFS" not in os.environ:
         openssl_lib_path = os.environ["OPENSSL_ROOT"] + "/lib/"
         openssl_include_path = os.environ["OPENSSL_ROOT"] +  "/include/"
