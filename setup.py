@@ -82,7 +82,7 @@ def main():
     cwd = Path.cwd()
 
     # Use ZOPEN_ROOTFS to find OpenSSL and ZOSLIB.
-    if "ZOPEN_ROOTFS" not in os.environ and not ("zoslib" in os.environ["PATH"] and "OPENSSL_ROOT" in os.environ): # noqa: E501
+    if "ZOPEN_ROOTFS" not in os.environ and not ("ZOSLIB_ROOT" in os.environ and "OPENSSL_ROOT" in os.environ): # noqa: E501
         raise RuntimeError(
             "ZOPEN_ROOTFS is not set, but is required in order to "
             + "find the zopen community distributions of of OpenSSL "
@@ -94,10 +94,12 @@ def main():
         )
     if "ZOPEN_ROOTFS" not in os.environ:
         openssl_lib_path = os.environ["OPENSSL_ROOT"] + "/lib/"
+        zoslib_lib_path = os.environ["ZOSLIB_ROOT"] + "/lib/"
         openssl_include_path = os.environ["OPENSSL_ROOT"] +  "/include/"
     else:
         openssl_lib_path = os.environ["ZOPEN_ROOTFS"] + "/usr/local/lib/"
         openssl_include_path = os.environ["ZOPEN_ROOTFS"] +  "/usr/local/include/"
+        zoslib_lib_path = os.environ["ZOSLIB_ROOT"] + "/usr/local/lib/"
 
     assembled_object_path = cwd / "artifacts" / "irrseq00.o"
     generate_json_schema_header()
@@ -126,7 +128,7 @@ def main():
                     "-Wl,-b,edit=no",
                     "-Wl," + openssl_lib_path + "libcrypto.a",
                     "-Wl," + openssl_lib_path + "libssl.a",
-                    "-Wl," + openssl_lib_path + "libzoslib.a",
+                    "-Wl," + zoslib_lib_path + "libzoslib.a",
                 ],
                 extra_objects=[f"{assembled_object_path}"],
             ),
