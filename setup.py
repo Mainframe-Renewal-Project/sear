@@ -100,7 +100,7 @@ def main():
     else:
         openssl_lib_path = os.environ["ZOPEN_ROOTFS"] + "/usr/local/lib/"
         openssl_include_path = os.environ["ZOPEN_ROOTFS"] +  "/usr/local/include/"
-        zoslib_lib_path = os.environ["ZOSLIB_ROOT"] + "/usr/local/lib/"
+        zoslib_lib_path = os.environ["ZOPEN_ROOTFS"] + "/usr/local/lib/"
 
     assembled_object_path = cwd / "artifacts" / "irrseq00.o"
     generate_json_schema_header()
