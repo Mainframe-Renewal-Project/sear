@@ -254,7 +254,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
       function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE) {
     // Ignore error codes when SAF returns error codes 4,4,4
     // Since that combination means no profiles found
-    if (request.getSAFReturnCode() == 4 && request.getRACFReturnCode() > 4 &&
+    if (request.getSAFReturnCode() == 4 && request.getRACFReturnCode() == 4 &&
         request.getRACFReasonCode() == 4 ) {
       
       request.setSEARReturnCode(0);
