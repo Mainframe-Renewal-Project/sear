@@ -242,13 +242,12 @@ void ProfileExtractor::extract(SecurityRequest &request) {
       function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE ||
       function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE) {
     if (request.getSAFReturnCode() > 4 or request.getRACFReturnCode() > 4 or
-        request.getRACFReasonCode() > 4 or rc != 0 or
-        request.getRawResultPointer() == nullptr) {
+        request.getRACFReasonCode() > 4 or rc > 4) {
       request.setSEARReturnCode(4);
       // Raise Exception if Search Failed.
-      //const std::string &admin_type = request.getAdminType();
-      //throw SEARError("unable to search '" + admin_type + "' profile '" +
-                      //request.getProfileName() + "'");
+      const std::string &admin_type = request.getAdminType();
+    /throw SEARError("unable to search '" + admin_type + "' profile '" +
+                      request.getProfileName() + "'");
     }
   } else {
     if (request.getSAFReturnCode() != 0 or request.getRACFReturnCode() != 0 or
