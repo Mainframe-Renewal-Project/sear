@@ -246,7 +246,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
       request.setSEARReturnCode(4);
       // Raise Exception if Search Failed.
       const std::string &admin_type = request.getAdminType();
-    /throw SEARError("unable to search '" + admin_type + "' profile '" +
+      throw SEARError("unable to search '" + admin_type + "' profile '" +
                       request.getProfileName() + "'");
     }
   } else {
