@@ -252,8 +252,12 @@ void ProfileExtractor::extract(SecurityRequest &request) {
       function_code == GROUP_EXTRACT_NEXT_FUNCTION_CODE ||
       function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE ||
       function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE) {
-    if (request.getSAFReturnCode() > 4 or request.getRACFReturnCode() > 4 or
-        request.getRACFReasonCode() > 4 or rc > 4) {
+    // Ignore error codes when SAF returns error codes 4,4,4
+    // Since that combination means no profiles found
+    if ((request.getSAFReturnCode() > 4 or request.getRACFReturnCode() > 4 or
+        request.getRACFReasonCode() > 4 or rc > 4) or 
+        (request.getSAFReturnCode() < 4 && request.getRACFReturnCode() < 4 &&
+        request.getRACFReasonCode() < 4 && request.getRawResultPointer() == nullptr)) {
       request.setSEARReturnCode(4);
       // Raise Exception if Search Failed.
       const std::string &admin_type = request.getAdminType();
