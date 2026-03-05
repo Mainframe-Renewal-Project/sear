@@ -50,17 +50,20 @@ def test_search_resource_profiles_all():
     assert "errors" not in str(search_result.result)
     assert search_result.result["return_codes"] == successful_return_codes_search
 
-def test_search_resource_profiles_filter():
+def test_search_resource_profiles_filter(create_resources_in_search_class):
     """This test is supposed to succeed"""
+    profiles, class_name = create_resources_in_search_class
     search_result = sear(
             {
             "operation": "search", 
             "admin_type": "resource",
-            "class": "seartest", 
+            "class": class_name, 
             "resource_filter": "filter",
             },
         )
     assert "errors" not in str(search_result.result)
+    for profile in profiles:
+        assert profile in search_result.result["profiles"]
     assert search_result.result["return_codes"] == successful_return_codes
 
 def test_search_resource_profiles_discrete(create_resource_in_search_class):
