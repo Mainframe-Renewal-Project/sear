@@ -254,15 +254,21 @@ void ProfileExtractor::extract(SecurityRequest &request) {
       function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE) {
     // Ignore error codes when SAF returns error codes 4,4,4
     // Since that combination means no profiles found
-    if ((request.getSAFReturnCode() > 4 or request.getRACFReturnCode() > 4 or
-        request.getRACFReasonCode() > 4 or rc > 4) or 
-        (request.getSAFReturnCode() < 4 && request.getRACFReturnCode() < 4 &&
-        request.getRACFReasonCode() < 4 && request.getRawResultPointer() == nullptr)) {
-      request.setSEARReturnCode(4);
-      // Raise Exception if Search Failed.
-      const std::string &admin_type = request.getAdminType();
-      throw SEARError("unable to search '" + admin_type + "' profile '" +
-                      request.getProfileName() + "'");
+    if (request.getSAFReturnCode() == 4 && request.getRACFReturnCode() > 4 &&
+        request.getRACFReasonCode() == 4 ) {
+      
+      request.setSEARReturnCode(0);
+      request.setRawResultLength(0);
+    } else {
+      if (request.getSAFReturnCode() != 0 || request.getRACFReturnCode() != 0 ||
+        request.getRACFReasonCode() != 0 || rc != 0 ||
+        request.getRawResultPointer() == nullptr) {
+        request.setSEARReturnCode(4);
+        // Raise Exception if Search Failed.
+        const std::string &admin_type = request.getAdminType();
+        throw SEARError("unable to search '" + admin_type + "' profile '" +
+                        request.getProfileName() + "'");     
+      } 
     }
   } else {
     if (request.getSAFReturnCode() != 0 or request.getRACFReturnCode() != 0 or
