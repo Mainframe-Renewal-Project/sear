@@ -360,7 +360,7 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
   }
 
   // Checks if user is authorized to query RRSF settings
-  if (ntohl(rrsf_extract_result->bit_flags) (~RRSF_NOT_AUTHORIZED_TARGET_LIST)) {
+  if (ntohl(rrsf_extract_result->bit_flags) & ~RRSF_NOT_AUTHORIZED_TARGET_LIST) {
     if (ntohl(rrsf_extract_result->bit_flags) & RRSF_FULLRRSFCOMM_ACTIVE) {
       profile["profile"]["base"]["base:full_rrsf_communication_active"] = true;
     } else {
