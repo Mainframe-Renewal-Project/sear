@@ -133,9 +133,9 @@ def delete_resources_in_search_class():
         pass
 
 @pytest.fixture
-def create_resources_in_search_class(delete_resource_in_search_class):
+def create_resources_in_search_class(delete_resources_in_search_class):
     """Creates new resource profiles for a test"""
-    profiles, class_name = delete_resource_in_search_class
+    profiles, class_name = delete_resources_in_search_class
     for profile in profiles:
         run_tso_command(f"RDEFINE {class_name} {profile} DATA('RESOURCE PROFILE GENERATED DURING SEAR TESTING, NOT IMPORTANT') OWNER(SYS1) FGENERIC")  # noqa: E501
     run_tso_command(f"SETROPTS GENERIC({class_name}) REFRESH")
