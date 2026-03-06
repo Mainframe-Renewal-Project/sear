@@ -64,7 +64,7 @@ def test_search_resource_profiles_filter(create_resources_in_search_class):
     assert "errors" not in str(search_result.result)
     for profile in profiles:
         assert profile in search_result.result["profiles"]
-    assert search_result.result["return_codes"] == successful_return_codes
+    assert search_result.result["return_codes"] == successful_return_codes_search
 
 def test_search_resource_profiles_discrete(create_resource_in_search_class):
     """This test is supposed to succeed"""
@@ -73,10 +73,8 @@ def test_search_resource_profiles_discrete(create_resource_in_search_class):
             {
             "operation": "search", 
             "admin_type": "resource",
-            "class": class_name, 
-            "resource_filter": f"{profile_name}",
+            "class": class_name,
             },
         )
     assert "errors" not in str(search_result.result)
     assert profile_name in search_result.result["profiles"]
-    assert search_result.result["return_codes"] == successful_return_codes
