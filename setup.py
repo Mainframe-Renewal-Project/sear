@@ -80,16 +80,28 @@ class BuildExtensionWithAssemblerAndC(build_ext):
 def main():
     """Python extension build entrypoint."""
     cwd = Path.cwd()
+
     # Use ZOPEN_ROOTFS to find OpenSSL and ZOSLIB.
-    if "ZOPEN_ROOTFS" not in os.environ:
+    if "ZOPEN_ROOTFS" not in os.environ and not ("ZOSLIB_ROOT" in os.environ and "OPENSSL_ROOT" in os.environ): # noqa: E501
         raise RuntimeError(
             "ZOPEN_ROOTFS is not set, but is required in order to "
             + "find the zopen community distributions of of OpenSSL "
             + "and ZOSLIB since they are build dependencies.\n"
             + "You can find more information about setting up zopen "
             + "community here: "
-            + "https://zopen.community/#/Guides/QuickStart?id=installing-zopen-package-manager",
+            + "https://zopen.community/#/Guides/QuickStart?id=installing-zopen-package-manager \n" # noqa: E501
+            + "Alternatively set ZOSLIB_ROOT and OPENSSL_ROOT",
         )
+
+    if "ZOPEN_ROOTFS" not in os.environ:
+        openssl_lib_path = os.environ["OPENSSL_ROOT"] + "/lib/"
+        openssl_include_path = os.environ["OPENSSL_ROOT"] +  "/include/"
+        zoslib_lib_path = os.environ["ZOSLIB_ROOT"] + "/lib/"
+    else:
+        openssl_lib_path = os.environ["ZOPEN_ROOTFS"] + "/usr/local/lib/"
+        openssl_include_path = os.environ["ZOPEN_ROOTFS"] +  "/usr/local/include/"
+        zoslib_lib_path = os.environ["ZOPEN_ROOTFS"] + "/usr/local/lib/"
+
     assembled_object_path = cwd / "artifacts" / "irrseq00.o"
     generate_json_schema_header()
     setup_args = {
@@ -109,15 +121,15 @@ def main():
                         "externals/json",
                         "externals/json-schema-validator",
                         "externals/iconv",
-                        os.environ["ZOPEN_ROOTFS"] + "/usr/local/include",
+                        openssl_include_path,
                     ]
                 ),
                 extra_link_args=[
                     "-m64",
                     "-Wl,-b,edit=no",
-                    "-Wl," + os.environ["ZOPEN_ROOTFS"] + "/usr/local/lib/libcrypto.a",
-                    "-Wl," + os.environ["ZOPEN_ROOTFS"] + "/usr/local/lib/libssl.a",
-                    "-Wl," + os.environ["ZOPEN_ROOTFS"] + "/usr/local/lib/libzoslib.a",
+                    "-Wl," + openssl_lib_path + "libcrypto.a",
+                    "-Wl," + openssl_lib_path + "libssl.a",
+                    "-Wl," + zoslib_lib_path + "libzoslib.a",
                 ],
                 extra_objects=[f"{assembled_object_path}"],
             ),
