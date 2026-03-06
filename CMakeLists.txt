@@ -103,6 +103,8 @@ add_library(
     externals/json-schema-validator/json-validator.cpp
     externals/json-schema-validator/smtp-address-validator.cpp
     externals/json-schema-validator/string-format-check.cpp
+
+    externals/pugixml/pugixml.cpp
 )
 # SEAR's include directories
 target_include_directories(
@@ -116,6 +118,7 @@ target_include_directories(
     externals/json
     externals/json-schema-validator
     externals/iconv
+    externals/pugixml
     # tests/zoslib include directory only needed on Linux build
     "${ZOSLIB_INCLUDE}"
     # add generated header to include path
@@ -183,6 +186,7 @@ target_include_directories(
     externals/json
     externals/json-schema-validator
     externals/iconv
+    externals/pugixml
     tests/irrsdl00
     tests/zoslib
 )
@@ -219,6 +223,7 @@ add_custom_target(check ALL
                 "--std=c++${CXX_STANDARD}"
                 "--enable=all"
                 "--force"
+                "--checkers-report=report.html"
                 "--check-level=exhaustive"
                 "--inconclusive"
                 "--error-exitcode=1"
@@ -273,6 +278,8 @@ add_executable(
     externals/json-schema-validator/json-validator.cpp
     externals/json-schema-validator/smtp-address-validator.cpp
     externals/json-schema-validator/string-format-check.cpp
+
+    externals/pugixml/pugixml.cpp
 )
 # fuzz's include directories
 target_include_directories(
@@ -287,6 +294,7 @@ target_include_directories(
     externals/json
     externals/json-schema-validator
     externals/iconv
+    externals/pugixml
     tests/irrsdl00
     tests/zoslib
     "${CMAKE_CURRENT_BINARY_DIR}/sear"
