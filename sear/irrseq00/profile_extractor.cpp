@@ -153,8 +153,14 @@ void ProfileExtractor::extract(SecurityRequest &request) {
       function_code                  = save_function_code;
       p_arg_area->args.function_code = function_code;
 
-      p_arg_area->arg_pointers.p_profile_extract_parms->flags |=
+      if (function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE) {
+        p_arg_area->arg_pointers.p_profile_extract_parms->flags |=
           htonl(0x14000000);
+      } else {
+        p_arg_area->arg_pointers.p_profile_extract_parms->flags =
+          htonl(0x04000000);
+      }
+
 
       // Call R_Admin
       Logger::getInstance().debug("Calling IRRSEQ00 ...");
@@ -170,12 +176,17 @@ void ProfileExtractor::extract(SecurityRequest &request) {
         p_arg_area->args.p_result_buffer != nullptr &&
         (function_code == USER_EXTRACT_NEXT_FUNCTION_CODE ||
          function_code == GROUP_EXTRACT_NEXT_FUNCTION_CODE ||
-         function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE ||
-         function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE)) {
+         function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE ||
+         function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE)) {
       generic_extract_parms_results_t *p_save_generic_result;
 
-      p_arg_area->arg_pointers.p_profile_extract_parms->flags |=
+      if (function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE) {
+        p_arg_area->arg_pointers.p_profile_extract_parms->flags |=
           htonl(0x14000000);
+      } else {
+        p_arg_area->arg_pointers.p_profile_extract_parms->flags =
+          htonl(0x04000000);
+      }
 
       do {
         p_save_generic_result =
@@ -241,14 +252,24 @@ void ProfileExtractor::extract(SecurityRequest &request) {
       function_code == GROUP_EXTRACT_NEXT_FUNCTION_CODE ||
       function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE ||
       function_code == RESOURCE_EXTRACT_NEXT_FUNCTION_CODE) {
-    if (request.getSAFReturnCode() > 4 or request.getRACFReturnCode() > 4 or
-        request.getRACFReasonCode() > 4 or rc != 0 or
+    // Ignore error codes when SAF returns error codes 4,4,4
+    // Since that combination means no profiles found
+    if (request.getSAFReturnCode() == 4 && request.getRACFReturnCode() == 4 &&
+        request.getRACFReasonCode() == 4 ) {
+      
+      request.setSEARReturnCode(0);
+      request.setRawResultLength(0);
+      request.setRawRequestPointer(nullptr);
+    } else {
+      if (request.getSAFReturnCode() != 0 || request.getRACFReturnCode() != 0 ||
+        request.getRACFReasonCode() != 0 || rc != 0 ||
         request.getRawResultPointer() == nullptr) {
-      request.setSEARReturnCode(4);
-      // Raise Exception if Search Failed.
-      const std::string &admin_type = request.getAdminType();
-      throw SEARError("unable to search '" + admin_type + "' profile '" +
-                      request.getProfileName() + "'");
+        request.setSEARReturnCode(4);
+        // Raise Exception if Search Failed.
+        const std::string &admin_type = request.getAdminType();
+        throw SEARError("unable to search '" + admin_type + "' profile '" +
+                        request.getProfileName() + "'");     
+      } 
     }
   } else {
     if (request.getSAFReturnCode() != 0 or request.getRACFReturnCode() != 0 or

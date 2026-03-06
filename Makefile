@@ -18,7 +18,7 @@ TESTS			= ${PWD}/tests
 ZOSLIB			= $(TESTS)/zoslib
 
 CSTANDARD		= c99
-CXXSTANDARD		= c++14
+CXXSTANDARD		= c++17
 
 COMMON_INC		= \
 				-I $(SRC) \
@@ -28,8 +28,8 @@ COMMON_INC		= \
 				-I $(KEY_MAP) \
 				-I $(VALIDATION) \
 				-I $(JSON) \
-				-I $(JSON_SCHEMA)
-				-I $(ICONV) \
+				-I $(JSON_SCHEMA) \
+				-I $(ICONV)
 
 # JSON Schemas
 SEAR_SCHEMA	= $(shell cat ${PWD}/schema.json | jq -c)
@@ -68,7 +68,7 @@ else ifeq ($(UNAME), Darwin)
 	CC			= clang
 	CXX			= clang++
 
-	SRCZOSLIB	= $(ZOSLIB)/*.c
+	SRCZOSLIB	= $(ZOSLIB)/*.cpp
 
 	CFLAGS		= \
 				-std=$(CXXSTANDARD) -D__ptr32= \
@@ -88,7 +88,7 @@ else
 	CC			= clang
 	CXX			= clang++
 
-	SRCZOSLIB	= $(ZOSLIB)/*.c
+	SRCZOSLIB	= $(ZOSLIB)/*.cpp
 
 	CFLAGS		= \
 				-std=$(CXXSTANDARD) -D__ptr32= \

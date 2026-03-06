@@ -16,6 +16,7 @@
 // On z/OS these macros do nothing since "network order" and z/Architecture are
 // both big endian. This is only necessary for unit testing off platform.
 #include <arpa/inet.h>
+#include <netinet/in.h>
 
 #include "irrseq00.hpp"
 #include "key_map.hpp"
@@ -105,6 +106,17 @@ void ProfilePostProcessor::postProcessGeneric(SecurityRequest &request) {
     }
     p_segment++;
   }
+
+  if (admin_type == "dataset" || admin_type == "resource") {
+    // Generic checking for dataset & resource profiles isn't done through a field key
+    // like the rest of the data
+    if (ntohl(p_generic_result->flags) & GENERIC_FLAG) {
+      profile["profile"]["base"]["base:is_generic"] = true;
+    } else {
+      profile["profile"]["base"]["base:is_generic"] = false;
+    }
+  }
+
   request.setIntermediateResultJSON(profile);
 }
 
@@ -304,8 +316,8 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
       node_definition["base:temporary_out_message_records"] = p_nodes->outmsg2_records;
       node_definition["base:in_message_extents"] = p_nodes->inmsg_extents;
       node_definition["base:out_message_extents"] = p_nodes->outmsg_extents;
-      node_definition["base:in_message2_extents"] = p_nodes->inmsg2_extents;
-      node_definition["base:out_message2_extents"] = p_nodes->outmsg2_extents;
+      node_definition["base:temporary_in_message_extents"] = p_nodes->inmsg2_extents;
+      node_definition["base:temporary_out_message_extents"] = p_nodes->outmsg2_extents;
 
       // Partner node information
       node_definition["base:partner_node_operating_system_version"] = p_nodes->partner_node_os_version;
@@ -359,64 +371,69 @@ void ProfilePostProcessor::postProcessRACFRRSF(SecurityRequest &request) {
     profile["profile"]["base"]["base:nodes"] = nodes;
   }
 
-  if (rrsf_extract_result->bit_flags == RRSF_FULLRRSFCOMM_ACTIVE) {
-    profile["profile"]["base"]["base:full_rrsf_communication_active"] = true;
-  } else {
-    profile["profile"]["base"]["base:full_rrsf_communication_active"] = false;
-  }
+  // Checks if user is authorized to query RRSF settings
+  if (ntohl(rrsf_extract_result->bit_flags) & ~RRSF_NOT_AUTHORIZED_SET_LIST && ntohl(rrsf_extract_result->bit_flags) & ~RRSF_NOT_AUTHORIZED_TARGET_LIST) {
+    if (ntohl(rrsf_extract_result->bit_flags) & RRSF_FULLRRSFCOMM_ACTIVE) {
+      profile["profile"]["base"]["base:full_rrsf_communication_active"] = true;
+    } else {
+      profile["profile"]["base"]["base:full_rrsf_communication_active"] = false;
+    }
 
-  if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_ACTIVE) {
-    profile["profile"]["base"]["base:full_autodirect_active"] = true;
-  } else {
-    profile["profile"]["base"]["base:full_autodirect_active"] = false;
-  }
+    if (ntohl(rrsf_extract_result->bit_flags) & RRSF_SET_AUTODIRECT_ACTIVE) {
+      profile["profile"]["base"]["base:full_autodirect_active"] = true;
+    } else {
+      profile["profile"]["base"]["base:full_autodirect_active"] = false;
+    }
 
-  if (rrsf_extract_result->bit_flags == RRSF_SET_AUTODIRECT_APP_UPDATES) {
-    profile["profile"]["base"]["base:autodirect_application_updates"] = true;
-  } else {
-    profile["profile"]["base"]["base:autodirect_application_updates"] = false;
-  }
+    if (ntohl(rrsf_extract_result->bit_flags) & RRSF_SET_AUTODIRECT_APP_UPDATES) {
+      profile["profile"]["base"]["base:autodirect_application_updates"] = true;
+    } else {
+      profile["profile"]["base"]["base:autodirect_application_updates"] = false;
+    }
 
-  if (rrsf_extract_result->bit_flags == RRSF_SET_AUTO_PASSWORD_DIRECTION) {
-    profile["profile"]["base"]["base:autodirect_passwords"] = true;
-  } else {
-    profile["profile"]["base"]["base:autodirect_passwords"] = false;
-  }
+    if (ntohl(rrsf_extract_result->bit_flags) & RRSF_SET_AUTO_PASSWORD_DIRECTION) {
+      profile["profile"]["base"]["base:autodirect_passwords"] = true;
+    } else {
+      profile["profile"]["base"]["base:autodirect_passwords"] = false;
+    }
 
-  if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_APPC_ACTIVE) {
-    profile["profile"]["base"]["base:appc_trace_active"] = true;
-  } else {
-    profile["profile"]["base"]["base:appc_trace_active"] = false;
-  }
+    if (ntohl(rrsf_extract_result->bit_flags) & RRSF_SET_TRACE_APPC_ACTIVE) {
+      profile["profile"]["base"]["base:appc_trace_active"] = true;
+    } else {
+      profile["profile"]["base"]["base:appc_trace_active"] = false;
+    }
 
-  if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_IMAGE_ACTIVE) {
-    profile["profile"]["base"]["base:image_trace_active"] = true;
-  } else {
-    profile["profile"]["base"]["base:image_trace_active"] = false;
-  }
-  
-  if (rrsf_extract_result->bit_flags == RRSF_SET_TRACE_SSL_ACTIVE) {
-    profile["profile"]["base"]["base:ssl_trace_active"] = true;
-  } else {
-    profile["profile"]["base"]["base:ssl_trace_active"] = false;
-  }
+    if (ntohl(rrsf_extract_result->bit_flags) & RRSF_SET_TRACE_IMAGE_ACTIVE) {
+      profile["profile"]["base"]["base:image_trace_active"] = true;
+    } else {
+      profile["profile"]["base"]["base:image_trace_active"] = false;
+    }
+    
+    if (ntohl(rrsf_extract_result->bit_flags) & RRSF_SET_TRACE_SSL_ACTIVE) {
+      profile["profile"]["base"]["base:ssl_trace_active"] = true;
+    } else {
+      profile["profile"]["base"]["base:ssl_trace_active"] = false;
+    }
 
-  if (rrsf_extract_result->bit_flags == RRSF_PRIVILEGED_ATTRIBUTE) {
-    profile["profile"]["base"]["base:privileged_attribute_on"] = true;
-  } else {
-    profile["profile"]["base"]["base:privileged_attribute_on"] = false;
-  }
+    if (ntohl(rrsf_extract_result->bit_flags) & RRSF_PRIVILEGED_ATTRIBUTE) {
+      profile["profile"]["base"]["base:privileged_attribute_on"] = true;
+    } else {
+      profile["profile"]["base"]["base:privileged_attribute_on"] = false;
+    }
 
-  if (rrsf_extract_result->bit_flags == RRSF_TRUSTED_ATTRIBUTE) {
-    profile["profile"]["base"]["base:trusted_attribute_on"] = true;
-  } else {
-    profile["profile"]["base"]["base:trusted_attribute_on"] = false;
-  }
+    if (ntohl(rrsf_extract_result->bit_flags) & RRSF_TRUSTED_ATTRIBUTE) {
+      profile["profile"]["base"]["base:trusted_attribute_on"] = true;
+    } else {
+      profile["profile"]["base"]["base:trusted_attribute_on"] = false;
+    }
 
-  if (rrsf_extract_result->bit_flags == RRSF_NOT_ENOUGH_SPACE) {
-      request.setSEARReturnCode(4);
-      // Raise Exception if RRSF extract Failed.
-      throw SEARError("Not enough memory to extract RRSF settings");
+    if (ntohl(rrsf_extract_result->bit_flags) & RRSF_NOT_ENOUGH_SPACE) {
+        request.setSEARReturnCode(4);
+        // Raise Exception if RRSF extract Failed.
+        throw SEARError("Not enough memory to extract RRSF settings");
+    }
+  } else {
+    throw SEARError("Not authorized to query RRSF settings");
   }
   
   request.setIntermediateResultJSON(profile);

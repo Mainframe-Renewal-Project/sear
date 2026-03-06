@@ -224,3 +224,8 @@ sear_schema.hpp
 # Python wheels
 
 *.whl
+
+# Shell stuff
+
+*.ps1
+*.sh
