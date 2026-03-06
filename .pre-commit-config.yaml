@@ -10,6 +10,7 @@ repos:
         name: cppcheck
         entry: | 
           bash -c '
+            rm -rf build/linux
             cmake --preset linux-test
             cmake --build --preset linux-test --target check
           '
@@ -23,6 +24,7 @@ repos:
         name: unit-test
         entry: | 
           bash -c '
+            rm -rf build/linux
             cmake --preset linux-test -DBUILD_SHARED_LIBS=on
             cmake --build --preset linux-test --target sear
             cmake --build --preset linux-test --target test_runner
