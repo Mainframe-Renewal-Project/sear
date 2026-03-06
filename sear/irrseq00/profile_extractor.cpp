@@ -259,6 +259,8 @@ void ProfileExtractor::extract(SecurityRequest &request) {
       
       request.setSEARReturnCode(0);
       request.setRawResultLength(0);
+      request.setRawRequestPointer(nullptr);
+      return;
     } else {
       if (request.getSAFReturnCode() != 0 || request.getRACFReturnCode() != 0 ||
         request.getRACFReasonCode() != 0 || rc != 0 ||
