@@ -181,7 +181,7 @@ int8_t map_trait_type(const nlohmann::json &trait) {
   if (trait.is_boolean()) {
     return TRAIT_TYPE_BOOLEAN;
   }
-  if (trait.is_string() or trait.is_array()) {
+  if (trait.is_string() || trait.is_array()) {
     return TRAIT_TYPE_STRING;
   }
   if (trait.is_number_unsigned()) {

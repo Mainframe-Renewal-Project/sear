@@ -35,8 +35,8 @@ void KeyringExtractor::extract(SecurityRequest &request) {
   }
 
   // Check Return Codes
-  if (request.getSAFReturnCode() != 0 or request.getRACFReturnCode() != 0 or
-      request.getRACFReasonCode() != 0 or
+  if (request.getSAFReturnCode() != 0 || request.getRACFReturnCode() != 0 ||
+      request.getRACFReasonCode() != 0 ||
       request.getRawResultPointer() == nullptr) {
     request.setSEARReturnCode(4);
     // Raise Exception if Extract Failed.

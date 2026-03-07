@@ -109,8 +109,8 @@ void Logger::hexDump(const char* p_buffer, int length) const {
       }
     } else {
       if (isatty(fileno(stdout))) {
-        if (decoded_unique_ptr.get()[i] == '\t' or
-            decoded_unique_ptr.get()[i] == '\r' or
+        if (decoded_unique_ptr.get()[i] == '\t' ||
+            decoded_unique_ptr.get()[i] == '\r' ||
             decoded_unique_ptr.get()[i] == '\n') {
           hex_stream << ansi_bright_yellow_;
           decoded_stream << ansi_bright_yellow_ << '.' << ansi_reset_;
