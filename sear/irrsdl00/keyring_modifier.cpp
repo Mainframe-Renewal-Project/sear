@@ -33,7 +33,7 @@ void KeyringModifier::addOrDeleteKeyring(SecurityRequest &request) {
   }
 
   // Check Return Codes
-  if (request.getSAFReturnCode() > 4 or request.getRACFReturnCode() > 4) {
+  if (request.getSAFReturnCode() > 4 || request.getRACFReturnCode() > 4) {
     request.setSEARReturnCode(4);
     // Raise Exception if Modify Failed.
     const std::string &admin_type = request.getAdminType();
@@ -71,7 +71,7 @@ void KeyringModifier::addCertificate(SecurityRequest &request) {
   }
 
   // Check Return Codes
-  if (request.getSAFReturnCode() > 4 or request.getRACFReturnCode() > 4) {
+  if (request.getSAFReturnCode() > 4 || request.getRACFReturnCode() > 4) {
     request.setSEARReturnCode(4);
     // Raise Exception if Modify Failed.
     const std::string &admin_type = request.getAdminType();
@@ -113,7 +113,7 @@ void KeyringModifier::deleteOrRemoveCertificate(SecurityRequest &request) {
   }
 
   // Check Return Codes
-  if (request.getSAFReturnCode() > 4 or request.getRACFReturnCode() > 4) {
+  if (request.getSAFReturnCode() > 4 || request.getRACFReturnCode() > 4) {
     request.setSEARReturnCode(4);
     // Raise Exception if Modify Failed.
     const std::string &admin_type = request.getAdminType();

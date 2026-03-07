@@ -60,11 +60,11 @@ void IRRSMO00::call_irrsmo00(SecurityRequest &request,
 
   // 'knownConditionTrueFalse' is a false positive. These conditionals work as
   // intended
-  if (((saf_return_code != 8) or (racf_return_code != 4000)) or
+  if (((saf_return_code != 8) || (racf_return_code != 4000)) ||
       // cppcheck-suppress knownConditionTrueFalse
-      ((saf_return_code == 8) and
+      ((saf_return_code == 8) &&
        // cppcheck-suppress knownConditionTrueFalse
-       (racf_return_code == 4000) and (racf_reason_code > 100000000))) {
+       (racf_return_code == 4000) && (racf_reason_code > 100000000))) {
     request.setSAFReturnCode(saf_return_code);
     request.setRACFReturnCode(racf_return_code);
     request.setRACFReasonCode(racf_reason_code);
@@ -153,7 +153,7 @@ bool IRRSMO00::does_profile_exist(SecurityRequest &request) {
     return false;
   }
 
-  if ((request.getRACFReturnCode() > 0) or (request.getSAFReturnCode() > 0)) {
+  if ((request.getRACFReturnCode() > 0) || (request.getSAFReturnCode() > 0)) {
     return false;
   }
 
