@@ -309,7 +309,7 @@ void SecurityRequest::load(const nlohmann::json& request) {
   if (operation_ == "add") {
     irrsmo00_options_ = 15;
   } else if (operation_ == "alter") {
-    if (admin_type_ != "group-connection" and admin_type_ != "racf-options" and
+    if (admin_type_ != "group-connection" && admin_type_ != "racf-options" &&
         admin_type_ != "permission") {
       irrsmo00_options_ = 15;
     }
@@ -371,7 +371,7 @@ void SecurityRequest::buildResult() {
     result_json["errors"] = errors_;
   }
 
-  if (intermediate_result_json_ != nullptr and errors_.empty()) {
+  if (intermediate_result_json_ != nullptr && errors_.empty()) {
     if (!intermediate_result_json_.empty()) {
       result_json.merge_patch(intermediate_result_json_);
     }
