@@ -23,7 +23,7 @@ build:
 
 core:
   - changed-files:
-    - any-glob-to-any-file: 'sear/**'
+    - any-glob-to-any-file: 'sear/**/*'
     - any-glob-to-any-file: 'schema.json'
 
 tests:
