@@ -6,19 +6,23 @@ labels: bug
 
 ---
 
-**Describe the bug**
+## Describe the bug
+
 A description of what the bug is.
 
-**To Reproduce**
+## To Reproduce
+
 Steps to reproduce the behavior:
 
-**Expected behavior**
+## Expected behavior
+
 A description of what you expected to happen.
 
-**Console Output**
+## Console Output
+
 If applicable, add console output to help explain your problem.
 
-**Environment Information:**
+## Environment Information
 
 - z/OS Version: [e.g. 3.1]
 - Python Version: [e.g. IBM Python 3.13]
@@ -27,5 +31,6 @@ If applicable, add console output to help explain your problem.
 - [] Made sure the RACF subsystem user is set up correctly
 - [] Is all of the latest z/OS Language Environment service installed?
 
-**Additional context**
+## Additional context
+
 Add any other context about the problem here.
