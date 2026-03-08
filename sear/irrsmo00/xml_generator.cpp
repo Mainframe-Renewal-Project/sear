@@ -5,6 +5,7 @@
 #include <new>
 #include <pugixml.hpp>
 #include <regex>
+#include <sstream>
 
 #include "../conversion.hpp"
 #include "key_map.hpp"
@@ -67,8 +68,7 @@ void XMLGenerator::buildXMLString(SecurityRequest& request) {
   // Save and encode the XML string into the buffer
   // "": no indentation characters at all
   // pugi::format_raw: prevent pugixml from adding extra whitespace
-  // pugi::format_no_declaration: prevent pugixml from adding its own
-  doc.save(ss, "", pugi::format_raw | pugi::format_no_declaration);
+  doc.save(ss, "", pugi::format_raw);
 
   std::string xml_string = ss.str();
 
@@ -102,42 +102,6 @@ void XMLGenerator::buildXMLString(SecurityRequest& request) {
   request.setRawRequestLength(request_str_ebcdic.length());
 }
 
-// Private Functions of XMLGenerator
-std::string XMLGenerator::replaceXMLChars(std::string data) {
-  // Replace xml-substituted characters with their substitution strings
-  std::string amp = "&amp;", gt = "&gt;", lt = "&lt;", quot = "&quot;",
-              apos = "&apos;";
-  for (std::size_t i = 0; i < data.length(); i++) {
-    if (data[i] == '&') {
-      data.replace(i, 1, amp, 0, amp.length());
-      i += amp.length() - 1 - 1;
-    }
-    if (data[i] == '<') {
-      data.replace(i, 1, lt, 0, lt.length());
-      i += lt.length() - 1 - 1;
-    }
-    if (data[i] == '>') {
-      data.replace(i, 1, gt, 0, gt.length());
-      i += gt.length() - 1 - 1;
-    }
-    if (data[i] == '"') {
-      data.replace(i, 1, quot, 0, quot.length());
-      i += quot.length() - 1 - 1;
-    }
-    if (data[i] == '\'') {
-      data.replace(i, 1, apos, 0, apos.length());
-      i += apos.length() - 1 - 1;
-    }
-  }
-  return data;
-}
-void XMLGenerator::buildAttribute(std::string name, std::string value) {
-  // Ex: " operation=set"
-  name  = XMLGenerator::replaceXMLChars(name);
-  value = XMLGenerator::replaceXMLChars(value);
-  xml_string_.append(" " + name + "=\"" + value + "\"");
-}
-
 void XMLGenerator::buildPugixmlSingleTrait(pugi::xml_node& node,
                                            const std::string& tag,
                                            const std::string& operation,
@@ -147,59 +111,12 @@ void XMLGenerator::buildPugixmlSingleTrait(pugi::xml_node& node,
   // operation=set>Read</base:universal_access>"
   pugi::xml_node trait = node.append_child(tag.c_str());
 
-  if (operation.length() != 0) {
+  if (!operation.empty()) {
     trait.append_attribute("operation") = operation.c_str();
   }
-  if (value.length() != 0) {
+  if (!value.empty()) {
     trait.text().set(value.c_str());
   }
-}
-
-void XMLGenerator::buildXMLHeaderAttributes(
-    const SecurityRequest& request, const std::string& true_admin_type) {
-  // Obtain JSON Header information and Build into Admin Object where
-  // appropriate
-  const std::string& operation    = request.getOperation();
-  const std::string& profile_name = request.getProfileName();
-  const std::string& class_name   = request.getClassName();
-  const std::string& group        = request.getGroup();
-  const std::string& volume       = request.getVolume();
-  const std::string& generic      = request.getGeneric();
-
-  if (operation == "add") {
-    XMLGenerator::buildAttribute("override", "no");
-  }
-  std::string irrsmo00_operation = XMLGenerator::convertOperation(operation);
-  XMLGenerator::buildAttribute("operation", irrsmo00_operation);
-  /*
-  if (request.contains("run")) {
-    buildAttribute("run", request["run"].get<std::string>());
-  }
-  */
-  if (true_admin_type == "systemsettings") {
-    return;
-  }
-  XMLGenerator::buildAttribute("name", profile_name);
-  if ((true_admin_type == "user") or (true_admin_type == "group")) {
-    return;
-  }
-  if (true_admin_type == "groupconnection") {
-    XMLGenerator::buildAttribute("group", group);
-    return;
-  }
-  if ((true_admin_type == "resource") or (true_admin_type == "permission")) {
-    XMLGenerator::buildAttribute("class", class_name);
-  }
-  if ((true_admin_type == "dataset") or (true_admin_type == "permission")) {
-    if (!volume.empty()) {
-      XMLGenerator::buildAttribute("volume", volume);
-    }
-    if (!generic.empty()) {
-      XMLGenerator::buildAttribute("generic", generic);
-    }
-    return;
-  }
-  return;
 }
 
 void XMLGenerator::buildPugixmlHeaderAttributes(
