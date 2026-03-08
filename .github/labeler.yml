@@ -28,7 +28,7 @@ core:
 
 tests:
   - changed-files:
-    - any-glob-to-any-file: 'tests/**'
+    - any-glob-to-any-file: 'tests/**/*'
     - any-glob-to-any-file: 'python_tests/**'
     - any-glob-to-any-file: 'lua_tests/**'
     - any-glob-to-any-file: 'go_tests/**'
