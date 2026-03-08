@@ -112,6 +112,7 @@ def main():
                     glob("sear/**/*.cpp")
                     + glob("sear/*.cpp")
                     + glob("externals/json-schema-validator/*.cpp")
+                    + glob("externals/pugixml/*.cpp")
                     + ["sear/python/_sear.c"]
                 ),
                 include_dirs=(
@@ -120,6 +121,7 @@ def main():
                         "sear",
                         "externals/json",
                         "externals/json-schema-validator",
+                        "externals/pugixml",
                         "externals/iconv",
                         openssl_include_path,
                     ]
