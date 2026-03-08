@@ -4,7 +4,6 @@
 #include <nlohmann/json.hpp>
 #include <pugixml.hpp>
 #include <string>
-#include <sstream>
 
 #include "logger.hpp"
 #include "security_request.hpp"
@@ -13,11 +12,6 @@ namespace SEAR {
 // XMLGenerator Generates an XML String from a JSON string
 class XMLGenerator {
  private:
-  std::string xml_string_;
-  static std::string replaceXMLChars(std::string data);
-  void buildAttribute(std::string name, std::string value);
-  void buildXMLHeaderAttributes(const SEAR::SecurityRequest& request,
-                                const std::string& true_admin_type);
   static std::string convertOperation(const std::string& operation);
   static std::string convertOperator(const std::string& trait_operator);
   static std::string convertAdminType(const std::string& admin_type);
