@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 #include <pugixml.hpp>
 #include <string>
+#include <sstream>
 
 #include "logger.hpp"
 #include "security_request.hpp"
