@@ -155,11 +155,11 @@ const trait_key_mapping_t RESOURCE_BASE_SEGMENT_MAP[]{
      TRAIT_TYPE_STRING, {false, false, false, false},
      },
     {
-     "base:member_class_name",   "member",
+     "base:member",   "member",
      TRAIT_TYPE_STRING,    {true, true, true, false},
      },
     {
-     "base:member_class_names",   "member",
+     "base:members",   "member",
      TRAIT_TYPE_REPEAT, {false, false, false, false},
      },
     {
@@ -274,7 +274,7 @@ const trait_key_mapping_t RESOURCE_CDTINFO_KEY_MAP[]{
      TRAIT_TYPE_UINT,   {true, false, false, true},
      },
     {
-     "cdtinfo:member_class_name", "cdtmembr",
+     "cdtinfo:member", "cdtmembr",
      TRAIT_TYPE_STRING,   {true, false, false, true},
      },
     {
