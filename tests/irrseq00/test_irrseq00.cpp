@@ -69,6 +69,12 @@ void test_parse_extract_next_user_result() {
                                  TEST_EXTRACT_NEXT_USER_RESULT_RAW, false);
 }
 
+void test_parse_extract_next_user_empty_result() {
+  test_parse_extract_next_empty_result(TEST_EXTRACT_NEXT_USER_REQUEST_JSON,
+                                       TEST_EXTRACT_NEXT_USER_RESULT_EMPTY_JSON,
+                                       false);
+}
+
 /*************************************************************************/
 /* Group                                                                 */
 /*************************************************************************/
@@ -117,6 +123,12 @@ void test_parse_extract_next_group_result() {
   test_parse_extract_next_result(TEST_EXTRACT_NEXT_GROUP_REQUEST_JSON,
                                  TEST_EXTRACT_NEXT_GROUP_RESULT_JSON,
                                  TEST_EXTRACT_NEXT_GROUP_RESULT_RAW, false);
+}
+
+void test_parse_extract_next_group_empty_result() {
+  test_parse_extract_next_empty_result(
+      TEST_EXTRACT_NEXT_GROUP_REQUEST_JSON,
+      TEST_EXTRACT_NEXT_GROUP_RESULT_EMPTY_JSON, false);
 }
 
 /*************************************************************************/
@@ -233,6 +245,12 @@ void test_parse_extract_next_dataset_result() {
                                  TEST_EXTRACT_NEXT_DATASET_RESULT_RAW, false);
 }
 
+void test_parse_extract_next_dataset_empty_result() {
+  test_parse_extract_next_empty_result(
+      TEST_EXTRACT_NEXT_DATASET_REQUEST_JSON,
+      TEST_EXTRACT_NEXT_DATASET_RESULT_EMPTY_JSON, false);
+}
+
 /*************************************************************************/
 /* Resource                                                              */
 /*************************************************************************/
@@ -288,4 +306,10 @@ void test_parse_extract_next_resource_result() {
   test_parse_extract_next_result(TEST_EXTRACT_NEXT_RESOURCE_REQUEST_JSON,
                                  TEST_EXTRACT_NEXT_RESOURCE_RESULT_JSON,
                                  TEST_EXTRACT_NEXT_RESOURCE_RESULT_RAW, false);
+}
+
+void test_parse_extract_next_resource_empty_result() {
+  test_parse_extract_next_empty_result(
+      TEST_EXTRACT_NEXT_RESOURCE_REQUEST_JSON,
+      TEST_EXTRACT_NEXT_RESOURCE_RESULT_EMPTY_JSON, false);
 }

@@ -118,6 +118,7 @@ int main() {
 
   RUN_TEST(test_generate_extract_next_user_request);
   RUN_TEST(test_parse_extract_next_user_result);
+  RUN_TEST(test_parse_extract_next_user_empty_result);
 
   // Group
   RUN_TEST(test_generate_extract_group_request);
@@ -129,6 +130,7 @@ int main() {
 
   RUN_TEST(test_generate_extract_next_group_request);
   RUN_TEST(test_parse_extract_next_group_result);
+  RUN_TEST(test_parse_extract_next_group_empty_result);
 
   // Group Connection
   RUN_TEST(test_generate_extract_group_connection_request);
@@ -155,6 +157,7 @@ int main() {
 
   RUN_TEST(test_generate_extract_next_dataset_request);
   RUN_TEST(test_parse_extract_next_dataset_result);
+  RUN_TEST(test_parse_extract_next_dataset_empty_result);
 
   // Resource
   RUN_TEST(test_generate_extract_resource_request);
@@ -168,6 +171,7 @@ int main() {
 
   RUN_TEST(test_generate_extract_next_resource_request);
   RUN_TEST(test_parse_extract_next_resource_result);
+  RUN_TEST(test_parse_extract_next_resource_empty_result);
 
   /*************************************************************************/
   /* IRRSDL00                                                              */
