@@ -1,5 +1,5 @@
 
-from helper import successful_return_codes, successful_return_codes_search
+from helper import successful_return_codes, empty_return_codes_search
 
 # Import SEAR
 from sear import sear
@@ -27,7 +27,7 @@ def test_search_resource_profiles_class_missing():
     assert search_result.result["return_codes"] != successful_return_codes
 
 def test_search_resource_profiles_nonexistent_class():
-    """This test is supposed to fail"""
+    """This test is supposed to succeed with empty result"""
     search_result = sear(
             {
             "operation": "search", 
@@ -35,8 +35,8 @@ def test_search_resource_profiles_nonexistent_class():
             "class": "WRONG", 
             },
         )
-    assert "errors" in str(search_result.result)
-    assert search_result.result["return_codes"] != successful_return_codes
+    assert "errors" not in str(search_result.result)
+    assert search_result.result["return_codes"] == empty_return_codes_search
 
 def test_search_resource_profiles_all():
     """This test is supposed to succeed"""
@@ -48,7 +48,7 @@ def test_search_resource_profiles_all():
             },
         )
     assert "errors" not in str(search_result.result)
-    assert search_result.result["return_codes"] == successful_return_codes_search
+    assert search_result.result["return_codes"] == successful_return_codes
 
 def test_search_resource_profiles_filter(create_resources_in_search_class):
     """This test is supposed to succeed"""
@@ -64,7 +64,7 @@ def test_search_resource_profiles_filter(create_resources_in_search_class):
     assert "errors" not in str(search_result.result)
     for profile in profiles:
         assert profile in search_result.result["profiles"]
-    assert search_result.result["return_codes"] == successful_return_codes_search
+    assert search_result.result["return_codes"] == successful_return_codes
 
 def test_search_resource_profiles_discrete(create_resource_in_search_class):
     """This test is supposed to succeed"""
