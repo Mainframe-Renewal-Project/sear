@@ -1,9 +1,10 @@
 #include "profile_extractor.hpp"
 
+#include <stdio.h>
+
 #include <algorithm>
 #include <cctype>
 #include <cstdio>
-#include <stdio.h>
 #include <cstdlib>
 #include <cstring>
 #include <memory>
@@ -88,7 +89,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
     // Preserve Return & Reason Codes
     request.setSAFReturnCode(ntohl(p_arg_area->args.SAF_rc));
     request.setRACFReturnCode(ntohl(p_arg_area->args.RACF_rc));
-    request.setRACFReasonCode(ntohl(p_arg_area->args.RACF_rsn));  
+    request.setRACFReasonCode(ntohl(p_arg_area->args.RACF_rsn));
   }
   /***************************************************************************/
   /* Generic Extract                                                         */
@@ -99,7 +100,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
   /*   - Group Connection Extract                                            */
   /*   - Resource Extract                                                    */
   /*   - Data Set Extract                                                    */
-  /***************************************************************************/  
+  /***************************************************************************/
   else {
     // Build 31-bit Arg Area
     auto unique_ptr = make_unique31<generic_extract_underbar_arg_area_t>();
@@ -155,12 +156,11 @@ void ProfileExtractor::extract(SecurityRequest &request) {
 
       if (function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE) {
         p_arg_area->arg_pointers.p_profile_extract_parms->flags |=
-          htonl(0x14000000);
+            htonl(0x14000000);
       } else {
         p_arg_area->arg_pointers.p_profile_extract_parms->flags =
-          htonl(0x04000000);
+            htonl(0x04000000);
       }
-
 
       // Call R_Admin
       Logger::getInstance().debug("Calling IRRSEQ00 ...");
@@ -182,10 +182,10 @@ void ProfileExtractor::extract(SecurityRequest &request) {
 
       if (function_code == DATASET_EXTRACT_NEXT_FUNCTION_CODE) {
         p_arg_area->arg_pointers.p_profile_extract_parms->flags |=
-          htonl(0x14000000);
+            htonl(0x14000000);
       } else {
         p_arg_area->arg_pointers.p_profile_extract_parms->flags =
-          htonl(0x04000000);
+            htonl(0x04000000);
       }
 
       do {
@@ -240,6 +240,14 @@ void ProfileExtractor::extract(SecurityRequest &request) {
           reinterpret_cast<char *>(p_save_generic_result);
     }
 
+    // If the loop found at least one profile, we treat the overall
+    // operation as a success (0,0,0) even though the last call was 4,4,4.
+    if (!request.getFoundProfiles().empty()) {
+      p_arg_area->args.SAF_rc   = 0;
+      p_arg_area->args.RACF_rc  = 0;
+      p_arg_area->args.RACF_rsn = 0;
+    }
+
     request.setRawResultPointer(p_arg_area->args.p_result_buffer);
     // Preserve Return & Reason Codes
     request.setSAFReturnCode(ntohl(p_arg_area->args.SAF_rc));
@@ -255,21 +263,21 @@ void ProfileExtractor::extract(SecurityRequest &request) {
     // Ignore error codes when SAF returns error codes 4,4,4
     // Since that combination means no profiles found
     if (request.getSAFReturnCode() == 4 && request.getRACFReturnCode() == 4 &&
-        request.getRACFReasonCode() == 4 ) {
-      
+        request.getRACFReasonCode() == 4) {
       request.setSEARReturnCode(0);
       request.setRawResultLength(0);
       request.setRawRequestPointer(nullptr);
+      return;
     } else {
       if (request.getSAFReturnCode() != 0 || request.getRACFReturnCode() != 0 ||
-        request.getRACFReasonCode() != 0 || rc != 0 ||
-        request.getRawResultPointer() == nullptr) {
+          request.getRACFReasonCode() != 0 || rc != 0 ||
+          request.getRawResultPointer() == nullptr) {
         request.setSEARReturnCode(4);
         // Raise Exception if Search Failed.
         const std::string &admin_type = request.getAdminType();
         throw SEARError("unable to search '" + admin_type + "' profile '" +
-                        request.getProfileName() + "'");     
-      } 
+                        request.getProfileName() + "'");
+      }
     }
   } else {
     if (request.getSAFReturnCode() != 0 || request.getRACFReturnCode() != 0 ||
@@ -307,7 +315,7 @@ void ProfileExtractor::extract(SecurityRequest &request) {
   if (request.getAdminType() == "racf-rrsf") {
     const racf_rrsf_extract_results_t *p_rrsf_result =
         reinterpret_cast<const racf_rrsf_extract_results_t *>(p_raw_result);
-    raw_result_length = ntohl(p_rrsf_result->result_buffer_length);    
+    raw_result_length = ntohl(p_rrsf_result->result_buffer_length);
   } else if (request.getAdminType() == "racf-options") {
     const racf_options_extract_results_t *p_setropts_result =
         reinterpret_cast<const racf_options_extract_results_t *>(p_raw_result);

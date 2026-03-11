@@ -207,6 +207,30 @@ void test_parse_extract_next_result(const char *test_extract_next_request_json,
   free(r_admin_result_mock);
 }
 
+void test_parse_extract_next_empty_result(
+    const char *test_extract_next_request_json,
+    const char *test_extract_next_result_json, bool debug) {
+  std::string request_json = get_json_sample(test_extract_next_request_json);
+  std::string result_json_expected =
+      get_json_sample(test_extract_next_result_json);
+
+  // Mock R_Admin result
+  r_admin_result_size_mock = 0;
+  r_admin_rc_mock          = 4;
+  r_admin_saf_rc_mock      = 4;
+  r_admin_racf_rc_mock     = 4;
+  r_admin_racf_reason_mock = 4;
+
+  sear_result_t *result =
+      sear(request_json.c_str(), request_json.length(), debug);
+
+  TEST_ASSERT_EQUAL_STRING(result_json_expected.c_str(), result->result_json);
+  TEST_ASSERT_EQUAL_INT32(result_json_expected.length(),
+                          result->result_json_length);
+  TEST_ASSERT_EQUAL_CHAR(0, result->result_json[result->result_json_length]);
+  TEST_ASSERT_EQUAL_INT32(r_admin_result_size_mock, result->raw_result_length);
+}
+
 void test_parse_extract_result_profile_not_found(
     const char *test_extract_request_json,
     const char *test_extract_result_profile_not_found_json, bool debug) {

@@ -132,6 +132,8 @@
 
 #define TEST_EXTRACT_NEXT_USER_RESULT_JSON \
   IRRSEQ00_RESULT_SAMPLES "user/test_extract_next_user_result.json"
+#define TEST_EXTRACT_NEXT_USER_RESULT_EMPTY_JSON \
+  IRRSEQ00_RESULT_SAMPLES "user/test_extract_next_user_empty_result.json"
 #define TEST_EXTRACT_NEXT_USER_RESULT_RAW \
   IRRSEQ00_RESULT_SAMPLES "user/test_extract_next_user_result.bin"
 
@@ -150,6 +152,8 @@
 
 #define TEST_EXTRACT_NEXT_GROUP_RESULT_JSON \
   IRRSEQ00_RESULT_SAMPLES "group/test_extract_next_group_result.json"
+#define TEST_EXTRACT_NEXT_GROUP_RESULT_EMPTY_JSON \
+  IRRSEQ00_RESULT_SAMPLES "group/test_extract_next_group_empty_result.json"
 #define TEST_EXTRACT_NEXT_GROUP_RESULT_RAW \
   IRRSEQ00_RESULT_SAMPLES "group/test_extract_next_group_result.bin"
 
@@ -189,6 +193,9 @@
 
 #define TEST_EXTRACT_NEXT_DATASET_RESULT_JSON \
   IRRSEQ00_RESULT_SAMPLES "dataset/test_extract_next_dataset_result.json"
+#define TEST_EXTRACT_NEXT_DATASET_RESULT_EMPTY_JSON \
+  IRRSEQ00_RESULT_SAMPLES                           \
+  "dataset/test_extract_next_dataset_empty_result.json"
 #define TEST_EXTRACT_NEXT_DATASET_RESULT_RAW \
   IRRSEQ00_RESULT_SAMPLES "dataset/test_extract_next_dataset_result.bin"
 
@@ -207,6 +214,9 @@
 
 #define TEST_EXTRACT_NEXT_RESOURCE_RESULT_JSON \
   IRRSEQ00_RESULT_SAMPLES "resource/test_extract_next_resource_result.json"
+#define TEST_EXTRACT_NEXT_RESOURCE_RESULT_EMPTY_JSON \
+  IRRSEQ00_RESULT_SAMPLES                            \
+  "resource/test_extract_next_resource_empty_result.json"
 #define TEST_EXTRACT_NEXT_RESOURCE_RESULT_RAW \
   IRRSEQ00_RESULT_SAMPLES "resource/test_extract_next_resource_result.bin"
 
@@ -225,6 +235,7 @@ void test_parse_extract_user_result_pseudo_boolean();
 
 void test_generate_extract_next_user_request();
 void test_parse_extract_next_user_result();
+void test_parse_extract_next_user_empty_result();
 
 // Group
 void test_generate_extract_group_request();
@@ -236,6 +247,7 @@ void test_parse_extract_group_result_extraneous_parameter_provided();
 
 void test_generate_extract_next_group_request();
 void test_parse_extract_next_group_result();
+void test_parse_extract_next_group_empty_result();
 
 // Group Connection
 void test_generate_extract_group_connection_request();
@@ -260,6 +272,7 @@ void test_parse_extract_dataset_result_extraneous_parameter_provided();
 
 void test_generate_extract_next_dataset_request();
 void test_parse_extract_next_dataset_result();
+void test_parse_extract_next_dataset_empty_result();
 
 // Resource
 void test_generate_extract_resource_request();
@@ -272,5 +285,6 @@ void test_parse_extract_resource_result_extraneous_parameter_provided();
 
 void test_generate_extract_next_resource_request();
 void test_parse_extract_next_resource_result();
+void test_parse_extract_next_resource_empty_result();
 
 #endif
