@@ -4,35 +4,39 @@ documentation:
 
 meta:
   - changed-files:
-    - any-glob-to-any-file: '.github/ISSUE_TEMPLATE/**'
-    - any-glob-to-any-file: '.vscode/**'
-    - any-glob-to-any-file: '.github/labeler.yml'
-    - any-glob-to-any-file: '.github/PULL_REQUEST_TEMPLATE.md'
-    - any-glob-to-any-file: 'logo.svg'
+    - any-glob-to-any-file:
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.vscode/**'
+      - '.github/labeler.yml'
+      - '.github/PULL_REQUEST_TEMPLATE.md'
+      - 'logo.svg'
 
 build:
   - changed-files:
-    - any-glob-to-any-file: 'pyproject.toml'
-    - any-glob-to-any-file: 'setup.py'
-    - any-glob-to-any-file: .github/workflows/**
-    - any-glob-to-any-file: 'cmake/**'
-    - any-glob-to-any-file: '**.cmake'
-    - any-glob-to-any-file: 'CMakeLists.txt'
-    - any-glob-to-any-file: 'CMakePresets.json'
-    - any-glob-to-any-file: 'Makefile'
+    - any-glob-to-any-file:
+      - 'pyproject.toml'
+      - 'setup.py'
+      - '.github/workflows/**'
+      - 'cmake/**'
+      - '**.cmake'
+      - 'CMakeLists.txt'
+      - 'CMakePresets.json'
+      - 'Makefile'
 
 core:
   - changed-files:
-    - any-glob-to-any-file: 'sear/**/*'
-    - any-glob-to-any-file: 'schema.json'
+    - any-glob-to-any-file:
+      - 'sear/**/*'
+      - 'schema.json'
 
 tests:
   - changed-files:
-    - any-glob-to-any-file: 'tests/**/*'
-    - any-glob-to-any-file: 'python_tests/**'
-    - any-glob-to-any-file: 'lua_tests/**'
-    - any-glob-to-any-file: 'go_tests/**'
-    - any-glob-to-any-file: 'java_tests/**'
+    - any-glob-to-any-file:
+      - 'tests/**/*'
+      - 'python_tests/**'
+      - 'lua_tests/**'
+      - 'go_tests/**'
+      - 'java_tests/**'
 
 python:
   - changed-files:
