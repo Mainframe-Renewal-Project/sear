@@ -21,7 +21,7 @@ jobs:
           cmake --build --preset linux-bench --target bench_runner
 
       - name: Run Benchmarks
-        run: ./build/bench_runner > benchmark_results.json
+        run: ./build/linux/bench_runner > benchmark_results.json
 
       - name: Store and Compare Results
         uses: benchmark-action/github-action-benchmark@v1
