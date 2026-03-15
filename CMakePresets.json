@@ -35,6 +35,17 @@
             "cacheVariables": {
                 "SEAR_UNIT_TEST": "ON"
             }
+        },
+        {
+            "name": "linux-bench",
+            "displayName": "Linux Benchmarking",
+            "description": "Used for benchmarking under Linux",
+            "binaryDir": "${sourceDir}/build/linux",
+            "toolchainFile": "cmake/clang.cmake",
+            "cacheVariables": {
+                "SEAR_BUILD_BENCHMARKS": "ON",
+                "SEAR_UNIT_TEST": "ON"
+            }
         }
     ],
     "buildPresets": [
@@ -60,6 +71,10 @@
         {
             "name": "linux-test",
             "configurePreset": "linux-test"
+        },
+        {
+            "name": "linux-bench",
+            "configurePreset": "linux-bench"
         }
     ]
 }

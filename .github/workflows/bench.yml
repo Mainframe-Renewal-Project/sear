@@ -1,0 +1,37 @@
+name: Benchmark Test
+on: [push, pull_request]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: sudo apt-get install -y clang cmake
+
+      - name: Benchmark test
+        run: |
+          cmake --preset linux-bench -DBUILD_SHARED_LIBS=on
+          cmake --build --preset linux-bench --target sear
+          cmake --build --preset linux-bench --target bench_runner
+
+      - name: Run Benchmarks
+        run: ./build/bench_runner > benchmark_results.json
+
+      - name: Store and Compare Results
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          tool: 'customGeneric'     
+          output-file-path: benchmark_results.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # This enables the PR comment
+          comment-on-alert: true
+          summary-always: true
+          # Alert if memory or time increases by more than 15%
+          alert-threshold: '115%'
+          benchmark-data-dir-path: "benchmarks"
