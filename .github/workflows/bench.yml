@@ -1,5 +1,7 @@
 name: Benchmark Test
-on: [pull_request]
+on:
+  pull_request_target:
+    branches: [ dev, main ]
 
 permissions:
   contents: write
@@ -34,9 +36,14 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
 
       - name: Post Comment to PR
-        uses: peter-evans/create-or-update-comment@v3
+        uses: mshick/add-pr-comment@v3
+        id: comment
         with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
+          message: |
             ### 🚀 Benchmark Results
             ${{ env.TABLE_DATA }}
+      - name: Check outputs
+        run: |
+          echo "Comment created: ${{ steps.comment.outputs.comment-created }}"
+          echo "Comment updated: ${{ steps.comment.outputs.comment-updated }}"
+          echo "Comment ID: ${{ steps.comment.outputs.comment-id }}"
