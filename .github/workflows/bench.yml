@@ -1,11 +1,5 @@
 name: Benchmark Test
-on:
-  pull_request_target:
-    branches: [ main, dev ]
-
-permissions:
-  contents: write
-  pull-requests: write
+on: [pull_request]
 
 jobs:
   benchmark:
@@ -25,27 +19,9 @@ jobs:
       - name: Run Benchmarks
         run: ./build/linux/bench_runner > benchmark_results.json
 
-      - name: Format Results to Markdown
-        id: format_results
+      - name: Generate Job Summary
         run: |
-          # Use jq to build a Markdown table string from your JSON
-          echo "TABLE_DATA<<EOF" >> $GITHUB_ENV
-          echo "| Benchmark | Avg Time (ms) | Memory Growth (KB) |" >> $GITHUB_ENV
-          echo "|-----------|----------------|---------------------|" >> $GITHUB_ENV
-          jq -r '.[] | "| \(.name) | \(.avg_time_ms) | \(.mem_growth_kb) |"' benchmark_results.json >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-
-      - name: Post Comment to PR
-        uses: mshick/add-pr-comment@v3
-        id: comment
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          message: |
-            ### 🚀 Benchmark Results
-            ${{ env.TABLE_DATA }}
-
-      - name: Check outputs
-        run: |
-          echo "Comment created: ${{ steps.comment.outputs.comment-created }}"
-          echo "Comment updated: ${{ steps.comment.outputs.comment-updated }}"
-          echo "Comment ID: ${{ steps.comment.outputs.comment-id }}"
+          echo "### 🚀 Benchmark Results" >> $GITHUB_STEP_SUMMARY
+          echo "| Benchmark | Avg Time (ms) | Memory Growth (KB) |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|----------------|---------------------|" >> $GITHUB_STEP_SUMMARY
+          jq -r '.[] | "| \(.name) | \(.avg_time_ms) | \(.mem_growth_kb) |"' benchmark_results.json >> $GITHUB_STEP_SUMMARY
