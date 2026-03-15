@@ -1,5 +1,5 @@
 name: Benchmark Test
-on: [pull_request]
+on: [pull_request_target]
 
 permissions:
   contents: write
@@ -41,6 +41,7 @@ jobs:
           message: |
             ### 🚀 Benchmark Results
             ${{ env.TABLE_DATA }}
+
       - name: Check outputs
         run: |
           echo "Comment created: ${{ steps.comment.outputs.comment-created }}"
