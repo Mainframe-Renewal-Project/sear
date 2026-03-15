@@ -1,7 +1,5 @@
 name: Benchmark Test
-on:
-  pull_request_target:
-    branches: [ dev, main ]
+on: [pull_request]
 
 permissions:
   contents: write
