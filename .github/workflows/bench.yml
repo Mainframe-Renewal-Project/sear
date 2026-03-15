@@ -30,6 +30,10 @@ jobs:
           tool: 'customSmallerIsBetter'
           output-file-path: benchmark_results.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Benchmark history 
+          auto-push: true
+          # History branch name
+          gh-pages-branch: "bench-history"
           # This enables the PR comment
           comment-on-alert: true
           summary-always: true
