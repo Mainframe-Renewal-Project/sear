@@ -26,7 +26,8 @@ jobs:
       - name: Store and Compare Results
         uses: benchmark-action/github-action-benchmark@v1
         with:
-          tool: 'customGeneric'     
+          name: "SEAR C++ Benchmarks"
+          tool: 'customSmallerIsBetter'
           output-file-path: benchmark_results.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # This enables the PR comment
