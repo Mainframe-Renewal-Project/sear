@@ -37,6 +37,7 @@ jobs:
         uses: mshick/add-pr-comment@v3
         id: comment
         with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           message: |
             ### 🚀 Benchmark Results
             ${{ env.TABLE_DATA }}
