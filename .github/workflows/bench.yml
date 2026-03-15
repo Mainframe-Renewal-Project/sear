@@ -1,5 +1,5 @@
 name: Benchmark Test
-on: [push, pull_request]
+on: [pull_request]
 
 permissions:
   contents: write
@@ -23,20 +23,20 @@ jobs:
       - name: Run Benchmarks
         run: ./build/linux/bench_runner > benchmark_results.json
 
-      - name: Store and Compare Results
-        uses: benchmark-action/github-action-benchmark@v1
+      - name: Format Results to Markdown
+        id: format_results
+        run: |
+          # Use jq to build a Markdown table string from your JSON
+          echo "TABLE_DATA<<EOF" >> $GITHUB_ENV
+          echo "| Benchmark | Avg Time (ms) | Memory Growth (KB) |" >> $GITHUB_ENV
+          echo "|-----------|----------------|---------------------|" >> $GITHUB_ENV
+          jq -r '.[] | "| \(.name) | \(.avg_time_ms) | \(.mem_growth_kb) |"' benchmark_results.json >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Post Comment to PR
+        uses: peter-evans/create-or-update-comment@v3
         with:
-          name: "SEAR C++ Benchmarks"
-          tool: 'customSmallerIsBetter'
-          output-file-path: benchmark_results.json
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          # Benchmark history 
-          auto-push: true
-          # History branch name
-          gh-pages-branch: "bench-history"
-          # This enables the PR comment
-          comment-on-alert: true
-          summary-always: true
-          # Alert if memory or time increases by more than 15%
-          alert-threshold: '115%'
-          benchmark-data-dir-path: "benchmarks"
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ### 🚀 Benchmark Results
+            ${{ env.TABLE_DATA }}

@@ -64,11 +64,6 @@ void run_bench(const std::string& name, int iterations, F func) {
 int main() {
   const int N      = 1000;
   const bool debug = false;
-  struct rusage startup_usage;
-
-  auto suite_start_time = high_resolution_clock::now();
-  getrusage(RUSAGE_SELF, &startup_usage);
-  long baseline_mem = startup_usage.ru_maxrss;
 
   // Validation Logic Benchmark
   run_bench("Validation_Syntax_Error", N, [&]() {
@@ -114,30 +109,14 @@ int main() {
     sear(json.c_str(), json.length(), debug);
   });
 
-  // Total Suite Time
-  auto suite_end_time = high_resolution_clock::now();
-  duration<double, std::milli> total_duration =
-      suite_end_time - suite_start_time;
-
-  // Memory Metric
-  struct rusage final_usage;
-  getrusage(RUSAGE_SELF, &final_usage);
-
+  // Final JSON Output
   std::cout << "[\n";
   for (size_t i = 0; i < all_results.size(); ++i) {
-    // Time Entry
     std::cout << "  {\n";
-    std::cout << "    \"name\": \"" << all_results[i].name << " (Time)\",\n";
-    std::cout << "    \"unit\": \"ms\",\n";
-    std::cout << "    \"value\": " << std::fixed << std::setprecision(4)
-              << all_results[i].time_ms << "\n";
-    std::cout << "  },\n";
-
-    // Memory Entry
-    std::cout << "  {\n";
-    std::cout << "    \"name\": \"" << all_results[i].name << " (Memory)\",\n";
-    std::cout << "    \"unit\": \"KB\",\n";
-    std::cout << "    \"value\": " << std::fixed << std::setprecision(4)
+    std::cout << "    \"name\": \"" << all_results[i].name << "\",\n";
+    std::cout << "    \"avg_time_ms\": " << std::fixed << std::setprecision(4)
+              << all_results[i].time_ms << ",\n";
+    std::cout << "    \"mem_growth_kb\": " << std::fixed << std::setprecision(4)
               << all_results[i].mem_growth_kb << "\n";
     std::cout << "  }" << (i == all_results.size() - 1 ? "" : ",") << "\n";
   }
