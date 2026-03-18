@@ -348,6 +348,9 @@ std::string XMLGenerator::JSONValueToString(const nlohmann::json& trait) {
     return trait.get<std::string>();
   }
   if (trait.is_array()) {
+    // Return directly if the array is [] to avoid adding extra delimeters.
+    if (trait.empty()) return "";
+
     std::string output_string = "";
     std::string delimeter =
         ", ";  // May just be " " or just be ","; May need to test
