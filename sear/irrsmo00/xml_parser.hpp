@@ -16,7 +16,7 @@ class XMLParser {
                                    nlohmann::json& current_json);
 
  public:
-  nlohmann::json buildJSONString(SecurityRequest& request);
+  static nlohmann::json buildJSONString(SecurityRequest& request);
 };
 }  // namespace SEAR
 

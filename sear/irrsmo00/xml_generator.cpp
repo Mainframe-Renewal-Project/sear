@@ -6,6 +6,7 @@
 #include <pugixml.hpp>
 #include <regex>
 #include <sstream>
+#include <unordered_map>
 
 #include "../conversion.hpp"
 #include "key_map.hpp"
@@ -20,6 +21,22 @@
 #endif
 
 namespace SEAR {
+
+// Admin Type Mapping between SEAR and IRRSMO00
+// std::string_view for readonly strings
+const std::unordered_map<std::string_view, std::string_view> ADMIN_TYPE_MAP = {
+    {"group-connection", "groupconnection"},
+    {    "racf-options",  "systemsettings"}
+};
+
+// Operation Mapping between SEAR and IRRSMO00
+const std::unordered_map<std::string_view, std::string_view> OPERATION_MAP = {
+    {    "add",      "set"},
+    {  "alter",      "set"},
+    { "delete",      "del"},
+    {"extract", "listdata"}
+};
+
 // Public Functions of XMLGenerator
 void XMLGenerator::buildXMLString(SecurityRequest& request) {
   // Main body function that builds an xml string
@@ -46,18 +63,17 @@ void XMLGenerator::buildXMLString(SecurityRequest& request) {
 
   std::string true_admin_type = convertAdminType(admin_type);
   auto admin_node = security_request_node.append_child(true_admin_type.c_str());
-  XMLGenerator::buildPugixmlHeaderAttributes(admin_node, request,
-                                             true_admin_type);
+
+  buildPugixmlHeaderAttributes(admin_node, request, true_admin_type);
   admin_node.append_attribute("requestid") =
       (true_admin_type + "_request").c_str();
 
   if (!traits.empty()) {
     Logger::getInstance().debug("Validating traits ...");
-
+    // Validate traits
     validate_traits(admin_type, request);
-
-    XMLGenerator::buildPugixmlRequestData(admin_node, true_admin_type,
-                                          admin_type, traits);
+    // Build XML body with traits
+    buildPugixmlRequestData(admin_node, true_admin_type, admin_type, traits);
 
     Logger::getInstance().debug("Done");
   }
@@ -82,23 +98,20 @@ void XMLGenerator::buildXMLString(SecurityRequest& request) {
 
   Logger::getInstance().debug("Request XML:", xml_string);
 
-  std::string request_str_ebcdic = fromUTF8(xml_string, "IBM-1047");
+  std::string request_str_ebcdic   = fromUTF8(xml_string, "IBM-1047");
+  size_t request_str_ebcdic_length = request_str_ebcdic.length();
 
-  auto request_unique_ptr_ebcdic =
-      std::make_unique<char[]>(request_str_ebcdic.length());
-
-  std::strncpy(request_unique_ptr_ebcdic.get(), request_str_ebcdic.c_str(),
-               request_str_ebcdic.length());
+  // Allocate memory for the EBCDIC encoded XML string and copy the string into
+  // it
+  auto buffer = std::make_unique<char[]>(request_str_ebcdic_length);
+  // std::copy: instead of strncpy, it does not add null terminators
+  std::copy(request_str_ebcdic.begin(), request_str_ebcdic.end(), buffer.get());
 
   Logger::getInstance().debug("EBCDIC encoded request XML:");
-  Logger::getInstance().hexDump(request_unique_ptr_ebcdic.get(),
-                                request_str_ebcdic.length());
+  Logger::getInstance().hexDump(buffer.get(), request_str_ebcdic.length());
 
-  Logger::getInstance().debugAllocate(request_unique_ptr_ebcdic.get(), 64,
-                                      request_str_ebcdic.length());
-
-  request.setRawRequestPointer(request_unique_ptr_ebcdic.get());
-  request_unique_ptr_ebcdic.release();
+  // buffer.release() returns directly the pointer
+  request.setRawRequestPointer(buffer.release());
   request.setRawRequestLength(request_str_ebcdic.length());
 }
 
@@ -171,115 +184,136 @@ void XMLGenerator::buildPugixmlRequestData(pugi::xml_node& node,
                                            const std::string& true_admin_type,
                                            const std::string& admin_type,
                                            nlohmann::json request_data) {
-  // Builds the xml for request data (segment-trait information) passed in a
-  // json object
-  pugi::xml_node current_segment_node;
-  nlohmann::json built_request{};
-  std::string current_segment = "", item_segment, item_trait, item_operator;
-  const char *translated_key, *racf_field_key;
+  // Build the traits into the XML body. Each trait is represented as a child
+  // node under the admin type node. E.g.
+  // delete:operparm:receive_internal_console_messages: null
+  for (auto& [key, value] : request_data.items()) {
+    // Replace regex by string splitting
+    // Expected format: [operation:][segment]:trait
+    std::string item_operator, item_segment, item_trait;
 
-  std::regex segment_trait_key_regex{R"~((([a-z]*):*)([a-z]*):(.*))~"};
-  std::smatch segment_trait_key_data;
+    // Find the position of first and last colon in the key
+    size_t first_colon = key.find(':');
+    size_t last_colon  = key.rfind(':');
 
-  auto item = request_data.begin();
-  while (!request_data.empty()) {
-    for (item = request_data.begin(); item != request_data.end();) {
-      regex_match(item.key(), segment_trait_key_data, segment_trait_key_regex);
-      if (segment_trait_key_data[3] == "") {
-        item_operator = "";
-        item_segment  = segment_trait_key_data[2];
-      } else {
-        item_operator = segment_trait_key_data[2];
-        item_segment  = segment_trait_key_data[3];
+    // operation:segment:trait
+    if (first_colon != last_colon) {
+      // E.g. delete from delete:operparm:receive_internal_console_messages
+      item_operator = key.substr(0, first_colon);
+      // E.g. operparm from delete:operparm:receive_internal_console_messages
+      item_segment =
+          key.substr(first_colon + 1, last_colon - (first_colon + 1));
+
+    } else {
+      // segment:trait
+      //  E.g. base from base:name
+      item_segment = key.substr(0, first_colon);
+    }
+    // Trait name for the last part
+    // E.g. receive_internal_console_messages from
+    // delete:operparm:receive_internal_console_messages
+    item_trait = key.substr(last_colon + 1);
+
+    // systemsettings/groupconnection/permission don't use <segment>
+    bool is_flat = (true_admin_type == "systemsettings" ||
+                    true_admin_type == "groupconnection" ||
+                    true_admin_type == "permission");
+
+    // Segment node that the trait will be attached to.
+    // E.g. <base> or <operparm>
+    pugi::xml_node segment_node;
+
+    if (is_flat) {
+      // Use the admin type node directly
+      // E.g. <systemsettings> or <groupconnection> or <permission>
+      segment_node = node;
+    } else {
+      // Check if segment node already exists
+      segment_node = node.child(item_segment.c_str());
+
+      if (!segment_node) {
+        // If segment node does not exist, create it
+        segment_node = node.append_child(item_segment.c_str());
       }
-      item_trait = segment_trait_key_data[4];
-
-      if (current_segment.empty()) {
-        current_segment = item_segment;
-        if ((true_admin_type != "systemsettings") and
-            (true_admin_type != "groupconnection") and
-            (true_admin_type != "permission")) {
-          current_segment_node = node.append_child(current_segment.c_str());
-        } else {
-          current_segment_node = node;
-        }
-      }
-
-      if ((item_segment.compare(current_segment) == 0)) {
-        // Build each individual trait
-        int8_t trait_operator = map_operator(item_operator);
-        // Need to obtain the actual data
-        int8_t trait_type    = map_trait_type(item.value());
-        int8_t expected_type = get_trait_type(admin_type, item_segment,
-                                              item_segment + ":" + item_trait);
-        if (expected_type == TRAIT_TYPE_PSEUDO_BOOLEAN and
-            trait_type != TRAIT_TYPE_NULL) {
-          trait_type = TRAIT_TYPE_PSEUDO_BOOLEAN;
-        }
-        translated_key = get_racf_key(admin_type.c_str(), item_segment.c_str(),
-                                      (item_segment + ":" + item_trait).c_str(),
-                                      trait_type, trait_operator);
-        if (translated_key == nullptr) {
-          // Temporary to get list/repeat traits working for RACF Options
-          translated_key =
-              get_racf_key(admin_type.c_str(), item_segment.c_str(),
-                           (item_segment + ":" + item_trait).c_str(),
-                           TRAIT_TYPE_REPEAT, trait_operator);
-        }
-        std::string trait_operator_str, value;
-        switch (trait_type) {
-          case TRAIT_TYPE_NULL:
-            trait_operator_str = "del";
-            value              = "";
-            break;
-          case TRAIT_TYPE_BOOLEAN:
-            trait_operator_str = (item.value()) ? "set" : "del";
-            value              = "";
-            break;
-          case TRAIT_TYPE_PSEUDO_BOOLEAN:
-            trait_operator_str = "set";
-            value              = (item.value()) ? "YES" : "NO";
-            break;
-          default:
-            trait_operator_str =
-                (item_operator.empty())
-                    ? "set"
-                    : XMLGenerator::convertOperator(item_operator);
-            value = (trait_type == TRAIT_TYPE_BOOLEAN)
-                        ? ""
-                        : XMLGenerator::JSONValueToString(item.value());
-        }
-        racf_field_key =
-            (!(*(translated_key + std::strlen(translated_key) - 1) == '*'))
-                ? translated_key
-                : item_trait.c_str();
-        XMLGenerator::buildPugixmlSingleTrait(
-            current_segment_node, ("racf:" + std::string(racf_field_key)),
-            trait_operator_str, value);
-        item = request_data.erase(item);
-      } else
-        item++;
     }
 
-    current_segment = "";
+    int8_t trait_operator = map_operator(item_operator);
+    int8_t trait_type     = map_trait_type(value);
+    int8_t expected_type  = get_trait_type(admin_type, item_segment,
+                                           item_segment + ":" + item_trait);
+
+    // If the trait type is pseudo-boolean, but the expected type is not null,
+    // then treat it as pseudo-boolean. In this case, we want to treat it as
+    // pseudo-boolean "YES"/"NO"
+    if (expected_type == TRAIT_TYPE_PSEUDO_BOOLEAN &&
+        trait_type != TRAIT_TYPE_NULL) {
+      trait_type = TRAIT_TYPE_PSEUDO_BOOLEAN;
+    }
+
+    const char* translated_key = get_racf_key(
+        admin_type.c_str(), item_segment.c_str(),
+        (item_segment + ":" + item_trait).c_str(), trait_type, trait_operator);
+
+    std::string trait_operation = "set";
+    std::string val_str;
+
+    switch (trait_type) {
+      case TRAIT_TYPE_NULL:
+        trait_operation = "del";
+        break;
+      case TRAIT_TYPE_BOOLEAN:
+        // value.get<bool>() returns a boolean from JSON value.
+        if (value.get<bool>() == true) {
+          trait_operation = "set";
+        } else {
+          trait_operation = "del";
+        }
+        break;
+      case TRAIT_TYPE_PSEUDO_BOOLEAN:
+        trait_operation = "set";
+
+        if (value.get<bool>() == true) {
+          val_str = "YES";
+        } else {
+          val_str = "NO";
+        }
+        break;
+      default:
+        // Use item_operator to determine the trait operation.
+        // If item_operator is empty, then it defaults to "set" operation.
+        if (item_operator.empty()) {
+          trait_operation = "set";
+        } else {
+          trait_operation = XMLGenerator::convertOperator(item_operator);
+        }
+        val_str = JSONValueToString(value);
+        break;
+    }
+
+    std::string racf_tag = "racf:";
+
+    // E.g. racf:name
+    if (translated_key &&
+        translated_key[std::strlen(translated_key) - 1] != '*') {
+      racf_tag += translated_key;
+    } else {
+      racf_tag += item_trait;
+    }
+
+    buildPugixmlSingleTrait(segment_node, racf_tag, trait_operation, val_str);
   }
 }
 
 std::string XMLGenerator::convertOperation(const std::string& operation) {
   // Converts the designated function to the correct IRRSMO00 operation.
-  if (operation == "add") {
-    return "set";
+  auto operator_xml = OPERATION_MAP.find(operation);
+  if (operator_xml != OPERATION_MAP.end()) {
+    // Found in mapper, return the corresponding XML operator
+    // operator_xml->second: returns the value
+    return std::string(operator_xml->second);
+  } else {
+    return "";
   }
-  if (operation == "alter") {
-    return "set";
-  }
-  if (operation == "delete") {
-    return "del";
-  }
-  if (operation == "extract") {
-    return "listdata";
-  }
-  return "";
 }
 
 std::string XMLGenerator::convertOperator(const std::string& trait_operator) {
@@ -295,13 +329,18 @@ std::string XMLGenerator::convertAdminType(const std::string& admin_type) {
   // definitions. group-connection to groupconnection, racf-options to
   // systemsettings. All other admin types should be
   // unchanged
-  if (admin_type == "group-connection") {
-    return "groupconnection";
+
+  // Find the admin type in mapper
+  auto admin_type_xml = ADMIN_TYPE_MAP.find(admin_type);
+  // Check if the admin type exists in mapper.
+  if (admin_type_xml != ADMIN_TYPE_MAP.end()) {
+    // Found in mapper, return the corresponding XML admin type
+    // admin_type_xml->second: returns the value
+    return std::string(admin_type_xml->second);
+  } else {
+    // Not found, return the original admin type
+    return admin_type;
   }
-  if (admin_type == "racf-options") {
-    return "systemsettings";
-  }
-  return admin_type;
 }
 
 std::string XMLGenerator::JSONValueToString(const nlohmann::json& trait) {
