@@ -31,6 +31,22 @@ const trait_key_mapping_t USER_BASE_SEGMENT_MAP[]{
      TRAIT_TYPE_STRING,   {false, true, true, false},
      },
     {
+     "base:contain",    "contain",
+     TRAIT_TYPE_BOOLEAN, {false, false, true, true},
+     },
+    {
+     "base:never_contain",    "nevercon",
+     TRAIT_TYPE_BOOLEAN, {false, false, true, true},
+     },
+    {
+     "base:no_contain",    "nocontai",
+     TRAIT_TYPE_BOOLEAN, {false, true, true, false},
+     },
+    {
+     "base:allow_contain",    "allowcon",
+     TRAIT_TYPE_BOOLEAN, {false, false, true, true},
+     },
+    {
      "base:class_authorizations",    "clcnt",
      TRAIT_TYPE_REPEAT, {false, false, false, false},
      },
