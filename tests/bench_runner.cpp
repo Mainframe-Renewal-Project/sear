@@ -72,7 +72,7 @@ int main() {
   });
 
   // IRRSMO00 Benchmarks (XML Generation)
-  run_bench("IRRSMO_Generate_Add_User", N, [&]() {
+  run_bench("IRRSMO00_Generate_Add_User", N, [&]() {
     std::string json = get_json_sample(
         "tests/irrsmo00/request_samples/user/test_add_user_request.json");
     sear_result_t* res = sear(json.c_str(), json.length(), debug);

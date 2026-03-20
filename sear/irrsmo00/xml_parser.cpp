@@ -18,31 +18,23 @@
 namespace SEAR {
 // Public Methods of XMLParser
 nlohmann::json XMLParser::buildJSONString(SecurityRequest& request) {
-  std::string xml_buffer;
-
+  // Build JSON String from raw XML Security Result returned by IRRSMO00
   const char* p_raw_result = request.getRawResultPointer();
   int raw_result_length    = request.getRawResultLength();
-
-  auto xml_ascii_result_unique_ptr =
-      std::make_unique<char[]>(raw_result_length + 1);
-  std::memset(xml_ascii_result_unique_ptr.get(), 0, raw_result_length + 1);
 
   // Build a JSON string from the XML result string, SMO return and Reason
   // Codes
   Logger::getInstance().debug("Raw EBCDIC encoded result XML:");
   Logger::getInstance().hexDump(p_raw_result, raw_result_length);
 
-  std::memcpy(xml_ascii_result_unique_ptr.get(), p_raw_result,
-              raw_result_length);
+  // Create a string from the raw pointer + length for conversion
+  std::string ebcdic_string(p_raw_result, raw_result_length);
 
-  std::string ebcdic_string = std::string(xml_ascii_result_unique_ptr.get());
-
-  xml_buffer                = toUTF8(ebcdic_string, "IBM-1047");
+  std::string xml_buffer = toUTF8(ebcdic_string, "IBM-1047");
 
   Logger::getInstance().debug("Decoded result XML:", xml_buffer);
 
   // Pugixml refactor
-  nlohmann::json result_json;
   pugi::xml_document doc;
 
   // Load XML string into pugixml document
@@ -60,7 +52,9 @@ nlohmann::json XMLParser::buildJSONString(SecurityRequest& request) {
     throw SEARError("XML does not contain <securityresult> node");
   }
 
+  nlohmann::json result_json;
   pugi::xml_node admin_node = security_result_node.first_child();
+
   if (admin_node) {
     // recursively build the JSON object from the DOM tree
     convertXmlNodeToJson(admin_node, result_json);
