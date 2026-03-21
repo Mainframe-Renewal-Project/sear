@@ -205,8 +205,20 @@ def test_add_user_omvs_traits(delete_user):
             },
             },
         )
+    
+    extract_result = sear(
+            {
+            "operation": "extract",
+            "admin_type": "user",
+            "userid": delete_user,
+            },
+        )
+    
     assert "errors" not in str(add_result.result)
     assert add_result.result["return_codes"] == successful_return_codes
+    assert type(extract_result.result["profile"]["base"]["base:uid"]) == int
+    assert type(extract_result.result["profile"]["base"]["base:home_directory"]) == str
+    assert type(extract_result.result["profile"]["base"]["base:installation_data"]) == str
 
 def test_extract_user(create_user):
     """This test is supposed to succeed"""
