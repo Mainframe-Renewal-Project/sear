@@ -26,13 +26,11 @@ void SecurityAdmin::makeRequest(const char *p_request_json_string, int length) {
   nlohmann::json request_json;
 
   try {
-    // Ensure Request JSON is a NULL terminated string.
-    auto request_json_unique_ptr = std::make_unique<char[]>(length + 1);
-    std::memset(request_json_unique_ptr.get(), 0, length + 1);
-    std::strncpy(request_json_unique_ptr.get(), p_request_json_string, length);
+    std::string request_str(p_request_json_string, length);
+
     // Parse Request JSON
     try {
-      request_json = nlohmann::json::parse(request_json_unique_ptr.get());
+      request_json = nlohmann::json::parse(request_str);
     } catch (const nlohmann::json::parse_error &ex) {
       request_.setSEARReturnCode(8);
       throw SEARError(std::string("Syntax error in request JSON at byte ") +
@@ -149,16 +147,19 @@ void SecurityAdmin::doAddAlterDelete() {
 
     // Since the profile exists check was successful,
     // we can clean up the preserved result information.
-    Logger::getInstance().debugFree(request_.getRawRequestPointer());
-    std::free(request_.getRawRequestPointer());
-    Logger::getInstance().debug("Done");
-    request_.setRawRequestPointer(nullptr);
-    request_.setRawRequestLength(0);
-    Logger::getInstance().debugFree(request_.getRawResultPointer());
-    std::free(request_.getRawResultPointer());
-    Logger::getInstance().debug("Done");
-    request_.setRawResultPointer(nullptr);
-    request_.setRawResultLength(0);
+    if (void *req_ptr = request_.getRawRequestPointer()) {
+      Logger::getInstance().debugFree(req_ptr);
+      delete[] static_cast<char *>(req_ptr);
+      request_.setRawRequestPointer(nullptr);
+      request_.setRawRequestLength(0);
+    }
+
+    if (void *res_ptr = request_.getRawResultPointer()) {
+      Logger::getInstance().debugFree(res_ptr);
+      delete[] static_cast<char *>(res_ptr);
+      request_.setRawResultPointer(nullptr);
+      request_.setRawResultLength(0);
+    }
 
     Logger::getInstance().debug("Done");
   }
@@ -175,6 +176,18 @@ void SecurityAdmin::doAddAlterDelete() {
 
   // Post-Process Result
   irrsmo00.post_process_smo_json(request_);
+
+  if (void *final_req = request_.getRawRequestPointer()) {
+    delete[] static_cast<char *>(final_req);
+    request_.setRawRequestPointer(nullptr);
+    request_.setRawRequestLength(0);
+  }
+
+  if (void *final_res = request_.getRawResultPointer()) {
+    delete[] static_cast<char *>(final_res);
+    request_.setRawResultPointer(nullptr);
+    request_.setRawResultLength(0);
+  }
 
   Logger::getInstance().debug("Done");
 }
