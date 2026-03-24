@@ -101,7 +101,7 @@ def test_delete_group(create_group):
     assert "errors" not in str(delete_result.result)
     assert delete_result.result["return_codes"] == successful_return_codes
 
-def test_delete_group_missing_group(create_group):
+def test_delete_group_missing_group():
     """This test is supposed to fail"""
     delete_result = sear(
             {
