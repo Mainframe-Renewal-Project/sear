@@ -7,6 +7,7 @@ from sear import sear
 
 def test_search_admin_type_missing():
     """This test is supposed to fail"""
+
     search_result = sear(
             {
             "operation": "search", 
@@ -18,6 +19,7 @@ def test_search_admin_type_missing():
 
 def test_search_resource_profiles_class_missing():
     """This test is supposed to fail"""
+
     search_result = sear(
             {
             "operation": "search", 
@@ -30,6 +32,7 @@ def test_search_resource_profiles_class_missing():
 
 def test_search_resource_profiles_nonexistent_class():
     """This test is supposed to succeed with empty result"""
+
     search_result = sear(
             {
             "operation": "search", 
@@ -43,6 +46,7 @@ def test_search_resource_profiles_nonexistent_class():
 
 def test_search_resource_profiles_all():
     """This test is supposed to succeed"""
+
     search_result = sear(
             {
             "operation": "search", 
@@ -56,6 +60,7 @@ def test_search_resource_profiles_all():
 
 def test_search_resource_profiles_filter(create_resources_in_search_class):
     """This test is supposed to succeed"""
+
     profiles, class_name = create_resources_in_search_class
     search_result = sear(
             {
@@ -73,6 +78,7 @@ def test_search_resource_profiles_filter(create_resources_in_search_class):
 
 def test_search_resource_profiles_discrete(create_resource_in_search_class):
     """This test is supposed to succeed"""
+    
     profile_name, class_name = create_resource_in_search_class
     search_result = sear(
             {
