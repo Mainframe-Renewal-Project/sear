@@ -56,6 +56,7 @@ def test_extract_dataset(create_dataset):
             "dataset": create_dataset,
             },
         )
+    
     assert "errors" not in str(extract_result.result)
     assert extract_result.result["return_codes"] == successful_return_codes
     assert extract_result.result["profile"]["base"]["base:is_generic"] == True

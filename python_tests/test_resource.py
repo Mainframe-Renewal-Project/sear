@@ -19,6 +19,7 @@ def test_add_resource_profile(delete_resource):
             },
             },
         )
+    
     assert add_result.result["return_codes"] == successful_return_codes
 
 def test_add_resource_profile_no_traits(delete_resource):
@@ -32,6 +33,7 @@ def test_add_resource_profile_no_traits(delete_resource):
             "class": class_name,
             },
         )
+    
     assert add_result.result["return_codes"] == successful_return_codes
 
 def test_extract_resource_profile(create_resource):
@@ -45,8 +47,10 @@ def test_extract_resource_profile(create_resource):
             "class": class_name,
             },
         )
+    
     assert "errors" not in str(extract_result.result)
     assert extract_result.result["return_codes"] == successful_return_codes
+    assert extract_result.result["profile"]["base"]["base:is_generic"] == True
 
 def test_extract_resource_profile_missing_class(create_resource):
     """This test is supposed to fail"""
@@ -71,6 +75,7 @@ def test_resource_profile_not_found():
             "class": "APPL",
             },
         )
+    
     assert "errors" in str(not_found_result.result)
     assert not_found_result.result["return_codes"] != successful_return_codes
 
@@ -101,6 +106,7 @@ def test_delete_resource_profile(create_resource):
             "class": class_name,
             },
         )
+    
     assert "errors" not in str(delete_result.result)
     assert delete_result.result["return_codes"] == successful_return_codes
 
@@ -114,5 +120,6 @@ def test_delete_resource_profile_missing_class(create_resource):
             "resource": profile_name,
             },
         )
+    
     assert "errors" in str(delete_result.result)
     assert delete_result.result["return_codes"] != successful_return_codes
