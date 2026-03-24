@@ -152,7 +152,18 @@ def test_add_user_base_traits(delete_user):
             },
             },
         )
+    
+    extract_result = sear(
+            {
+            "operation": "extract",
+            "admin_type": "user",
+            "userid": delete_user,
+            },
+        )
+    
     assert "errors" not in str(add_result.result)
+    assert type(extract_result.result["profile"]["base"]["base:installation_data"]) == str
+    assert type(extract_result.result["profile"]["base"]["base:name"]) == str
     assert add_result.result["return_codes"] == successful_return_codes
 
 def test_add_user_no_traits(delete_user):
