@@ -13,9 +13,9 @@ def test_add_group(delete_group):
             "operation": "add", 
             "admin_type": "group", 
             "group": delete_group,
-            "traits": {
-                "base:installation_data": "GROUP GENERATED DURING SEAR TESTING, NOT IMPORTANT",
-            },
+                "traits": {
+                    "base:installation_data": "GROUP GENERATED DURING SEAR TESTING, NOT IMPORTANT",
+                },
             },
         )
     

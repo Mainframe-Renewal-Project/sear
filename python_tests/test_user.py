@@ -13,9 +13,9 @@ def test_add_user(delete_user):
             "operation": "add", 
             "admin_type": "user", 
             "userid": delete_user,
-            "traits": {
-                "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
-            },
+                "traits": {
+                    "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
+                },
             },
         )
     assert "errors" not in str(add_result.result)
@@ -33,9 +33,9 @@ def test_add_user_with_danish_characters(delete_user):
             "operation": "add", 
             "admin_type": "user", 
             "userid": username,
-            "traits": {
-                "base:name": name,  # noqa: E501
-            },
+                "traits": {
+                    "base:name": name,  # noqa: E501
+                },
             },
         )
     
@@ -63,9 +63,9 @@ def test_add_user_with_german_characters(delete_user):
             "operation": "add", 
             "admin_type": "user", 
             "userid": username,
-            "traits": {
-                "base:name": name,  # noqa: E501
-            },
+                "traits": {
+                    "base:name": name,  # noqa: E501
+                },
             },
         )
     
@@ -93,10 +93,10 @@ def test_add_user_with_spanish_characters(delete_user):
             "operation": "add", 
             "admin_type": "user", 
             "userid": username,
-            "traits": {
-                "base:name": name,  # noqa: E501
-                "base:installation_data": "Diego Rodríguez de Silva y Velázquez (Sevilla, bautizado el 6 de junio de 1599-Madrid, 6 de agosto de 1660), conocido como Diego Velázquez",  # noqa: E501
-            },
+                "traits": {
+                    "base:name": name,  # noqa: E501
+                    "base:installation_data": "Diego Rodríguez de Silva y Velázquez (Sevilla, bautizado el 6 de junio de 1599-Madrid, 6 de agosto de 1660), conocido como Diego Velázquez",  # noqa: E501
+                },
             },
         )
     
@@ -119,9 +119,9 @@ def test_add_user_missing_userid():
             {
             "operation": "add", 
             "admin_type": "user", 
-            "traits": {
-                "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
-            },
+                "traits": {
+                    "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
+                },
             },
         )
     
@@ -136,9 +136,9 @@ def test_add_user_userid_too_long():
             "operation": "add", 
             "admin_type": "user", 
             "userid": "ThisIsTooLong",
-            "traits": {
-                "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
-            },
+                "traits": {
+                    "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
+                },
             },
         )
     
@@ -153,12 +153,12 @@ def test_add_user_base_traits(delete_user):
             "operation": "add", 
             "admin_type": "user", 
             "userid": delete_user,
-            "traits": {
-                "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
-                "base:name": "TEST USER",
-                "base:restrict_global_access_checking": True,
-                "base:automatic_dataset_protection": True,
-            },
+                "traits": {
+                    "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
+                    "base:name": "TEST USER",
+                    "base:restrict_global_access_checking": True,
+                    "base:automatic_dataset_protection": True,
+                },
             },
         )
     
@@ -197,15 +197,15 @@ def test_add_user_tso_traits(delete_user):
             "operation": "add", 
             "admin_type": "user", 
             "userid": delete_user,
-            "traits": {
-                "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
-                "tso:max_region_size": 0,
-                "tso:message_class": "A",
-                "tso:hold_class": "B",
-                "tso:job_class": "B",
-                "tso:sysout_class": "B",
-                "tso:account_number": "2348234",
-            },
+                "traits": {
+                    "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
+                    "tso:max_region_size": 0,
+                    "tso:message_class": "A",
+                    "tso:hold_class": "B",
+                    "tso:job_class": "B",
+                    "tso:sysout_class": "B",
+                    "tso:account_number": "2348234",
+                },
             },
         )
     assert "errors" not in str(add_result.result)
@@ -219,14 +219,14 @@ def test_add_user_omvs_traits(delete_user):
             "operation": "add", 
             "admin_type": "user", 
             "userid": delete_user,
-            "traits": {
-                "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
-                "omvs:home_directory": f"/u/{delete_user}",
-                "omvs:default_shell": "/bin/sh",
-                "omvs:max_files_per_process": 20,
-                "omvs:max_threads": 4,
-                "omvs:auto_uid": True,
-            },
+                "traits": {
+                    "base:installation_data": "USER GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
+                    "omvs:home_directory": f"/u/{delete_user}",
+                    "omvs:default_shell": "/bin/sh",
+                    "omvs:max_files_per_process": 20,
+                    "omvs:max_threads": 4,
+                    "omvs:auto_uid": True,
+                },
             },
         )
     

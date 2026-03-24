@@ -7,15 +7,15 @@ from sear import sear
 
 def test_add_dataset(delete_dataset):
     """This test is supposed to succeed"""
-    
+
     add_result = sear(
             {
             "operation": "add", 
             "admin_type": "dataset", 
             "dataset": delete_dataset,
-            "traits": {
-                "base:installation_data": "DATASET PROFILE GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
-            },
+                "traits": {
+                    "base:installation_data": "DATASET PROFILE GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
+                },
             },
         )
 
@@ -42,9 +42,9 @@ def test_add_dataset_missing_dataset():
             {
             "operation": "add", 
             "admin_type": "dataset", 
-            "traits": {
-                "base:installation_data": "DATASET PROFILE GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
-            },
+                "traits": {
+                    "base:installation_data": "DATASET PROFILE GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
+                },
             },
         )
     

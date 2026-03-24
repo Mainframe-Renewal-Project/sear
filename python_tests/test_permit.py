@@ -7,7 +7,7 @@ from sear import sear
 
 def test_add_dataset_permit(create_user, create_dataset):
     """This test is supposed to succeed"""
-    
+
     add_result = sear(
             {
             "operation": "alter", 
@@ -15,9 +15,9 @@ def test_add_dataset_permit(create_user, create_dataset):
             "dataset": create_dataset,
             "userid": create_user,
             "generic": True,
-            "traits": {
-                "base:access": "READ",
-            },
+                "traits": {
+                    "base:access": "READ",
+                },
             },
         )
     
@@ -33,9 +33,9 @@ def test_add_dataset_permit_missing_admin_type(create_user, create_dataset):
             "dataset": create_dataset,
             "userid": create_user,
             "generic": True,
-            "traits": {
-                "base:access": "READ",
-            },
+                "traits": {
+                    "base:access": "READ",
+                },
             },
         )
     
@@ -51,9 +51,9 @@ def test_add_dataset_permit_missing_operation(create_user, create_dataset):
             "dataset": create_dataset,
             "userid": create_user,
             "generic": True,
-            "traits": {
-                "base:access": "READ",
-            },
+                "traits": {
+                    "base:access": "READ",
+                },
             },
         )
     
@@ -69,9 +69,9 @@ def test_add_dataset_permit_missing_userid(create_dataset):
             "admin_type": "permission", 
             "dataset": create_dataset,
             "generic": True,
-            "traits": {
-                "base:access": "READ",
-            },
+                "traits": {
+                    "base:access": "READ",
+                },
             },
         )
     
@@ -89,9 +89,9 @@ def test_add_resource_permit(create_user, create_resource):
             "resource": profile_name,
             "class": class_name,
             "userid": create_user,
-            "traits": {
-                "base:access": "READ",
-            },
+                "traits": {
+                    "base:access": "READ",
+                },
             },
         )
     
@@ -108,9 +108,9 @@ def test_add_resource_permit_missing_class(create_user, create_resource):
             "admin_type": "permission", 
             "resource": profile_name,
             "userid": create_user,
-            "traits": {
-                "base:access": "READ",
-            },
+                "traits": {
+                    "base:access": "READ",
+                },
             },
         )
     
@@ -128,9 +128,9 @@ def test_add_resource_permit_missing_operation(create_user, create_resource):
             "resource": profile_name,
             "class": class_name,
             "userid": create_user,
-            "traits": {
-                "base:access": "READ",
-            },
+                "traits": {
+                    "base:access": "READ",
+                },
             },
         )
     
@@ -147,9 +147,9 @@ def test_add_resource_permit_missing_admin_type(create_user, create_resource):
             "resource": profile_name,
             "class": class_name,
             "userid": create_user,
-            "traits": {
-                "base:access": "READ",
-            },
+                "traits": {
+                    "base:access": "READ",
+                },
             },
         )
     
@@ -166,9 +166,9 @@ def test_add_resource_permit_missing_userid(create_resource):
             "admin_type": "permission", 
             "resource": profile_name,
             "class": class_name,
-            "traits": {
-                "base:access": "READ",
-            },
+                "traits": {
+                    "base:access": "READ",
+                },
             },
         )
     
