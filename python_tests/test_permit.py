@@ -19,6 +19,7 @@ def test_add_dataset_permit(create_user, create_dataset):
             },
             },
         )
+    
     assert "errors" not in str(add_result.result)
     assert add_result.result["return_codes"] == successful_return_codes
 
@@ -35,6 +36,7 @@ def test_add_dataset_permit_missing_admin_type(create_user, create_dataset):
             },
             },
         )
+    
     assert "errors" in str(add_result.result)
     assert add_result.result["return_codes"] != successful_return_codes
 
@@ -51,6 +53,7 @@ def test_add_dataset_permit_missing_operation(create_user, create_dataset):
             },
             },
         )
+    
     assert "errors" in str(add_result.result)
     assert add_result.result["return_codes"] != successful_return_codes
 
@@ -67,6 +70,7 @@ def test_add_dataset_permit_missing_userid(create_dataset):
             },
             },
         )
+    
     assert "errors" in str(add_result.result)
     assert add_result.result["return_codes"] != successful_return_codes
 
@@ -85,6 +89,7 @@ def test_add_resource_permit(create_user, create_resource):
             },
             },
         )
+    
     assert "errors" not in str(add_result.result)
     assert add_result.result["return_codes"] == successful_return_codes
 
@@ -102,6 +107,7 @@ def test_add_resource_permit_missing_class(create_user, create_resource):
             },
             },
         )
+    
     assert "errors" in str(add_result.result)
     assert add_result.result["return_codes"] != successful_return_codes
 
@@ -120,6 +126,7 @@ def test_add_resource_permit_missing_operation(create_user, create_resource):
             },
             },
         )
+    
     assert "errors" in str(add_result.result)
     assert add_result.result["return_codes"] != successful_return_codes
 
@@ -137,6 +144,7 @@ def test_add_resource_permit_missing_admin_type(create_user, create_resource):
             },
             },
         )
+    
     assert "errors" in str(add_result.result)
     assert add_result.result["return_codes"] != successful_return_codes
 
@@ -154,5 +162,6 @@ def test_add_resource_permit_missing_userid(create_resource):
             },
             },
         )
+    
     assert "errors" in str(add_result.result)
     assert add_result.result["return_codes"] != successful_return_codes

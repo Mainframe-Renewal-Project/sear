@@ -15,6 +15,7 @@ def test_extract_keyring_not_found():
         "owner": "IBMUSER",
         },
     )
+
     assert "errors" in str(not_found_result.result)
     assert not_found_result.result["return_codes"] == keyring_not_found_return_codes
 
@@ -27,6 +28,7 @@ def test_extract_keyring_missing_admin_type():
         "owner": "IBMUSER",
         },
     )
+
     assert "errors" in str(not_found_result.result)
     assert not_found_result.result["return_codes"] != keyring_not_found_return_codes
 
@@ -39,6 +41,7 @@ def test_extract_keyring_missing_operation():
         "owner": "IBMUSER",
         },
     )
+
     assert "errors" in str(not_found_result.result)
     assert not_found_result.result["return_codes"] != keyring_not_found_return_codes
 
@@ -51,6 +54,7 @@ def test_extract_keyring_missing_owner():
         "keyring": "SEARNOTFOUND",
         },
     )
+
     assert "errors" in str(not_found_result.result)
     assert not_found_result.result["return_codes"] != keyring_not_found_return_codes
 
@@ -63,6 +67,7 @@ def test_extract_keyring_missing_keyring():
         "owner": "IBMUSER",
         },
     )
+
     assert "errors" in str(not_found_result.result)
     assert not_found_result.result["return_codes"] != keyring_not_found_return_codes
 
@@ -78,6 +83,7 @@ def test_extract_keyring(create_keyring):
         "owner": owner,
         },
     )
+
     assert "errors" not in str(extract_result.result)
     assert extract_result.result["return_codes"] == successful_return_codes
 
@@ -93,6 +99,7 @@ def test_add_keyring(delete_keyring):
         "owner": owner,
         },
     )
+
     assert "errors" not in str(add_result.result)
     assert add_result.result["return_codes"] == successful_return_codes
 
@@ -107,6 +114,7 @@ def test_add_keyring_missing_owner(delete_keyring):
         "keyring": keyring,
         },
     )
+
     assert "errors" in str(add_result.result)
     assert add_result.result["return_codes"] != successful_return_codes
 
@@ -121,6 +129,7 @@ def test_add_keyring_missing_keyring(delete_keyring):
         "owner": owner,
         },
     )
+
     assert "errors" in str(add_result.result)
     assert add_result.result["return_codes"] != successful_return_codes
 
@@ -136,6 +145,7 @@ def test_delete_keyring(create_keyring):
         "owner": owner,
         },
     )
+
     assert "errors" not in str(delete_result.result)
     assert delete_result.result["return_codes"] == successful_return_codes
 
@@ -150,6 +160,7 @@ def test_delete_keyring_missing_owner(create_keyring):
         "keyring": keyring,
         },
     )
+
     assert "errors" in str(delete_result.result)
     assert delete_result.result["return_codes"] != successful_return_codes
 
@@ -164,6 +175,7 @@ def test_delete_keyring_missing_keyring(create_keyring):
         "owner": owner,
         },
     )
+
     assert "errors" in str(delete_result.result)
     assert delete_result.result["return_codes"] != successful_return_codes
 
@@ -225,6 +237,7 @@ def test_add_certificate_to_keyring_missing_certificate(create_keyring):
         "status": "TRUST"
         }
     )
+
     assert "errors" in str(delete_result.result)
     assert delete_result.result["return_codes"] != successful_return_codes
 
@@ -245,5 +258,6 @@ def test_add_certificate_to_keyring_missing_keyring(create_keyring, create_certi
         "status": "TRUST"
         }
     )
+    
     assert "errors" in str(delete_result.result)
     assert delete_result.result["return_codes"] != successful_return_codes

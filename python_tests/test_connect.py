@@ -18,6 +18,7 @@ def test_create_connect(create_user, create_group):
             },
             },
         )
+    
     assert "errors" not in str(connect_result.result)
     assert connect_result.result["return_codes"] == successful_return_codes
 
@@ -35,6 +36,7 @@ def test_create_connect_create_authority(create_user, create_group):
             },
             },
         )
+    
     assert "errors" not in str(connect_result.result)
     assert connect_result.result["return_codes"] == successful_return_codes
 
@@ -52,6 +54,7 @@ def test_create_connect_join_authority(create_user, create_group):
             },
             },
         )
+    
     assert "errors" not in str(connect_result.result)
     assert connect_result.result["return_codes"] == successful_return_codes
 
@@ -69,6 +72,7 @@ def test_create_connect_special(create_user, create_group):
             },
             },
         )
+    
     assert "errors" not in str(connect_result.result)
     assert connect_result.result["return_codes"] == successful_return_codes
 
@@ -84,6 +88,7 @@ def test_create_connect_missing_user(create_group):
             },
             },
         )
+    
     assert "errors" in str(connect_result.result)
     assert connect_result.result["return_codes"] != successful_return_codes
 
@@ -99,6 +104,7 @@ def test_create_connect_missing_group(create_user):
             },
             },
         )
+    
     assert "errors" in str(connect_result.result)
     assert connect_result.result["return_codes"] != successful_return_codes
 
@@ -114,5 +120,6 @@ def test_create_connect_missing_operation(create_user, create_group):
             },
             },
         )
+    
     assert "errors" in str(connect_result.result)
     assert connect_result.result["return_codes"] != successful_return_codes

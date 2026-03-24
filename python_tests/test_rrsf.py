@@ -13,6 +13,7 @@ def test_rsf_extract():
         "admin_type": "racf-rrsf",
         },
     )
+    
     assert "errors" not in str(extract_result.result)
     assert extract_result.result["return_codes"] == successful_return_codes
 
@@ -23,6 +24,7 @@ def test_rsf_extract_missing_operation():
         "admin_type": "racf-rrsf",
         },
     )
+
     assert "errors" in str(extract_result.result)
     assert extract_result.result["return_codes"] != successful_return_codes
 
@@ -34,6 +36,7 @@ def test_rsf_extract_invalid_operation_add():
         "admin_type": "racf-rrsf",
         },
     )
+
     assert "errors" in str(extract_result.result)
     assert extract_result.result["return_codes"] != successful_return_codes
 
@@ -45,6 +48,7 @@ def test_rsf_extract_invalid_operation_delete():
         "admin_type": "racf-rrsf",
         },
     )
+
     assert "errors" in str(extract_result.result)
     assert extract_result.result["return_codes"] != successful_return_codes
 
@@ -56,5 +60,6 @@ def test_rsf_extract_invalid_operation_search():
         "admin_type": "racf-rrsf",
         },
     )
+
     assert "errors" in str(extract_result.result)
     assert extract_result.result["return_codes"] != successful_return_codes
