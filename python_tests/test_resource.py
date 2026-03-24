@@ -15,9 +15,9 @@ def test_add_resource_profile(delete_resource):
             "admin_type": "resource", 
             "resource": profile_name,
             "class": class_name,
-            "traits": {
-                "base:installation_data": "RESOURCE PROFILE GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
-            },
+                "traits": {
+                    "base:installation_data": "RESOURCE PROFILE GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
+                },
             },
         )
     
@@ -118,7 +118,7 @@ def test_delete_resource_profile(create_resource):
 
 def test_delete_resource_profile_missing_class(create_resource):
     """This test is supposed to fail"""
-    
+
     profile_name, class_name = create_resource
     delete_result = sear(
             {
