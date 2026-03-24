@@ -7,6 +7,7 @@ from sear import sear
 
 def test_add_group(delete_group):
     """This test is supposed to succeed"""
+
     add_result = sear(
             {
             "operation": "add", 
@@ -23,6 +24,7 @@ def test_add_group(delete_group):
 
 def test_add_group_no_traits(delete_group):
     """This test is supposed to succeed"""
+
     add_result = sear(
             {
             "operation": "add", 
@@ -36,6 +38,7 @@ def test_add_group_no_traits(delete_group):
 
 def test_extract_group(create_group):
     """This test is supposed to succeed"""
+
     extract_result = sear(
             {
             "operation": "extract",
@@ -49,6 +52,7 @@ def test_extract_group(create_group):
 
 def test_extract_group_missing_group():
     """This test is supposed to fail"""
+
     extract_result = sear(
             {
             "operation": "extract",
@@ -61,6 +65,7 @@ def test_extract_group_missing_group():
 
 def test_group_not_found():
     """This test is supposed to fail"""
+
     not_found_result = sear(
             {
             "operation": "extract",
@@ -74,6 +79,7 @@ def test_group_not_found():
 
 def test_alter_group(create_group):
     """This test is supposed to succeed"""
+
     alter_result = sear(
             {
             "operation": "alter", 
@@ -90,6 +96,7 @@ def test_alter_group(create_group):
 
 def test_delete_group(create_group):
     """This test is supposed to succeed"""
+
     delete_result = sear(
             {
             "operation": "delete",
@@ -103,6 +110,7 @@ def test_delete_group(create_group):
 
 def test_delete_group_missing_group():
     """This test is supposed to fail"""
+
     delete_result = sear(
             {
             "operation": "delete",

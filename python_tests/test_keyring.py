@@ -7,6 +7,7 @@ from sear import sear
 
 def test_extract_keyring_not_found():
     """This test is supposed to fail"""
+    
     not_found_result = sear(
         {
         "operation": "extract", 
@@ -21,6 +22,7 @@ def test_extract_keyring_not_found():
 
 def test_extract_keyring_missing_admin_type():
     """This test is supposed to fail"""
+
     not_found_result = sear(
         {
         "operation": "extract", 
@@ -34,6 +36,7 @@ def test_extract_keyring_missing_admin_type():
 
 def test_extract_keyring_missing_operation():
     """This test is supposed to fail"""
+
     not_found_result = sear(
         {
         "admin_type": "keyring", 
@@ -47,6 +50,7 @@ def test_extract_keyring_missing_operation():
 
 def test_extract_keyring_missing_owner():
     """This test is supposed to fail"""
+
     not_found_result = sear(
         {
         "operation": "extract", 
@@ -60,6 +64,7 @@ def test_extract_keyring_missing_owner():
 
 def test_extract_keyring_missing_keyring():
     """This test is supposed to fail"""
+
     not_found_result = sear(
         {
         "operation": "extract", 
@@ -73,6 +78,7 @@ def test_extract_keyring_missing_keyring():
 
 def test_extract_keyring(create_keyring):
     """This test is supposed to succeed"""
+
     keyring, owner = create_keyring
 
     extract_result = sear(
@@ -89,6 +95,7 @@ def test_extract_keyring(create_keyring):
 
 def test_add_keyring(delete_keyring):
     """This test is supposed to succeed"""
+
     keyring, owner = delete_keyring
 
     add_result = sear(
@@ -105,6 +112,7 @@ def test_add_keyring(delete_keyring):
 
 def test_add_keyring_missing_owner(delete_keyring):
     """This test is supposed to fail"""
+
     keyring, owner = delete_keyring
 
     add_result = sear(
@@ -120,6 +128,7 @@ def test_add_keyring_missing_owner(delete_keyring):
 
 def test_add_keyring_missing_keyring(delete_keyring):
     """This test is supposed to fail"""
+
     keyring, owner = delete_keyring
 
     add_result = sear(
@@ -135,6 +144,7 @@ def test_add_keyring_missing_keyring(delete_keyring):
 
 def test_delete_keyring(create_keyring):
     """This test is supposed to succeed"""
+
     keyring, owner = create_keyring
 
     delete_result = sear(
@@ -151,6 +161,7 @@ def test_delete_keyring(create_keyring):
 
 def test_delete_keyring_missing_owner(create_keyring):
     """This test is supposed to fail"""
+
     keyring, owner = create_keyring
 
     delete_result = sear(
@@ -166,6 +177,7 @@ def test_delete_keyring_missing_owner(create_keyring):
 
 def test_delete_keyring_missing_keyring(create_keyring):
     """This test is supposed to fail"""
+
     keyring, owner = create_keyring
 
     delete_result = sear(
@@ -223,6 +235,7 @@ def test_delete_keyring_missing_keyring(create_keyring):
 
 def test_add_certificate_to_keyring_missing_certificate(create_keyring):
     """This test is supposed to fail"""
+
     keyring, owner = create_keyring
 
     delete_result = sear(
@@ -243,6 +256,7 @@ def test_add_certificate_to_keyring_missing_certificate(create_keyring):
 
 def test_add_certificate_to_keyring_missing_keyring(create_keyring, create_certificate_pem):
     """This test is supposed to fail"""
+
     keyring, owner = create_keyring
     cert_file, certificate_label = create_certificate_pem
 
@@ -258,6 +272,6 @@ def test_add_certificate_to_keyring_missing_keyring(create_keyring, create_certi
         "status": "TRUST"
         }
     )
-    
+
     assert "errors" in str(delete_result.result)
     assert delete_result.result["return_codes"] != successful_return_codes

@@ -7,6 +7,7 @@ from sear import sear
 
 def test_add_dataset_permit(create_user, create_dataset):
     """This test is supposed to succeed"""
+    
     add_result = sear(
             {
             "operation": "alter", 
@@ -25,6 +26,7 @@ def test_add_dataset_permit(create_user, create_dataset):
 
 def test_add_dataset_permit_missing_admin_type(create_user, create_dataset):
     """This test is supposed to fail"""
+
     add_result = sear(
             {
             "operation": "alter", 
@@ -42,6 +44,7 @@ def test_add_dataset_permit_missing_admin_type(create_user, create_dataset):
 
 def test_add_dataset_permit_missing_operation(create_user, create_dataset):
     """This test is supposed to fail"""
+
     add_result = sear(
             {
             "admin_type": "permission", 
@@ -59,6 +62,7 @@ def test_add_dataset_permit_missing_operation(create_user, create_dataset):
 
 def test_add_dataset_permit_missing_userid(create_dataset):
     """This test is supposed to fail"""
+
     add_result = sear(
             {
             "operation": "alter", 
@@ -76,6 +80,7 @@ def test_add_dataset_permit_missing_userid(create_dataset):
 
 def test_add_resource_permit(create_user, create_resource):
     """This test is supposed to succeed"""
+
     profile_name, class_name = create_resource
     add_result = sear(
             {
@@ -95,6 +100,7 @@ def test_add_resource_permit(create_user, create_resource):
 
 def test_add_resource_permit_missing_class(create_user, create_resource):
     """This test is supposed to fail"""
+
     profile_name, class_name = create_resource
     add_result = sear(
             {
@@ -114,6 +120,7 @@ def test_add_resource_permit_missing_class(create_user, create_resource):
 
 def test_add_resource_permit_missing_operation(create_user, create_resource):
     """This test is supposed to fail"""
+
     profile_name, class_name = create_resource
     add_result = sear(
             {
@@ -132,6 +139,7 @@ def test_add_resource_permit_missing_operation(create_user, create_resource):
 
 def test_add_resource_permit_missing_admin_type(create_user, create_resource):
     """This test is supposed to fail"""
+
     profile_name, class_name = create_resource
     add_result = sear(
             {
@@ -150,6 +158,7 @@ def test_add_resource_permit_missing_admin_type(create_user, create_resource):
 
 def test_add_resource_permit_missing_userid(create_resource):
     """This test is supposed to fail"""
+
     profile_name, class_name = create_resource
     add_result = sear(
             {

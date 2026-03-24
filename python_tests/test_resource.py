@@ -7,6 +7,7 @@ from sear import sear
 
 def test_add_resource_profile(delete_resource):
     """This test is supposed to succeed"""
+
     profile_name, class_name = delete_resource
     add_result = sear(
             {
@@ -24,6 +25,7 @@ def test_add_resource_profile(delete_resource):
 
 def test_add_resource_profile_no_traits(delete_resource):
     """This test is supposed to succeed"""
+
     profile_name, class_name = delete_resource
     add_result = sear(
             {
@@ -38,6 +40,7 @@ def test_add_resource_profile_no_traits(delete_resource):
 
 def test_extract_resource_profile(create_resource):
     """This test is supposed to succeed"""
+
     profile_name, class_name = create_resource
     extract_result = sear(
             {
@@ -54,6 +57,7 @@ def test_extract_resource_profile(create_resource):
 
 def test_extract_resource_profile_missing_class(create_resource):
     """This test is supposed to fail"""
+    
     profile_name, class_name = create_resource
     extract_result = sear(
             {
@@ -67,6 +71,7 @@ def test_extract_resource_profile_missing_class(create_resource):
 
 def test_resource_profile_not_found():
     """This test is supposed to fail"""
+
     not_found_result = sear(
             {
             "operation": "extract",
@@ -97,6 +102,7 @@ def test_resource_profile_not_found():
 
 def test_delete_resource_profile(create_resource):
     """This test is supposed to succeed"""
+
     profile_name, class_name = create_resource
     delete_result = sear(
             {
@@ -112,6 +118,7 @@ def test_delete_resource_profile(create_resource):
 
 def test_delete_resource_profile_missing_class(create_resource):
     """This test is supposed to fail"""
+    
     profile_name, class_name = create_resource
     delete_result = sear(
             {

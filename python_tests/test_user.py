@@ -7,6 +7,7 @@ from sear import sear
 
 def test_add_user(delete_user):
     """This test is supposed to succeed"""
+
     add_result = sear(
             {
             "operation": "add", 
@@ -22,6 +23,7 @@ def test_add_user(delete_user):
 
 def test_add_user_with_danish_characters(delete_user):
     """This test is supposed to succeed"""
+
     username = delete_user
 
     name = "BØLLE MÅNEN ER STÆRK"
@@ -51,6 +53,7 @@ def test_add_user_with_danish_characters(delete_user):
 
 def test_add_user_with_german_characters(delete_user):
     """This test is supposed to succeed"""
+
     username = delete_user
 
     name = "ÖSTERREICH IST ÜBER"
@@ -80,6 +83,7 @@ def test_add_user_with_german_characters(delete_user):
 
 def test_add_user_with_spanish_characters(delete_user):
     """This test is supposed to succeed"""
+
     username = delete_user
 
     name = "DIEGO VELÁZQUEZ"
@@ -110,6 +114,7 @@ def test_add_user_with_spanish_characters(delete_user):
 
 def test_add_user_missing_userid():
     """This test is supposed to fail"""
+
     add_result = sear(
             {
             "operation": "add", 
@@ -119,11 +124,13 @@ def test_add_user_missing_userid():
             },
             },
         )
+    
     assert "errors" in str(add_result.result)
     assert add_result.result["return_codes"] != successful_return_codes
 
 def test_add_user_userid_too_long():
     """This test is supposed to fail"""
+
     add_result = sear(
             {
             "operation": "add", 
@@ -134,11 +141,13 @@ def test_add_user_userid_too_long():
             },
             },
         )
+    
     assert "errors" in str(add_result.result)
     assert add_result.result["return_codes"] != successful_return_codes
 
 def test_add_user_base_traits(delete_user):
     """This test is supposed to succeed"""
+
     add_result = sear(
             {
             "operation": "add", 
@@ -168,6 +177,7 @@ def test_add_user_base_traits(delete_user):
 
 def test_add_user_no_traits(delete_user):
     """This test is supposed to succeed"""
+
     add_result = sear(
             {
             "operation": "add", 
@@ -175,11 +185,13 @@ def test_add_user_no_traits(delete_user):
             "userid": delete_user,
             },
         )
+    
     assert "errors" not in str(add_result.result)
     assert add_result.result["return_codes"] == successful_return_codes
 
 def test_add_user_tso_traits(delete_user):
     """This test is supposed to succeed"""
+
     add_result = sear(
             {
             "operation": "add", 
@@ -201,6 +213,7 @@ def test_add_user_tso_traits(delete_user):
 
 def test_add_user_omvs_traits(delete_user):
     """This test is supposed to succeed"""
+
     add_result = sear(
             {
             "operation": "add", 
@@ -235,6 +248,7 @@ def test_add_user_omvs_traits(delete_user):
 
 def test_extract_user(create_user):
     """This test is supposed to succeed"""
+
     extract_result = sear(
             {
             "operation": "extract",
@@ -242,6 +256,7 @@ def test_extract_user(create_user):
             "userid": create_user,
             },
         )
+    
     assert "errors" not in str(extract_result.result)
     assert extract_result.result["return_codes"] == successful_return_codes
 
@@ -259,6 +274,7 @@ def test_extract_user_empty_string():
 
 def test_user_extract_not_found():
     """This test is supposed to fail"""
+
     user_not_found_result = sear(
             {
             "operation": "extract",
@@ -271,6 +287,7 @@ def test_user_extract_not_found():
 
 def test_user_extract_missing_userid():
     """This test is supposed to fail"""
+
     user_not_found_result = sear(
             {
             "operation": "extract",
@@ -282,6 +299,7 @@ def test_user_extract_missing_userid():
 
 def test_alter_user(create_user):
     """This test is supposed to succeed"""
+
     alter_result = sear(
             {
             "operation": "alter", 
@@ -292,11 +310,13 @@ def test_alter_user(create_user):
             },
             },
         )
+    
     assert "errors" not in str(alter_result.result)
     assert alter_result.result["return_codes"] == successful_return_codes
 
 def test_delete_user(create_user):
     """This test is supposed to succeed"""
+
     delete_result = sear(
             {
             "operation": "delete",
@@ -309,11 +329,13 @@ def test_delete_user(create_user):
 
 def test_delete_user_missing_userid():
     """This test is supposed to fail"""
+
     delete_result = sear(
             {
             "operation": "delete",
             "admin_type": "user",
             },
         )
+    
     assert "errors" in str(delete_result.result)
     assert delete_result.result["return_codes"] != successful_return_codes
