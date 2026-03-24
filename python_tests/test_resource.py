@@ -21,6 +21,7 @@ def test_add_resource_profile(delete_resource):
             },
         )
     
+    assert "errors" not in str(add_result.result)
     assert add_result.result["return_codes"] == successful_return_codes
 
 def test_add_resource_profile_no_traits(delete_resource):
@@ -36,6 +37,7 @@ def test_add_resource_profile_no_traits(delete_resource):
             },
         )
     
+    assert "errors" not in str(add_result.result)
     assert add_result.result["return_codes"] == successful_return_codes
 
 def test_extract_resource_profile(create_resource):
