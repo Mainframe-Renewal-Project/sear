@@ -7,6 +7,7 @@ from sear import sear
 
 def test_add_resource_profile(delete_resource):
     """This test is supposed to succeed"""
+
     profile_name, class_name = delete_resource
     add_result = sear(
             {
@@ -14,15 +15,18 @@ def test_add_resource_profile(delete_resource):
             "admin_type": "resource", 
             "resource": profile_name,
             "class": class_name,
-            "traits": {
-                "base:installation_data": "RESOURCE PROFILE GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
-            },
+                "traits": {
+                    "base:installation_data": "RESOURCE PROFILE GENERATED DURING SEAR TESTING, NOT IMPORTANT",  # noqa: E501
+                },
             },
         )
+    
+    assert "errors" not in str(add_result.result)
     assert add_result.result["return_codes"] == successful_return_codes
 
 def test_add_resource_profile_no_traits(delete_resource):
     """This test is supposed to succeed"""
+
     profile_name, class_name = delete_resource
     add_result = sear(
             {
@@ -32,10 +36,13 @@ def test_add_resource_profile_no_traits(delete_resource):
             "class": class_name,
             },
         )
+    
+    assert "errors" not in str(add_result.result)
     assert add_result.result["return_codes"] == successful_return_codes
 
 def test_extract_resource_profile(create_resource):
     """This test is supposed to succeed"""
+
     profile_name, class_name = create_resource
     extract_result = sear(
             {
@@ -45,11 +52,14 @@ def test_extract_resource_profile(create_resource):
             "class": class_name,
             },
         )
+    
     assert "errors" not in str(extract_result.result)
     assert extract_result.result["return_codes"] == successful_return_codes
+    assert extract_result.result["profile"]["base"]["base:is_generic"] == True
 
 def test_extract_resource_profile_missing_class(create_resource):
     """This test is supposed to fail"""
+    
     profile_name, class_name = create_resource
     extract_result = sear(
             {
@@ -63,6 +73,7 @@ def test_extract_resource_profile_missing_class(create_resource):
 
 def test_resource_profile_not_found():
     """This test is supposed to fail"""
+
     not_found_result = sear(
             {
             "operation": "extract",
@@ -71,6 +82,7 @@ def test_resource_profile_not_found():
             "class": "APPL",
             },
         )
+    
     assert "errors" in str(not_found_result.result)
     assert not_found_result.result["return_codes"] != successful_return_codes
 
@@ -92,6 +104,7 @@ def test_resource_profile_not_found():
 
 def test_delete_resource_profile(create_resource):
     """This test is supposed to succeed"""
+
     profile_name, class_name = create_resource
     delete_result = sear(
             {
@@ -101,11 +114,13 @@ def test_delete_resource_profile(create_resource):
             "class": class_name,
             },
         )
+    
     assert "errors" not in str(delete_result.result)
     assert delete_result.result["return_codes"] == successful_return_codes
 
 def test_delete_resource_profile_missing_class(create_resource):
     """This test is supposed to fail"""
+
     profile_name, class_name = create_resource
     delete_result = sear(
             {
@@ -114,5 +129,6 @@ def test_delete_resource_profile_missing_class(create_resource):
             "resource": profile_name,
             },
         )
+    
     assert "errors" in str(delete_result.result)
     assert delete_result.result["return_codes"] != successful_return_codes
