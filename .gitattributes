@@ -7,5 +7,6 @@
 *.d.ts git-encoding=utf-8 zos-working-tree-encoding=utf-8
 *.cpp zos-working-tree-encoding=utf-8
 *.hpp zos-working-tree-encoding=utf-8
+.github/workflows/*.yml zos-working-tree-encoding=utf-8
 tests/validation/request_samples/test_syntax_error_binary_data_request.json binary
 README.md git-encoding=utf-8 zos-working-tree-encoding=utf-8 working-tree-encoding=utf-8 eol=lf
