@@ -159,7 +159,7 @@ const trait_key_mapping_t RESOURCE_BASE_SEGMENT_MAP[]{
      TRAIT_TYPE_STRING,    {true, true, true, false},
      },
     {
-     "base:members",   "member",
+    "base:members",   "memcnt",
      TRAIT_TYPE_REPEAT, {false, false, false, false},
      },
     {
