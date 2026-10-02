@@ -64,7 +64,7 @@ const trait_key_mapping_t RACF_OPTIONS_BASE_SEGMENT_MAP[]{
      },
     {
      "base:generic_profile_checking_classes",  "generic",
-     TRAIT_TYPE_REPEAT,   {false, true, true, false},
+        TRAIT_TYPE_STRING,   {true, false, false, true},
      },
     {
      "base:generic_profile_sharing_classes",  "genlist",
